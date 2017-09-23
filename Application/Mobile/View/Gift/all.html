@@ -1,0 +1,71 @@
+<extend name="Public/bases"/>
+
+<block name="body" >
+<style>.header-sub .logo .game-icon{height: 30px;width: auto;border-radius: 0;margin: 6px 0;} .ms-none{display:none;}</style>
+
+<div class="mod-con list-arrow-con">
+    <ul class="fahao-list" id="ajaxContainer" currentpage="{$page}" maxpage="{$total}">
+		<volist name="lists" id="vo">    
+        <li>
+            <a href="{:U('lists?id='.$vo['id'])}">
+                <div class="pic">
+                    <img src="{$vo.icon|get_cover='path'}" width="60" height="60">
+                </div>
+                <div class="info">
+                    <span class="name"><?php echo preg_replace('/(\(.+)/i','',$vo['game_name']);?></span>
+                        <p>
+                            今日新增<span class="c-orange"> <notempty name="vo.tcount">{$vo.tcount}<else />0</notempty> </span>款，
+                            礼包总数<span class="c-orange"> <notempty name="vo.count">{$vo.count}<else />0</notempty> </span>款
+                        </p>
+                </div>
+			</a>
+        </li>
+        </volist>
+    </ul>
+    <section>
+        <div class="loading" id="loadingTip"><i class="loading-child"></i><span class="loading-text">正在加载，请等待……</span></div>
+        <div class="loading ms-none" id="errorTip">对不起，加载失败请<a href="{:U('News/lists?name='.I('name'))}" class="error">重 试</a>!</div>
+        <div class="loading ms-none" id="moreBtn"><a href="javascript:" class="link">点此查看更多</a></div>
+    </section>
+</div>
+<script src="__JS__/ajaxload.js"></script>
+<script>
+    ajaxload('{:U("ajaxlists")}',{},function(data) {
+        var ac = $('#ajaxContainer');
+        if (data.status == 1) {
+            ac.attr('currentpage',data.page);
+            var html = '',timestamp=(new Date().getTime())/1000;
+            for (var i in data.lists) {
+                var item = data.lists[i];
+                html += '<li>';
+                html += '<a href="__CONTROLLER__/lists/id/'+item['id']+'">';
+                html += '<div class="pic">';
+                html += '<img src="'+item['picurl']+'" width="60" height="60">';
+                html += '</div>';
+                html += '<div class="info">';
+                html += '<span class="name">'+item['game_name']+'</span>';
+                html += '<p>今日新增<span class="c-orange"> ';
+                if (item['tcount'])
+                    html += item['tcount'];
+                else 
+                    html += '0';
+                html += ' </span>款，礼包总数<span class="c-orange"> ';
+                if (item['count'])
+                    html += item['count'];
+                else
+                    html += '0';
+                html += ' </span>款</p>';
+                html += '</div>';
+                html += '</a></li>';
+            }
+            ac.append(html);
+            $('.loading').addClass('ms-none');
+            $('#moreBtn').removeClass('ms-none');loads=false;
+        } else {
+            $('.loading').addClass('ms-none');
+            $('#moreBtn').removeClass('ms-none').html('对不起，数据已经加载完');
+        }
+    });
+</script>
+
+</block>

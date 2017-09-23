@@ -1,0 +1,217 @@
+<extend name="Public/base" />
+<block name="body" >
+<script src="__STATIC__/layer/layer.js" type="text/javascript"></script>
+<script src="__STATIC__/layer/extend/layer.ext.js" type="text/javascript"></script>
+<div id="main">
+    <div class="wrap">
+      <div class="login_bg">
+        <div class="login_top_bg"></div>
+      </div>
+      <div id="loginer" class="clearfix">
+        <div class="main">
+          <p class="title">登 录</p>
+          <form>
+          <dl id="form" class="form">
+            <!--<dd class="s_login"><img src="http://static.65.com/login/images/s.gif" alt="登录成功，正在跳转"><p>登录成功，正在跳转...</p></dd>-->
+            <dd id="login_tip" style="height:30px; line-height:30px; margin-bottom:0px; text-align:center; color:#ff8400; font-size:12px; font-family:&#39;宋体&#39;;"></dd>
+            <dd class="input">
+              <div>
+                <input type="text" placeholder="帐号" name="account" id="username" value="{:$_COOKIE['media_account']}" class="text" status="n">
+              </div>
+              <div>
+                <input type="password" placeholder="密码" name="password" id="password" class="text" status="n">
+              </div>
+            </dd>
+            <dd class="clearfixed" id="codewrap" style="display:block;">
+              <p class="code">
+                <input type="text" placeholder="验证码" name="yzm" class="text text-short" id="code" status="n">
+              </p>
+              <p class="log-verify-ico"><img title="点击换一张" class="log-verify-img" width="108px" height="38px" src="{:U('Member/verify')}" alt="验证码" ></p>
+            </dd>
+            <dd style="padding-left:10px;padding-top:10px;"> <span id="rem" class="rem w_keep_password w_keep_pasw_check"></span>
+              <input type="hidden" id="remuser" name="remuser" value="1">
+              <label class="rem">记住用户名</label>
+              <a class="form-forget" href="{:U('Member/findpwd')}">忘记密码？</a> </dd>
+            <dd class="btn-log-wrap">
+                <a id="tj-log" title="立即登录" class="btn btnlog">立即登录</a>
+                <a href="{:U('register')}" id="btn-reg" class="btn btnreg">免费注册</a>
+            </dd>
+<!--             <dd class="third-log">
+                <span>请使用以下账号快速登录：</span>
+                <div class="third-log-list">
+                    <if condition="C('qq_login.status') == 1">
+                    <a href="javascript:;" class="jsthird" data-type="qq"><img src="__IMG__/third/qq.png"></a>
+                    </if>
+                    <if condition="C('weixin_login.status') == 1">
+                    <a href="javascript:;" class="jsthird" data-type="weixin"><img src="__IMG__/third/weixin.png"></a>
+                    </if>
+                    <if condition="C('sina_login.status') == 1">
+                    <a href="javascript:;" class="jsthird" data-type="sina"><img src="__IMG__/third/weibo.png"></a>
+                    </if>
+                    <if condition="C('baidu_login.status') == 1">
+                    <a href="javascript:;" class="jsthird" data-type="baidu"><img src="__IMG__/third/baidu.png"></a>
+                    </if>
+                </div>
+            </dd> -->
+          </dl>
+          </form>
+          <script>
+              var UURL = '{:U("Member/thirdlogin")}';
+              $('.jsthird').on('click',function() {
+
+                    var that = $(this),type = that.attr('data-type');
+                    var url = UURL.replace(/\.htm[l]/g,'');
+                    
+                    window.location.href=url+'/type/'+type;
+
+                });
+          
+              $(".log-verify-img").click(function(){
+                  var e = (new Date).getTime();
+                    codeurl="__MODULE__/Member/verify/t/";
+                    $(this).attr('src', codeurl + e);
+              });
+                $("#rem").click(function(){
+                  $('#rem').toggleClass('w_keep_pasw_check');
+                  if($("#rem").hasClass("w_keep_pasw_check")){
+                    $("#remuser").val('1');
+                  }else{
+                      $("#remuser").val('0');
+                  } 
+                });
+                $("#username").focus(function(){
+                  $('.input').addClass('input2');
+                });
+                $("#username").blur(function(){
+                  $('.input').removeClass('input2');
+                });
+                $("#password").blur(function(){
+                  $('.input').removeClass('input2');
+                });
+                $("#password").focus(function(){
+                  $('.input').addClass('input2');
+                });
+                $("#code").blur(function(){
+                  $('.code').removeClass('code2');
+                });
+                $("#code").focus(function(){
+                  $('.code').addClass('code2');
+                });
+                $('#tj-log').click(function(){
+                  data=$('form').serialize();
+                  url = "{:U('Member/login')}";
+                  $.ajax({
+                      type: 'POST',
+                      url: url ,
+                      data: data ,
+                      success: function(data){
+                          if(data.status==-1000){
+                              layer.tips(data.msg
+                                  , '#username', {
+                                      tips: [1, 'red'],time: 1000
+                                  });
+                              $(".rzm-img").click();
+                          }
+
+                          if(data.status==-1){
+                              layer.tips(data.msg
+                                  , '#username', {
+                                      tips: [1, 'red'],time: 1000
+                              });
+                              $(".rzm-img").click();
+                          }
+                          if(data.status==-2){
+                              layer.tips(data.msg
+                                  , '#password', {
+                                      tips: [1, 'red'],time: 1000
+                              });
+                              $(".rzm-img").click();
+                          }
+                          if(data.status==-3){
+                              layer.tips(data.msg
+                                  , '#code', {
+                                      tips: [1, 'red'],time: 1000
+                              });
+                              $(".rzm-img").click();
+                          }
+                          
+                          if(data.status==-1001){
+                              layer.tips(data.msg
+                                  , '#username', {
+                                      tips: [1, 'red'],time: 1000
+                              });
+                              $(".rzm-img").click();
+                          }
+                          if(data.status==-1002){
+                              layer.tips(data.msg
+                                  , '#password', {
+                                      tips: [1, 'red'],time: 1000
+                              });
+                              $(".rzm-img").click();
+                          }
+                          if(data.status==-1003){
+                              if(data.code==-10031){
+                                   $(".log-verify-img").click();
+                              }
+                              layer.tips(data.msg
+                                  , '#code', {
+                                      tips: [1, 'red'],time: 1000
+                              })
+                              $(".rzm-img").click();
+                          }
+                          if(data.status==-1004){
+                            if(data.code==-10041){
+                              layer.msg(data.msg, {icon: 2,})
+                            }else{
+                              layer.prompt({
+                                title: '动态密码'
+                              }, function (value, index, elem) {
+                                account=$('#username').val();
+                                password=$('#password').val();
+                                $.ajax({
+                                  type: 'POST',
+                                  async: true,
+                                  dataType: 'json',
+                                  url: UURL + 'login',
+                                  data:{account:account,password:password,code:value},
+                                  success:function(res){
+                                    if(res.code==-10041){
+                                      layer.msg(res.msg, {icon: 2,})
+                                    }else{
+                                      window.location.href="{:U('users_index')}";
+                                    }
+                                  }
+                                });
+                                layer.close(index);
+                              });
+                            }
+                          }
+                          if(data.status==1000){
+                              layer.msg(data.msg, {icon: 1,});
+                              window.location.href="{:U('users_index')}";
+                          }
+                          if(data.status==-500){
+                              layer.msg("服务器故障！", {icon: 2,})
+                          }
+                      },
+                      error:function(){
+                          layer.msg("服务器故障！", {icon: 2,})
+                      },
+                      complete:function(){
+                          $(".loading").attr('style','display:none');
+                      }
+
+                  });
+                });
+              </script>
+        </div>
+      </div>
+    </div>
+    <div class="page-bg" id="page_bg" style="background:url(__IMG__/hdp1.jpg) no-repeat center center;">
+      <div id="slides"> 
+        <!--<a class="pre" href="javascript:"></a>
+            <a class="next"  href="javascript:"></a>--> 
+      </div>
+    </div>
+  </div>
+</block>

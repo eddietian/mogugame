@@ -1,0 +1,228 @@
+<extend name="Public/base"/>
+
+<block name="body">
+<link rel="stylesheet" href="__CSS__/select2.min.css" type="text/css" />
+<script type="text/javascript" src="__JS__/bootstrap.min.js"></script>
+<script type="text/javascript" src="__JS__/select2.min.js"></script>
+    <!-- 标题栏 -->
+    <div class="main-place">
+        <span class="main-placetitle">位置：</span>
+        <ul class="main-placeul">
+            <li><a href="{:U('Game/lists')}">游戏</a></li>
+            <li><a href="{:U('Game/lists')}">游戏管理</a></li>
+            <li><a href="#">{$meta_title}</a></li>
+        </ul>
+        <div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">{$meta_title}</span>
+                    <span class="">平台运营游戏的列表以及游戏的相关信息参数配置等</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+	<div class="cf top_nav_list">
+		<div class="fl button_list">
+		<empty name="model.extend">
+			<div class="tools">
+				<a class="" href="{:U('add?model='.$model['id'])}"><span class="button_icon button_icon1"></span>新 增</a>
+                 <!-- <a class=" ajax-post " target-form="ids" url="{:U("set_status",array("status"=>1,"msg_type"=>5,"field"=>"apply_status"))}"><span class="button_icon button_icon9"></span>审 核</a> -->
+
+				<a class="ajax-post confirm " target-form="ids" url="{:U('del?model='.$model['id'])}"><span class="button_icon button_icon2"></span>删 除</a>
+            </div>
+		</empty>
+		</div>
+		<!-- 高级搜索 -->
+		<div class="jssearch fr cf search_list" style="margin-bottom:-15px;">
+            <!--游戏类型搜索END-->
+            <div class="input-list input-list-game search_label_rehab">
+                <label>游戏名称：</label>
+                <select id="game_id" name="game_name" class="select_gallery" >
+                    <option value="">请选择游戏</option>
+                    <volist name=":get_game_list()" id="vo">
+                        <option game-id="{$vo.id}" value="{$vo.game_name}">{$vo.game_name}</option>
+                    </volist>
+                </select>   
+            </div>
+            <div class="input-list input-list-platform">
+            <label>运营平台：</label>
+                <select id="sdk_version1" name="sdk_version1" >
+                    <option value="">请选择</option>
+                    <volist name=":get_systems_list()" id="vo">
+                    <gt name="key" value="0">
+                    <option <if condition="$Thinkphp.get.sdk_version eq $key"> selected </if> value="{$key}">{$vo}</option>
+                    </gt>
+                    </volist>
+                    <input type="hidden" id="sdk_version" name="sdk_version" value="{:I('sdk_version')}">
+                </select>  
+            </div>
+            <div class="input-list">
+                <a class="sch-btn" href="javascript:;" id="search" url="{:U('Game/lists','model='.$model['name'],false)}">搜索</a>
+            </div>
+		</div>
+	</div>
+
+
+    <!-- 数据列表 -->
+    <div class="data_list data_game_list">
+        <div class="">
+            <table>
+                <!-- 表头 -->
+                <thead>
+                    <tr>
+                        <th>
+                            <input class="check-all" type="checkbox">
+                        </th>
+                        <th >编号</th>
+                        <th >排序</th>
+                        <th >图标</th>
+                        <th >游戏名称</th>
+                        <th >游戏类型</th>
+                        <th >开放类型</th>
+                        <th >游戏Appid</th>
+                        <th >显示状态</th>
+                        <th >推荐状态</th>
+                        <th>审核状态</th>
+                        <th >运营平台</th>
+                        <th >关联游戏</th>
+                        <th >操作</th>
+                    </tr>
+                </thead>
+
+                <!-- 列表 -->
+                <tbody>
+                <empty name ="list_data">
+                <td colspan="14" class="text-center"> aOh! 暂时还没有内容! </td>
+                <else />
+                    <volist name="list_data" id="data">
+                        <tr>
+                            <td><input class="ids" type="checkbox" value="{$data['id']}" name="ids[]"></td>
+                             <td>{$data.id}</td>
+                            <td>{$data.sort}</td>
+                            <td class="data_icon"><img src="{$data.pic_path}" /></td>
+                            <td>{$data.game_name}</td>
+                            <td>{:get_game_type_name($data['game_type_id'])}</td>
+                            <td>{:get_one_opentype_name($data['category'])}</td>
+                            <td>{$data.game_appid}</td>
+                            <td><if condition="$data.game_status eq 0"><span style="color: red ">不显示</span><else/>显示</if></td>
+                            <td>{:get_info_status($data['recommend_status'],1)}</td>  
+                            <td>{:get_info_status($data['apply_status'],5)}</td>
+
+                            <td class="">            
+                                {:get_systems_name($data['sdk_version'])}
+                            </td>
+                            <td>
+                            <if condition="get_relation_game($data['id'],$data['relation_game_id']) eq false"><a href="{:U('relation',array('id'=>$data['id']))}">点击关联</a>
+                            <elseif condition="get_relation_game($data['id'],$data['relation_game_id']) eq true" /><span style="color: orange">已关联</span>
+                            <else/>
+                            <span style="color: red">该游戏关联数据错误</span>
+                            </if>
+                            </td>
+                            <td>
+                            <a href="{:U('Game/edit?id='.$data['id'])}">编辑</a>
+                            <a href="{:U('Game/del?ids='.$data['id'])}" class="confirm ajax-get">删除</a>
+                            <if condition="UID eq 1"><a href="javascript:void(0);" data-game_id="{$data.id}" data-game_name="{$data.game_name}"  data-game_appid="{$data.game_appid}"  class="duij">对接参数</a></if>
+                            </td>
+                        </tr>
+                    </volist>
+                    </empty>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="page">
+        {$_page|default=''}
+    </div>
+</block>
+
+<block name="script">
+<script src="__STATIC__/layer/layer.js"></script>
+<script>
+<volist name=":I('get.')" id="vo">
+    Think.setValue('{$key}',"{$vo}");
+</volist>
+$(".select_gallery").select2();
+</script>
+<script type="text/javascript">
+//导航高亮
+highlight_subnav('{:U('Game/lists')}');
+$(function(){
+	//搜索功能
+	$("#search").click(function(){
+		var url = $(this).attr('url');
+        var query  = $('.jssearch').find('input').serialize();
+        query  += "&"+$('.jssearch').find('select').serialize();
+        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
+        query = query.replace(/^&/g,'');
+        if( url.indexOf('?')>0 ){
+            url += '&' + query;
+        }else{
+            url += '?' + query;
+        }
+		window.location.href = url;
+	});
+
+    //回车自动提交
+    $('.jssearch').find('input').keyup(function(event){
+        if(event.keyCode===13){
+            $("#search").click();
+        }
+    });
+
+    $(".duij").click(function() {
+        var game_id=$(this).data("game_id");
+        var game_name=$(this).data("game_name");
+        var game_appid=$(this).data("game_appid");
+        var domain = document.domain;
+        $.ajax({
+            url: "{:U('get_game_set')}",
+            type:"POST",
+            dataType: 'json',
+            data: {game_id:game_id},
+            success:function(data){
+                if(data.status==1){
+                    if(data.data.game_key==""||data.data.access_key==""){
+                         layer.msg("游戏key未设置或者访问秘钥未设置", {icon: 2,})
+                    }else{
+                        layer.open({
+                          type: 1,
+                          skin: 'layui-layer-demo', //样式类名
+                          closeBtn: 0, //不显示关闭按钮
+                          anim: 2,
+                          area: ['320px', '240px'], //宽高
+                          shadeClose: true, //开启遮罩关闭
+                          content: "游戏ID:&nbsp&nbsp"+game_id+"<br/>"+"游戏名称:&nbsp&nbsp"+game_name+"<br/>"+"游戏appid:&nbsp&nbsp"+game_appid+"<br/>渠道ID:&nbsp&nbsp0<br/>渠道名称:&nbsp&nbsp自然注册<br/>游戏key:&nbsp&nbsp"+data.data.game_key+"<br/>"+"游戏访问密钥:&nbsp&nbsp"+data.data.mdaccess_key+"<br/>"+"SDK地址:&nbsp&nbsphttp://"+domain+"/sdk.php/"
+                        });
+                        
+                    }
+                }
+            },
+            error:function(){
+              layer.msg("错误", {icon: 2,})
+            }
+        })
+
+    });
+    //点击排序
+    $('.list_sort').click(function(){
+        var url = $(this).attr('url');
+        var ids = $('.ids:checked');
+        var param = '';
+        if(ids.length > 0){
+            var str = new Array();
+            ids.each(function(){
+                str.push($(this).val());
+            });
+            param = str.join(',');
+        }
+
+        if(url != undefined && url != ''){
+            
+            window.location.href = url.replace(".html","") + '/ids/' + param;
+        }
+    });
+})
+</script>
+</block>

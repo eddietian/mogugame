@@ -1,0 +1,1787 @@
+body {
+
+  font: 12px/1.5 '微软雅黑';
+
+}
+
+
+
+.mar-top30 {
+
+  margin-top: 30px;
+
+}
+
+
+
+.mar-top20 {
+
+  margin-top: 20px;
+
+}
+
+
+
+.mar-bot20 {
+
+  margin-bottom: 20px;
+
+}
+
+
+
+.mar-bot30 {
+
+  margin-bottom: 30px;
+
+}
+
+
+
+.mar-right20 {
+
+  margin-right: 20px;
+
+}
+
+
+
+.padd-top10 {
+
+  padding-top: 10px;
+
+}
+
+
+
+/* 推荐游戏 */
+
+.game-recom {
+
+  margin-bottom: 10px;
+
+}
+
+.game-recom .recom-con {
+
+  height: 26px;
+
+  padding: 8px 0;
+
+  border-bottom: 1px dotted #ebebeb;
+
+  overflow: hidden;
+
+}
+
+.game-recom .recom-con .name {
+
+  display: inline-block;
+
+  width: 80px;
+
+  height: 26px;
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+  color: #fff;
+
+  font-size: 14px;
+
+  line-height: 26px;
+
+  text-indent: 8px;
+
+  font-weight: 700;
+
+  cursor: default;
+
+}
+
+.game-recom .recom-con .name.phone {
+
+  background-position: 0 0;
+
+}
+
+.game-recom .recom-con .name.android {
+
+  background-position: 0 -33px;
+
+}
+
+.game-recom .recom-con .name.apple {
+
+  background-position: 0 -68px;
+
+}
+
+.game-recom .recom-con a {
+
+  font-size: 14px;
+
+  padding: 0 12px;
+
+  line-height: 14px;
+
+  height: 14px;
+
+  display: inline-block;
+
+  text-align: center;
+
+  border-right: 1px solid #ebebeb;
+
+}
+
+.game-recom .recom-con a.last {
+
+  border-right: 0;
+
+}
+
+.game-recom .recom-con a.hot {
+
+  color: #f00;
+
+}
+
+.game-recom .recom-con a:hover {
+
+  text-decoration: underline;
+
+}
+
+
+
+.game-recom.ol-recom {
+
+  border: 1px solid #ebebeb;
+
+  border-width: 1px 0;
+
+  margin-bottom: 10px;
+
+}
+
+.game-recom.ol-recom .left {
+
+  width: 85px;
+
+  float: left;
+
+}
+
+.game-recom.ol-recom .right {
+
+  width: 900px;
+
+  float: right;
+
+}
+
+.game-recom.ol-recom .name {
+
+  display: inline-block;
+
+  width: 82px;
+
+  height: 29px;
+
+  font-size: 14px;
+
+  line-height: 26px;
+
+  text-indent: 10px;
+
+  color: #fff;
+
+  font-weight: 700;
+
+  cursor: default;
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/top_classify.png) no-repeat 0 -104px;
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/top_classify.png) no-repeat 0 -104px;
+
+}
+
+.game-recom.ol-recom .recom-con {
+
+  height: auto;
+
+}
+
+.game-recom.ol-recom .recom-con a {
+
+  margin: 5px 0;
+
+}
+
+.game-recom.ol-recom .recom-con.last {
+
+  border: 0;
+
+}
+
+
+
+/* 网游 焦点图 */
+
+.ol-popul {
+
+  margin-bottom: 30px;
+
+}
+
+
+
+.focus-con {
+
+  width: 600px;
+
+  float: left;
+
+}
+
+.focus-con .focus-img-con {
+
+  width: 100%;
+
+  height: 340px;
+
+  overflow: hidden;
+
+  *position: relative;
+
+}
+
+.focus-con .focus-img-con .focus-img {
+
+  width: 100%;
+
+  height: 100%;
+
+  position: relative;
+
+}
+
+.focus-con .focus-img-con .focus-img li {
+
+  width: 100%;
+
+  height: 100%;
+
+  position: absolute;
+
+  left: 0;
+
+  top: 0;
+
+  display: none;
+
+}
+
+.focus-con .focus-img-con .focus-img li.current {
+
+  display: block;
+
+}
+
+.focus-con .focus-img-con .focus-img li a {
+
+  display: block;
+
+}
+
+.focus-con .focus-img-con .focus-img li img {
+
+  display: block;
+
+  width: 100%;
+
+  height: 100%;
+
+}
+
+.focus-con .focus-img-con .focus-img li .text {
+
+  width: 100%;
+
+  height: 38px;
+
+  position: absolute;
+
+  left: 0;
+
+  bottom: 0;
+
+  line-height: 38px;
+
+  font-size: 14px;
+
+  text-align: center;
+
+  color: #fff;
+
+  background: black;
+
+  background: rgba(0, 0, 0, 0.5);
+
+}
+
+.focus-con .focus-ctrl-con {
+
+  width: 100%;
+
+  height: 65px;
+
+  position: relative;
+
+}
+
+.focus-con .focus-ctrl-con .focus-ctrl {
+
+  width: 555px;
+
+  height: 100%;
+
+  position: relative;
+
+  overflow: hidden;
+
+  margin: 0 0 0 23px;
+
+}
+
+.focus-con .focus-ctrl-con .focus-ctrl ul {
+
+  height: 65px;
+
+  position: relative;
+
+}
+
+.focus-con .focus-ctrl-con .focus-ctrl li {
+
+  width: 105px;
+
+  margin-right: 7px;
+
+  float: left;
+
+  position: relative;
+
+}
+
+.focus-con .focus-ctrl-con .focus-ctrl li a {
+
+  padding-top: 5px;
+
+  display: block;
+
+}
+
+.focus-con .focus-ctrl-con .focus-ctrl li img {
+
+  display: block;
+
+  width: 105px;
+
+  height: 60px;
+
+}
+
+.focus-con .focus-ctrl-con .focus-ctrl li .meng {
+
+  display: block;
+
+  width: 105px;
+
+  height: 60px;
+
+  position: absolute;
+
+  left: 0;
+
+  bottom: 0;
+
+  background: #000;
+
+  _display: none;
+
+  opacity: 0.3;
+
+  -moz-opacity: 0.3;
+
+  filter: Alpha(opacity=30);
+
+  z-index: 10;
+
+  cursor: pointer;
+
+}
+
+.focus-con .focus-ctrl-con .focus-ctrl li.current a, .focus-con .focus-ctrl-con .focus-ctrl li a:hover {
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+  background-position: -48px -475px;
+
+}
+
+.focus-con .focus-ctrl-con .focus-ctrl li.current img, .focus-con .focus-ctrl-con .focus-ctrl li a:hover img {
+
+  width: 105px;
+
+  height: 58px;
+
+  border: 1px solid #f60;
+
+}
+
+.focus-con .focus-ctrl-con .focus-ctrl li.current .meng {
+
+  display: none;
+
+}
+
+.focus-con .focus-ctrl-con .btn {
+
+  width: 18px;
+
+  height: 60px;
+
+  display: block;
+
+  position: absolute;
+
+  bottom: 0;
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+  background-color: #999;
+
+}
+
+.focus-con .focus-ctrl-con .btn:hover {
+
+  background-color: #ff8a00;
+
+}
+
+.focus-con .focus-ctrl-con .btn.no {
+
+  background-color: #f5f5f5;
+
+}
+
+.focus-con .focus-ctrl-con .prev.no {
+
+  background-position: -153px -430px;
+
+}
+
+.focus-con .focus-ctrl-con .next.no {
+
+  background-position: -182px -430px;
+
+}
+
+.focus-con .focus-ctrl-con .prev {
+
+  left: 0;
+
+  background-position: -68px -430px;
+
+}
+
+.focus-con .focus-ctrl-con .next {
+
+  right: 0;
+
+  background-position: -115px -430px;
+
+}
+
+
+
+/* 网游频道--热门新闻 */
+
+.ol-hotnews-con {
+
+  width: 364px;
+
+  padding: 5px 7px 0 7px;
+
+  border: 1px solid #ebebeb;
+
+  float: right;
+
+}
+
+.ol-hotnews-con .tit {
+
+  font-size: 18px;
+
+  font-weight: 700;
+
+  text-align: center;
+
+  line-height: 48px;
+  height:48px;
+  width:360px;
+  overflow:hidden;
+
+  color: #f60;
+
+  border-bottom: 1px dotted #ebebeb;
+
+  margin-bottom: 3px;
+
+}
+
+.ol-hotnews-con .tit a {
+
+  color: #f60;
+
+}
+
+.ol-hotnews-con .tit a:hover {
+
+  text-decoration: underline;
+
+}
+
+
+
+.hotnews-list {
+
+  margin-bottom: 6px;
+
+}
+
+.hotnews-list li {
+
+  line-height: 28px;
+
+  *line-height: 24px;
+
+  font-size: 14px;
+
+  height: 28px;
+
+  *height: 24px;
+
+  overflow: hidden;
+
+}
+
+.hotnews-list li .type {
+
+  display: inline-block;
+
+  padding-right: 10px;
+
+  line-height: 14px;
+
+  float: left;
+
+  margin-top: 6px;
+
+  border-right: 1px solid #d0d0d0;
+
+}
+
+.hotnews-list li a {
+
+  width: 270px;
+
+  display: inline-block;
+
+  padding-left: 10px;
+
+  float: left;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+
+  overflow: hidden;
+
+}
+
+.hotnews-list li a:hover {
+
+  text-decoration: underline;
+
+}
+
+.hotnews-list li .date {
+
+  display: inline-block;
+
+  color: #999;
+
+  float: right;
+
+  font-size: 12px;
+
+}
+
+
+
+/* 网游首页背景 */
+
+a.ol-topbg-link {
+
+  position: absolute;
+
+  top: 168px;
+
+  left: 0px;
+
+  display: block;
+
+  width: 100%;
+
+  height: 500px;
+
+  overflow: hidden;
+
+}
+
+a.ol-topbg-link img {
+
+  position: relative;
+
+  display: block;
+
+  left: 50%;
+
+  top: 0;
+
+  margin-left: -960px;
+
+  width: 1920px;
+
+}
+
+
+
+.game-con-6 {
+
+  width: 718px;
+
+  float: left;
+
+}
+
+.game-con-6 .box-text {
+
+  height: 530px;
+
+  padding: 10px 0 0 6px;
+
+  overflow: hidden;
+
+}
+
+.game-con-6 .game-ul-list li {
+
+  margin-bottom: 12px;
+
+}
+
+.game-con-6 .game-ul-list li a.info p {
+
+  line-height: 30px;
+
+}
+
+
+
+/*开服开测*/
+
+.hot-promo {
+
+  margin: 14px 0 30px 14px;
+
+}
+
+.hot-promo a {
+
+  float: left;
+
+  display: block;
+
+  width: 310px;
+
+  height: 235px;
+
+  margin: 0 14px 0 0;
+
+  overflow: hidden;
+
+  border: 1px solid #fff;
+
+}
+
+.hot-promo a img {
+
+  width: 100%;
+
+}
+
+.hot-promo a:hover {
+
+  border: 1px solid #ff6600;
+
+}
+
+.hot-promo a.last {
+
+  margin-right: 0;
+
+}
+
+
+
+.open-test-con {
+
+  margin-bottom: 25px;
+
+}
+
+.open-test-con table {
+
+  width: 100%;
+
+  margin-bottom: 20px;
+
+}
+
+.open-test-con table thead th {
+
+  height: 32px;
+
+  color: #666;
+
+  border-bottom: 1px solid #f5f5f5;
+
+  background: #fdfdfd;
+
+  text-align: center;
+
+  font-size: 14px;
+
+}
+
+.open-test-con table tbody tr {
+
+  border-bottom: 1px dotted #ebebeb;
+
+}
+
+.open-test-con table tbody td {
+
+  font-size: 14px;
+
+  height: 39px;
+
+  text-align: center;
+
+  color: #666;
+
+}
+
+.open-test-con table tbody td .time {
+
+  color: #999;
+
+  margin-left: 10px;
+
+}
+
+.open-test-con table tbody td a {
+
+  width: 196px;
+
+  display: block;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+
+  overflow: hidden;
+
+}
+
+.open-test-con table tbody td a:hover {
+
+  text-decoration: underline;
+
+}
+
+.open-test-con table tbody td a.sbtn {
+
+  display: inline-block;
+
+  width: 76px;
+
+  height: 23px;
+
+  margin-top: 3px;
+
+  line-height: 24px;
+
+  text-indent: 18px;
+
+  font-size: 12px;
+
+  color: #666;
+
+  text-decoration: none;
+
+  -moz-border-radius: 4px;
+
+  -khtml-border-radius: 4px;
+
+  -webkit-border-radius: 4px;
+
+  border-radius: 4px;
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/lit_icon00.png) no-repeat 100px 100px;
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/lit_icon00.gif) no-repeat 100px 100px;
+
+  background-color: #f2f2f2;
+
+}
+
+.open-test-con table tbody td a.sbtn:hover {
+
+  text-decoration: none;
+
+}
+
+.open-test-con table tbody td a.icon-gift {
+
+  background-position: 4px -52px;
+
+}
+
+.open-test-con table tbody td a.icon-gift:hover {
+
+  background-position: 4px -25px;
+
+  background-color: #ff622b;
+
+  color: #fff;
+
+}
+
+.open-test-con table tbody td a.icon-gift-no {
+
+  background-position: 3px -75px;
+
+  text-indent: 12px;
+
+  cursor: default;
+
+}
+
+.open-test-con table tbody td a.icon-down {
+
+  background-position: 5px -337px;
+
+  text-indent: 12px;
+
+}
+
+.open-test-con table tbody td a.icon-down:hover {
+
+  background-position: 5px -367px;
+
+  background-color: #a3ce0e;
+
+  color: #fff;
+
+}
+
+.open-test-con table tbody td a.icon-down-no {
+
+  background-position: 2px -97px;
+
+  text-indent: 12px;
+
+  cursor: default;
+
+}
+
+.open-test-con table tbody td a.icon-home {
+
+  background-position: 4px -433px;
+
+  text-indent: 12px;
+
+}
+
+.open-test-con table tbody td a.icon-home:hover {
+
+  background-position: 4px -461px;
+
+  background-color: #ff8a00;
+
+  color: #fff;
+
+}
+
+.open-test-con table tbody td a.icon-home-no {
+
+  background-position: 4px -488px;
+
+  text-indent: 12px;
+
+  cursor: default;
+
+}
+
+.open-test-con table tbody td a.icon-qq {
+
+  background-position: 6px -277px;
+
+}
+
+.open-test-con table tbody td a.icon-qq:hover {
+
+  background-position: 6px -307px;
+
+  background-color: #50c0ff;
+
+  color: #fff;
+
+}
+
+
+
+.box-title-rank h3 {
+
+  font-size: 16px;
+
+  font-family: Arial;
+
+  font-weight: normal;
+
+  margin-left: 10px;
+
+  border-left: 2px solid #f60;
+
+  line-height: 16px;
+
+  padding: 0 0 0 8px;
+
+}
+
+
+
+.game-rank-con {
+
+  margin: 10px 0 0 10px;
+
+}
+
+
+
+.corner-first, .corner-second, .corner-third, .corner-mine, .corner-publish {
+
+  width: 55px;
+
+  height: 55px;
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+  position: absolute;
+
+  top: -3px;
+
+  left: -3px;
+
+  z-index: 100;
+
+}
+
+
+
+.corner-first {
+
+  background-position: 0 -345px;
+
+}
+
+
+
+.corner-second {
+
+  background-position: -55px -345px;
+
+}
+
+
+
+.corner-third {
+
+  background-position: -110px -345px;
+
+}
+
+
+
+.corner-publish {
+
+  width: 56px;
+
+  height: 56px;
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/angular.png) no-repeat 0 0;
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/angular.gif) no-repeat 0 0;
+
+}
+
+
+
+.corner-mine {
+
+  width: 56px;
+
+  height: 56px;
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/angular.png) no-repeat 0 -56px;
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/angular.gif) no-repeat 0 -56px;
+
+}
+
+
+
+.topic-con {
+
+  padding: 0 0 15px 10px;
+
+  border-bottom: 1px solid #ebebeb;
+
+}
+
+.topic-con a {
+
+  float: left;
+
+  display: block;
+
+  border: 1px solid #fff;
+
+  width: 235px;
+
+  height: 176px;
+
+  overflow: hidden;
+
+  margin: 0 6px 0 0;
+
+}
+
+.topic-con a:hover {
+
+  border: 1px solid #ff6600;
+
+}
+
+.topic-con a img {
+
+  width: 100%;
+
+}
+
+
+
+/* 新游专题 */
+
+.new-game-recom {
+
+  width: 250px;
+
+  float: left;
+
+  margin-right: 20px;
+
+}
+
+.new-game-recom .box-text {
+
+  padding-top: 4px;
+
+}
+
+.new-game-recom .pic-word-con {
+
+  width: 220px;
+
+  height: 115px;
+
+  margin: 10px 0 0 15px;
+
+}
+
+
+
+/* 独家评测 */
+
+.special-recom {
+
+  width: 450px;
+
+  float: left;
+
+}
+
+.special-recom .box-text {
+
+  padding-top: 7px;
+
+  _padding-top: 0px;
+
+}
+
+.special-recom .icon-word-list li {
+
+  height: 86px;
+
+  _height: 84px;
+
+}
+
+.special-recom .icon-word-list li .pic {
+
+  margin-top: 8px;
+
+}
+
+.special-recom .icon-word-list li .right-text {
+
+  width: 355px;
+
+  _width: 345px;
+
+}
+
+.special-recom .icon-word-list li .tit {
+
+  margin-bottom: 12px;
+
+  _margin-bottom: 10px;
+
+}
+
+.special-recom .icon-word-list li .text {
+
+  line-height: 20px;
+
+  height: 38px;
+
+  margin-bottom: 0;
+
+  overflow: hidden;
+
+}
+
+.special-recom .icon-word-list li:hover .tit a {
+
+  color: #f60;
+
+}
+
+.special-recom .icon-word-list li:hover .text a {
+
+  color: #666;
+
+}
+
+
+
+/* 新游期待榜 */
+
+.oldex {
+
+  float: right;
+
+}
+
+
+
+/* 新游视频,新游图片 */
+
+.new-game-video, .new-game-pic {
+
+  margin-bottom: 25px;
+
+}
+
+.new-game-video .box-text, .new-game-pic .box-text {
+
+  padding-top: 13px;
+
+}
+
+.new-game-video .left, .new-game-pic .left {
+
+  width: 355px;
+
+  height: 200px;
+
+  overflow: hidden;
+
+  float: left;
+
+}
+
+.new-game-video .middle, .new-game-pic .middle {
+
+  width: 370px;
+
+  height: 200px;
+
+  overflow: hidden;
+
+  float: left;
+
+}
+
+.new-game-video .right, .new-game-pic .right {
+
+  border-left: 1px solid #f5f5f5;
+
+  width: 250px;
+
+  height: 200px;
+
+  overflow: hidden;
+
+  float: right;
+
+}
+
+.new-game-video .right .news-list, .new-game-pic .right .news-list {
+
+  padding: 0 0 0 10px;
+
+}
+
+.new-game-video .right .news-list li, .new-game-pic .right .news-list li {
+
+  line-height: 29px;
+
+  padding-left: 18px;
+
+}
+
+.new-game-video .right .news-list li a, .new-game-pic .right .news-list li a {
+
+  max-width: 100%;
+
+  _width: 98%;
+
+}
+
+
+
+.new-game-video .left .video-word-con {
+
+  width: 100%;
+
+  height: 100%;
+
+}
+
+.new-game-video .middle .video-word-con {
+
+  width: 172px;
+
+  height: 95px;
+
+  margin: 0 0 10px 12px;
+
+  _margin: 0 0 10px 6px;
+
+  float: left;
+
+}
+
+.new-game-video .middle .video-word-con .text {
+
+  height: 22px;
+
+  line-height: 22px;
+
+  font-size: 12px;
+
+}
+
+.new-game-video .middle .video-word-con .word {
+
+  width: 70%;
+
+}
+
+.new-game-video .middle .video-word-con .play {
+
+  width: 24px;
+
+  height: 24px;
+
+  margin: -12px 0 0 -12px;
+
+  background-position: 8px -157px;
+
+}
+
+.new-game-video .middle .video-word-con .text .play {
+
+  margin: 0;
+
+}
+
+.new-game-video .right .news-list li {
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/lit_icon.png) no-repeat 1px -215px;
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/lit_icon.gif) no-repeat 1px -215px;
+
+}
+
+.new-game-video .right .news-list li:hover {
+
+  background-position: 1px -185px;
+
+}
+
+
+
+.new-game-pic .left {
+
+  margin-left: -2px;
+
+  _margin-left: -1px;
+
+  width: 360px;
+
+  height: 208px;
+
+}
+
+.new-game-pic .left .pic-word-con {
+
+  width: 355px;
+
+  height: 200px;
+
+}
+
+.new-game-pic .left .text {
+
+  height: 30px;
+
+  line-height: 30px;
+
+}
+
+.new-game-pic .middle {
+
+  height: 208px;
+
+}
+
+.new-game-pic .middle .pic-word-con {
+
+  width: 172px;
+
+  height: 95px;
+
+  margin: 0 0 6px 8px;
+
+  _margin: 0 0 6px 4px;
+
+  float: left;
+
+}
+
+
+
+/* 今日开服 */
+
+.today-new-server {
+
+  padding-top: 10px;
+
+  border-top: 1px solid #ebebeb;
+
+}
+
+.today-new-server .box-title .time {
+
+  position: absolute;
+
+  left: 105px;
+
+  bottom: 6px;
+
+  font-size: 14px;
+
+  color: #f60;
+
+}
+
+.today-new-server .box-title .server-more {
+
+  position: absolute;
+
+  right: 0;
+
+  top: 3px;
+
+  display: block;
+
+  width: 80px;
+
+  height: 26px;
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/lit_icon.png) no-repeat 64px -248px;
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/lit_icon.gif) no-repeat 64px -248px;
+
+  background-color: #ff8a00;
+
+  -moz-border-radius: 4px;
+
+  -khtml-border-radius: 4px;
+
+  -webkit-border-radius: 4px;
+
+  border-radius: 4px;
+
+  line-height: 25px;
+
+  color: #fff;
+
+  text-indent: 5px;
+
+  font-size: 14px;
+
+}
+
+.today-new-server .box-title .server-more:hover {
+
+  text-decoration: underline;
+
+}
+
+
+
+/* 开服列表 */
+
+.today-server-list {
+
+  margin-bottom: 25px;
+
+}
+
+.today-server-list li {
+
+  height: 150px;
+
+  overflow: hidden;
+
+  position: relative;
+
+  border-bottom: 1px solid #ebebeb;
+
+}
+
+.today-server-list li:hover {
+
+  background: #f7f7f7;
+
+}
+
+.today-server-list li:hover .tit, .today-server-list li:hover .tit a {
+
+  color: #f60;
+
+}
+
+.today-server-list .pic {
+
+  width: 120px;
+
+  margin: 10px 15px 0 15px;
+
+  _margin: 10px 15px 0 7px;
+
+  float: left;
+
+  position: relative;
+
+  _cursor: pointer;
+
+}
+
+.today-server-list .pic img {
+
+  width: 120px;
+
+  height: 120px;
+
+}
+
+.today-server-list .right-text {
+
+  width: 830px;
+
+  _width: 820px;
+
+  margin-top: 20px;
+
+  float: left;
+
+}
+
+.today-server-list .right-text .tit {
+
+  font-size: 18px;
+
+  line-height: 18px;
+
+  margin-bottom: 10px;
+
+  vertical-align: middle;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+
+  overflow: hidden;
+
+}
+
+.today-server-list .right-text .tit a:hover {
+
+  text-decoration: underline;
+
+}
+
+.today-server-list .right-text .text {
+
+  width: 420px;
+
+  height: 44px;
+
+  overflow: hidden;
+
+  color: #666;
+
+  font-size: 14px;
+
+  line-height: 24px;
+
+  margin-bottom: 10px;
+
+  cursor: default;
+
+}
+
+.today-server-list .right-text .text a {
+
+  color: #666;
+
+}
+
+.today-server-list .right-text .type {
+
+  width: 420px;
+
+  color: #999;
+
+  cursor: default;
+
+}
+
+.today-server-list .right-text .type .name {
+
+  color: #0050b4;
+
+  font-style: normal;
+
+}
+
+.today-server-list .right-text .type .type-con {
+
+  margin-right: 20px;
+
+}
+
+.today-server-list .right-text .android {
+
+  display: inline-block;
+
+  width: 14px;
+
+  height: 12px;
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+  margin-left: 3px;
+
+  background-position: -111px -320px;
+
+}
+
+.today-server-list .right-text .ios {
+
+  display: inline-block;
+
+  width: 14px;
+
+  height: 12px;
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+  margin-left: 3px;
+
+  background-position: -138px -320px;
+
+}
+
+.today-server-list .other-btn {
+
+  width: 400px;
+
+  height: 36px;
+
+  overflow: hidden;
+
+  position: absolute;
+
+  top: 58px;
+
+  right: 0;
+
+}
+
+.today-server-list .other-btn .btn {
+
+  width: 88px;
+
+  height: 34px;
+
+  display: block;
+
+  margin-right: 10px;
+
+  border: 1px solid #ccc;
+
+  line-height: 34px;
+
+  text-align: center;
+
+  font-size: 16px;
+
+  float: left;
+
+  background: #fafafa;
+
+  background: -moz-linear-gradient(top, white, #fafafa);
+
+  background: -webkit-linear-gradient(top, white, #fafafa);
+
+  background: -ms-linear-gradient(top, white, #fafafa);
+
+  background: -o-linear-gradient(top, white, #fafafa);
+
+  -moz-border-radius: 4px;
+
+  -khtml-border-radius: 4px;
+
+  -webkit-border-radius: 4px;
+
+  border-radius: 4px;
+
+}
+
+.today-server-list .other-btn .btn:hover {
+
+  color: #fff;
+
+}
+
+.today-server-list .other-btn .no {
+
+  border-color: #f3f3f3;
+
+  background: #f3f3f3;
+
+  color: #a6a6a6;
+
+  cursor: default;
+
+}
+
+.today-server-list .other-btn .no:hover {
+
+  color: #a6a6a6;
+
+}
+
+.today-server-list .other-btn .green:hover {
+
+  border-color: #a3ce0e;
+
+  background: #a3ce0e;
+
+}
+
+.today-server-list .other-btn .red:hover {
+
+  border-color: #ff622b;
+
+  background: #ff622b;
+
+}
+
+.today-server-list .other-btn .orange:hover {
+
+  border-color: #ff8a00;
+
+  background: #ff8a00;
+
+}
+
+.today-server-list .other-btn .blue:hover {
+
+  border-color: #50c0ff;
+
+  background: #50c0ff;
+
+}
+

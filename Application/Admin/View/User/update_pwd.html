@@ -1,0 +1,43 @@
+<extend name="Public/base"/>
+<block name="body">
+    <div class="main-place">
+        <span class="main-placetitle">位置：</span>
+        <ul class="main-placeul">
+            <li><a href="{:U('User/index')}">修改密码</a></li>
+            <!-- <li><a href="{:U('User/index')}">管理组</a></li>
+            <li><a href="#">编辑管理员列表</a></li> -->
+        </ul>
+    </div>
+    <form action="{:U('update_pwd')}"  method="post" class="form-horizontal form_info_ml">
+        <div class="formtitle"><span>基本信息</span></div>
+        <ul class="form_info ">
+           
+            <li><label>原密码</label><input name="password" value="" type="password" class=""><i class="form_hint"></i></li>
+            <li><label>新密码</label><input name="new_pwd" value="" type="password" class=""><i class="form_hint">密码长度必须在6-30个字符之间！</i></li>
+            
+            
+            <li><label>&nbsp;</label><input type="submit" id="submit" value="确认保存" target-form="form-horizontal" class="form_btn ajax-post"></li>
+        </ul>
+    </form>
+<script src="__STATIC__/layer/layer.js" type="text/javascript"></script>
+<script type="text/javascript" src="__STATIC__/layer/extend/layer.ext.js" ></script>
+</block>
+
+<block name="script">
+<script>
+        // $('#submit').click(function(event) {
+        //     var newpwd =$(" input[ name='new_pwd' ] ").val();
+        //     if(newpwd.length <6 || newpwd.length>30){
+        //       layer.msg('密码长度必须在6-30个字符之间！');
+        //       return false;
+        //     }else{
+        //       $(this).submit();
+        //     }
+        // });
+
+
+        Think.setValue("auth", {$authid|default = 0});
+        //导航高亮
+        highlight_subnav('{:U('User/update_pwd')}');
+    </script>
+</block>

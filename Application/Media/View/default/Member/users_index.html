@@ -1,0 +1,84 @@
+<extend name="Public/base" />
+<block name="body" >
+<link rel="stylesheet" href="__CSS__/index.css">
+<script src="__STATIC__/layer/layer.js" type="text/javascript"></script>
+  <div class="g-container">
+    <div class="g-main">
+      <include file="Public/user_head" />
+      
+      <div class="user-bd laybox fix">
+        <include file="Public/user_base" />
+        <div class="user-section-wrap fl" id="user-section-wrap">
+          <div class="user-section user-section-1">
+            <form method="post" id="form1">
+              <div class="section-tit">个人资料</div>
+              <div class="w-item">
+                <label class="w-label">用户名：</label>
+                <div class="w-div">{:session('member_auth.account')}</div>
+              </div>
+              <div class="w-item">
+                <label class="w-label">平台币：</label>
+                <div class="w-div"><if condition="session('member_auth.nickname') eq 'Uc用户'">{$uc_balance}<else/>{$up.balance}</if>元</div>
+              </div>
+              <div class="w-item">
+                <label class="w-label">昵称：</label>
+                <div class="w-div"> <input type="text" name="nickname" class="w-input" value="{$up.nickname}"></div>
+              </div>
+              
+              <div class="w-item">
+                <label class="w-label">QQ号码：</label>
+                <input type="text" name="qq" class="w-input" id="qq" value="{$up.qq}">
+              </div>
+              <div class="w-item">
+                <label class="w-label">真实姓名：</label>
+                <input type="text" class="w-input" name="real_name" <if condition="$up.age_status gt 1"> disabled="disabled"</if> value="{$up.real_name}" datatype="Chinese" msg="请认真填写姓名" <if condition="$up['real_name'] neq ''">readonly</if>>
+              </div>
+              <div class="w-item">
+                <label class="w-label">身份证号：</label>
+                <input type="text" class="w-input idcard"  value="{$up.idcard}" <if condition="$up.age_status gt 1"> disabled="disabled"</if> name="idcard" id="id_card_number" datatype="IdCard" msg="身份证号码不正确" <if condition="$up['idcard'] neq ''">readonly</if>>
+              </div>
+              <div class="w-item">
+                <label class="w-label"></label>
+                <div class="w-div lh24"> <span class="c-blue">注意：此帐号的身份证信息只能填写一次，是判断帐号归属的重要依据。</span><br>
+                  以上证件信息将作为您的防沉迷信息。<br>
+                  我们将保证您填写的信息不会外泄。 </div>
+              </div>
+              <div class="w-item">
+                <label class="w-label"></label>
+                <div class="w-div">
+                  <input type="button" value="提交保存" class="g-btn jsubmit">
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="reset" value="重新编辑" class="g-btn">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</block>
+<block name='script'>
+<script>
+
+  $('.jsubmit').click(function(){
+   data=$("#form1").serialize();
+    url = "{:U('Member/profile')}";
+    $.ajax({
+        type: 'POST',
+        url: url ,
+        data:data,
+        success:function(data){
+          if(data.status==-3){
+            layer.msg(data.msg,{icon:2,time:2000});
+          }else if(data.status!=1){
+            layer.msg(data.msg,function(){});
+          }else{
+            layer.msg(data.msg,{icon:1,time:1000});
+            location.reload();
+          }
+        }
+    });
+  });
+</script>
+</block>

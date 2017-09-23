@@ -1,0 +1,102 @@
+<extend name="Public/base2" />
+<block name="body" >
+<link rel="stylesheet" type="text/css" href="__CSS__/news.css">
+    <!-- <script id="jsID" type="text/javascript">
+        jQuery("#header_1_p").slide({
+            type:"menu",// 效果类型，针对菜单/导航而引入的参数（默认slide）
+            titCell:".nLi", //鼠标触发对象
+            targetCell:".sub", //titCell里面包含的要显示/消失的对象
+            effect:"slideDown", //targetCell下拉效果
+            delayTime:300 , //效果时间
+            triggerTime:0, //鼠标延迟触发时间（默认150）
+            returnDefault:true //鼠标移走后返回默认状态，例如默认频道是“预告片”，鼠标移走后会返回“预告片”（默认false）
+        });
+    </script> -->
+      <!----中间---->
+<div class="newswrap nwp">
+        <div class="news_list" style=" min-height: 590px;margin-left: 24%" >
+          <div class="left_news newcon">
+            <p class="tits"><span>{$info.title}</span></p>
+            <div class="text newscontent">
+                <div class="text_top">
+                    <h3>{$info.title}</h3>
+                    <p>发布时间：{:date('Y-m-d',$info['update_time'])}</p>
+                </div>
+                <!-- 文章内容 -->
+                {$info.content}
+                <!-- 文章内容 -->
+                
+
+   
+
+            </div>
+        </div>
+          </div>
+      </div>
+      <!----中间----> 
+      <script type="text/javascript" src="__JS__/jquery-1.11.2.min.js"></script> 
+      <script type="text/javascript" src="__JS__/jquery.SuperSlide.2.1.1.js"></script> 
+      <script type="text/javascript">
+// jQuery("#header_1_p").slide({ 
+// 	type:"menu",// 效果类型,针对菜单/导航而引入的参数(默认slide)
+// 	titCell:".nLi", //鼠标触发对象
+// 	targetCell:".sub", //titCell里面包含的要显示/消失的对象
+// 	effect:"slideDown", //targetCell下拉效果
+// 	delayTime:300 , //效果时间
+// 	triggerTime:0, //鼠标延迟触发时间(默认150)
+// 	returnDefault:true //鼠标移走后返回默认状态,例如默认频道是"预告片",鼠标移走后会返回"预告片"(默认false)
+// });
+
+//添加收藏夹
+function addBookmark(url,title){
+    url = url || window.location.href;;
+    title = title || document.title;
+    if (window.sidebar) {
+        window.sidebar.addPanel(title, url,"");
+    } else if( document.all ) {
+        window.external.AddFavorite( url, title);
+    } else {
+        alert('加入收藏失败，请使用 Ctrl+D 进行添加');
+        return true;
+    }
+}
+$(".collect").click(function(){addBookmark();})
+$(function(){
+    setTimeout(function(){
+        jQuery(".sideMenu").slide({
+            titCell:"h3", //鼠标触发对象
+            targetCell:"ul", //与titCell一一对应，第n个titCell控制第n个targetCell的显示隐藏
+            effect:"slideDown", //targetCell下拉效果
+            delayTime:200 , //效果时间
+            triggerTime:150, //鼠标延迟触发时间（默认150）
+            defaultPlay:true,//默认是否执行效果（默认true）
+            returnDefault:false //鼠标从.sideMen移走后返回默认状态（默认false）
+        });
+    },500);
+    
+
+    var e = $('.newshot'),o = e.offset().top,s = e.siblings('.newcon').height();
+    var h = parseInt($('.aside1').height())+parseInt($('.aside2').height());
+    $(window).scroll(function() {
+        var c = $(this).scrollTop();
+        var t = $('.jsfb').offset().top-c;
+        if (h<s) {
+          if (c>=o) {
+            if (h>t) {
+              e.css({'position':'absolute','top':'auto','bottom':'20px','background':'#FFFFFF','z-index':1000});
+                
+            } else {
+              e.css({'position':'fixed','top':0,'background':'#FFFFFF','z-index':1000});
+                
+            }
+          } else {
+              e.removeAttr('style');
+          }
+        }
+    });
+    
+
+});
+
+</script> 
+</block>

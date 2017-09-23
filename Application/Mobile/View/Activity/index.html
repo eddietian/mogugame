@@ -1,0 +1,45 @@
+<extend name="Public/bases"/>
+
+<block name="body" >
+    <link rel="stylesheet" href="__CSS__/total.css">
+    <link rel="stylesheet" href="__CSS__/wapcomtop_main.css">
+    <style>.header-sub .logo .game-icon{height: 30px;width: auto;border-radius: 0;margin: 6px 0;}</style>
+    <section class="main-wrap" id="fix-main">
+        <ul id="ajaxContainer" currentpage="{$page}" title="{:I('name')}" maxpage="{$total}" class="cloumn-list list-bg">
+            <volist name="lists" id="vo">
+		    <li>
+                <a href="{:U('detail?id='.$vo['id'])}"><strong class="g-intitle">{$vo['title']}</strong></a>
+            </li>
+            </volist>       
+        </ul>
+      	<section>
+	    	<div class="loading" id="loadingTip"><i class="loading-child"></i><span class="loading-text">正在加载，请等待……</span></div>
+			<div class="loading ms-none" id="errorTip">对不起，加载失败请<a href="{:U('News/lists?name='.I('name'))}" class="error">重 试</a>!</div>
+            <div class="loading ms-none" id="moreBtn"><a href="javascript:" class="link">点此查看更多</a></div>
+        </section>
+    </section>
+    <script src="__JS__/ajaxload.js"></script>
+    <script>
+        var title = $('#ajaxContainer').attr('title');
+        ajaxload('{:U("ajaxlists")}',{name:title},function(data) {
+            var ac = $('#ajaxContainer');
+            if (data.status == 1) {
+                ac.attr('currentpage',data.page);
+                var html = '';
+                for (var i in data.lists) {
+                    var item = data.lists[i];
+                    html += '<li';
+                    html += '<a href="__CONTROLLER__/detail/id/'+item['id']+'"><strong class="g-intitle" >'+item['title']+'</strong></a>';
+                    html += '</li>';
+                }
+                ac.append(html);
+                $('.loading').addClass('ms-none');
+                $('#moreBtn').removeClass('ms-none');loads=false;
+            } else {
+                $('.loading').addClass('ms-none');
+                $('#moreBtn').removeClass('ms-none').html('对不起，数据已经加载完');
+            }
+        });
+
+    </script>
+</block>

@@ -1,0 +1,46 @@
+<extend name="Public/base" />
+<block name="body" >
+  <div class="g-container">
+    <div class="g-main">
+      <include file="Public/user_head" />
+      
+      <div class="user-bd laybox fix">
+       <include file="Public/user_base" />
+       
+        <div class="user-section-wrap fl" id="user-section-wrap">
+													<div class="user-section user-section-3">
+	<div class="section-tit">礼包中心</div>
+	<ul class="ugift-list fix">
+    <volist name="list_data" id="data">
+			<li class="heii hei">
+  			<div class="top">
+  				<img src="{:get_cover($data['icon'],'path')}" alt="" class="img fl" width="96" height="96">
+  				<div class="info">
+  					<p class="name">{$data.relation_game_name} 【{:mb_substr($data['relation_game_name'],0,2,'utf-8')}】{$data.gift_name}</p>
+  					<p class="card">卡号：<em>{$data.novice}</em></p>
+  					<p>兑换截止：{:set_show_time($data['end_time'],'','forever')}</p>
+  				</div>
+  			</div>
+  			<div class="bottom">
+  				<span class="tit" >礼包详情</span>
+  				<div class="con "  style="overflow: hidden;">
+          <p>【礼包内容】{$data.desribe}</p>
+          <p >【领取方式】{$data.digest}</p>
+          </div>
+  			</div>
+		  </li>
+  </volist>
+	</ul>
+</div>
+	</div>
+      </div>
+    </div>
+  </div>
+</block>
+<block name="script" >
+<script>
+$('.hei').hover(function(){
+  $(this).toggleClass("heii");
+});
+</script>
+</block>

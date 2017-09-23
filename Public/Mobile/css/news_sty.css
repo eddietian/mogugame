@@ -1,0 +1,68 @@
+@charset "gb2312";
+body{    font: normal 12px '\5FAE\8F6F\96C5\9ED1',Arial,'\5B8B\4F53',sans-serif;}
+.textalgin{height: 19px;text-align: center;
+    color: #999;}
+a{text-decoration: none;}
+.btn{ background:none; color:#439e24}
+#flipWrap.netgameclass-list{ height:auto}
+.mod-icon-list{margin:0 7px 15px 7px;}
+.pt15{ padding-top:15px}
+.mod-icon-list li{ width:50%;padding: 0 8px 0 8px;}
+.mod-icon-list li .m-wrap{ height: 60px;border-radius:0;width: auto;padding-bottom: 3px;}
+.mod-icon-list .btn2{ float:right}
+.mod-icon-list .btn2:nth-child(2) .m-wrap{background: #49DECE;border-color: #49DECE;}
+.mod-icon-list .btn3 .m-wrap{background:#ff784f;border-color:#ff784f;}
+.mod-icon-list .btn4{ float:right}
+.mod-icon-list .btn4:nth-child(2) .m-wrap{background: #60afe7;border-color: #53a8e5;}
+.mod-icon{ width:50px; height:50px; float:left;margin: 7px;background-size: 290px;}
+.mod-icon-fenlei{}
+.mod-icon-list li .m-wrap .label{ float:left;line-height: 60px;font-size: 16px;font-weight: bold;margin-top: 2px;margin-left: 5px;}
+.mod-icon-zuire{background-position: -10px -5px;}
+.mod-icon-zhuant{background-position: -175px 2px;background-size: 230px;margin-left: 18px;}
+.mod-icon-fenl{background-position: -80px -0px;background-size: 270px;    margin-left: 20px;}
+.mod-icon-paih{background-position: -150px -5px;background-size: 280px;}
+.game-info{height: 22px; line-height: 22px;}
+
+/**/
+ .swiper-container {
+        width: 96%;
+        margin:10px auto;
+    }
+    .swiper-slide {
+        max-width:150px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+	    align-items: center;display: block;
+    }
+.swiper-slide img{width: 150px;height: 85px;}
+.swiper-slide p{padding-top: 5px;
+    color: #666;
+    height: 40px;
+    line-height: 20px;
+    overflow: hidden;font-size: 14px;margin-bottom: 10px;}
+	.bdcs-container .bdcs-search-form-input{ border-radius:0}
+.netgameclass-list .content{display: block; text-align:start; margin:10px 0 0 10px}
+.m-wrap .ct1{ width:38px; height:38px;margin:11px 0 8px 20px; background-size: 350px;background-position: -84px -1px;}
+.m-wrap .ct2{ background-position: -9px -1px;}
+.m-wrap .ct3{background-position: -230px -2px;}
+.m-wrap .ct4{background-position: -46px -2px;}
+.m-wrap .ct5{background-position: -119px -2px;}
+.m-wrap .ct6{background-position: -156px -2px;}
+.m-wrap .ct7{background-position: -268px -2px;}
+.m-wrap .ct8{background-position: -306px -2px;}
+.m-wrap .ct9{background-position: -193px -2px;}
+.search-main{padding-top: 15px;margin: 0 3%;}
+.weekitop{top:30px;left:8px}
+.game-essay-list-item .icon-wrap{margin-left: 14px;}
+.main-header .header-sub .logo .img{    padding-right: 45px;
+    
+    background-size: 40px;}

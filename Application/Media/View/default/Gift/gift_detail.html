@@ -1,0 +1,187 @@
+<extend name="Public/base" />
+<block name="body" >
+<link rel="stylesheet" href="__CSS__/gift.css">
+    <div class="">
+    <img src="__IMG__/inner_banner2.jpg">
+  </div>
+  <div class="g-container gift-page">
+    <div class="g-main">
+      <div class="giftmix fix">
+        <div class="giftmix-left fl">
+            <div class="hd_title">
+                <span class="title">
+                    <span class="line"></span>
+                    礼包简介
+                </span>
+            </div>
+            <div class="gift_wrap clearfix">
+                <div class="gift-article-top laybox">
+                  <div class="img"><img alt="400x300.jpg" src="{:get_cover($gift['icon'],'path')}"></div>
+                  <div class="info">
+                    <div class="name">{$gift.relation_game_name}</div>
+                    <dl class="test clearfix">
+                    <div class="type">礼包名称：<span  class="blue">【{:mb_substr($gift['relation_game_name'],0,2,'utf-8')}】{$gift.giftbag_name}</span></div>
+                    <div class="os">适用系统：<if condition="$gift.giftbag_version eq 2"><i class="icon pf-ios"></i><else/><i class="icon pf-android"></i></if></div>
+                    <div class="ser">适用区服：<span  class="blue"><if condition="$gift.server_name neq '请选择区服'">{$gift.server_name}<else/>全服通用</if></span></div>
+                    <div class="time">领取时间：<span  class="blue">{:set_show_time($gift['start_time'])} - {:set_show_time($gift['end_time'],'','forever')}</span></div>
+                    <div class="progress-box"> <span class="progress"><i style="width:{:($gift['gift_num']['wei']/$gift['gift_num']['all'])*100}%"></i></span> <em>剩余{:round(($gift['gift_num']['wei']/$gift['gift_num']['all']),1)*100}%</em> </div>
+                    </dl>
+                  </div>
+                  <div class="btn_box">
+                    <a data-toggle="modal" href="#login-modal" class="btn-getgift get_gift" >领取礼包</a> 
+                  </div>
+                </div>
+            </div>
+            
+            <div class="hd_title mt35">
+                  <span class="title">
+                      <span class="line"></span>
+                      使用方法
+                  </span>
+            </div>
+            <div class="gift_wrap clearfix">
+                <div class="m-detail-text-box">
+                  <div class="m-detail-text-wrapper" >
+                    <p>发放日期：{:set_show_time($gift['create_time'],'date')} </p>
+                    物品均为绑定物品
+                    <p></p>
+                    <p>兑换方法：{$gift.digest}</p>
+                  </div>
+                </div>
+            </div>
+            
+            <div class="hd_title mt35">
+                  <span class="title">
+                      <span class="line"></span>
+                      礼包物品
+                  </span>
+            </div>
+            <div class="gift_wrap clearfix">
+                <div class="m-detail-text-box">
+                  <div class="m-detail-text-wrapper" >
+                     <p> 【礼包内容】：{$gift.desribe}</p>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="giftmix-right fr">
+            <div class="hot_title">
+                游戏信息
+            </div>
+            <div class="hot_list">
+            <div class="this-game fix"> 
+              <img src="{:get_cover($gift['icon'],'path')}" width="98" height="98" class="fl">
+              <div class="info fl">
+                <p class="name">《{$gift.relation_game_name}》</p>
+                <p class="type">游戏类型：{$gift.game_type_name}</p>
+                <a href="{:U('Game/game_detail',array('id'=>$gift['relation_game_id']))}" class="btn-download">免费下载</a> </div>
+            </div>
+            <div class="con">{$gift.features}</div>
+          </div>
+          <div class="hd_title mt35">
+                <span class="title">
+                    其他礼包
+                </span>
+          </div>
+          <div class="giftasid_wrap clearfix">
+          <div class="mod-othergift laybox">
+            <ul class="othergift-list">
+            <volist name="gift_like" id="glike">
+              <li> <img src="{:get_cover($glike['icon'],'path')}" width="68" height="68" class="img">
+                <div class="info">
+                  <p class="name">【{:mb_substr($glike['relation_game_name'],0,2,'utf-8')}】{$glike.giftbag_name}</p>
+                  <p class="type">{$glike.relation_game_name}</p>
+                </div>
+                <a href="{:U('Gift/gift_detail',array('gid'=>base64_encode($glike['gift_id'])))}" class="btn-getgift">领取礼包</a> </li>
+            </volist>
+ <!--              <li> <img src="__IMG__/game/ssxyl.png" _src="__IMG__/game/ssxyl.png" alt="" class="img" width="68" height="68">
+                <div class="info">
+                  <p class="name">【蜀山】特权礼包</p>
+                  <p class="type">蜀山伏魔录</p>
+                </div>
+                <a href="http://wvw.9377.cn/game_card.php?card_type=335" class="btn-getgift">领取礼包</a> </li> -->
+            </ul>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="__STATIC__/layer/layer.js" type="text/javascript"></script>
+<script type="text/javascript" src="__JS__/jquery.zclip.min.js"></script>
+<script type="text/javascript" src="__JS__/modal.js"></script>
+    <script src="__JS__/global.js"></script>
+<script>
+$('.get_gift').click(function() {
+    giftid = "{:$gift['gift_id']}";
+    giftname = "{:$gift['giftbag_name']}";
+    if (!giftid) {
+        alert('礼包不存在');
+        return false;
+    }
+    $.ajax({
+        type: 'POST',
+        async: false,//异步
+        dataType: 'json',
+        url: UURL + 'getGameGift',
+        data: {
+            'giftid': giftid,
+            'giftname': giftname
+        },
+        beforeSend: function () {
+        },
+        success: function (data) {
+
+            switch (parseInt(data.status)) {
+                case 1:
+                    if (data.msg == 'no') {
+                        $('.suctip').html('<i class="i-suc"></i>当前礼包您已经领取过了 (:');
+                        $('#card').text(data.data);
+                    } else if (data.msg == 'ok') {
+                        $('#card').text(data.data);
+                    } else {
+                        $('.success').addClass('none');
+                        $('.false').removeClass('none');
+                    }
+                    break;
+                default:
+                    break;
+            }
+        },
+        error: function () {
+            alert('服务器故障，稍后再试');
+            return false;
+        },
+        cache: false
+    });
+});
+
+    /*$(function() {
+        $('#copybtn').zclip({
+            path: '__JS__/ZeroClipboard.swf',
+            copy: function ( ){
+                return $('#card').val();
+            },
+            afterCopy: function () {
+                $("<span id='msg'/>").insertAfter($('#copy_input')).text('复制成功');
+            }
+        });
+    });*/
+</script>
+
+</block>
+<block name="giftextend">
+<!-- 礼包弹窗 -->   
+<div class="pop-gift  modal get_popgift" id="login-modal">
+  <div class="pop-hd"><a data-dismiss="modal" class="pop-close"></a></div>
+  <div class="pop-bd">
+    <div class="success">
+      <div class="suctip"><i class="i-suc"></i> 恭喜您领取成功！</div>
+      <div class="card">卡号：<span id="card"></span></div>
+      <a class="dib btn-copy" id="copybtn">复制</a>
+      <p class="desc">您的礼包已保存到用户中心的礼包盒 <a href="{:U('Member/users_gift')}" class="c-blue">前往查看</a></p>
+      <a class="dib btn-sub" data-dismiss="modal" id="btn-subcard">确定</a> </div>
+    <div class="false none"> 条件未达到，无法领取 </div>
+  </div>
+</div>
+</block>

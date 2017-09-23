@@ -1,0 +1,55 @@
+<extend name="Public/bases"/>
+
+<block name="body" >
+<link rel="stylesheet" href="__CSS__/time_period.css">
+<link rel="stylesheet" href="__CSS__/wapcomtop_main.css">
+<style>
+    .header-sub .logo .game-icon{height: 30px;width: auto;border-radius: 0;margin: 6px 0;}
+</style>
+<section class="normal-module">	
+    <div class="module-header">
+        <p class="title">游戏类型</p>
+    </div>
+    <ul class="netgameclass-list cf js_flipmorewrap" style="height: 327px;">
+        <game:type name="vo" typename="game_type" gamenumber="true" >
+        <li>
+            <a class="m-wrap" type="btn" href="{:U('lists?type='.$vo['id'])}">
+                <div class="content">
+                    <p class="game-title">{$vo.type_name}</p>
+                    <p>{$vo.count} 款</p>
+                 </div>
+                <notempty name="vo.icon">
+                <span class="icon-wrap">
+                    <img class="game-icon" src="{$vo.icon|get_cover='path'}" alt="" type="btn" href="{:U('lists?type='.$vo['id'])}">
+                </span>
+                </notempty>
+            </a>
+        </li>
+        </game:type>
+    </ul>
+    <p class="flip-more js_flipmore" type="btn" href="###" style="display: block;">
+        <span class="inner">展开全部分类<em class="modify"></em></span>
+    </p>
+</section>
+<section class="normal-module">	
+    <div class="module-header">
+        <p class="title">开放类型</p>
+    </div>
+    <ul class="netgameclass-list cf js_flipmorewrap">
+        <game:type name="vo" typename="open_type" gamenumber="true" >
+        <li>
+            <a class="m-wrap" type="btn" href="{:U('lists?name=category&type='.$vo['id'])}">
+                <div class="content">
+                    <p class="game-title">{$vo.type_name}</p><p>{$vo.count} 款</p>
+                </div>
+            </a>
+        </li>
+        </game:type>
+    </ul>
+</section>
+<script>
+    $('.flip-more').on('click',function() {
+        $(this).hide().siblings('ul').height('auto');
+    });
+</script>
+</block>

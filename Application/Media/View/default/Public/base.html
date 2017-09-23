@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<!-- saved from url=(0019)http://www.9377.cn/ -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="baidu-site-verification" content="l18xwLxEKU">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="renderer" content="webkit">
+<link href="{:get_cover(C('PC_SET_ICO'),'path')}" type="image/x-icon" rel="shortcut icon">
+<!--<if condition="ACTION_NAME eq game_detail and CONTROLLER_NAME eq Game">-->
+<!--<else />-->
+<!--<title>{:C('PC_SET_TITLE')}</title>-->
+<!--</if>-->
+<!--<meta name="keywords" content="{:C('channel_index.seo_keyword')}">-->
+<!--<meta name="description" content="{:C('channel_index.seo_description')}">-->
+  <if condition="ACTION_NAME eq index and CONTROLLER_NAME eq Index">
+    <title>{:seo_replace(C('media_index.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:C('media_index.seo_keyword')}">
+    <meta name="description" content="{:C('media_index.seo_description')}">
+  <elseif condition="ACTION_NAME eq game_center and CONTROLLER_NAME eq Game" />
+    <title>{:seo_replace(C('media_game_list.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:C('media_game_list.seo_keyword')}">
+    <meta name="description" content="{:C('media_game_list.seo_description')}">
+    <elseif condition="ACTION_NAME eq game_detail and CONTROLLER_NAME eq Game"/>
+    <title>{:seo_replace(C('media_game_detail.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:C('media_game_detail.seo_keyword')}">
+    <meta name="description" content="{:C('media_game_detail.seo_description')}">
+    <elseif condition="ACTION_NAME eq gift and CONTROLLER_NAME eq Gift"/>
+    <title>{:seo_replace(C('media_gift_index.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:C('media_gift_index.seo_keyword')}">
+    <meta name="description" content="{:C('media_gift_index.seo_description')}">
+    <elseif condition="ACTION_NAME eq gift_detail and CONTROLLER_NAME eq Gift"/>
+    <title>{:seo_replace(C('media_gift_detail.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:C('media_gift_detail.seo_keyword')}">
+    <meta name="description" content="{:C('media_gift_detail.seo_description')}">
+    <elseif condition="ACTION_NAME eq index and CONTROLLER_NAME eq Article"/>
+    <title>{:seo_replace(C('media_news_list.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:C('media_news_list.seo_keyword')}">
+    <meta name="description" content="{:C('media_news_list.seo_description')}">
+    <elseif condition="ACTION_NAME eq detail and CONTROLLER_NAME eq Article"/>
+    <title>{:seo_replace(C('media_news_detail.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:C('media_news_detail.seo_keyword')}">
+    <meta name="description" content="{:C('media_news_detail.seo_description')}">
+    <elseif condition="ACTION_NAME eq pay and CONTROLLER_NAME eq Recharge"/>
+    <title>{:seo_replace(C('media_recharge.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:C('media_recharge.seo_keyword')}">
+    <meta name="description" content="{:C('media_recharge.seo_description')}">
+    <elseif condition="ACTION_NAME eq index and CONTROLLER_NAME eq Service"/>
+    <title>{:seo_replace(C('media_service.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:C('media_service.seo_keyword')}">
+    <meta name="description" content="{:C('media_service.seo_description')}">
+  </if>
+<meta name="frontend" content="Robin">
+<if condition="ACTION_NAME eq plogin">
+<link rel="stylesheet" type="text/css" href="__CSS__/login.css">
+</if>
+<link rel="stylesheet" href="__CSS__/iconfont.css">
+<link rel="stylesheet" href="__CSS__/global.css">
+<link rel="stylesheet" href="__CSS__/user.css">
+<script type="text/javascript" src="__JS__/ajax.js"></script>
+<script type="text/javascript" src="__STATIC__/jquery-2.0.3.min.js"></script>
+</head>
+<body>
+  <style type="text/css">
+  .footer_info .f_p i{ margin-right: 10px;}
+   .footer_info .f_p i:last-child{ display:none;}
+#quitlogin {color:#03b4f5;}
+  </style>
+<div class="wrapper"> 
+  <!--[if lt IE 8]>
+<div class="killie">
+    <div class="main">
+    亲爱的小伙伴，您的浏览器过时啦！为了保障您的信息安全和更好的用户体验，建议您 <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" target="_blank">升级IE浏览器</a>
+    </div>
+</div>
+<![endif]-->
+  <div class="g-top">
+    <div class="g-main">
+      <ul id="header_1_p" class="header_1_nav">
+        <li class="nLi n1"><a href="{:'http://'.$_SERVER['HTTP_HOST'].'/mobile.php'}" target="_blank">手机官网</a></li>
+        <li class="nLi n6"><a href="{:'http://'.$_SERVER['HTTP_HOST'].'/index.php'}" class="collect"  target="_blank">渠道中心</a></li>
+        <!-- <li class="nLi n2"><a href="javascript:" class="collect">加入收藏</a></li> -->
+      </ul>
+      <div class="g-top-right fr"> <span id="relogin fr"><if condition="session('member_auth') eq ''">
+        <a href="{:U('Member/plogin')}"><i class="icon i-user"></i> 登录</a>/<a href="{:U('Member/register')}">注册</a><else/>
+        <a href="{:U('Member/users_index')}"><i class="icon i-user"></i>欢迎您：{:session('member_auth.account')}</a>&nbsp;<a href="javascript:;" id="quitlogin">[退出]</a> </if></span> <span>&nbsp;</span>
+<!--       
+        <a href="javascript:;"  class="g-allgame-trigger">全部游戏 <i class="icon i-list"></i></a> --> </div>
+      <div class="g-allgame-list"> <i class="icon i-garr"></i>
+        <div class="col-bd fix">
+          <div class="col fl">
+            <div class="hd">自研游戏</div>
+            <ul class="bd fix">
+              <li><a href="#" target="_blank">皇图</a></li>
+              <li><a href="#" target="_blank">女王号令</a></li>
+              <li><a href="#" target="_blank">烈焰</a></li>
+              <li><a href="#" target="_blank">扫荡三国</a></li>
+            </ul>
+          </div>
+          <div class="col fl">
+            <div class="hd">独代游戏</div>
+            <ul class="bd fix">
+              <li><a href="#" target="_blank">蜀山伏魔录</a></li>
+              <li><a href="#" target="_blank">暴风战舰</a></li>
+              <li><a href="#" target="_blank">灵狐传说</a></li>
+              <li><a href="#" target="_blank">封仙战纪</a></li>
+            </ul>
+          </div>
+        </div>
+        <a href="#" class="fd"><i class="icon i-add"></i> 全部手机游戏</a> </div>
+      <div class="search-which-game fr">
+          <input class="search-txt input-focus" type="text" value="{:I('game_name')}" name="game_name" placeholder="搜索游戏">
+          <a class="search-btn-ga" href=""><input class="search-btn search-btn-game" type="botton" value=" "></a>
+      </div>
+    </div>
+  </div>
+  <div class="g-header">
+    <div class="g-main fix"><a href="#" title="" class="g-logo fl">
+    <img src="{:get_cover(C('PC_SET_LOGO'),'path')}" alt="">
+      <!-- <h1>溪谷手游</h1> -->
+      </a>
+      <div class="g-menu fr"> 
+        <a class="<if condition='$Think.const.CONTROLLER_NAME eq Index'>active</if>" href="{:U('Index/index')}"><span>平台首页</span><i></i></a>
+        <a class="<if condition='$Think.const.CONTROLLER_NAME eq Game'>active</if>"" href="{:U('Game/game_center')}"><span>游戏中心</span><i></i></a>
+        <a class="<if condition='$Think.const.CONTROLLER_NAME eq Gift'>active</if>" href="{:U('Gift/gift')}" ><span>礼包中心</span><i></i></a> 
+        <a class="<if condition='$Think.const.CONTROLLER_NAME eq Recharge'>active</if>" href="{:U('Recharge/pay')}" ><span>充值中心</span><i></i></a>
+        <a class="<if condition='$Think.const.CONTROLLER_NAME eq Member'>active</if>" href="{:U('Member/users_index')}"><span>用户中心</span><i></i></a>
+        <a class="<if condition='$Think.const.CONTROLLER_NAME eq Article'>active</if>" href="{:U('Article/index',array('category'=>'media_gg'))}"><span>游戏资讯</span><i></i></a>
+        <a class="<if condition='$Think.const.CONTROLLER_NAME eq Service'>active</if>" href="{:U('Service/index')}"><span>客服中心</span><i></i></a>
+        <a class="khd" target="_blank" href="{:U('Index/download')}" ><span>客户端</span><i></i></a>
+    </div>
+  </div>
+  </div>
+<!-- 主体内容 -->
+<block name="body"></block>
+<!--底部 -->
+<div class="footerBox jsfb">
+<div class="NewFootGroup">
+	<p class="zhonggao"><em class="zg_zi">健康游戏忠告</em> <span>抵制不良游戏</span> <span>拒绝盗版游戏</span> <span>注意自我保护</span> <span>谨防受骗上当</span> <span>适度游戏益脑</span> <span>沉迷游戏伤身</span> <span>合理安排时间</span> <span class="zg_lt">享受健康生活</span></p>
+	<p></p>
+	<div class="FootBox">
+		<div class="ft_qu_a">
+			<span class="dilogo logo_01">
+				<a href="{:U('Index/index')}" target="_blank">
+					<img src="{:get_cover(C('PC_SET_LOGO'),'path')}" alt="溪谷游戏平台">
+				</a>
+			</span>
+		</div>
+		<div class="ft_qu_b">
+			<p class="ft_about">
+				<a rel="nofollow" title="关于我们" href="{:U('Article/news1/type/about')}" target="_blank">关于我们</a>|
+				<a rel="nofollow" title="商务合作" href="{:U('Article/news1/type/collaborate')}" target="_blank">商务合作</a>|
+				<a rel="nofollow" title="合作伙伴" href="{:U('Article/news1/type/partner')}" target="_blank">合作伙伴</a>|
+				<a rel="nofollow" title="家长监督" href="{:U('Article/news1/type/supervise')}" target="_blank">家长监督</a>|
+				<a rel="nofollow" title="客服帮助" href="{:U('Service/index')}" target="_blank">客服帮助</a>
+     
+      </p>
+		<!-- 	<p class="ft_recommend"><span class="utjzi">推荐游戏：</span>
+          <a title="少年三国志" target="_blank" href="http://sg.youzu.com/">少年三国志</a>
+          <a title="射雕英雄传" target="_blank" href="http://sd.youzu.com">射雕英雄传</a>
+          <a title="军师联盟" target="_blank" href="http://js.youzu.com">军师联盟</a>
+          <a title="三十六计" target="_blank" href="http://36.youzu.com">三十六计</a>
+          <a title="刀剑乱舞" target="_blank" href="http://touken.youzu.com">刀剑乱舞</a>
+          <a title="盗墓笔记" target="_blank" href="http://dm.youzu.com">盗墓笔记</a>
+          <a title="狂暴之翼" target="_blank" href="http://kb.youzu.com">狂暴之翼</a>
+      </p> -->
+			<p class="ft_beian">
+				备案号：{:C('PC_SET_FOR_THE_RECORD')}&nbsp;网络文化经营许可证编号：{:C('PC_SET_LICENSE')}</p>
+			<p class="ft_copyright">{:C('PC_SET_COPYRIGHT')} ©版权所有</p>
+		</div>
+		<div class="ft_clear"></div>
+	</div>
+</div>
+</div>
+
+  <!--底部结束--> 
+  
+  <!--悬浮-->
+  <div class="g-sidefun"> <a href="javascript:;" class="qrcode"> <i class="icon i-qr"></i>
+    <div class="wechat-content"> <img src="{:get_cover(C('PC_SET_QRCODE'),'path')}" alt="微信" width="168" height="168">
+      <p>关注官方微信</p>
+      <i class="arrow"></i> </div>
+    </a> <a href="http://wpa.qq.com/msgrd?v=3&amp;uin={:C('PC_SET_SERVER_QQ')}&amp;site=qq&amp;menu=yes" target="_blank" title="客服" class="olkf"><i class="icon i-olkf"></i></a> <a href="javascript:scroll(0,0)" title="顶部" class="totop" id="totop"><i class="icon i-totop"></i></a> </div>
+  <!--悬浮结束--> 
+  
+</div>
+</div>
+<block name="giftextend"></block>
+<script>
+$(".search-btn-ga").click(function(){
+  $game_name=$(".input-focus").val();
+  $href="{:U('Game/game_center')}";
+  if($game_name!=''){
+    $href=$href.replace('.html','/game_name/'+$game_name+'.html');
+  }
+  $(this).attr('href',$href);
+});
+$(function() {
+    $('#quitlogin').click(function(){
+         changyanurl="http://changyan.sohu.com/api/2/logout?client_id='{:C('changyan.partner')}'";
+      $.ajax({
+              type: 'get',
+              url: changyanurl,
+              cache: false,
+              dataType: "jsonp",  //跨域采用jsonp方式  
+              processData: false,
+            complete:function (data) {
+            }
+        });
+        url = "{:U('Member/logout')}";
+        $.ajax({
+            type: 'POST',
+            url: url ,
+            success:function(data){
+                window.location.href=data.reurl;
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>
+<block name='script'></block>

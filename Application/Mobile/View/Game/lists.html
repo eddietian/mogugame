@@ -1,0 +1,89 @@
+<extend name="Public/bases"/>
+
+<block name="body" >
+<link rel="stylesheet" href="__CSS__/list.css">
+<link rel="stylesheet" href="__CSS__/wapcomtop_main.css">
+<style>
+    .header-sub .logo .game-icon{height: 30px;width: auto;border-radius: 0;margin: 6px 0;}
+    .game-sep-info{line-height:22px;}
+    .ms-none{display:none;}
+</style>
+<div>
+    <ul id="ajaxContainer" currentpage="{$page}" title="{$name}" type="{$type}" maxpage="{$total}" class="normal-appdetail-list">
+        <volist name="lists" id="vo"> 
+        <li>
+            <a class="m-wrap" type="btn" href="{:U('Game/detail?id='.$vo['relation_game_id'])}">
+                <span class="icon-wrap ">
+                    <em class="em_sc"></em>
+                    <img src="{$vo.picurl}" alt="{$vo.game_name}_游戏图标" class="game-icon">
+                </span>
+                <div class="content">
+                    <p class="game-title"><?php echo preg_replace('/(\(.+)/i','',$vo['game_name']);?></p>
+                    <p class="game-sep-info">
+                        <span class="item">类型：{$vo.game_type_name}</span>
+                    </p>
+                    <p class="game-sep-info">
+                        <span class="item">开放：{$vo.open_type}</span>
+                    </p>
+                </div>
+            </a>	  
+            <if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq "" && $vo.ios_dow_address eq "" &&  $vo.ios_game_address eq "" '><a class="button">暂无下载</a></if>
+            <if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq ""'><else/>
+                <a  href="<if condition='$vo.dow_status eq 0'>#<else/>{:U('Down/down_file?game_id='.$vo['and_id'].'&type=1')}</if>" class="<if condition='$vo.ios_dow_address eq "" && $vo.ios_game_address eq ""'>button<else/>button1</if>"> 安卓下载 </a>
+            </if>
+            <if condition='$vo.ios_dow_address eq "" && $vo.ios_game_address eq ""'><else/>
+                <a  href="<if condition='$vo.dow_status eq 0'>#<else/>{:U('Down/down_file?game_id='.$vo['ios_id'].'&type=2')}</if>" class="<if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq ""'>button<else/>button2</if>"> 苹果下载 </a>
+            </if>
+        </li>
+        </volist>       
+    </ul>
+</div>
+<section>
+    <div class="loading" id="loadingTip"><i class="loading-child"></i><span class="loading-text">正在加载，请等待……</span></div>
+    <div class="loading ms-none" id="errorTip">对不起，加载失败请<a href="{:U('rank?name='.I('name'))}" class="error">重 试</a>!</div>
+    <div class="loading ms-none" id="moreBtn"><a href="javascript:" class="link">点此查看更多</a></div>
+</section>
+<script src="__JS__/ajaxload.js"></script>
+<script>
+    var ac = $('#ajaxContainer'),title = ac.attr('title'),type = ac.attr('type');
+    ajaxload('{:U("ajaxlists")}',{name:title,type:type},function(data) {
+        if (data.status == 1) {
+            ac.attr('currentpage',data.page);
+            var html = '',timestamp=(new Date().getTime())/1000;
+            for (var i in data.lists) {
+                var item = data.lists[i];
+                
+        html += '<li>';
+        html += '    <a class="m-wrap" type="btn" href="__CONTROLLER__/detail/id/'+item['id']+'">';
+        html += '    <span class="icon-wrap ">';
+        html += '        <em class="em_sc"></em>';
+        html += '        <img src="';
+        if (item['picurl'])
+            html += item['picurl'];
+        html += '" alt="'+item['game_name']+'_游戏图标" class="game-icon">';
+        html += '    </span>';
+        html += '    <div class="content">';
+        html += '        <p class="game-title">'+item['game_name']+'</p>';
+        html += '        <p class="game-sep-info">';
+        html += '            <span class="item">类型：'+item['game_type_name']+'</span>';
+        html += '        </p>';
+        html += '        <p class="game-sep-info">';
+        html += '            <span class="item">开放：'+item['open_type']+'</span>';
+        html += '        </p>';
+        html += '    </div>';
+        html += '    </a>	';
+        html += '    <a class="btn" type="btn" href="__CONTROLLER__/detail/id/'+item['id']+'">下载</a>';
+        html += '</li>';
+                
+            }
+            ac.append(html);
+            $('.loading').addClass('ms-none');
+            $('#moreBtn').removeClass('ms-none');loads=false;
+        } else {
+            $('.loading').addClass('ms-none');
+            $('#moreBtn').removeClass('ms-none').html('对不起，数据已经加载完');
+        }
+    });
+</script>	
+
+</block>

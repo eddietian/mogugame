@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equivmeta="" http-equiv="x-ua-compatible" content="IE=8">
+<meta charset="utf-8">
+<link rel="shortcut icon" href="{:get_cover(C('PC_SET_ICO'),'path')}">
+<meta name="applicable-device" content="mobile">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" href="__CSS__/common.css">
+    <if condition="CONTROLLER_NAME eq 'Index' " >
+    <title>{:seo_replace(C('wap_index.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:seo_replace(C('wap_index.seo_keyword'),'','wap')}">
+    <meta name="description" content="{:seo_replace(C('wap_index.seo_description'),'','wap')}"> 
+    <link rel="stylesheet" href="__CSS__/index.css">
+    <elseif condition="CONTROLLER_NAME eq 'Game' and ACTION_NAME eq 'index' or ACTION_NAME eq 'category' " />
+    <title>{:seo_replace(C('wap_game_list.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:seo_replace(C('wap_game_list.seo_keyword'),'','wap')}">
+    <meta name="description" content="{:seo_replace(C('wap_game_list.seo_description'),'','wap')}">  
+    <elseif condition="CONTROLLER_NAME eq 'Game' and ACTION_NAME eq 'lists' or ACTION_NAME eq 'rank' or ACTION_NAME eq 'open' " />
+    <title>{:seo_replace(C('wap_game_list.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:seo_replace(C('wap_game_list.seo_keyword'),'','wap')}">
+    <meta name="description" content="{:seo_replace(C('wap_game_list.seo_description'),'','wap')}">  
+    <elseif condition="CONTROLLER_NAME eq 'Game' and ACTION_NAME eq 'detail' " />
+    <title>{:seo_replace(C('wap_game_detail.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:seo_replace(C('wap_game_detail.seo_keyword'),'','wap')}">
+    <meta name="description" content="{:seo_replace(C('wap_game_detail.seo_description'),'','wap')}">   
+    
+    <elseif condition="CONTROLLER_NAME eq 'Gift' and ACTION_NAME eq 'index' " />
+    <title>{:seo_replace(C('wap_gift_index.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:seo_replace(C('wap_gift_index.seo_keyword'),'','wap')}">
+    <meta name="description" content="{:seo_replace(C('wap_gift_index.seo_description'),'','wap')}"> 
+    <link rel="stylesheet" href="__CSS__/news_style.css">
+    <link rel="stylesheet" href="__CSS__/global.css">
+    <link rel="stylesheet" href="__CSS__/fahao.css">
+    <link rel="stylesheet" href="__CSS__/zxfhindex.css">
+    <link rel="stylesheet" href="__CSS__/xzmindex.css">
+    <elseif condition="CONTROLLER_NAME eq 'Gift' and (ACTION_NAME eq 'lists' or ACTION_NAME eq 'today' ) " />
+    <title>{:seo_replace(C('wap_gift_list.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:seo_replace(C('wap_gift_list.seo_keyword'),'','wap')}">
+    <meta name="description" content="{:seo_replace(C('wap_gift_list.seo_description'),'','wap')}">  
+    <link rel="stylesheet" href="__CSS__/global.css">
+    <link rel="stylesheet" href="__CSS__/fahao.css">
+    <link rel="stylesheet" href="__CSS__/xzdjlb.css">
+    <link rel="stylesheet" href="__CSS__/wapcomtop_main.css">
+    <link rel="stylesheet" href="__CSS__/libao.css">
+    <elseif condition="CONTROLLER_NAME eq 'Gift' and ACTION_NAME eq 'detail' " />
+    <title>{:seo_replace(C('wap_gift_detail.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:seo_replace(C('wap_gift_detail.seo_keyword'),'','wap')}">
+    <meta name="description" content="{:seo_replace(C('wap_gift_detail.seo_description'),'','wap')}">  
+    <link rel="stylesheet" href="__CSS__/send.css">
+    <link rel="stylesheet" href="__CSS__/global.css">
+    <link rel="stylesheet" href="__CSS__/global.css">
+    <link rel="stylesheet" href="__CSS__/fahao.css">
+    <link rel="stylesheet" href="__CSS__/xzlbinfor.css">
+    <link rel="stylesheet" href="__CSS__/minfor.css">
+    <link rel="stylesheet" href="__CSS__/mcompinglun.css">
+    <link rel="stylesheet" href="__CSS__/wapcomtop_main.css">
+    <link rel="stylesheet" href="__CSS__/libaodetail.css">
+
+    <elseif condition="CONTROLLER_NAME eq 'News' and ACTION_NAME neq 'detail' " />
+    <title>{:seo_replace(C('wap_news_list.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:seo_replace(C('wap_news_list.seo_keyword'),'','wap')}">
+    <meta name="description" content="{:seo_replace(C('wap_news_list.seo_description'),'','wap')}">  
+    <elseif condition="(CONTROLLER_NAME eq 'News' or CONTROLLER_NAME eq 'Strategy' or CONTROLLER_NAME eq 'Activity' ) and ACTION_NAME eq 'detail' " />
+    <title>{:seo_replace(C('wap_article_detail.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:seo_replace(C('wap_article_detail.seo_keyword'),'','wap')}">
+    <meta name="description" content="{:seo_replace(C('wap_article_detail.seo_description'),'','wap')}"> 
+    <elseif condition="CONTROLLER_NAME eq 'Strategy' and ACTION_NAME neq 'detail' " />
+    <title>{:seo_replace(C('wap_strategy_list.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:seo_replace(C('wap_strategy_list.seo_keyword'),'','wap')}">
+    <meta name="description" content="{:seo_replace(C('wap_strategy_list.seo_description'),'','wap')}">   
+    <elseif condition="CONTROLLER_NAME eq 'Activity' and ACTION_NAME neq 'detail' " />
+    <title>{:seo_replace(C('wap_activity_list.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:seo_replace(C('wap_activity_list.seo_keyword'),'','wap')}">
+    <meta name="description" content="{:seo_replace(C('wap_activity_list.seo_description'),'','wap')}">  
+    <else />
+    <title>{:seo_replace(C('wap_index.seo_title'),'','wap')}</title>
+    <meta name="keywords" content="{:seo_replace(C('wap_index.seo_keyword'),'','wap')}">
+    <meta name="description" content="{:seo_replace(C('wap_index.seo_description'),'','wap')}">  
+    </if>
+    <script type="text/javascript" src="__JS__/jquery.min.js"></script>
+    <script type="text/javascript" src="__JS__/assistLink.js"></script>
+</head>
+<body>
+    <header class="main-header ucFixBug">
+        <div class="header-widget <neq name='ACTION_NAME' value='index' ></neq>">
+            <if condition="ACTION_NAME neq 'index'">
+            <div class="header-sub header_b">
+                <div class="logo" >
+                    <a href="javascript:history.go(-1);"><img src="__IMG__/back_btn.png" class="game-icon" ></a>
+                </div>
+            </div> 
+            <div class="header_title">
+                <if condition="ACTION_NAME eq 'today'">
+                <a  class="ht_text" type="btn" href="{:U('today')}">今日发放</a>
+                <else />
+                <notempty name="category.n">
+                <a  class="ht_text" type="btn" href="{:U('lists?name='.$category['n'])}">{$category.title}</a>
+                <else />
+                <!--<a  class="ht_text" type="btn" href="{$category.url}">{$category.title}</a>-->
+                
+                <h1 class="inner-text"><?php echo preg_replace('/(\(.+)/i','',$category['title']);?>专区</h1>
+                </notempty>
+                </if>
+            </div>
+            <else />
+            <div class="header-sub">
+                <div class="logo" >
+                    <a href="{:U('Index/index')}"><img src="{:get_cover(C('WAP_SET_LOGO'),'path')}" class="img" alt="安卓平台"  >
+                </a></div>
+            </div> 
+            <notempty name="catetitle">
+            <div class="header_title"><span class="ht_text">{$catetitle}</span></div> 
+            </notempty>
+            </if>
+            <aside class="header-aside ">
+                <span class="aside-item" id="iconSo" >
+                   <a href="{:U('Search/index?t='.strtolower(CONTROLLER_NAME))}"><em class="guide-icon guide-icon-search" ></em>
+                </a></span> 
+                <div class="aside-item" >
+                    <em class="guide-icon-nav"><i></i></em>
+                </div>
+            </aside>
+        </div>
+    </header>
+    <div class="topfix-holder"></div>
+    <div class="mmask">
+    	<div class="leftmeun">
+    		<a href="{:U('Unlr/login')}">
+        	<div class="toplogin">
+                <i></i>
+            	<p>登录</p>
+            </div>
+            </a>
+        	<ul class="cf side-nav">
+            	<li><a href="{:U('Game/index')}">游戏库<i></i></a></li>
+                <li><a href="{:U('News/index')}">新闻<i></i></a></li>
+                <li><a href="{:U('Gift/index')}">礼包<i></i></a></li>
+                <li><a href="{:U('Game/open')}">开服<i></i></a></li>
+                <li><a href="{:U('Activity/index')}">活动<i></i></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="mmaskbox2"></div>
+
+    <block name="body"></block>
+    
+    <section class="bottom-container">
+        <ul class="bottom-default">
+            <li><a href="{:U('Index/index')}">首页</a></li>
+            <li><a href="{:U('News/index')}">新闻</a></li>
+            <li><a href="{:U('Game/index')}">游戏库</a></li>
+            <li><a href="{:U('Gift/index')}">礼包</a></li>
+            <li><a href="{:U('Strategy/index')}">公告</a></li>
+            <li><a href="{:U('Activity/index')}">活动</a></li>
+        </ul>
+    </section>
+    <section class="mod-footer">
+        <if condition="CONTROLLER_NAME eq 'Gift' and ACTION_NAME neq 'index' ">
+        <div class="mod-user-info" >
+            <div class="mod-user-con">登录可领取礼包~</div>
+            <div class="mod-user-btn" id="giftloginregbox">
+                <a href="{:U('Unlr/login')}" class="g-link">登录</a>
+                <span class="g-space">|</span>
+                <a href="{:U('Unlr/register')}" class="g-link">注册</a>
+            </div>
+        </div>
+        </if>
+        <div class="mod-user-info">
+            <div class="mod-user-con">
+                <span ><a href="{:U('Index/index')}">手机版</a></span>&nbsp;|&nbsp;
+                <span ><a href="/media.php">电脑版</a></span>
+            </div>
+        </div>
+    </section>
+    <section class="footer-container">
+        <footer class="footer-default">
+            <p>{:C('WAP_SET_COPYRIGHT')} &nbsp;&nbsp;&nbsp;&nbsp; {:C('WAP_SET_FOR_THE_RECORD')}&nbsp;&nbsp;&nbsp;&nbsp; {:C('PC_SET_LICENSE')}</p>
+        </footer>
+    </section>
+    <script src="__JS__/zepto_touch_ai.js"></script>
+    <script>
+    $(function(){
+        //顶部互动菜单
+        (function(){
+            $('.guide-icon-nav i').click(function(){
+            var iDocuH=$(document).height();
+            $('.mmaskbox2').height(iDocuH);
+                $('.mmaskbox2').toggle();
+                if($('.mmask .leftmeun').hasClass('show')){
+        
+                    $('.mmask .leftmeun').removeClass('show');
+                }else{
+                    $('.mmask .leftmeun').addClass('show');
+                }
+            })	
+        })();
+
+        $('.bGameD .close').click(function(){$('.bGameD').hide()});
+
+            
+    })
+    var UURL = "__MODULE__/Unlr",SURL="__MODULE__/Subscriber";
+    </script>
+    <script src="__JS__/common.js"></script>
+</body>
+</html>

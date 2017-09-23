@@ -1,0 +1,109 @@
+@charset "gb2312";
+body{font: 12px "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif; color:#333; }
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+/* 统一底部模块 */
+.bottom-default{background:#fff;border-top:1px solid #dbdbdb;border-bottom:1px solid #dbdbdb;display:table;width:100%;-webkit-box-sizing:border-box;padding:12px 0;text-align:center;font-size:14px;-webkit-box-shadow:0 1px 1px rgba(0,0,0,.05)}.bottom-default li{display:table-cell;border-right:1px solid #ccc;line-height:1}.bottom-default li:nth-last-child(1){border-right:none}.bottom-default .icon-gotop{background-image:url(/image/2013/5/13/9139348.png);background-repeat:no-repeat;background-size:34px 238px;display:inline-block;background-position:0 -112px;width:20px;height:14px;margin-top:0;vertical-align:top}.footer-default{padding:10px 0;text-align:center;line-height:16px;font-size:14px}.mod-footer{font-size:14px;text-align:center;padding-bottom:10px}.mod-footer .mod-bottom-nav{background:#FFF;border-top:1px solid #D5D5D5;border-bottom:1px solid #D5D5D5;display:-webkit-box;padding:12px 0;line-height:1;-webkit-box-shadow:0 1px 1px rgba(0,0,0,.05)}.mod-footer .mod-bottom-nav li{border-right:1px solid #CCC;-webkit-box-flex:1;font-size:14px;height:14px;overflow:hidden}.mod-footer .mod-bottom-nav li:last-child{border-right:none}.mod-footer .ico-gotop{display:inline-block;width:18px;height:14px;background-position:-6px -106px}.mod-footer .mod-web-nav{display:-webkit-box;padding:14px 0 10px 0;width:180px;margin:0 auto}.mod-footer .mod-web-nav li{border-right:1px solid #B5B5B5;-webkit-box-flex:1;font-size:14px;height:16px;overflow:hidden;line-height:1}.mod-footer .mod-web-nav li:last-child{border-right:none}.mod-footer .mod-user-info{padding:12px 14px 0;text-align:center;font-size:14px;line-height:1}.mod-footer .mod-user-con{display:inline}.mod-footer .mod-user-btn{display:inline;padding:0 8px}.mod-footer .g-space{color:#B5B5B5;display:inline-block;margin:0 5px}.mod-footer .g-link{color:#1A71DE}
+.main-header .header-sub .logo .img{ margin:0;}
+.guide-icon{background-image: url(http://m.fpwap.com/images/s_icon.png);
+background-size: 22px;
+background-position: 0 5px;
+margin-top: 1px; background-repeat:no-repeat}
+.mt44{ margin-top:44px}
+.clearfix:after{ clear: both; content: ""; display: table;}
+.ph_list li{background-color: #fff;
+    margin-top: 15px;}
+.ph_list .ph_img{width:140px; height:90px;padding-right: 20px;}
+.ph_list .ph_img img{ width:100%; height:100%}
+.ph_list .ph_tit{-webkit-box-flex: 1; font-size:18px;}
+.ph_list .ph_tit h2{ max-height:50px; overflow:hidden; font-size:18px; line-height:25px}
+.ph_list .ph_tit div{ font-size:14px; color:#333;text-decoration:none;line-height:40px;overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;}
+.ph_list .ph_tit div span{ color:#FF2A27; margin-right:10px;}
+ul.ph_list li article{padding: 15px;
+    margin: 0 !important;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    -ms-transition: 0.3s;
+    transition: 0.3s;display: -webkit-box;
+    -webkit-box-sizing: border-box;}
+.mt44 .nav{ overflow:hidden; background:#333; height:40px}
+.mt44 .nav li{ width:20%; float:left;}
+.mt44 .nav .hover{ background:#FF6060}
+.mt44 .nav li a{ color:#fff; line-height:40px; font-size:14px; text-align:center; display:block}
+.module-more{ color:#6F6F6F}
+.mb0{ margin-bottom:0}
+.bg{ background:none}
+.main-header .header-sub .logo .img{padding-right: 45px;
+    background:url(http://www.fpwap.com/UploadFiles/article/information/2016/01/20/4dc84b289095c93c525f30adf1cf22a6.png) right no-repeat;
+    background-size: 40px;}
+.page-change-list{display:none;}
+.now{display:none;}
+.mShowP{display: -webkit-box;-webkit-box-pack: justify;margin: 15px 0;border: 1px solid #e0e0e0;-webkit-border-radius: 2px;}
+.mShowP .change{display: block;-webkit-box-flex: 1;width: 25%;height: 35px;border: solid #e0e0e0;border-width: 0 1px 0 0;text-align: center;text-indent: -10px;font-size: 14px;color: #333333;background-color: white; line-height:35px;}
+
+/**/
+.main-header .header-sub .logo .game-icon{ margin: 12px 0;}
+img{display:block}
+.normal-module .tit_ph{ font-size:20px; text-align:center; padding:15px 0; font-weight:bold; padding-bottom:5px}
+.source .source_left{ font-size:14px; text-align:center}
+.picshow{ margin:15px}
+.contextDiv{cursor: pointer;
+height: 100%;
+width: 50%;
+position: absolute;
+top: 0px;
+z-index: 5;
+background: url("blank") repeat;}
+#nextArrow_A{ width:30px; height:50px;right: 0px;
+background: url('http://www.fpwap.com/pic/images/right.png') no-repeat;background-size: 35px;
+    background-position: 0px -5px; display:none}
+#preArrow_A{left: 0px;
+background: url('http://www.fpwap.com/pic/images/left.png') 0px 0px no-repeat;background-size: 35px;
+    background-position:-5px -5px;width: 30px;
+    height: 52px; display:none}
+.contextDiv span{position: absolute;
+top: 50%;
+margin-top: -10%;
+width: 46px;
+height: 80px;}
+.picshowtop{text-align: center;
+position: relative;
+z-index: 1;
+overflow: hidden;}
+.picmidmid ul{display: -webkit-box;
+    -webkit-box-sizing: border-box;}
+	.picmidmid ul li{}
+.picmidmid ul li img{max-width: 110px;
+height: 76px}
+.selectpic{border: 3px solid #FF5555;
+height: 70px !important;}
+.picshowtop a img{ width:100%; height:auto}
+.picshowtxt{display: -webkit-box;
+    -webkit-box-sizing: border-box; height:55px;}
+.picshowtxt_right{ font-size:14px; color:#5D5D5D;line-height:55px;}
+#preArrow{left: 0px;}
+#nextArrow{right: 0px;}
+.picshowlist_mid{display: -webkit-box;
+    -webkit-box-sizing: border-box;}
+.picmidleft,picmidright{ width:24px}
+.picmidmid{    -webkit-box-flex: 1;overflow: hidden;}
+.picshowtxt_left{ line-height:55px;padding-right:20px; color:#ca4341; font-size:24px; font-style:oblique;}
+.swiper-slide{ width:auto}
+.swiper-container-horizontal>.swiper-scrollbar{ bottom: -10px;}
+.source p{ font-size:14px;margin: 15px;
+    margin-top: 10px;
+    color: #696969;}
+.swiper-container{ margin:inherit}

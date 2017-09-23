@@ -1,0 +1,973 @@
+<extend name="Public/base" />
+
+<block name="body">
+<link rel="stylesheet" type="text/css" href="__CSS__/admin_table.css" media="all">
+<script src="__STATIC__/layer/layer.js" type="text/javascript"></script>
+<script src="__STATIC__/layer/extend/layer.ext.js" type="text/javascript"></script>
+<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="__STATIC__/webuploader/webuploader.css" media="all">
+    <script src="__STATIC__/md5.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="__STATIC__/webuploader/webuploader.js"></script>
+    <div class="main-place">
+        <span class="main-placetitle">位置：</span>
+        <ul class="main-placeul">
+            <li><a href="{:U('Game/lists')}">游戏</a></li>
+            <li><a href="{:U('Game/lists')}">游戏管理</a></li>
+            <li><a href="#">{$meta_title}</a></li>
+        </ul>
+    </div>
+    <!-- 标签页导航 -->
+<div class="tab-wrap">
+    <div class="tab_nav jstabnav">
+    <ul>
+        <li data-tab="tab1" class="current"><a href="javascript:void(0);">基础信息</a></li>
+        <li data-tab="tab3" ><a href="javascript:void(0);">参数配置</a></li>
+    </ul></div>
+    <div class="tab-content tab_content">
+    <!-- 表单 -->
+    <form id="form" action="{:U('gameEdit')}" method="post" class="form-horizontal">
+        <!-- 基础 -->
+        <div id="tab1" class="tab-pane in tab1 tab_table">
+            <table  border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                  <tr>
+                    <td class="l">游戏名称：</td>
+                    <td class="r" >
+                        <input type="text" class="txt " name="game_name" value="{$data['game_name']}" readonly="readonly" placeholder="请输入游戏名称">
+                        <input type="hidden"  name="game_appid" value="{$data['game_appid']}">
+                    </td>
+                    <td class="l noticeinfo"><div class="noticemaintitle">运营平台：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">运营平台</span>
+                    <span class="">显示该游戏所适用的平台，一般为安卓平台和苹果平台</span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r table_radio">
+                        <volist name=":get_systems_list()" id="vo">
+                        <eq name="data.sdk_version" value="$key">
+                        <label><input type="radio" class="inp_radio js-device" value="{$key}" name="sdk_version"  checked > {$vo}</label>
+                        </eq>
+                        </volist>
+                    </td>
+                  </tr>
+                  <tr>
+                  <td class="l">游戏类型：</td>
+                    <td class="r">
+                        <select id="game_type_id" name="game_type_id">
+                            <volist name=":get_game_type_all()" id="vo">
+                                <if condition="$vo[id] eq $data[game_type_id]">
+                                    <option value="{$vo.id}" selected>{$vo.type_name}</option>
+                                <else />
+                                    <option value="{$vo.id}">{$vo.type_name}</option>
+                                </if>
+                            </volist>
+                        </select>
+                        <input type="hidden" id="game_type_name" name="game_type_name" value="{$data['game_type_name']}"></input>
+                    </td>
+                    <td class="l noticeinfo"><div class="noticemaintitle">开放类型：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">开放类型</span>
+                    <span class="">显示当前游戏的开放状态，一般为公测，删档内测，不删档内测等。主要APP上显示</span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r table_radio">
+                        <label>
+                            <!--<input type="radio" class="inp_radio" value="0" name="category" <eq name="data.category"
+                            value="0"> checked="ture" </eq> > 公测   </label>       -->
+                            <volist name=":get_opentype_all()" id="vo">
+                            <label><input type="radio" class="inp_radio" value="{$vo.id}" name="category" <eq name="data.category"
+                            value="$vo['id']"> checked </eq> > {$vo.open_name}</label>
+                            </volist>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="l noticeinfo"><div class="noticemaintitle">推荐状态：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">推荐状态</span>
+                    <span class="">设置游戏的推荐类型，更改此游戏在PC官网所属的推荐板块</span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r table_radio">
+                        <label>
+                            <input type="radio" class="inp_radio" value="0" name="recommend_status" <eq name="data['recommend_status']" value="0">checked="checked"</eq>> 不推荐
+                        </label>
+                        <label>
+                            <input type="radio" class="inp_radio" value="1" name="recommend_status" <eq name="data['recommend_status']" value="1">checked="checked"</eq>> 推荐
+                        </label>
+                        <label>
+                            <input type="radio" class="inp_radio" value="2" name="recommend_status" <eq name="data['recommend_status']" value="2">checked="checked"</eq>> 热门
+                        </label>
+                        <label>
+                            <input type="radio" class="inp_radio" value="3" name="recommend_status" <eq name="data['recommend_status']" value="3">checked="checked"</eq>> 最新
+                        </label>
+                    </td>
+                    <td class="l noticeinfo"><div class="noticemaintitle">显示状态：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">显示状态</span>
+                    <span class="">设置该游戏是否在各个站点显示</span>
+                </li>
+            </ul>
+        </div></td>
+
+                    <td class="r table_radio">
+                        <if condition="$data.apply_status neq 1">
+                            <input type="text" name="game_status" value="{:get_info_status($data['game_status'],0)}" disabled="disabled">
+                            <input type="hidden" name="game_status" value="{$data['game_status']}">
+                            <else/>
+                            <label>
+                                <input type="radio" class="inp_radio" value="0" name="game_status" <eq name="data['game_status']" value="0">checked="checked"</eq>> 关闭
+                            </label>
+                            <label>
+                                <input type="radio" class="inp_radio" value="1" name="game_status" <eq name="data['game_status']" value="1">checked="checked"</eq>> 开启
+                            </label>
+                        </if>
+
+                    </td>
+                  </tr>
+                  <tr>
+                  <td class="l">审核状态：</td>
+                    <td class="r">
+                        <input type="text" name="apply_state" value="{:get_info_status($data['apply_status'],5)}" disabled="disabled">
+                        <input type="hidden" name="apply_status" value="{$data['apply_status']}">
+                    </td>
+                    <td class="l">游戏评分：</td>
+                    <td class="r">
+                        <input type="text" class="txt" name="game_score" value="{$data['game_score']}" placeholder="请输入小于10的一位小数">
+                    </td>
+                  </tr>
+                  <!--<tr>
+                      <td class="l">游戏排序：</td>
+                      <td class="r">
+                          <input type="text" class="txt" name="sort" value="{$data['sort']}">
+                      </td>
+                      <if condition="$data['sdk_version'] eq 1">
+                          <td class="l android noticeinfo">
+                              <div class="noticemaintitle">第三方安卓原包地址：</div>
+                              <div class="question">
+                                  <i class="question_mark">?</i>
+                                  <ul class="question_content">
+                                      <li class="question_title">功能以及数据相关说明</li>
+                                      <li class="question_list">
+                                          <span class="">安卓原包地址</span>
+                                          <span class="">此处可添加第三方游戏（非本系统sdk对接的游戏）下载地址，各站点只提供下载功能，无法获得相关数据</span>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </td>
+                          <td class="r android">
+                              <input type="text" class="txt " name="add_game_address" value="{$data.add_game_address}">
+                          </td>
+                          <else/>
+                          <td class="l ios noticeinfo">
+                              <div class="noticemaintitle">第三方IOS原包地址：</div>
+                              <div class="question">
+                                  <i class="question_mark">?</i>
+                                  <ul class="question_content">
+                                      <li class="question_title">功能以及数据相关说明</li>
+                                      <li class="question_list">
+                                          <span class="">IOS原包地址</span>
+                                          <span class="">此处可添加第三方游戏（非本系统sdk对接的游戏）下载地址，各站点只提供下载功能，无法获得相关数据</span>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </td>
+                          <td class="r ios">
+                              <input type="text" class="txt " name="ios_game_address" value="{$data.ios_game_address}">
+                          </td>
+                      </if>
+                  </tr>-->
+                  <tr>
+                   <td class="l" >游戏简介：</td>
+                    <td class="r" >
+                        <input type="text" class="txt " name="features" value="{$data['features']}">
+                    </td>
+                    <td class="l noticeinfo"><div class="noticemaintitle">游戏素材:</div>
+                        <div class="question">
+                            <i class="question_mark">?</i>
+                            <ul class="question_content">
+                                <li class="question_title">功能以及数据相关说明</li>
+                                <li class="question_list">
+                                    <span class="">游戏素材</span>
+                                    <span class="">此处可上传该游戏的素材包，必须为压缩包形式，用于渠道后台下载推广</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                      <td class="r">
+                          <div id="uploader" class="wu-example">
+                              <div class="btns">
+                                  <div id="picker"  style="width: auto;float: left;margin-right: 20px;">上传素材包</div>
+                              </div>
+                              <!--用来存放文件信息-->
+                              <div id="thelist" class="uploader-list" style="float: left;">
+                                  <span id="up_status">
+                                  <notempty name="data.material_url">已上传</notempty>
+                                  </span>
+                              </div>
+                          </div>
+                          <input type="hidden" id="file_url"  name="material_url"  value="{$data['material_url']}"/>
+                    </td>
+                  </tr>
+                  <tr>
+                      <td class="l">上线时间：</td>
+                      <td class="r" >
+                          <notempty name="data.online_time">
+                              <input type="text" class="txt time" name="online_time" value="{:time_format($data['online_time'],'Y-m-d H:i')}">
+                              <else/>
+                              <input type="text" class="txt time" name="online_time" value="">
+                          </notempty>
+                      </td>
+                      <td class="l">区服描述：</td>
+                      <td class="r" colspan='3'>
+                          <!-- <textarea name="desride" class="txt_area1">{$data['desride']}</textarea> -->
+                          <input type="text" class="txt " name="desride" value="{$data['desride']}">
+                      </td>
+                  </tr>
+                  <tr>
+                    <td class="l noticeinfo" ><div class="noticemaintitle">游戏图标：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">游戏图标</span>
+                    <span class="">上传该游戏的图标</span>
+                </li>
+            </ul>
+        </div><span class="infonotice2">(尺寸：115*115px)</span>  </td>
+                    <td class="r">
+                        <input type="file" id="upload_picture_icon">
+                        <input type="hidden" name="icon" id="cover_id_icon" value="{$data.icon}" />
+                        <div class="upload-img-box">
+                        <notempty name="data['icon']">
+                            <div class="upload-pre-item"><img src="{$data['icon']|get_cover='path'}"/></div>
+                        </notempty>
+                        </div>
+                    </td>
+                    <td class="l noticeinfo" ><div class="noticemaintitle">游戏详情背景：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">游戏详情背景</span>
+                    <span class="">设置该游戏详情页头部大的背景图</span>
+                </li>
+            </ul>
+        </div><span class="infonotice2">(尺寸：1920*950px)</span>  </td>
+                    <td class="r">
+                        <input type="file" id="upload_picture_detail">
+                        <input type="hidden" name="game_detail_cover" id="detail_id_icon" value="{$data.game_detail_cover}" />
+                        <div class="upload-img-box">
+                        <notempty name="data['game_detail_cover']">
+                            <div class="upload-pre-item"><img src="{$data['game_detail_cover']|get_cover='path'}"/></div>
+                        </notempty>
+                        </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="l noticeinfo"><div class="noticemaintitle">游戏封面：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">游戏封面</span>
+                    <span class="">当该游戏设置到推荐位时，需要此处上传相关尺寸的游戏封面图</span>
+                </li>
+            </ul>
+        </div><span class="infonotice2">(尺寸：277*176px)</span> </td>
+                    <td class="r">
+                        <input type="file" id="upload_picture_cover">
+                        <input type="hidden" name="cover" id="cover_id_cover" value="{$data.cover}" />
+                        <div class="upload-img-box">
+                        <notempty name="data['cover']">
+                            <div class="upload-pre-item"><img src="{$data['cover']|get_cover='path'}"/></div>
+                        </notempty>
+                        </div>
+                        
+                    </td>
+
+                      <td class="l noticeinfo"><div class="noticemaintitle">游戏截图：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">游戏截图</span>
+                    <span class="">上传游戏的截图信息，此处截图在游戏详情页显示</span>
+                </li>
+            </ul>
+        </div><span class="infonotice2">(尺寸：210*350px)</span> </td>
+                      <td class="r" >
+                          {:hook('UploadImages', array('name'=>'screenshot','value'=>$data['screenshot']))}
+                          
+                      </td>
+                    
+                  </tr>
+                  <tr>
+                    <td class="l">详细介绍：</td>
+                    <td class="r" colspan='3'>
+                        <textarea name="introduction" class="txt_area">{$data['introduction']}</textarea>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- 设置 -->
+        <div id="tab3" class="tab-pane  tab3 tab_table">
+            <table  border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                 <tr>
+                    <td class="l noticeinfo"><div class="noticemaintitle">代充折扣：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">代充折扣</span>
+                    <span class="">设置改游戏的统一折扣，渠道后台会长代充时使用</span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r">
+                        <input type="text" class="txt" name="discount" value="{$data['discount']}" placeholder="代充折扣为1-10">
+                    </td>
+                    <td class="l noticeinfo"><div class="noticemaintitle">游戏标示：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">游戏标示</span>
+                    <span class="">苹果游戏分包时需填写的游戏标示，格式无特别要求</span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r">
+                        <input type="text" class="txt" name="marking" value="{$data['marking']}" placeholder="游戏唯一标示">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="l noticeinfo"><div class="noticemaintitle">CPS分成比例：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">CPS分成比例</span>
+                    <span class="">此处比例为渠道结算时CPS模式的分成比例</span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r">
+                        <input type="text" class="txt" name="ratio" value="{:$data['ratio']}" placeholder="分成比例为1~100%(不要输入%)">
+                    </td>
+                    <td class="l noticeinfo"><div class="noticemaintitle">CPA注册单价：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">CPA注册单价</span>
+                    <span class="">此处数值为渠道结算时CPA模式的注册单价</span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r">
+                        <input type="text" class="txt" name="money" value="{$data['money']}" placeholder="注册单价(元) 大于0的整数">
+                    </td>
+                  </tr>
+                  <tr><td class="l noticeinfo"><div class="noticemaintitle">appstrote上线：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">appstrote上线</span>
+                    <span class="">该游戏是否在苹果appstrote已经上线</span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r table_radio">
+                        <label>
+                            <input type="radio" class="inp_radio" value="1" name="appstatus" <eq name="data['appstatus']" value="1">checked="checked"</eq>> 是
+                        </label>
+                        <label>
+                            <input type="radio" class="inp_radio" value="0" name="appstatus" <eq name="data['appstatus']" value="0">checked="checked"</eq>> 否
+                        </label>
+                    </td>
+                    <td class="l">开发商：</td>
+                    <td class="r">
+                        <input type="text" class="txt" name="developers" value="{$data['developers']}">
+                    </td>
+                    </tr>
+                 <tr>
+                     <td class="l noticeinfo"><div class="noticemaintitle">开发者分成比例：</div><div class="question">
+                         <i class="question_mark">?</i>
+                         <ul class="question_content">
+                             <li class="question_title">功能以及数据相关说明</li>
+                             <li class="question_list">
+                                 <span class="">开发者分成比例</span>
+                                 <span class="">此处比例为开发者结算时的分成比例</span>
+                             </li>
+                         </ul>
+                     </div></td>
+                     <td class="r">
+                         <input type="text" class="txt" name="dratio" value="{:$data['dratio']}" placeholder="分成比例为1~100%(不要输入%)">
+                     </td>
+
+                 </tr>
+<!--                   <tr>
+                    <td class="l noticeinfo"><div class="noticemaintitle">游戏登陆通知地址：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">登陆通知地址</span>
+                    <span class="">此处功能为平台用户登录游戏时，通知CP方所用，该地址由CP方提供</span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r" colspan='3'>
+                        <input type="text" class="txt txt_title" name="login_notify_url" value="{$data['login_notify_url']}">
+                    </td>
+                  </tr> -->
+                  <tr>
+                    <td class="l noticeinfo"><div class="noticemaintitle">游戏支付通知地址：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">支付通知地址</span>
+                    <span class="">此处功能为平台用户游戏充值时，通知CP方所用该地址由CP方提供</span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r" >
+                        <input type="text" class="txt" name="pay_notify_url" value="{$data['pay_notify_url']}">
+
+                    </td>
+                      <td class="l noticeinfo">
+                          <div class="noticemaintitle">绑币充值折扣：</div>
+                          <div class="question">
+                              <i class="question_mark">?</i>
+                              <ul class="question_content">
+                                  <li class="question_title">功能以及数据相关说明</li>
+                                  <li class="question_list">
+                                      <span class="">绑币充值折扣</span>
+                                      <span class="">设置APP游戏的绑币统一折扣，APP充时绑币时使用</span>
+                                  </li>
+                              </ul>
+                          </div>
+                      </td>
+                      <td class="r">
+                          <input type="text" class="txt" name="bind_recharge_discount" value="{$data['bind_recharge_discount']}" placeholder="绑币充值折扣为1-10">
+                      </td>
+                  </tr>
+             <!--      <tr>
+                    <td class="l noticeinfo"><div class="noticemaintitle">游戏区服获取地址：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">区服获取地址</span>
+                    <span class="">此处为平台获取玩家当前游戏区服/角色信息的地址，该地址由CP方提供</span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r" colspan='3'>
+                        <input type="text" class="txt txt_title" name="game_server_url" value="{$data['game_server_url']}">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="l noticeinfo"><div class="noticemaintitle">游戏角色获取地址：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">角色获取地址</span>
+                    <span class="">此处为平台获取玩家当前游戏区服/角色信息的地址，该地址由CP方提供</span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r" colspan='3'>
+                        <input type="text" class="txt txt_title" name="game_role_url" value="{$data['game_role_url']}">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="l noticeinfo"><div class="noticemaintitle">游戏礼包领取地址：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">礼包领取地址</span>
+                    <span class=""></span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r" colspan='3'>
+                        <input type="text" class="txt txt_title" name="game_gift_url" value="{$data['game_gift_url']}">
+                    </td>
+                  </tr> -->
+                  <tr>
+                    <td class="l noticeinfo"><div class="noticemaintitle">游戏key：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">游戏key</span>
+                    <span class="">游戏支付通知时的加密key，可自由设置，长度不得超过32位字符串，设置完必须提供给CP方进行同步</span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r">
+                        <input type="text" class="txt" name="game_key" value="{$data['game_key']}" placeholder="游戏支付通知时的加密key">
+                    </td>
+                    <td class="l noticeinfo"><div class="noticemaintitle">访问秘钥：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">访问秘钥</span>
+                    <span class="">SDK访问服务器是的加密key，可自由设置，长度不得超过32位字符串</span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r">
+                        <input type="text" class="txt" name="access_key" value="{$data['access_key']}" placeholder="SDK访问服务器时的加密key">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="l noticeinfo"><div class="noticemaintitle">威富通商户号：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">威富通商户号</span>
+                    <span class="">威富通申请成功以后，威富通方提供的商户号，在此处添加（需要删除，在支付配置里设置即可）</span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r">
+                        <input type="text" class="txt" name="partner" value="{$data['partner']}" placeholder="输入威富通商户号">
+                    </td>
+                    <td class="l noticeinfo"><div class="noticemaintitle">威富通秘钥：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">威富通秘钥</span>
+                    <span class="">威富通申请成功以后，威富通方提供的秘钥，在此处添加（需要删除，在支付配置里设置即可）</span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r" colspan='3'>
+                        <input type="text" class="txt" name="key" value="{$data['key']}" placeholder="输入威富通秘钥">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="l noticeinfo"><div class="noticemaintitle">游戏支付appid：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">游戏支付appid</span>
+                    <span class="">使用微信支付时需要的appid，需要到微信开放平台申请创建，包括官方微信支付和威富通里的微信支付（需要删除，在支付配置里设置即可）</span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r">
+                        <input type="text" class="txt" name="game_pay_appid" value="{$data['game_pay_appid']}" placeholder="微信支付时用的的APPID">
+                    </td>
+                    <td class="l noticeinfo"><div class="noticemaintitle">游戏合作id：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">游戏合作id</span>
+                    <span class="">游戏对接时需要的合作id，此id由CP方提供（此功能根据不同游戏CP确定是否需要使用）</span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r" colspan='3'>
+                        <input type="text" class="txt" name="agent_id" value="{$data['agent_id']}">
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="l noticeinfo"><div class="noticemaintitle">游戏包名：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">游戏包名</span>
+                    <span class="">在微信开放平台申请创建的应用包名（app.webchat.payment.agree），若无此项可不填写（待定）</span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r">
+                        <input type="text" class="txt" name="apk_pck_name" value="{$data['apk_pck_name']}" placeholder="安卓生成APK时的包名">
+                    </td>
+                    <td class="l noticeinfo"><div class="noticemaintitle">游戏签名：</div><div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">游戏签名</span>
+                    <span class="">在微信开放平台申请创建的应用签名（fd0e6a444fd988bf23ce8a1818623b58），若无此项可不填写（待定）</span>
+                </li>
+            </ul>
+        </div></td>
+                    <td class="r" colspan='3'>
+                        <input type="text" class="txt" name="apk_pck_sign" value="{$data['apk_pck_sign']}" placeholder="安卓生成APK时的签名">
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="form-item cf">
+            <input type="hidden" name='id' value="{$data['id']}"></input>
+            <button class="submit_btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+            
+        </div>
+    </form>
+    </div>
+</div>
+</block>
+
+<block name="script">
+ <link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+ <php>if(C('COLOR_STYLE')=='blue_color') echo '<link href="__STATIC__/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">';</php>
+ <link href="__STATIC__/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+ <script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+ <script type="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript">
+//导航高亮
+highlight_subnav('{:U('developers/game')}');
+Think.setValue("game_type_id", {$data.game_type_id|default = 0});
+Think.setValue("category", {$data.category|default = 0});
+$('#submit').click(function(){
+    $('#form').submit();
+});
+
+$(function(){
+    $('.side-sub-menu').eq(0).show();
+    $("#game_type_name").val($("#game_type_id option:selected").text());
+	$('.time').datetimepicker({
+        format: 'yyyy-mm-dd hh:ii',
+        language:"zh-CN",
+        minView:2,
+        autoclose:true
+    });
+    $('.date').datetimepicker({
+        format: 'yyyy-mm-dd',
+        language:"zh-CN",
+        minView:2,
+        autoclose:true
+    });
+    showTab();
+});
+$("#add_another").click(function() {
+ layer.open({
+  type: 2,
+  title: '游戏登陆记录',
+  shadeClose: true,
+  shade: 0.8,
+  area: ['70%', '80%'],
+  content: url+'admin.php?s=/Game/add_another/id/1111'//iframe的url
+}); 
+});
+/*获取游戏类型名称*/
+$("#game_type_id").change(function() {
+    $("#game_type_name").val($("#game_type_id option:selected").text());
+});
+
+//上传游戏图标
+/* 初始化上传插件 */
+$("#upload_picture_icon").uploadify({
+    "height"          : 30,
+    "swf"             : "__STATIC__/uploadify/uploadify.swf",
+    "fileObjName"     : "download",
+    "buttonText"      : "上传图标",
+    "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+    "width"           : 120,
+    'removeTimeout'   : 1,
+    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
+    "onUploadSuccess" : upload_picture_icon{$field.name},
+    'onFallback' : function() {
+        alert('未检测到兼容版本的Flash.');
+    }
+});
+function upload_picture_icon{$field.name}(file, data){
+    var data = $.parseJSON(data);
+    var src = '';
+    if(data.status){
+        $("#cover_id_icon").val(data.id);
+        src = data.url || '__ROOT__' + data.path;
+        $("#cover_id_icon").parent().find('.upload-img-box').html(
+            '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+        );
+    } else {
+        updateAlert(data.info);
+        setTimeout(function(){
+            $('#top-alert').find('button').click();
+            $(that).removeClass('disabled').prop('disabled',false);
+        },1500);
+    }
+}
+
+
+//上传游戏封面
+/* 初始化上传插件 */
+$("#upload_picture_cover").uploadify({
+    "height"          : 30,
+    "swf"             : "__STATIC__/uploadify/uploadify.swf",
+    "fileObjName"     : "download",
+    "buttonText"      : "上传封面",
+    "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+    "width"           : 120,
+    'removeTimeout'   : 1,
+    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
+    "onUploadSuccess" : upload_picture_cover{$field.name},
+    'onFallback' : function() {
+        alert('未检测到兼容版本的Flash.');
+    }
+});
+function upload_picture_cover{$field.name}(file, data){
+    var data = $.parseJSON(data);
+    var src = '';
+    if(data.status){
+        $("#cover_id_cover").val(data.id);
+        src = data.url || '__ROOT__' + data.path;
+        $("#cover_id_cover").parent().find('.upload-img-box').html(
+            '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+        );
+    } else {
+        updateAlert(data.info);
+        setTimeout(function(){
+            $('#top-alert').find('button').click();
+            $(that).removeClass('disabled').prop('disabled',false);
+        },1500);
+    }
+}
+//上传游戏详情背景
+/* 初始化上传插件 */
+$("#upload_picture_detail").uploadify({
+    "height"          : 30,
+    "swf"             : "__STATIC__/uploadify/uploadify.swf",
+    "fileObjName"     : "download",
+    "buttonText"      : "上传封面",
+    "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+    "width"           : 120,
+    'removeTimeout'   : 1,
+    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
+    "onUploadSuccess" : upload_picture_detail{$field.name},
+    'onFallback' : function() {
+        alert('未检测到兼容版本的Flash.');
+    }
+});
+function upload_picture_detail{$field.name}(file, data){
+    var data = $.parseJSON(data);
+    var src = '';
+    if(data.status){
+        $("#detail_id_icon").val(data.id);
+        src = data.url || '__ROOT__' + data.path;
+        $("#detail_id_icon").parent().find('.upload-img-box').html(
+            '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+        );
+    } else {
+        updateAlert(data.info);
+        setTimeout(function(){
+            $('#top-alert').find('button').click();
+            $(that).removeClass('disabled').prop('disabled',false);
+        },1500);
+    }
+}
+var userInfo = {userId:"kazaff", md5:""};   //用户会话信息
+var chunkSize = 5000 * 1024;        //分块大小
+var uniqueFileName = null;          //文件唯一标识符
+var md5Mark = null;
+var backEndUrl = "{:U('File/shard_upload',array('type'=>1,'session_id'=>session_id()))}";
+WebUploader.Uploader.register({
+    "before-send-file" : "beforeSendFile",
+    "before-send"      : "beforeSend",
+    "after-send-file"  : "afterSendFile"
+}, {
+    beforeSendFile: function(file){
+        //秒传验证
+        var task = new $.Deferred();
+        var start = new Date().getTime();
+        (new WebUploader.Uploader()).md5File(file, 0, 10*1024*1024).progress(function(percentage){
+            //console.log(percentage);
+        }).then(function(val){
+            //console.log("总耗时: "+((new Date().getTime()) - start)/1000);
+            md5Mark = val;
+            userInfo.md5 = val;
+            $.ajax({
+                type: "POST"
+                , url: backEndUrl
+                , data: {status: "md5Check", md5: val}
+                , cache: false
+                , timeout: 1000 //todo 超时的话，只能认为该文件不曾上传过
+                , dataType: "json"
+            }).then(function(data, textStatus, jqXHR){
+                alert(data.chunk);
+                //console.log(data);
+                if(data.ifExist){   //若存在，这返回失败给WebUploader，表明该文件不需要上传
+                    task.reject();
+                    uploader.skipFile(file);
+                    file.path = data.path;
+                }else{
+                    task.resolve();
+                    //拿到上传文件的唯一名称，用于断点续传
+                    uniqueFileName = md5(''+userInfo.userId+file.name+file.type+file.lastModifiedDate+file.size);
+                }
+            }, function(jqXHR, textStatus, errorThrown){    //任何形式的验证失败，都触发重新上传
+                task.resolve();
+                //拿到上传文件的唯一名称，用于断点续传
+                uniqueFileName = md5(''+userInfo.userId+file.name+file.type+file.lastModifiedDate+file.size);
+            });
+        });
+        return $.when(task);
+    }
+    , beforeSend: function(block){
+        //分片验证是否已传过，用于断点续传
+        var task = new $.Deferred();
+        $.ajax({
+            type: "POST"
+            , url: backEndUrl
+            , data: {
+                status: "chunkCheck"
+                , name: uniqueFileName
+                , chunkIndex: block.chunk
+                , size: block.end - block.start
+            }
+            , cache: false
+            , timeout: 1000 //todo 超时的话，只能认为该分片未上传过
+            , dataType: "json"
+        }).then(function(data, textStatus, jqXHR){
+            if(data.ifExist){   //若存在，返回失败给WebUploader，表明该分块不需要上传
+                task.reject();
+            }else{
+                task.resolve();
+            }
+        }, function(jqXHR, textStatus, errorThrown){    //任何形式的验证失败，都触发重新上传
+            task.resolve();
+        });
+        return $.when(task);
+    }
+    , afterSendFile: function(file){
+        var chunksTotal = 0;
+        if((chunksTotal = Math.ceil(file.size/chunkSize)) > 1){
+            //合并请求
+            var task = new $.Deferred();
+            $.ajax({
+                type: "POST"
+                , url: backEndUrl
+                , data: {
+                    status: "chunksMerge"
+                    , name: uniqueFileName
+                    , chunks: chunksTotal
+                    , ext: file.ext
+                    , md5: md5Mark
+                }
+                , cache: false
+                , dataType: "json"
+            }).then(function(data, textStatus, jqXHR){
+                //todo 检查响应是否正常
+                task.resolve();
+                file.path = data.path;
+                $("#file_name").val(data.name);
+                $("#file_url").val(data.path);
+                $("#file_size").val(file.size);
+            }, function(jqXHR, textStatus, errorThrown){
+                task.reject();
+            });
+            return $.when(task);
+        }else{
+            //UploadComlate(file);
+        }
+    }
+});
+var uploader = WebUploader.create({
+    // 选完文件后，是否自动上传。
+    auto: true,
+    // swf文件路径
+    swf: '__STATIC__/webuploader/Uploader.swf',
+    // 文件接收服务端。
+    server: backEndUrl,
+    // 选择文件的按钮。可选。
+    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+    pick: {id:'#picker'},
+    //dnd: "#theList",
+    paste: document.body,
+    // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+    resize: false,
+    disableGlobalDnd: true,
+    fileNumLimit:1,
+    threads:3,
+    compress: false,
+    prepareNextFile: true,
+    formData: function(){return $.extend(true, {}, userInfo);},
+    duplicate:true,
+    chunked:true,
+    chunkSize: 5*1000*1024,
+    duplicate: true
+});
+// 当有文件被添加进队列的时候
+uploader.on( 'fileQueued', function( file ) {
+    $("#up_status").remove();
+    $("#thelist").append( '<div id="' + file.id + '" class="item">' +
+        '<h4 class="info">' + file.name + '</h4>' +
+        '<p class="state">等待上传...</p>' +
+        '</div>' );
+});
+
+// 文件上传过程中创建进度条实时显示。
+uploader.on( 'uploadProgress', function( file, percentage ) {
+    var $li = $( '#'+file.id ),
+        $percent = $li.find('.progress .progress-bar');
+    // 避免重复创建
+    if ( !$percent.length ) {
+        $percent = $('<div class="progress progress-striped active">' +
+            '<div class="progress-bar" role="progressbar" style="width: 0%">' +
+            '</div>' +
+            '</div>').appendTo( $li ).find('.progress-bar');
+    }
+    $li.find('p.state').text('上传中');
+    $percent.css( 'width', percentage * 100 + '%' );
+    $percent.text( (percentage * 100).toFixed(0) + '%' );
+});
+
+uploader.on( 'uploadSuccess', function( file , response) {
+    $( '#'+file.id ).find('p.state').text('已上传');
+    //alert(JSON.stringify(response));
+
+    if(!response.chunk){
+        var url = response.path + "/" +response.name;
+//        $("#file_name").val(response.name);
+        $("#file_url").val(url);
+//        $("#file_size").val(response.size);
+    }
+    //alert($("#file_name").val()+";"+$("#file_url").val()+";"+$("#file_size").val())
+});
+
+uploader.on( 'uploadError', function( file ) {
+    $( '#'+file.id ).find('p.state').text('上传出错');
+});
+
+uploader.on( 'uploadComplete', function(file) {
+    $( '#'+file.id ).find('.progress').fadeOut();
+});
+
+</script>
+</block>

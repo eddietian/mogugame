@@ -1,0 +1,53 @@
+@charset "utf-8";
+.affiche_banner {background:url(../images/affichebg.png) center top repeat;width:100%;height:280px;}
+.affiche_banner .img{text-align:center;position:relative;color:#fff;height:200px;}
+.affiche_banner .img .title,
+.affiche_banner .img .column1,
+.affiche_banner .img .column2 {position:absolute;top:80px;font-size:16px;left:0;right:0;margin:0 auto;}
+.affiche_banner .img .title {top:30px;font-size:38px;color:#FEFFFD;}
+.affiche_banner .img .column1{margin-left:-60px;color:#E8EFFA;}
+.affiche_banner .img .column2{margin-left:60px;color:#E8EFFA;}
+
+.affiche_nav {width:80%;margin:0 auto;position:relative;}
+.affiche_nav a {width:33.33333333333%;background-color:#508DE6;position:relative;float:left;text-align:center;font-size:16px;line-height:38px;color:#C0D3F3;}
+.affiche_nav a .iconfont {font-size:18px;vertical-align:middle;margin-right:10px;}
+.affiche_nav a:nth-child(2) .iconfont {font-size:22px;}
+.affiche_nav a~a{margin-left:-1px;padding-left:1px;}
+.affiche_nav a~a:before{content:'';display:black;width:1px;height:18px;position:absolute;top:10px;background-color:#6599E9;left:0;}
+.affiche_nav a:hover,.affiche_nav a.active {background-color:#326ABD;color:#D9E2F1;}
+
+.affiche .innerwrap {}
+.affiche .affichelistwrap {width:76%;margin:0 auto;position:relative;}
+.affiche .affichelist {width:100%;display:none;}
+.affiche .affichelist.active {z-index:1;display:block;}
+.affiche .affichelist ul li {border-bottom:1px dashed #eaeaea;padding:15px 0;font-size:14px;}
+.affiche .affichelist ul li .title {margin-left:5px;}
+.affiche .affichelist ul li .time {float:right;}
+.affiche .affichelist ul li img {height:18px;vertical-align:middle;margin-left:10px;}
+.affiche .affichelist ul li .mark1 {color:#AAC2FE;}
+.affiche .affichelist ul li .mark2 {color:#7DD9E4;}
+
+.pagination {width:100%;margin-top:40px;}
+
+.pagination .current {
+    background-color: #508DE6;
+    border-color: #508DE6;
+}
+.pagination .current.prev, .pagination .current.next {
+    color: #508DE6;
+}
+
+.affichedetail .innerwrap {padding:0;}
+.affichedetailwrap {width:80%;margin:0 auto;}
+.crumb_nav {padding:26px 0 20px;font-size:14px;color:#6c6c6c;border-bottom:1px solid #eaeaea;}
+.crumb_nav a {padding:0 5px;color:#6c6c6c;}
+.crumb_nav .iconfont {font-size:12px;color:#508DE6;}
+.crumb_nav span {color:#508DE6;padding:0 5px;}
+
+.docu {padding-top:20px;}
+.docu .title {padding:15px 0 5px;font-size:24px;text-align:center;}
+.docu .vice {line-height:32px;text-align:center;font-size:14px;}
+.docu .content {padding:20px 20px 0;}
+
+.tail {margin-top:20px;border-top:1px dashed #eaeaea;padding-top:20px;}
+.tail p {line-height:20px;text-align:right;}

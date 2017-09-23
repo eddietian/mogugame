@@ -1,0 +1,38 @@
+<extend name="Public/base" />
+<block name="body">
+<link rel="stylesheet" href="__CSS__/service.css">
+  <div class="g-container">
+    <div class="service-banner">
+
+	<div class="service-banner-wrap">
+		<div class="service-btn-wrap">
+        <div class="kfrw"></div>
+        <div class="ser_tit"></div>
+          <ul class="ser_li"><li><a href="http://wpa.qq.com/msgrd?v=3&amp;uin={:C('PC_SET_SERVER_QQ')}&amp;site=qq&amp;menu=yes" target="_blank"><i class="ser_ic01"></i><span>在线咨询</span></a></li>
+          <li><a href="{:U('Service/detail',array('kefu'=>'mima'))}"><i class="ser_ic02"></i><span>密码问题</span></a></li>
+          <li><a href="{:U('Service/detail',array('kefu'=>'account'))}"><i class="ser_ic03"></i><span>账户问题</span></a></li>
+          <li><a href="{:U('Service/detail',array('kefu'=>'pay'))}"><i class="ser_ic04"></i><span>充值问题</span></a></li></ul>
+		</div>
+	</div>
+</div>
+<div class="service-content">
+
+<div class="service-wrap">
+       <div class="cjwt">
+       <div class="m-subtitle-bar"> 
+           <a href="{:U('Service/detail',array('kefu'=>'often'))}" target="_self" class="more">更多+</a>
+          <h2> <a style="text-decoration:none;cursor:default;" target="_self">常见问题</a> </h2>
+        </div>
+       <div class="service-c">
+				<ul>
+        <volist name="oftendata" id="often">
+					<li><a target="_self" href="{:U('Service/detail',array('kefu'=>$often['titleurl'],'para'=>$often['zititleurl']))}" title="{$often.zititle}">{$often.zititle}</a></li>
+				</volist>	
+				</ul>
+			</div>
+       </div>  
+	</div>
+</div>
+  </div>
+<!-- <script type="text/javascript" src="style/js/main_2016.js"></script> -->
+</block>

@@ -1,0 +1,124 @@
+.user-hd { padding: 10px 40px;
+    margin: 30px 0;
+    margin-bottom: 5px;
+    background:#FBFBFB;
+    border: 1px solid #ddd;}
+.user-hd-left { width: 460px; border-right: 1px dotted #cacaca;}
+.user-hd-left .user-avatar { text-align: center; float: left;}
+.user-hd-left img { border-radius: 100%;}
+.user-hd-left .btn-avatar { display: block; width: 80px; height: 22px; line-height: 22px; border-radius: 15px; margin: 14px auto 0; color: #fff; background: #03b4f5;}
+.user-hd-left .user-info { line-height: 24px; padding-left: 35px; padding-top: 6px; color: #666; float: left;}
+.user-hd-left .user-info b{ color:#f36422}
+.user-hd-left .btn-getlb { margin-top: 10px;}
+
+.user-hd-right { width: 480px;}
+
+
+
+.remgame-list { width: 640px; padding: 30px 0 0 50px;}
+.remgame-list li { width: 210px; height: 70px; float: left;}
+.remgame-list .img { width: 70px; height: 70px; float: left;}
+.remgame-list .info { padding-left: 16px; line-height: 22px; float: left;}
+.remgame-list .name { display: block; text-indent: -5px;}
+
+.user-bd { border: 1px solid #e9e9e9; margin-bottom: 0px;}
+.user-menu { width: 250px; height: auto;}
+.user-menu li {}
+.user-menu li a { display: block; height: 60px; font-size: 16px; color: #666; line-height: 60px; text-align: center; border-bottom: 1px solid  #e9e9e9;}
+.user-menu li i { display: inline-block; vertical-align: middle; height: 40px; width: 40px; background: url(../images/user-menu.png) no-repeat;}
+.user-menu .menu-2 i { background-position: 0 -38px;}
+.user-menu .menu-3 i { background-position: 0 -77px;}
+.user-menu .menu-4 i { background-position: 0 -115px;}
+.user-menu .menu-5 i { background-position: 2px -150px;}
+.user-menu .menu-1:hover i, .user-menu .active .menu-1 i { background-position: -40px 0;}
+.user-menu .menu-2:hover i, .user-menu .active .menu-2 i { background-position: -40px -38px;}
+.user-menu .menu-3:hover i, .user-menu .active .menu-3 i { background-position: -40px -77px;}
+.user-menu .menu-4:hover i, .user-menu .active .menu-4 i { background-position: -40px -115px;}
+.user-menu .menu-5:hover i, .user-menu .active .menu-5 i { background-position: -40px -150px;}
+.user-menu .active a, .user-menu li a:hover { color: #03B4F5;font-weight: bold;     background: #FBFBFB;}
+.user-menu .active, .user-menu li:hover{    border-left: 5px solid #03B4F5;}
+
+.user-section-wrap { width: 887px;min-height: 394px; height: auto!important; padding: 20px 30px 30px; border-left: 1px solid #e9e9e9;}
+.section-tit { height: 40px; line-height: 40px; border-bottom: 2px solid #e9e9e9; font-size: 16px;}
+
+.w-item { min-height: 32px; height: auto; line-height: 32px; margin-top: 14px;}
+.w-item .w-label, .w-item .w-div, .w-item .w-input, .w-item .w-select, .w-item .w-select-l { display: inline-block; vertical-align: top;}
+.w-item .w-label { width: 172px; height: 32px; text-align: right;}
+.w-item .w-div { width: 700px;}
+.w-item .w-input, .w-item .w-input-s { width: 218px; height: 30px; padding: 0 10px; border: 1px solid #e9e9e9; vertical-align: top;}
+.w-item .w-input-s { width: 100px;}
+.w-item .w-select, .w-item .w-select-l { width: 108px; height: 32px; border: 1px solid #e9e9e9; outline: 0 none; font-family: 'microsoft yahei';}
+.w-item .w-select-l { width: 240px;}
+.lh24 { line-height: 24px;}
+.safe-setting-box { width: 700px; margin: 40px auto;}
+.safe-level { padding-bottom: 8px; border-bottom: 1px dashed #e9e9e9;}
+.safe-level strong { font-size: 14px;}
+.safe-level .level { display: inline-block; width: 78px; height: 12px; background: #ccc; vertical-align: middle;}
+.safe-level .level-on { background: #03b4f5;}
+/*账号安全*/
+.safe-item { height: 74px; padding: 20px 42px; border-bottom: 1px solid #e9e9e9; overflow: hidden;}
+.u-mibao, .u-email, .u-phone, .u-idcard { width: 74px; height: 74px; background: url(../images/user_icos.gif) no-repeat; float: left;}
+.u-mibao { background-position: 0 -75px;}
+.u-email { background-position: 0 -150px;}
+.u-phone { background-position: 0 -225px;}
+.u-idcard { background-position: 0 -300px;}
+.safe-item .u-tips { padding: 20px 0 0 45px; float: left;}
+.safe-item .stit { font-size: 14px;}
+.safe-item .g-btn { margin-top: 26px; float: right;}
+.u-haset { display: inline-block;}
+/*礼包中心*/
+.ugift-list { padding: 28px 0 0 32px;}
+.ugift-list li { width: 348px;  padding: 25px; border-radius: 5px; overflow: hidden; margin: 0 22px 28px 0; border: 1px solid #e9e9e9; float: left; transition: all 0.3s ease;}
+ .heii{height: 220px;}
+.ugift-list li:hover { box-shadow: 0 0 5px #03b4f5;}
+.ugift-list .img { border-radius: 5px; overflow: hidden;}
+.ugift-list .top { height: 96px; line-height: 28px; margin-bottom: 12px;}
+.ugift-list .info { padding-left: 15px; float: left;}
+.ugift-list .name { color: #333; padding: 5px 0 2px 0;}
+.ugift-list .card { width: 202px; color: #333; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;}
+.ugift-list .card em { color: #ff8025;}
+.ugift-list .tit { padding: 2px 10px; color: #fff; border-radius: 5px; background: #5cd3ff;}
+.ugift-list .con { line-height: 24px; padding-top: 10px;}
+/*.ugift-list .con p{ max-height: 84px;overflow: hidden;}*/
+
+.utips { padding: 10px 20px 20px; border: 1px solid #ececec; background: #fbfbfb; margin-top: 30px; line-height: 22px;}
+.utips h4 { color: #0091ce; font-size: 14px;}
+.utips li { list-style: decimal inside;}
+
+/*修改头像弹窗*/
+.mask { width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; opacity: 0.8; background: #000; z-index: 1000;}
+.mask { filter: alpha(opacity=80);_position:absolute;_left:expression(eval(document.documentElement.scrollLeft));_top:expression(eval(document.documentElement.scrollTop))}
+.pop-box { color: #000; overflow: hidden; position: fixed; top: 50%; left: 50%; z-index: 1001;}
+.pop-box { _position:absolute;_top:expression(eval(document.documentElement.scrollTop+100));}
+.avatar-pop { width: 782px; height: 578px; border: 1px solid #e6e6e6; border-radius: 5px; background: #fff; overflow: hidden; position: fixed; top: 50%; left: 50%; margin: -290px 0 0 -392px; z-index: 1001;}
+.avatar-pop a:hover { text-decoration: none;}
+.avapop-close { width: 14px; height: 15px; overflow: hidden; background: url(../images/icon.png) 0 -182px no-repeat; position: absolute; top: 10px; right: 10px; transition: all 0.4s ease;}
+.avapop-close:hover { transform: rotate(180deg);}
+.ava-hd { width: 100%; height: 170px; text-align: center; color: #000; background: #6fccd4;}
+.ava-hd img { width: 108px; height: 108px; border-radius: 50%; overflow: hidden; margin: 20px 0 10px 0;}
+.ava-bd { padding: 16px;}
+.ava-uptype { overflow: hidden; position: relative;}
+.ava-uptype .line { width: 1px; height: 22px; background: #e6e6e6; position: absolute; top: 2px; left: 65px;}
+.ava-uptype .active, .ava-uptype a:hover { border-bottom: 2px solid #03b4f7; color: #03b4f7;}
+.ava-uptype a { height: 26px; line-height: 26px; margin-right: 20px; font-size: 14px; color: #333; border-bottom: 2px solid #fff; float: left;}
+.ava-system {}
+.ava-system .tips { color: #666; padding: 20px 0 30px 0;}
+.sys-ava-list { height: 196px;}
+.sys-ava-list .item { display: block; width: 84px; height: 84px; overflow: hidden; border-radius: 18px; border: 1px solid #e6e6e6; margin: 0 20px 20px 0; display: inline; float: left;}
+.sys-ava-list .item img { width: 84px; margin: 0;}
+.sys-ava-list .active { border-color: #03b4f7;}
+.sys-ava-submit, .btn-modava { display: inline-block; width: 155px; height: 36px; line-height: 36px; text-align: center; color: #fff; border-radius: 5px; margin: 16px 0 0 0; background: #03b4f7;}
+.sys-ava-submit:hover, .btn-modava:hover { color: #fff; opacity: 0.8;}
+.ava-custom { text-align: center;}
+/*账号异常修复*/
+.form-tips { padding: 10px 20px 20px; border: 1px solid #ececec; background: #fbfbfb; margin-top: 30px; line-height: 22px; }
+.form-tips h4{ color:#0091ce; font-size:14px;}
+.tomark { margin: 50px 20px 0; line-height: 24px;}
+.us2-exc .g-btn { padding: 0 10px; width: auto;}
+
+
+.bd_tab{ width:100%; margin-top:20px;}
+.bd_tab thead th{ height:50px; line-height:50px; color:#fff; font-size:14px; background: #34C2F6;border: 1px solid #ddd;}
+.bd_tab tbody td{ text-align:center; height:40px; line-height:40px; border: 1px solid #E8E8E8;}
+.bd_tab tbody tr:hover{ background:#F1FBFE;}
+.bd_tab tbody td.org{ color:#ff6630;}

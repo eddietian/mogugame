@@ -1,0 +1,155 @@
+<extend name="Public/bases"/>
+
+<block name="body" >
+<link rel="stylesheet" href="__CSS__/xzmindex.css">
+<link rel="stylesheet" href="__CSS__/swiper.min.css">
+<link rel="stylesheet" href="__CSS__/news_sty.css">
+<section class="normal-module">
+    <div class="search-main">
+	</div>
+    <ul class="mod-icon-list cf pt15">
+    <li>
+        <a href="{:U('category')}"><div class="m-wrap">
+            <span class="mod-icon mod-icon-fenl"></span>
+            <span class="label">分类</span>
+        </div></a>
+    </li>
+    <li class="btn2">
+        <a href="{:U('open')}"><div class="m-wrap">
+            <span class="mod-icon mod-icon-zuire"></span>
+            <span class="label">开服</span>
+        </div></a>
+    </li>
+    </ul>
+	<ul class="mod-icon-list cf">
+    <li class="btn3">
+        <a href="{:U('category')}"><div class="m-wrap">
+            <span class="mod-icon mod-icon-zhuant"></span>
+            <span class="label">开放</span>
+        </div></a>
+    </li>
+    <li class="btn4">
+        <a href="{:U('rank')}"><div class="m-wrap">
+            <span class="mod-icon mod-icon-paih"></span>
+            <span class="label">排行</span>
+        </div></a>
+    </li>
+    </ul>
+</section>
+
+<section class="normal-module">
+    <div class="module-header">
+        <p class="title">热门推荐</p>
+    </div>
+    <ul class="normal-app-list cf">
+        <game:index name="vo" recommend_status="1,2" where="game_status=1" limit="8" sort="sort desc">
+    	<li>
+            <img class="game-icon" type="btn" src="{$vo.icon|get_cover='path'}" width="60" height="60">
+            <a class="game-title" type="btn" href="{:U('Game/detail?id='.$vo['relation_game_id'])}"><?php echo preg_replace('/(\(.+)/i','',$vo['game_name']);?></a>
+            <p class="textalgin">{$vo.game_type_name}</p>
+            <if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq "" && $vo.ios_dow_address eq "" &&  $vo.ios_game_address eq "" '><a class="btn2">暂无下载</a></if>
+            <if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq ""'><else/>
+                <a  href="<if condition='$vo.dow_status eq 0'>#<else/>{:U('Down/down_file?game_id='.$vo['and_id'].'&type=1')}</if>" class="<if condition='$vo.ios_dow_address eq "" && $vo.ios_game_address eq ""'>btn2<else/>btn</if>"> 安卓下载 </a>
+            </if>
+            <if condition='$vo.ios_dow_address eq "" && $vo.ios_game_address eq ""'><else/>
+                <a  href="<if condition='$vo.dow_status eq 0'>#<else/>{:U('Down/down_file?game_id='.$vo['ios_id'].'&type=2')}</if>" class="<if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq ""'>btn2<else/>btn1</if>"> 苹果下载 </a>
+            </if>
+        </li> 
+        </game:index>
+	</ul>
+    <a class="module-more block" type="btn" href="{:U('rank')}">更多热门推荐<em class="modify"></em></a>
+</section>
+
+
+<section class="normal-module">
+    <div class="module-header">
+        <p class="title">游戏排行</p>
+    </div>
+    <div class="netgame-today">
+        <ul>
+            <game:index name="vo" sort="recommend_level desc" where="game_status=1">
+            <li class="game-essay-list-item">
+                <i class="num-modify weekitop num-modify-{$i}">{$i}</i>
+                <a class="m-wrap pdl30" type="btn" href="{:U('Game/detail?id='.$vo['relation_game_id'])}">
+                        <span class="icon-wrap ">
+                        <em class="em_sc"></em> 
+                            <img class="game-icon lazy" src="{$vo.icon|get_cover='path'}" alt="{$vo.game_name}">
+                        </span>
+                    <div class="content">
+                        <p class="game-title"><span class="inner-text"><?php echo preg_replace('/(\(.+)/i','',$vo['game_name']);?></span>
+                            <span class="ico"></span>
+                        </p>
+                        <p class="textalgin" style="width:100px"><span class="item"></span></p>
+                        <p class="game-review">{$vo.game_type_name}</p>
+                    </div>
+                </a>
+                <if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq "" && $vo.ios_dow_address eq "" &&  $vo.ios_game_address eq "" '><a class="btn11">暂无下载</a></if>
+                <if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq ""'><else/>
+                    <a  href="<if condition='$vo.dow_status eq 0'>#<else/>{:U('Down/down_file?game_id='.$vo['and_id'].'&type=1')}</if>" class="<if condition='$vo.ios_dow_address eq "" && $vo.ios_game_address eq ""'>btn11<else/>btn</if>"> 安卓下载 </a>
+                </if>
+                <if condition='$vo.ios_dow_address eq "" && $vo.ios_game_address eq ""'><else/>
+                    <a  href="<if condition='$vo.dow_status eq 0'>#<else/>{:U('Down/down_file?game_id='.$vo['relation_game_id'].'&type=2')}</if>" class="<if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq ""'>btn11<else/>btn1</if>"> 苹果下载 </a>
+                </if>
+                <span class="pre-verline"></span>
+            </li>
+            </game:index>
+        </ul>
+    </div>
+
+    <div class="mult-module-more">
+        <a class="module-more block" type="btn" href="{:U('rank')}">查看全部排行榜<em class="modify"></em></a>
+    </div>
+</section>
+
+<section class="normal-module">
+    <div class="module-header">
+        <p class="title">开服表</p>
+    </div>
+    <ul class="kaic">
+        <game:server name="vo" show_status="1" sort="s.start_time desc">
+        <li class="game-essay-list-item">            
+            <a class="m-wrap pdl30" type="btn" href="{:U('detail?id='.$vo['game_id'])}">
+                    <span class="icon-wrap ">
+                    <em class="em_sc"></em> 
+                    
+                        <img class="game-icon lazy" src="{$vo.icon|get_cover='path'}" alt="{$vo.game_name}">
+                    </span>
+                <div class="content">
+                    <p class="game-title">
+                        <span class="inner-text"><?php echo preg_replace('/(\(.+)/i','',$vo['game_name']);?></span>
+                        <span class="ico"></span>
+                    </p>
+                    <p class="textalgin" style="width:100px"><span class="item"></span></p>
+                    <p class="game-review">时间：{$vo.start_time|date='m-d H:i',###} &nbsp;&nbsp;区服：{$vo.server_name}</p>
+                </div>
+            </a>
+            <a class="btn11" href="{:U('detail?id='.$vo['game_id'])}">下载</a>
+            <span class="pre-verline"></span>
+        </li>
+        </game:server>	
+    </ul>
+    <div class="mult-module-more">
+        <a class="module-more block" type="btn" href="{:U('open')}">查看全部开服表<em class="modify"></em></a>
+    </div>
+</section>
+
+<section class="normal-module">
+    <div class="module-header">
+        <p class="title">游戏分类</p>
+    </div>
+    <ul class="netgameclass-list cf" id="flipWrap">
+        <game:type name="vo" typename="game_type" gamenumber="true" isall="true" >
+        <li>
+            <a class="m-wrap" type="btn" href="{:U('lists?type='.$vo['id'])}">
+                <span class="icon-wrap ct1"></span>
+                <div class="content">
+                    <p class="game-title">{$vo.type_name}</p><p>{$vo.count} 款</p>
+                </div>
+            
+            </a>
+        </li>        
+        </game:type>
+    </ul>
+    <a class="module-more block" type="btn" href="{:U('category')}">更多游戏类别<em class="modify"></em></a>
+</section>
+</block>

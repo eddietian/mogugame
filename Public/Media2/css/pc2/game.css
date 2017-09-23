@@ -1,0 +1,58 @@
+.game-bg { width: 100%; height: 950px; text-align: center; position: absolute; top: 0px; left: 0px; overflow: hidden;}
+.game-bg img { position: absolute; top: 0; left: 50%; margin-left: -960px;}
+.game-container { padding-top: 452px; margin-bottom: 30px; position: relative;}
+.game-container .bd-top { height: 10px; border-radius: 5px 5px 0 0;}
+.game-container .game-wp { overflow: visible;}
+.game-left { width: 787px; padding-left: 45px;}
+.game-infomation .logo { height: 274px; text-align: center;}
+.game-infomation .img { width: 110px; height: 110px; border: 3px solid rgba(255,255,255,0.2); border-radius: 26px; margin-bottom: -36px; overflow: hidden; position: relative; top: -50px; /*left: -4px;*/}
+.game-infomation .enterhome { color: #fff; border-color: #fb8472; background: #fb8472;}
+.game-infomation .enterhome:hover { color: #fff; border-color: #03b4f5; background: #03b4f5;}
+.game-infomation .info { height: 274px; line-height: 30px; padding: 10px 20px 0; font-size: 14px;}
+.game-infomation .name { font-size: 24px; color: #333;}
+.game-infomation .level { font-size: 20px; color: #ff7544;}
+.game-infomation .dl { width: 360px; height: 118px; padding: 16px 50px; margin-top: 48px; border: 1px solid #e6e6e6; border-radius: 5px; position: relative;}
+.game-infomation .dl .btn-dl { display: block; width: 188px; height: 50px; margin-bottom: 14px; background: url(../../images/type2.jpg) no-repeat;}
+.game-infomation .dl .btn-dl:hover { opacity: 0.9;}
+.game-infomation .dl .btn-ios { background-position: 0 -50px;}
+.game-infomation .dl .qr { width: 61px; height: 53px; background: url(../../images/cr.png) no-repeat; position: absolute; top: -3px; right: -3px;}
+.game-infomation .dl-qr { width: 120px; color: #999; line-height: 28px; text-align: center; position: absolute; top: 15px; right: 65px;}
+
+.gamedetail {}
+.gamedetail .tit { padding: 14px 0; border-bottom: 1px solid #eee;}
+.gamedetail .tit .in { height: 48px; border-left: 6px solid #75d7ff; padding-left: 10px; }
+.gamedetail .tit h3 { font-size: 30px; line-height: 30px; font-weight: normal; color: #717171;}
+.gamedetail .tit p { font-size: 14px; color: #aeaeae; letter-spacing: 1.6px;}
+.gamedetail .con { line-height: 30px; font-size: 14px; padding: 30px 0;}
+
+
+.gamepic .tit .in { border-left: 6px solid #7152ff;}
+.gamepic-box { width: 670px; height: 336px; padding: 40px 54px; overflow: hidden; position: relative;} 
+.gamepic-box .slide-in { width: 670px; height: 336px; overflow: hidden; position: relative;}
+.gamepic-box .slide-bd { width: 2000px; position: relative;}
+.gamepic-box .slide-bd li { width: 216px; height: 336px; padding: 0 5px; float: left;}
+
+.slide-next, .slide-prev { width: 45px; height: 80px; line-height: 200; overflow: hidden; position: absolute; top: 168px; left: 0px; background: #000; opacity: 0.5; filter:alpha(opacity=50);}
+.slide-next { left: auto; right: 0px; background-position: -68px -434px;}
+.slide-next:hover, .slide-prev:hover { background: #03b4f5; opacity: 1;}
+.slide-next:before, .slide-prev:before { display: block; width: 14px; height: 25px; margin: 28px auto 0; content: '';}
+.slide-prev:before { background-position: 0 -240px;}
+.slide-next:before { background-position: 0 -270px;}
+
+.game-right { width: 300px; padding-right: 45px;}
+.bdr-tit { height: 18px; line-height: 18px; font-size: 18px; padding-left: 15px; border-left: 4px solid #03b4f5; margin: 10px 0; }
+.mod-othergift { border: 1px solid #e6e6e6; border-radius: 5px; margin: 48px 0 25px 0;}
+.othergift-list { padding: 0 18px 20px}
+.othergift-list li { width: 262px; height: 68px; border-bottom: 1px dotted #cecece; padding: 15px 0; overflow: hidden;}
+.othergift-list .img { float: left;}
+.othergift-list .info { width: 102px; padding: 0 10px; float: left;}
+.othergift-list .name { font-size: 16px; padding: 10px 0 4px 0; color: #fd5253;}
+.othergift-list .type { color: #999;}
+.othergift-list .btn-getgift { width: 70px; height: 26px; line-height: 26px; text-align: center; color: #fff; border-radius: 5px; margin-top: 20px; background: #fb8472; float: left;}
+.othergift-list .btn-getgift:hover { background: #03b4f5;}
+
+.mod-pfqr { border: 1px solid #e6e6e6; border-radius: 5px; padding: 20px;}
+.mod-pfqr .t1 { font-size: 16px; color: #333; margin: 8px 0 10px 0; padding-left: 20px;}
+.mod-pfqr .t2 { font-size: 14px; color: #666; padding-left: 20px;}
+.global-qr { width: 110px; height: 110px;}
+.global-qr img { margin: -8px 0 0 -8px;}

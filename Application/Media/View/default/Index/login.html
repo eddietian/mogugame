@@ -1,0 +1,86 @@
+ <!--登录框-->
+    <div class="login-pos">
+      <div class="abs login-box">
+        <div class="lg-top hide_txt">人生不止一面，从游戏启程！</div>
+        <div class="lg-mid">
+          <div class="abs loading" style="display: none;"> <img src="__IMG__/denglujiazai.gif" alt="加载中"> </div>
+          <!--登录前-->
+          <div class="login-q hide" <if condition="session('member_auth') neq ''">  style="display:none" </if>>
+            <form id="formlogin" method="post">
+              <div class="lg-tip">
+                <p class="ico-login"></p>
+              </div>
+              <div class="rel ico-login lg-inptu-box">
+                <input name="account" type="text"  value="{:$_COOKIE['media_account']}" class="abs lg-inptu lg-name" placeholder="账号" x-webkit-speech="" lang="zh-CN" x-webkit-grammar="bUIltin:search">
+                <input name="password" type="password" class="abs lg-inptu lg-pwd" placeholder="密码">
+              </div>
+              <div class="rel mgt10 lg-rzm hide">
+                <div class="ico-login rzm-box">
+                  <input name="yzm" type="text" class="abs lg-inptu lg-yzm" placeholder="验证码">
+                </div>
+                <img class="abs rzm-img" src="{:U('Member/verify')}" alt="验证码" title="点击换一张"> </div>
+              <div class="rel lg-btn">
+                <p id="lg-slides" class="abs an2 lg-slides on"><span class="abs an2 lg-on">ON</span><a class="abs an2 lg-slides-btn"></a><span class="abs an2 lg-off">OFF</span></p>
+                <p class="abs lg-rem-name">记住用户名</p>
+                <input type="hidden" id="remuser" name="remuser" value="1">
+                <a class="abs forget-pwd" href="{:U('Member/findpwd')}" title="忘记密码?">忘记密码？</a> <a class="abs ico-login hide_txt lg-login" id="userlogin" href="javascript:;" title="立即登录">立即登录</a> </div>
+            </form>
+            <div class="rel wx-res-box">
+              <div class="abs  wx-box" id="QrCode">溪谷令牌扫码登录</div>
+              <div class="abs res-box">
+                <p class="abs res-tip">还没有溪谷账号？</p>
+                <a class="abs ico-login hide_txt res-btn registet-link" href="{:U('Member/register')}" title="免费注册">免费注册</a>  </div>
+            </div>
+          </div>
+          <!--登录前结束--> 
+          <!--登录后-->
+          <div class="login-h hide" <if condition="session('member_auth') eq ''">  style="display:none;"</if>>
+            <div class="rel user-info">
+              <div class="abs user-photo"><img class="abs" src="__IMG__/game/noavatar_middle.gif">
+                <a class="abs" href="{:U('Member/users_index')}" ></a></div>
+              <div class="abs user-name-box"><a class="user-name" href="{:U('Member/users_index')}" ><if condition="session('member_auth.nickname') eq 'Uc用户'">Uc用户<else/>{$user.account}</if></a><a class="abs user-exit">[退出]</a></div>
+              <div class="abs user-vip-box"> 上次登录时间：<br><if condition="session('member_auth.nickname') eq 'Uc用户'">*******<else/>{:date('Y-m-d H:i:s',$user['login_time'])}</if>
+              </div>
+            </div>
+            <div class="user-base">
+              <dl class="user-base-dl">
+                <dd class="user-2"> <a class="an05" href="{:U('Member/users_index')}" title="平台币余额">
+                  <p class="user-b1"><if condition="$uc_balance neq ''">{$uc_balance}<else/>{$user.balance}</if></p>
+                  <p class="user-b2">平台币余额</p>
+                  </a> </dd>
+                <dd class="user-2"> <a class="an05" href="{:U('Member/users_db')}"  title="绑币余额">
+                  <p class="user-b1">查看</p>
+                  <p class="user-b2">绑币余额</p>
+                  </a> </dd>
+                
+                <dd class="rel user-bdd "><em class="bq-11 an05"></em><a class="abs an05 user-center" href="{:U('Member/users_index')}" title="用户中心">用户中心</a><i class="bq-1"></i></dd>
+                <dd class="rel user-bdd "><em class="bq-22 an05"></em><a class="abs an05 user-sign" href="{:U('Gift/gift')}" title="礼包中心">礼包中心</a><i class="bq-2"></i></dd>
+                <dd class="rel user-bdd "><em class="bq-33 an05"></em><a class="abs an05 user-pay" href="{:U('Recharge/pay')}" title="我要充值">我要充值</a><i class="bq-3"></i></dd>
+              </dl>
+            </div>
+            <div class="palyed-game">
+              <p class="played rel">我玩过的游戏：</p>
+              <dl class="played-game-list">
+                <if condition="$user_play eq ''">
+                <dt>您还没有开启游戏历程！<a href="{:U('Game/game_center')}" title="马上体验">马上体验</a></dt>
+                <else/>
+                <volist name ="user_play" id="uv">
+                    <dd>
+                      <a title="{$uv.relation_game_name}" href="{:U('Game/game_detail',['id'=>$uv['relation_game_id']])}">
+                      <img src="{:get_cover($uv['icon'],'path')}">
+                      <span class="played-game-name">{$uv.relation_game_name}</span>
+                      <span class="ico-1 played-server-name box2-tjg2-hot">{$uv.server_name}</span></a>
+                    </dd>
+                </volist>
+                </if>  
+              </dl>
+            </div>
+          </div>
+          
+         
+          
+        </div>
+        <div class="lg-bottom"></div>
+      </div>
+    </div>
+    <!--登录框结束-->

@@ -1,0 +1,27 @@
+body{font-family: "Î¢ÈíÑÅºÚ";}
+.normal-module{ background:#fff;}
+.module-header {display: -webkit-box;-webkit-box-pack: justify;padding: 0 15px;border: solid #d5d5d5;border-width: 1px 0;-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);height: 43px;line-height: 43px;position: relative;}
+.app-introduce{ padding:10px 15px; margin-bottom:10px;}
+.fahao-font-list li {position: relative;border-bottom: 1px solid #eeeeee;}
+.fahao-font-list li:before {right: 15px;top: 17px;}.fahao-font-list li a {display: block;padding: 15px 59px 15px 15px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.fahao-font-list .btn-small-give, .fahao-font-list .btn-small-tao, .fahao-font-list .btn-small-order, .fahao-font-list .btn-small-dis {position: absolute;right: 31px;top: 12px;}
+#animatesbox{position:absolute;top:0;left:0;z-index:888;width:100%;display:none;}
+#animates{position:absolute;left:50%;width:130px;top:200px;margin-left:-75px;height:130px;z-index:999;overflow:hidden;}
+.animatestext{position:absolute;left:0;right:0;top:50%;width:60px;color:#000;text-align:center;margin:-12px auto;height:24px;line-height:24px;font-size:14px;}
+
+.take-time{ padding-bottom: 0px; margin-top:5px;}
+.gift-code-box{ margin:0;box-shadow:none; border:none; padding:15px 0 0 0;}
+.giftc-copy-box{ background:#fff; margin-top:5px;}
+.giftc-info{ margin-top:5px;}
+.lbbtn-give{ width:100%; height:30px;text-align:center; line-height:30px; background:#00A800; color:#fff; display:block; margin:0 auto; }
+.pd10{ padding:10px;}
+.pdb10{ padding-bottom:10px;}
+.mtb10{ margin-bottom:10px;}
+.newlbbox{ background:#fff;}
+.newlbbox h3{ border-left:5px solid #f60; height:16px; line-height:16px; font-size:14px; display:block; padding-left:5px; color:#666;}
+.gift-user-info{ padding:10px 5px;line-height: 20px; border:none;}
+.borderline{ height:1px; border-top:1px dashed #ccc; margin-bottom:10px;}
+.btn-green-mod{ background:#FE8A0C; border:none;}
+.wxlbbox{ background:#fff; margin-bottom:10px;}
+.wxlbbox h3{ border-left:5px solid #f60; height:16px; line-height:16px; font-size:14px; display:block; padding-left:5px; color:#666; margin-bottom:10px;}
+.wxlbbox p{ line-height:22px;}

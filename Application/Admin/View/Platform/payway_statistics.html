@@ -1,0 +1,181 @@
+<extend name="Public/base"/>
+
+<block name="body">
+<link rel="stylesheet" href="__CSS__/select2.min.css" type="text/css" />
+<script type="text/javascript" src="__JS__/bootstrap.min.js"></script>
+<script type="text/javascript" src="__JS__/select2.min.js"></script>
+    <!-- 标题栏 -->
+    <div class="main-place">
+        <span class="main-placetitle">位置：</span>
+        <ul class="main-placeul">
+            <li><a href="{:U('Statistics/overview')}">统计</a></li>
+            <li><a href="{:U('Platform/game_statistics')}">平台统计</a></li>
+            <li><a href="#">充值方式统计</a></li>
+        </ul>
+        <div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">充值方式统计</span>
+                    <span class="">根据全站的注册用户，分析其充值方式以及排行。（包含微信扫描支付，支付宝，聚宝云，微信APP，汇付宝，威富通等充值方式）</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="cf top_nav_list">
+        <div class="fl button_list">
+        <empty name="model.extend">
+            <div class="tools">
+            </div>
+        </empty>
+        </div>
+
+    </div>
+
+
+    <!-- 数据列表 -->
+    <div class="data_list">
+        <div class="">
+            <table>
+                <!-- 表头 -->
+                <thead>
+                    <tr>
+                        <th >充值方式</th>
+
+                        <th ><a class="paixu" data-order='count'><if condition="$userarpu_order eq 4 and  $userarpu_order_type eq 'count'">累计充值▲<elseif condition="$userarpu_order eq 3 and $userarpu_order_type eq 'count'"/>累计充值▼<else />累计充值<img src="__IMG__/up-down.png" width="13px"></if></a></th>
+                        <th ><a class="paixu" data-order='rand'><if condition="$userarpu_order eq 4 and  $userarpu_order_type eq 'rand'">排行榜▲<elseif condition="$userarpu_order eq 3 and $userarpu_order_type eq 'rand'"/>排行榜▼<else />排行榜<img src="__IMG__/up-down.png" width="13px"></if></a></th>
+
+                        <th ><a class="paixu" data-order='today'><if condition="$userarpu_order eq 4 and  $userarpu_order_type eq 'today'">今日充值▲<elseif condition="$userarpu_order eq 3 and $userarpu_order_type eq 'today'"/>今日充值▼<else />今日充值<img src="__IMG__/up-down.png" width="13px"></if></a></th>
+
+                        <th ><a class="paixu" data-order='week'><if condition="$userarpu_order eq 4 and  $userarpu_order_type eq 'week'">本周充值▲<elseif condition="$userarpu_order eq 3 and $userarpu_order_type eq 'week'"/>本周充值▼<else />本周充值<img src="__IMG__/up-down.png" width="13px"></if></a></th>
+
+                        <th ><a class="paixu" data-order='mounth'><if condition="$userarpu_order eq 4 and  $userarpu_order_type eq 'mounth'">本月充值▲<elseif condition="$userarpu_order eq 3 and $userarpu_order_type eq 'mounth'"/>本月充值▼<else />本月充值<img src="__IMG__/up-down.png" width="13px"></if></a></th>
+                    </tr>
+                </thead>
+                <!-- 列表 -->
+                <tbody>
+                    <style>
+                        .data-table thead th, .data-table tbody td{text-align:center}
+                        .data-table tbody td{border-right:1px solid #DDDDDD;}
+                        .d_list .drop-down ul {z-index:999;}
+                    </style>
+                    <volist name="list_data" id="data">
+                    <tr> 
+                        <td ><if condition="$data.rand eq 1"><span>{:get_pay_way($data['pay_way'])}</span><elseif condition="$data.rand eq 2"/><span>{:get_pay_way($data['pay_way'])}</span><elseif condition="$data.rand eq 3"/><span>{:get_pay_way($data['pay_way'])}</span><else/>{:get_pay_way($data['pay_way'])}</if></td>
+                        <td ><span>{$data.count}</span></td>
+                        <td ><strong><if condition="$data.rand eq 1"><span>{$data.rand}</span><elseif condition="$data.rand eq 2"/><span>{$data.rand}</span><elseif condition="$data.rand eq 3"/><span>{$data.rand}</span><else/>{$data.rand}</if></strong></td>
+                        <td >{$data.today}</td>
+                        <td >{$data.week}</td>
+                        <td >{$data.mounth}</td>
+                    </tr>
+                    </volist>
+                    <tr class="data_summary">
+                        <td><span>汇总</span></td>
+                        <td ><span>{$total.sum_count}</span></td>
+                        <td>---</td>
+                        <td>{$total.sum_today}</td>
+                        <td>{$total.sum_week}</td>
+                        <td>{$total.sum_mounth}</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    <div class="page">
+        {$_page|default=''}
+    </div>
+</block>
+
+<block name="script">
+<script src="__STATIC__/layer/layer.js"></script>
+<script>
+<volist name=":I('get.')" id="vo">
+    Think.setValue('{$key}',"{$vo}");
+</volist>
+$(".select_gallery").select2();
+</script>
+<link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+<php>if(C('COLOR_STYLE')=='blue_color') echo '<link href="__STATIC__/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">';</php>
+<link href="__STATIC__/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript">
+//导航高亮
+highlight_subnav('{:U('Platform/payway_statistics')}');
+$(function(){
+    //搜索功能
+    $("#search").click(function(){
+        var url = $(this).attr('url');
+        var query  = $('.jssearch').find('input').serialize();
+        query  += "&"+$('.jssearch').find('select').serialize();
+        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
+        query = query.replace(/^&/g,'');
+        if( url.indexOf('?')>0 ){
+            url += '&' + query;
+        }else{
+            url += '?' + query;
+        }
+        window.location.href = url;
+    });
+
+    //回车自动提交
+    $('.jssearch').find('input').keyup(function(event){
+        if(event.keyCode===13){
+            $("#search").click();
+        }
+    });
+    $(".paixu").click(function(){
+        var that=$(this);
+        $data_order=that.attr('data-order');
+        $order_type='{$userarpu_order}';
+        if($order_type==''||$order_type=='4'){
+            $(".sortBy").attr('name','data_order');
+            val='3,'+$data_order;
+            $(".sortBy").attr('value',val);
+            $("#search").click();
+        }else if($order_type=='3'){
+            $(".sortBy").attr('name','data_order');
+            val='4,'+$data_order;
+            $(".sortBy").attr('value',val);
+            $("#search").click();
+        }
+    });
+    //点击排序
+    $('.list_sort').click(function(){
+        var url = $(this).attr('url');
+        var ids = $('.ids:checked');
+        var param = '';
+        if(ids.length > 0){
+            var str = new Array();
+            ids.each(function(){
+                str.push($(this).val());
+            });
+            param = str.join(',');
+        }
+
+        if(url != undefined && url != ''){
+            
+            window.location.href = url.replace(".html","") + '/ids/' + param;
+        }
+    });
+    // var date="{$setdate}";
+    $('#time-start').datetimepicker({
+        format: 'yyyy-mm-dd',
+        language:"zh-CN",
+        minView:2,
+        autoclose:true,
+        // endDate:date
+    });
+
+    $('#datetimepicker').datetimepicker({
+       format: 'yyyy-mm-dd',
+        language:"zh-CN",
+        minView:2,
+        autoclose:true,
+        pickerPosition:'bottom-left',
+        // endDate:date
+    })
+})
+</script>
+</block>

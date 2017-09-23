@@ -1,0 +1,7224 @@
+div, p, a {
+
+
+  color: #333;
+
+
+}
+
+
+
+
+
+a:hover {
+
+
+  color: #f60;
+
+
+}
+
+
+
+
+
+body, input, button, select, textarea, table {
+
+
+  font: 12px Arial,'微软雅黑';
+
+
+}
+
+
+
+
+
+body {
+
+
+  font: 12px/1.5 '微软雅黑';
+
+
+}
+
+
+
+
+
+/* 头部 */
+
+
+.header {
+
+
+  background-color: #e9e9e9;
+
+
+  border-bottom: 1px solid #dbdbdb;
+
+
+  height: 33px;
+
+
+  /* 头部 左侧 */
+
+
+  /* 头部 右侧 */
+
+
+}
+
+
+.header .contorl {
+
+
+  left: 0;
+
+
+  position: absolute;
+
+
+  z-index: 11;
+
+
+}
+
+
+.header .contorl li {
+
+
+  font-size: 12px;
+
+
+  float: left;
+
+
+  line-height: 33px;
+
+
+  color: #c6c6c6;
+
+
+}
+
+
+.header .contorl li a {
+
+
+  margin: 0 8px;
+
+
+}
+
+
+.header .contorl li a:hover {
+
+
+  color: #f60;
+
+
+  text-decoration: none;
+
+
+}
+
+
+.header .contorl li .h-con {
+
+
+  margin: 0 8px;
+
+
+  color: #000;
+
+
+  display: inline;
+
+
+}
+
+
+.header .contorl li h1 {
+
+
+  font-size: 12px;
+
+
+  line-height: 33px;
+
+
+  display: inline;
+
+
+  font-weight: 400;
+
+
+}
+
+
+.header .share {
+
+
+  right: 0;
+
+
+  position: absolute;
+
+
+  z-index: 11;
+
+
+}
+
+
+.header .share li {
+
+
+  font-size: 12px;
+
+
+  float: left;
+
+
+  line-height: 31px;
+
+
+  color: #c6c6c6;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+
+}
+/* 头部 开服助手 */
+.kfzs { position: relative;background:no-repeat;}
+.lbzsicon{ position:relative;}
+.lbzsicon i{ position:absolute; background:url(http://www.fpwap.com/skin/fpv7/images/topHot.png) no-repeat; width:11px; height:11px; display:block; top:2px; right:0;}
+.kfzs a { padding: 0 12px;border: 1px solid #e9e9e9;}
+.kfzs a.current,.kfzs a:hover {  background: #fff;  border-color: #d9d9d9;  border-bottom-color: #fff;  height: 33px;}
+.kfzs-list{ position:absolute; left:0;top:34px;border:1px solid #d9d9d9; border-top:none;background:#FFF;display:none; width:230px; height:90px;}
+
+.kfzs-list p{font-size:12px; color:#000; line-height:22px;}
+.kfzs-list .bold{font-weight:bold;font-size:14px;}
+#kfzsdown{ border:0; padding:0;color:#ff6600;}
+#kfzsdown:hover{ text-decoration:underline;}
+
+.header .share li.seo-nav {
+
+
+  background-position: 0 100px;
+
+
+  position: relative;
+
+
+  width: 54px;
+
+
+  /* 头部 弹出层 */
+
+
+}
+
+
+.header .share li.seo-nav a {
+
+
+  padding: 0 12px;
+
+
+  border: 1px solid #e9e9e9;
+
+
+  position: relative;
+
+
+  z-index: 1000;
+
+
+}
+
+
+.header .share li.seo-nav a.current, .header .share li.seo-nav a:hover {
+
+
+  background: #fff;
+
+
+  border-color: #d9d9d9;
+
+
+  border-bottom-color: #fff;
+
+
+  height: 32px;
+
+
+}
+
+
+.header .share li.seo-nav .seo-nav-list {
+
+
+  padding: 15px 0;
+
+
+  position: absolute;
+
+
+  top: 33px;
+
+
+  right: 5px;
+
+
+  background: #fff;
+
+
+  border: 1px solid #d9d9d9;
+
+
+  z-index: 500;
+
+
+  display: none;
+
+
+}
+
+
+.header .share li.seo-nav .seo-nav-list .list {
+
+
+  float: left;
+
+
+  width: 100px;
+
+
+  border-right: 1px dotted #e9e9e9;
+
+
+}
+
+
+.header .share li.seo-nav .seo-nav-list .list li {
+
+
+  height: 28px;
+
+
+  line-height: 28px;
+
+
+  color: #333;
+
+
+  float: none;
+
+
+  background: none;
+
+
+  text-align: center;
+
+
+  overflow: hidden;
+
+
+}
+
+
+.header .share li.seo-nav .seo-nav-list .list li a {
+
+
+  float: none;
+
+
+  display: inline-block;
+
+
+  height: 28px;
+
+
+  width: 84px;
+
+
+  padding: 0;
+
+
+  text-align: center;
+
+
+  border: 0;
+
+
+  white-space: nowrap;
+
+
+  text-overflow: ellipsis;
+
+
+  overflow: hidden;
+
+
+}
+
+
+.header .share li.seo-nav .seo-nav-list .list li a:hover {
+
+
+  background-color: #ff8a00;
+
+
+  color: #fff;
+
+
+}
+
+
+.header .share li.seo-nav .seo-nav-list .list.last {
+
+
+  border-right: 0;
+
+
+}
+
+
+.header .share li.seo-nav .seo-nav-list .list .tit {
+
+
+  cursor: default;
+
+
+  font-weight: 700;
+
+
+  font-size: 14px;
+
+
+  font-family: \5FAE\8F6F\96C5\9ED1;
+
+
+}
+
+
+.header .share li.seo-nav .seo-nav-list .list .tit a:hover {
+
+
+  background-color: #fff;
+
+
+  color: #f60;
+
+
+}
+
+
+.header .share li.weibo {
+
+
+  background-position: -171px 8px;
+
+
+}
+
+
+.header .share li.wechat {
+
+
+  background-position: -171px -33px;
+
+
+  border: 1px solid #e9e9e9;
+
+
+  position: relative;
+
+
+}
+
+
+.header .share li.wechat .code {
+
+
+  padding: 15px;
+
+
+  position: absolute;
+
+
+  top: 33px;
+
+
+  right: 0;
+
+
+  background: #fff;
+
+
+  border: 1px solid #d9d9d9;
+
+
+  z-index: 1;
+
+
+  display: none;
+
+
+}
+
+
+.header .share li.wechat .code img {
+
+
+  display: block;
+
+
+  width: 120px;
+
+
+  height: 120px;
+
+
+}
+
+
+.header .share li.normal a {
+
+
+  padding: 0 10px;
+
+
+}
+
+
+.header .share li.wechat.current, .header .share li.wechat:hover {
+
+
+  background-color: #fff;
+
+
+  border-color: #d9d9d9;
+
+
+  border-bottom-color: #fff;
+
+
+}
+
+
+.header .share li a {
+
+
+  border-top: 1px solid #e9e9e9;
+
+
+  padding: 0 15px 0 31px;
+
+
+}
+
+
+.header .share li a:hover {
+
+
+  color: #f60;
+
+
+  text-decoration: none;
+
+
+}
+
+
+
+
+
+/* 底部 */
+
+
+.footer {
+
+
+  padding: 15px 0;
+
+
+  margin-top: 0;
+
+
+  border-top: 1px solid #f5f5f5;
+
+
+}
+
+
+
+
+
+.footer, .footer p {
+
+
+  color: #808080;
+
+
+}
+
+
+
+
+
+.footer a {
+
+
+  color: #666;
+
+
+}
+
+
+
+
+
+/* 主导航 */
+
+
+.nav {
+
+
+  height: 90px;
+
+
+  min-width: 1000px;
+
+
+}
+
+
+.nav .nav-main {
+
+
+  width: 1000px;
+
+
+  height: 100%;
+
+
+  margin: 0 auto;
+
+
+}
+
+
+.nav .logo {
+
+
+  height: 72px;
+
+
+  display: inline-block;
+
+
+  float: left;
+
+
+  margin-top: 10px;
+
+
+}
+
+
+.nav .logo img {
+
+
+  height: 100%;
+
+
+}
+
+
+.nav .nav-list {
+
+
+  float: right;
+
+
+  width: 328px;
+
+
+  height: 75px;
+
+
+  margin-top: 8px;
+
+
+}
+
+
+.nav .nav-list a {
+
+
+  width: 75px;
+
+
+  height: 75px;
+
+
+  display: block;
+
+
+  float: left;
+
+
+  margin-right: 8px;
+
+
+}
+
+
+.nav .nav-list a p {
+
+
+  padding-top: 48px;
+
+
+  line-height: 26px;
+
+
+  color: #979797;
+
+
+  text-align: center;
+
+
+  font-weight: 700;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+
+}
+
+
+.nav .nav-list a.android p {
+
+
+  background-position: 22px -100px;
+
+
+}
+
+
+.nav .nav-list a.apple p {
+
+
+  background-position: -146px -100px;
+
+
+}
+
+
+.nav .nav-list a.mobile p {
+
+
+  background-position: 25px -172px;
+
+
+}
+
+
+.nav .nav-list a.bbs {
+
+
+  margin-right: 0;
+
+
+}
+
+
+.nav .nav-list a.bbs p {
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+
+  background-position: -145px -176px;
+
+
+}
+
+
+.nav .nav-list a:hover {
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+
+  background-position: -63px -108px;
+
+
+}
+
+
+.nav .nav-list a:hover p {
+
+
+  color: #bdbdbd;
+
+
+}
+
+
+
+
+
+/* 网游,苹果,安卓--导航 */
+
+
+.sub-nav .ol-nav {
+
+
+  width: 1000px;
+
+
+  height: 100%;
+
+
+  margin: 0 auto;
+
+
+}
+
+
+.sub-nav .ol-nav a {
+
+
+  float: left;
+
+
+  width: 124px;
+
+
+  _width: 123px;
+
+
+  height: 44px;
+
+
+  font-size: 18px;
+
+
+  color: #fff;
+
+
+  line-height: 44px;
+
+
+  text-align: center;
+
+
+  display: block;
+
+
+  border-right: 1px solid #5b5b5b;
+
+
+}
+
+
+.sub-nav .ol-nav a:hover, .sub-nav .ol-nav a.active {
+
+
+  width: 124px;
+
+
+  _width: 123px;
+
+
+  background: #ff6600;
+
+
+  border-right: 1px solid #ff6600;
+
+
+}
+
+
+.sub-nav .ol-nav a h1 {
+
+
+  font-size: 18px;
+
+
+  font-weight: 400;
+
+
+}
+
+
+.sub-nav .ol-nav a.last {
+
+
+  border-right: 0;
+
+
+  _margin: 0;
+
+
+  _padding: 0;
+
+
+}
+
+
+
+
+
+/* 搜索 */
+
+
+.search {
+
+
+  background-color: #4a4a4a;
+
+
+  min-width: 1000px;
+
+
+  height: 44px;
+
+
+}
+
+
+.search .search-main {
+
+
+  width: 990px;
+
+
+  height: 100%;
+
+
+  margin: 0 auto;
+
+
+}
+
+
+
+
+
+.search-con {
+
+
+  float: left;
+
+
+  width: 450px;
+
+
+  height: 32px;
+
+
+  margin: 6px 30px 0 0;
+
+
+  _margin-right: 0px;
+
+
+  position: relative;
+
+
+  z-index: 1;
+
+
+}
+
+
+.search-con .search-type {
+
+
+  width: 80px;
+
+
+  height: 100%;
+
+
+  float: left;
+
+
+  position: relative;
+
+
+  color: #666;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+
+  background-color: #ebebeb;
+
+
+  background-position: 63px -241px;
+
+
+  text-indent: 15px;
+
+
+  line-height: 30px;
+
+
+  font-size: 14px;
+
+
+  font-family: \5FAE\8F6F\96C5\9ED1;
+
+
+  cursor: pointer;
+
+
+}
+
+
+.search-con .search-type span {
+
+
+  display: block;
+
+
+  height: 100%;
+
+
+}
+
+
+.search-con .search-type.current {
+
+
+  background-position: -126px -242px;
+
+
+}
+
+
+.search-con .search-list {
+
+
+  position: absolute;
+
+
+  top: 32px;
+
+
+  left: 0;
+
+
+  border: 1px solid #d9d9d9;
+
+
+  background-color: #fff;
+
+
+  padding: 5px;
+
+
+  display: none;
+
+
+  z-index: 100;
+
+
+}
+
+
+.search-con .search-list li {
+
+
+  width: 68px;
+
+
+  height: 22px;
+
+
+  line-height: 22px;
+
+
+  text-align: center;
+
+
+  text-indent: 0;
+
+
+}
+
+
+.search-con .search-list li:hover, .search-con .search-list li.current {
+
+
+  background-color: #ff8a00;
+
+
+  color: #fff;
+
+
+}
+
+
+.search-con .search-text {
+
+
+  width: 286px;
+
+
+  height: 30px;
+
+
+  border: 1px solid #EBEBEB;
+
+
+  text-indent: 5px;
+
+
+  float: left;
+
+
+  *line-height: 32px;
+
+
+  line-height: 32px\0;
+
+
+  color: #a8a8a8;
+
+
+}
+
+
+.search-con .search-sub {
+
+
+  width: 82px;
+
+
+  height: 32px;
+
+
+  border: 0;
+
+
+  color: #fff;
+
+
+  font-size: 14px;
+
+
+  font-family: \5FAE\8F6F\96C5\9ED1;
+
+
+  line-height: 20px;
+
+
+  float: left;
+
+
+  cursor: pointer;
+
+
+  letter-spacing: 4px;
+
+
+  text-align: left;
+
+
+  text-indent: 30px;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+
+  background-color: #f60;
+
+
+  background-position: -82px -193px;
+
+
+}
+
+
+.search-con .search-sub:hover {
+
+
+  background-color: #ff8a00;
+
+
+}
+
+
+.search-con .result-list {
+
+
+  width: 266px;
+
+
+  position: absolute;
+
+
+  left: 80px;
+
+
+  top: 32px;
+
+
+  padding: 0 10px;
+
+
+  border: 1px solid #d9d9d9;
+
+
+  background-color: #fff;
+
+
+  display: none;
+
+
+  overflow: hidden;
+
+
+}
+
+
+.search-con .result-list li {
+
+
+  color: #333;
+
+
+  font-size: 14px;
+
+
+  line-height: 24px;
+
+
+  margin: 5px 0;
+
+
+  overflow: hidden;
+
+
+  text-indent: 5px;
+
+
+  cursor: pointer;
+
+
+}
+
+
+.search-con .result-list li.current {
+
+
+  background-color: #ff8a00;
+
+
+  color: #fff;
+
+
+}
+
+
+.search-con .result-list li.current a {
+
+
+  display: block;
+
+
+  color: #fff;
+
+
+}
+
+
+/* 搜索2 */
+
+
+.nav .nav-main .search-main {
+
+
+  float: right;
+
+
+  margin-top: 15px;
+
+
+
+
+}
+
+
+.nav .nav-main .search-main .search-text {
+
+
+  width: 285px;
+
+
+}
+
+
+.nav .nav-main .search-main .hot-search {
+
+
+  width: 450px;
+
+
+  height: 42px;
+
+
+  overflow: hidden;
+
+
+}
+
+
+.nav .nav-main .search-main .result-list {
+
+
+  left: 0;
+
+
+  width: 346px;
+
+
+}
+
+
+
+
+
+/* 网游,苹果,安卓导航 */
+
+
+.sub-nav-con {
+
+
+  height: 44px;
+
+
+}
+
+
+
+
+
+.sub-nav-fixed {
+
+
+  position: fixed;
+
+
+  width: 100%;
+
+
+  top: 0;
+
+
+  z-index: 9999;
+
+
+}
+
+
+
+
+
+.sub-nav {
+
+
+  background-color: #4a4a4a;
+
+
+  min-width: 1000px;
+
+
+  height: 44px;
+
+
+}
+
+
+.sub-nav .sub-main {
+
+
+  width: 990px;
+
+
+  height: 100%;
+
+
+  margin: 0 auto;
+
+
+}
+
+
+.sub-nav .sub-main a {
+
+
+  float: left;
+
+
+  width: 164px;
+
+
+  _width: 163px;
+
+
+  height: 44px;
+
+
+  font-size: 18px;
+
+
+  color: #fff;
+
+
+  line-height: 44px;
+
+
+  text-align: center;
+
+
+  display: block;
+
+
+  border-right: 1px solid #5b5b5b;
+
+
+}
+
+
+.sub-nav .sub-main a.last {
+
+
+  border-right: none;
+
+
+}
+
+
+.sub-nav .sub-main a.active, .sub-nav .sub-main a:hover {
+
+
+  width: 164px;
+
+
+  _width: 163px;
+
+
+  background: #ff6600;
+
+
+  border-right: 1px solid #ff6600;
+
+
+}
+
+
+.sub-nav .sub-main a h1 {
+
+
+  font-size: 18px;
+
+
+  font-weight: 400;
+
+
+}
+
+
+.sub-nav .sub-main-ip a {
+
+
+  width: 197px;
+
+
+  _width: 196px;
+
+
+}
+
+
+.sub-nav .sub-main-ip a.last {
+
+
+  border-right: none;
+
+
+}
+
+
+.sub-nav .sub-main-ip a.active, .sub-nav .sub-main-ip a:hover {
+
+
+  width: 197px;
+
+
+  _width: 196px;
+
+
+  background: #ff6600;
+
+
+  border-right: 1px solid #ff6600;
+
+
+}
+
+
+
+
+
+/* 热门搜索 */
+
+
+.hot-search {
+
+
+  width: 500px;
+
+
+  _width: 450px;
+
+
+  height: 100%;
+
+
+  float: left;
+
+
+  overflow: hidden;
+
+
+}
+
+
+.hot-search .name {
+
+
+  color: #bcbcbc;
+
+
+  line-height: 42px;
+
+
+  font-weight: 700;
+
+
+}
+
+
+.hot-search a {
+
+
+  color: #a5a5a5;
+
+
+  margin: 0 5px;
+
+
+}
+
+
+.hot-search a:hover {
+
+
+  text-decoration: underline;
+
+
+}
+
+
+
+
+
+/* 面包屑 */
+
+
+.page-break {
+
+
+  margin-bottom: 10px;
+
+
+  color: #999;
+
+
+  line-height: 12px;
+
+
+}
+
+
+.page-break a {
+
+
+  padding: 0 4px;
+
+
+}
+
+
+.page-break a:hover {
+
+
+  text-decoration: underline;
+
+
+}
+
+
+.page-break span {
+
+
+  color: #999;
+
+
+  padding: 0 4px;
+
+
+}
+
+
+.page-break h1 {
+
+
+  display: inline-block;
+
+
+  font-size: 12px;
+
+
+  font-weight: 400;
+
+
+}
+
+
+.page-break.padding {
+
+
+  padding-left: 10px;
+
+
+}
+
+
+
+
+
+/* 公用样式 */
+
+
+.popup_of {
+
+
+  overflow: hidden;
+
+
+}
+
+
+
+
+
+h1.index {
+
+
+  font-size: 12px;
+
+
+  color: #fff;
+
+
+  position: absolute;
+
+
+  text-indent: -99px;
+
+
+}
+
+
+
+
+
+.main-con {
+
+
+  width: 990px;
+
+
+  padding: 10px 5px 0 5px;
+
+
+  margin: 0 auto;
+
+
+  position: relative;
+
+
+  background-color: #fff;
+
+
+}
+
+
+
+
+
+.main-con.big {
+
+
+  padding: 10px 10px 0 10px;
+
+
+  background: #fff;
+
+
+}
+
+
+
+
+
+.box, .box-text {
+
+
+  zoom: 1;
+
+
+}
+
+
+.box:after, .box-text:after {
+
+
+  content: '';
+
+
+  visibility: hidden;
+
+
+  display: block;
+
+
+  clear: both;
+
+
+}
+
+
+
+
+
+.box.mar-box, .box.android-game {
+
+
+  margin-bottom: 15px;
+
+
+}
+
+
+
+
+
+/* 模块大标题 */
+
+
+.box-title {
+
+
+  height: 35px;
+
+
+  border-bottom: 2px solid #ebebeb;
+
+
+  position: relative;
+
+
+}
+
+
+.box-title .inset-h, .box-title h1, .box-title h2, .box-title h3, .box-title p {
+
+
+  position: absolute;
+
+
+  display: inline-block;
+
+
+  padding: 0 15px;
+
+
+  left: 0;
+
+
+  top: 0;
+
+
+  line-height: 35px;
+
+
+  font-weight: 700;
+
+
+  border-bottom: 2px solid #f60;
+
+
+  font-size: 20px;
+
+
+  cursor: default;
+
+
+}
+
+
+.box-title .inset-h h1 {
+
+
+  position: static;
+
+
+  color: #666;
+
+
+  display: inline-block;
+
+
+  left: 0;
+
+
+  top: 0;
+
+
+  line-height: 35px;
+
+
+  font-size: 18px;
+
+
+  cursor: default;
+
+
+  font-weight: 400;
+
+
+  margin-left: 5px;
+
+
+  border-bottom: 0;
+
+
+  padding: 0;
+
+
+}
+
+
+.box-title h2, .box-title h3, .box-title p {
+
+
+  display: inline-block;
+
+
+  _zoom: 1;
+
+
+  *display: inline;
+
+
+}
+
+
+.box-title .more {
+
+
+  float: right;
+
+
+  margin: 8px 10px 0 0;
+
+
+  font-size: 14px;
+
+
+}
+
+
+.box-title .more:hover {
+
+
+  text-decoration: underline;
+
+
+}
+
+
+.box-title .double-more {
+
+
+  position: absolute;
+
+
+  right: 0;
+
+
+  top: 10px;
+
+
+}
+
+
+.box-title .double-more a {
+
+
+  color: #333;
+
+
+  display: inline-block;
+
+
+  font-size: 14px;
+
+
+  height: 14px;
+
+
+  line-height: 14px;
+
+
+  padding: 0 10px;
+
+
+  border-right: 1px solid #ebebeb;
+
+
+  border-bottom: 0;
+
+
+}
+
+
+.box-title .double-more a.last {
+
+
+  border-right: 0;
+
+
+}
+
+
+.box-title .double-more a:hover {
+
+
+  color: #f60;
+
+
+}
+
+
+
+
+
+/* 模块大标题--tab切换 */
+
+
+.tag-tit {
+
+
+  height: 35px;
+
+
+  border-bottom: 2px solid #ebebeb;
+
+
+  background-color: #f5f5f5;
+
+
+}
+
+
+.tag-tit .tag-tit-ul, .tag-tit .tag-tit-ul2 {
+
+
+  width: 70%;
+
+
+  height: 100%;
+
+
+  float: left;
+
+
+}
+
+
+.tag-tit .tag-tit-ul li, .tag-tit .tag-tit-ul2 li {
+
+
+  height: 100%;
+
+
+  float: left;
+
+
+  padding: 0 15px;
+
+
+  font-size: 16px;
+
+
+  font-weight: 700;
+
+
+  line-height: 35px;
+
+
+  cursor: pointer;
+
+
+}
+
+
+.tag-tit .tag-tit-ul li.current, .tag-tit .tag-tit-ul2 li.current {
+
+
+  color: #f60;
+
+
+  border-bottom: 2px solid #f60;
+
+
+}
+
+
+.tag-tit .tag-tit-ul li.current a, .tag-tit .tag-tit-ul2 li.current a {
+
+
+  color: #f60;
+
+
+}
+
+
+.tag-tit .tag-tit-ul li:hover, .tag-tit .tag-tit-ul2 li:hover {
+
+
+  color: #f60;
+
+
+}
+
+
+.tag-tit .tag-tit-ul li:hover a, .tag-tit .tag-tit-ul2 li:hover a {
+
+
+  color: #f60;
+
+
+}
+
+
+.tag-tit .more {
+
+
+  float: right;
+
+
+  margin: 8px 10px 0 0;
+
+
+  font-size: 14px;
+
+
+}
+
+
+.tag-tit .more:hover {
+
+
+  text-decoration: underline;
+
+
+}
+
+
+.tag-tit .more a {
+
+
+  display: none;
+
+
+}
+
+
+.tag-tit .more a.current {
+
+
+  display: block;
+
+
+}
+
+
+
+
+
+.tag-tit .tag-tit-ul2 li {
+
+
+  text-align: center;
+
+
+  line-height: 16px;
+
+
+  padding: 0;
+
+
+}
+
+
+.tag-tit .tag-tit-ul2 li .name {
+
+
+  padding: 0 15px;
+
+
+  display: inline-block;
+
+
+  height: 16px;
+
+
+  border-right: 1px solid #d9d9d9;
+
+
+  margin-top: 10px;
+
+
+}
+
+
+.tag-tit .tag-tit-ul2 li.last .name {
+
+
+  border-right: 0;
+
+
+}
+
+
+
+
+
+/* 模块小标题 */
+
+
+.little-tit {
+
+
+  position: relative;
+
+
+  height: 30px;
+
+
+}
+
+
+.little-tit h1, .little-tit h2, .little-tit h3, .little-tit p {
+
+
+  position: relative;
+
+
+  display: inline-block;
+
+
+  padding: 0 6px;
+
+
+  left: 15px;
+
+
+  top: 10px;
+
+
+  font-size: 16px;
+
+
+  line-height: 16px;
+
+
+  border-left: 2px solid #f60;
+
+
+  cursor: default;
+
+
+}
+
+
+.little-tit h1, .little-tit h2, .little-tit h3 {
+
+
+  display: inline-block;
+
+
+  _zoom: 1;
+
+
+  *display: inline;
+
+
+}
+
+
+.little-tit .more {
+
+
+  position: absolute;
+
+
+  right: 10px;
+
+
+  top: 6px;
+
+
+  font-size: 14px;
+
+
+}
+
+
+.little-tit .more:hover {
+
+
+  text-decoration: underline;
+
+
+}
+
+
+
+
+
+/* 游戏下载列表 */
+
+
+.game-ul-list {
+
+
+  zoom: 1;
+
+
+}
+
+
+.game-ul-list:after {
+
+
+  content: '';
+
+
+  visibility: hidden;
+
+
+  display: block;
+
+
+  clear: both;
+
+
+}
+
+
+.game-ul-list li {
+
+
+  padding: 10px;
+
+
+  width: 90px;
+
+
+  float: left;
+
+
+  margin: 0 10px 5px 0;
+
+
+}
+
+
+.game-ul-list li a.info {
+
+
+  display: block;
+
+
+  width: 90px;
+
+
+  position: relative;
+
+
+  cursor: pointer;
+
+
+}
+
+
+.game-ul-list li a.info img {
+
+
+  width: 90px;
+
+
+  height: 90px;
+
+
+  display: block;
+
+
+}
+
+
+.game-ul-list li a.info p {
+
+
+  width: 90px;
+
+
+  font-size: 14px;
+
+
+  line-height: 28px;
+
+
+  text-align: center;
+
+
+  white-space: nowrap;
+
+
+  text-overflow: ellipsis;
+
+
+  overflow: hidden;
+
+
+}
+
+
+.game-ul-list li a.info:hover p {
+
+
+  color: #f60;
+
+
+}
+
+
+.game-ul-list li .corner-publish {
+
+
+  position: absolute;
+
+
+  left: 0;
+
+
+  top: 0;
+
+
+  display: block;
+
+
+  width: 50px;
+
+
+  height: 50px;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/angular.png) no-repeat 0 -112px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/angular.gif) no-repeat 0 -112px;
+
+
+}
+
+
+.game-ul-list li .corner-mine {
+
+
+  position: absolute;
+
+
+  left: 0;
+
+
+  top: 0;
+
+
+  display: block;
+
+
+  width: 50px;
+
+
+  height: 50px;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/angular.png) no-repeat 0 -163px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/angular.gif) no-repeat 0 -163px;
+
+
+}
+
+
+.game-ul-list li a.down {
+
+
+  display: block;
+
+
+  width: 66px;
+
+
+  height: 23px;
+
+
+  border: 1px solid #ccc;
+
+
+  -moz-border-radius: 4px;
+
+
+  -khtml-border-radius: 4px;
+
+
+  -webkit-border-radius: 4px;
+
+
+  border-radius: 4px;
+
+
+  margin: 0 auto;
+
+
+  text-align: center;
+
+
+  line-height: 23px;
+
+
+  background: #fafafa;
+
+
+  background: -moz-linear-gradient(top, white, #fafafa);
+
+
+  background: -webkit-linear-gradient(top, white, #fafafa);
+
+
+  background: -ms-linear-gradient(top, white, #fafafa);
+
+
+  background: -o-linear-gradient(top, white, #fafafa);
+
+
+}
+
+
+.game-ul-list li a.down:hover {
+
+
+  background: #ff8a00;
+
+
+  border-color: #ff8a00;
+
+
+  color: #fff;
+
+
+  font-weight: 700;
+
+
+}
+
+
+.game-ul-list li .no {
+
+
+  display: block;
+
+
+  width: 66px;
+
+
+  height: 23px;
+
+
+  border: 1px solid #f3f3f3;
+
+
+  -moz-border-radius: 4px;
+
+
+  -khtml-border-radius: 4px;
+
+
+  -webkit-border-radius: 4px;
+
+
+  border-radius: 4px;
+
+
+  margin: 0 auto;
+
+
+  text-align: center;
+
+
+  line-height: 23px;
+
+
+  background: #f3f3f3;
+
+
+  color: #a6a6a6;
+
+
+  cursor: default;
+
+
+}
+
+
+.game-ul-list li .no:hover {
+
+
+  color: #a6a6a6;
+
+
+}
+
+
+.game-ul-list li:hover {
+
+
+  background-color: #f7f7f7;
+
+
+}
+
+
+.game-ul-list li:hover p {
+
+
+  color: #f60;
+
+
+}
+
+
+.game-ul-list li:hover a.down {
+
+
+  background: #ff8a00;
+
+
+  border-color: #ff8a00;
+
+
+  color: #fff;
+
+
+}
+
+
+.game-ul-list li.last {
+
+
+  margin-right: 0;
+
+
+}
+
+
+
+
+
+/* 圆角系列 */
+
+
+.radius90 {
+
+
+  width: 90px;
+
+
+  height: 90px;
+
+
+  display: block;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/img_radius.png) no-repeat 0 0;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/img_radius.gif) no-repeat 0 0;
+
+
+  background-repeat: no-repeat;
+
+
+  position: absolute;
+
+
+  top: 0;
+
+
+  left: 0;
+
+
+}
+
+
+
+
+
+.radius70 {
+
+
+  width: 70px;
+
+
+  height: 70px;
+
+
+  display: block;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/img_radius.png) no-repeat 0 0;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/img_radius.gif) no-repeat 0 0;
+
+
+  background-repeat: no-repeat;
+
+
+  background-position: -70px -90px;
+
+
+  position: absolute;
+
+
+  top: 0;
+
+
+  left: 0;
+
+
+}
+
+
+
+
+
+.radius120 {
+
+
+  width: 120px;
+
+
+  height: 120px;
+
+
+  display: block;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/img_radius.png) no-repeat 0 0;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/img_radius.gif) no-repeat 0 0;
+
+
+  background-repeat: no-repeat;
+
+
+  background-position: 0 -330px;
+
+
+  position: absolute;
+
+
+  top: 0;
+
+
+  left: 0;
+
+
+}
+
+
+
+
+
+.radius140 {
+
+
+  width: 140px;
+
+
+  height: 140px;
+
+
+  display: block;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/img_radius.png) no-repeat 0 0;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/img_radius.gif) no-repeat 0 0;
+
+
+  background-repeat: no-repeat;
+
+
+  background-position: 0 -185px;
+
+
+  position: absolute;
+
+
+  top: 0;
+
+
+  left: 0;
+
+
+}
+
+
+
+
+
+/* 游戏大广告 */
+
+
+.speard-con {
+
+
+  z-index: 1;
+
+
+  margin-bottom: 10px;
+
+
+}
+
+
+.speard-con .speard400 {
+
+
+  width: 300px;
+
+
+  height: 100%;
+
+
+  margin-right: 1px;
+
+
+  float: left;
+
+
+}
+
+
+.speard-con .speard195 {
+
+
+  width: 195px;
+
+
+  height: 100%;
+
+
+  margin-right: 1px;
+
+
+  float: left;
+
+
+}
+
+
+.speard-con .speard192 {
+
+
+  width: 192px;
+
+
+  height: 100%;
+
+
+  float: left;
+
+
+}
+
+
+.speard-con a.img1 {
+
+
+  height: 400px;
+
+
+}
+
+
+.speard-con a.img2 {
+
+
+  height: 259px;
+
+
+  margin-bottom: 1px;
+
+
+}
+
+
+.speard-con a.img3 {
+
+
+  height: 140px;
+
+
+}
+
+
+.speard-con a.img4 {
+
+
+  height: 144px;
+
+
+  margin-bottom: 1px;
+
+
+}
+
+
+.speard-con a.img5 {
+
+
+  height: 255px;
+
+
+}
+
+
+.speard-con a {
+
+
+  display: block;
+
+
+  width: 100%;
+
+
+  position: relative;
+
+
+  overflow: hidden;
+
+
+}
+
+
+.speard-con a img {
+
+
+  _float: left;
+
+
+}
+
+
+.speard-con a .meng {
+
+
+  width: 100%;
+
+
+  height: 100%;
+
+
+  position: absolute;
+
+
+  bottom: -100%;
+
+
+  left: 0;
+
+
+  background: url("http://www.fpwap.com/skin/fpv7/images/meng.png") repeat-x left bottom;
+
+
+  _background: url("http://www.fpwap.com/skin/fpv7/images/meng.gif") repeat-x left bottom;
+
+
+  z-index: 200;
+
+
+  cursor: pointer;
+
+
+}
+
+
+.speard-con a .meng .meng-con {
+
+
+  position: absolute;
+
+
+  bottom: 0;
+
+
+  left: 0;
+
+
+  width: 100%;
+
+
+}
+
+
+.speard-con a .meng .tit {
+
+
+  font-weight: 700;
+
+
+  font-size: 14px;
+
+
+  color: #fff;
+
+
+  line-height: 24px;
+
+
+  text-align: center;
+
+
+}
+
+
+.speard-con a .meng .tit2 {
+
+
+  font-weight: 700;
+
+
+  font-size: 16px;
+
+
+  color: #fff;
+
+
+  line-height: 24px;
+
+
+  padding: 20px 0;
+
+
+  text-align: center;
+
+
+}
+
+
+.speard-con a .meng .text {
+
+
+  padding: 10px;
+
+
+  color: #dad9d9;
+
+
+  line-height: 22px;
+
+
+  text-indent: 2em;
+
+
+}
+
+
+.speard-con a .meng.meng2 {
+
+
+  background: url("http://www.fpwap.com/skin/fpv7/images/meng2.png") repeat-x left bottom;
+
+
+  _background: url("http://www.fpwap.com/skin/fpv7/images/meng2.gif") repeat-x left bottom;
+
+
+}
+
+
+
+
+
+/* 开测表table */
+
+
+.open-test {
+
+
+  width: 378px;
+
+
+  float: right;
+
+
+}
+
+
+.open-test .box-text {
+
+  position: relative;
+
+
+}
+
+
+.open-test table {
+
+
+  width: 100%;
+
+
+  text-align: center;
+
+
+  display: none;
+
+
+  position: absolute;
+
+
+  left: 0;
+
+
+  top: 0;
+
+
+}
+
+
+.open-test table th {
+
+
+  background-color: #fdfdfd;
+
+
+  height: 32px;
+
+
+  line-height: 32px;
+
+
+  border-bottom: 1px solid #f5f5f5;
+
+
+  cursor: default;
+
+
+  color: #666;
+
+
+}
+
+
+.open-test table th.time {
+
+
+  width: 55px;
+
+
+}
+
+
+.open-test table th.name {
+
+
+  width: 130px;
+
+
+}
+
+
+.open-test table th.static {
+
+
+  width: 105px;
+
+
+}
+
+
+.open-test table th.down {
+
+
+  width: 44px;
+
+
+}
+
+
+.open-test table tr:hover {
+
+
+  background: #f7f7f7;
+
+
+}
+
+
+.open-test table td {
+
+
+  height: 38px;
+
+
+  line-height: 38px;
+
+
+  border-bottom: 1px dotted #ebebeb;
+
+
+  font-size: 14px;
+  
+  white-space: nowrap;
+}
+
+
+.open-test table td .btn {
+
+
+  display: block;
+
+
+  margin: 1px auto;
+
+
+  width: 24px;
+
+
+  height: 24px;
+
+
+  -moz-border-radius: 4px;
+
+
+  -khtml-border-radius: 4px;
+
+
+  -webkit-border-radius: 4px;
+
+
+  border-radius: 4px;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+
+  background-color: #f2f2f2;
+
+
+  overflow: hidden;
+
+
+  text-indent: -500px;
+
+
+}
+
+
+.open-test table td a.name {
+
+
+  text-align: center;
+
+
+  display: block;
+
+
+  width: 130px;
+
+
+  white-space: nowrap;
+
+
+  text-overflow: ellipsis;
+
+
+  overflow: hidden;
+
+
+}
+
+
+.open-test table td a.name:hover {
+
+
+  text-decoration: underline;
+
+
+}
+
+
+.open-test table td .home {
+
+
+  background-position: -127px 2px;
+
+
+}
+
+
+.open-test table td .home:hover {
+
+
+  background-position: -89px 2px;
+
+
+  background-color: #ff8a00;
+
+
+}
+
+
+.open-test table td .down {
+
+
+  background-position: -87px -80px;
+
+
+}
+
+
+.open-test table td .down:hover {
+
+
+  background-position: -87px -37px;
+
+
+  background-color: #a3ce0e;
+
+
+}
+
+
+.open-test table td .down.no {
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/lit_icon.png) no-repeat 3px -98px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/lit_icon.gif) no-repeat 3px -98px;
+
+
+  background-color: #f2f2f2;
+
+
+  cursor: default;
+
+
+}
+
+
+.open-test table td .down.no:hover {
+
+
+  background-position: 3px -98px;
+
+
+  background-color: #f2f2f2;
+
+
+}
+
+
+.open-test table td .gift {
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/lit_icon00.png) no-repeat 3px -52px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/lit_icon00.gif) no-repeat 3px -52px;
+
+
+  background-color: #f2f2f2;
+
+
+}
+
+
+.open-test table td .gift:hover {
+
+
+  background-position: 3px -25px;
+
+
+  background-color: #ff622b;
+
+
+}
+
+
+.open-test table td .gift.no {
+
+
+  background-position: 3px -74px;
+
+
+  cursor: default;
+
+
+}
+
+
+.open-test table td .gift.no:hover {
+
+
+  background-position: 3px -74px;
+
+
+  background-color: #f2f2f2;
+
+
+}
+
+
+.open-test table.current {
+
+
+  display: block;
+
+
+}
+
+
+
+
+
+/* 游戏类型选择 */
+
+
+.game-style {
+
+
+  width: 225px;
+
+
+  padding: 15px 0 5px 15px;
+
+
+  *padding: 15px 0 15px 15px;
+
+
+  float: left;
+
+
+  background-color: #f5f5f5;
+
+
+}
+
+
+.game-style a {
+
+
+  display: inline-block;
+
+
+  float: left;
+
+
+  width: 100px;
+
+
+  height: 45px;
+
+
+  overflow: hidden;
+
+
+  background-color: #fff;
+
+
+  margin: 0 10px 10px 0;
+
+
+  text-align: center;
+
+
+  line-height: 45px;
+
+
+  font-size: 16px;
+
+
+  zoom: 1;
+
+
+}
+
+
+.game-style a:hover {
+
+
+  color: #637f00;
+
+
+  background-color: #d9f37d;
+
+
+}
+
+
+.game-style a.big {
+
+
+  overflow: hidden;
+
+
+  font-size: 20px;
+
+
+  height: 100px;
+
+
+  color: #a3ce0e;
+
+
+  line-height: 100px;
+
+
+}
+
+
+.game-style a.big:hover {
+
+
+  color: #637f00;
+
+
+}
+
+
+
+
+
+/* 文章列表 */
+
+
+.news-list {
+
+
+  padding: 5px 0 0 15px;
+
+
+}
+
+
+.news-list li {
+
+
+  padding-left: 15px;
+
+
+  line-height: 28px;
+
+
+  *line-height: 25px;
+
+
+  _line-height: 28px;
+
+
+  overflow: hidden;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+
+  background-position: -196px -284px;
+
+
+}
+
+
+.news-list li a {
+
+
+  display: inline-block;
+
+
+  float: left;
+
+
+  max-width: 80%;
+
+
+  *width: 80%;
+
+
+  font-size: 14px;
+
+
+  white-space: nowrap;
+
+
+  text-overflow: ellipsis;
+
+
+  overflow: hidden;
+
+
+}
+
+
+.news-list li a:hover {
+
+
+  text-decoration: underline;
+
+
+}
+
+
+.news-list li .date {
+
+
+  font-size: 12px;
+
+
+  color: #999;
+
+
+  float: right;
+
+
+  margin-right: 10px;
+
+
+}
+
+
+.news-list li a.remine {
+
+
+  display: inline-block;
+
+
+  width: 56px;
+
+
+  height: 23px;
+
+
+  line-height: 24px;
+
+
+  text-indent: 25px;
+
+
+  font-size: 12px;
+
+
+  color: #666;
+
+
+  text-decoration: none;
+
+
+  float: right;
+
+
+  margin-right: 2px;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+
+  background-position: -88px -426px;
+
+
+  background-color: #f2f2f2;
+
+
+  -moz-border-radius: 4px;
+
+
+  -khtml-border-radius: 4px;
+
+
+  -webkit-border-radius: 4px;
+
+
+  border-radius: 4px;
+
+
+}
+
+
+.news-list li a.remine:hover {
+
+
+  background-position: -138px -426px;
+
+
+  background-color: #50c0ff;
+
+
+  color: #fff;
+
+
+}
+
+
+
+
+
+/* 友情链接 */
+
+
+.friend-link {
+
+
+  margin-bottom: 10px;
+
+
+}
+
+
+.friend-link .box-text {
+
+
+  padding: 10px 0;
+
+
+}
+
+
+
+
+
+.link-con {
+
+
+  display: none;
+
+
+}
+
+
+.link-con a {
+
+
+  display: inline-block;
+
+
+  padding: 0 6px;
+
+
+  margin: 5px 0;
+
+
+  border-right: 1px solid #dbdbdb;
+
+
+  line-height: 14px;
+
+
+  height: 14px;
+
+
+}
+
+
+.link-con a:hover {
+
+
+  text-decoration: underline;
+
+
+}
+
+
+.link-con a.last {
+
+
+  border-right: 0;
+
+
+}
+
+
+.link-con.current {
+
+
+  display: block;
+
+
+}
+
+
+
+
+
+/*弹窗.*/
+
+
+/** @NAME:CSS STYLE
+
+
+		@TYPE:功能插件样式表
+
+
+	*/
+
+
+*:focus {
+
+
+  outline: none;
+
+
+  -moz-outline: none;
+
+
+}
+
+
+
+
+
+/*遮罩层*/
+
+
+.popupArea {
+
+
+  position: fixed;
+
+
+  top: 0px;
+
+
+  width: 100%;
+
+
+  height: 100%;
+
+
+  font-size: 14px;
+
+
+  color: #666;
+
+
+  z-index: 1000;
+
+
+  display: none;
+
+
+}
+
+
+
+
+
+html {
+
+
+  _background-image: url(about:blank);
+
+
+  /* 阻止闪动 in IE6 , 把空文件换成about:blank , 减少请求 */
+
+
+  _background-attachment: fixed;
+
+
+}
+
+
+
+
+
+* html .popupArea {
+
+
+  position: absolute;
+
+
+  bottom: auto;
+
+
+  top: expression(eval(document.documentElement.scrollTop));
+
+
+  z-index: 99999;
+
+
+}
+
+
+
+
+
+* html .popupArea {
+
+
+  position: absolute;
+
+
+  bottom: auto;
+
+
+  top: expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));
+
+
+}
+
+
+
+
+
+.opaBg {
+
+
+  overflow-y: auto;
+
+
+  position: relative;
+
+
+  background: rgba(0, 0, 0, 0.5);
+
+
+  _background: #000;
+
+
+  filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#4c000000', EndColorStr='#4c000000');
+
+
+  width: 100%;
+
+
+  height: 100%;
+
+
+}
+
+
+
+
+
+:root .opaBg {
+
+
+  filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#00000000', EndColorStr='#00000000');
+
+
+}
+
+
+
+
+
+#pb_box {
+
+
+  position: absolute;
+
+
+  width: 1000px;
+
+
+  height: 100%;
+
+
+}
+
+
+
+
+
+/*弹出窗口*/
+
+
+.popup {
+
+
+  width: 460px;
+
+
+  padding-bottom: 10px;
+
+
+  left: 50%;
+
+
+  top: 50%;
+
+
+  margin-left: -230px;
+
+
+  margin-top: -250px;
+
+
+  position: absolute;
+
+
+  background: #fff;
+
+
+}
+
+
+
+
+
+.close {
+
+
+  width: 35px;
+
+
+  height: 35px;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+
+  background-position: -144px -273px;
+
+
+  position: absolute;
+
+
+  right: 0;
+
+
+  top: 0;
+
+
+  cursor: pointer;
+
+
+  text-indent: -999em;
+
+
+  z-index: 11;
+
+
+}
+
+
+
+
+
+html, body {
+
+
+  _height: 100%;
+
+
+}
+
+
+
+
+
+.popup .box-title {
+
+
+  height: 39px;
+
+
+  margin-bottom: 5px;
+
+
+}
+
+
+.popup .box-title p {
+
+
+  height: 39px;
+
+
+  line-height: 39px;
+
+
+  font-size: 18px;
+
+
+  font-weight: 700;
+
+
+}
+
+
+
+
+
+.popup .little-tit p {
+
+
+  font-weight: 700;
+
+
+}
+
+
+
+
+
+.popup .down-con {
+
+
+  width: 430px;
+
+
+  margin: 0 auto;
+
+
+  padding: 10px 0;
+
+
+  border-bottom: 1px dotted #ebebeb;
+
+
+}
+
+
+.popup a.popup-down {
+
+
+  height: 48px;
+
+
+  display: block;
+
+
+  border: 1px solid #ccc;
+
+
+  padding-top: 5px;
+
+
+  -moz-border-radius: 4px;
+
+
+  -khtml-border-radius: 4px;
+
+
+  -webkit-border-radius: 4px;
+
+
+  border-radius: 4px;
+
+
+  overflow: hidden;
+
+
+  background: #fafafa;
+
+
+  background: -moz-linear-gradient(top, white, #fafafa);
+
+
+  background: -webkit-linear-gradient(top, white, #fafafa);
+
+
+  background: -ms-linear-gradient(top, white, #fafafa);
+
+
+  background: -o-linear-gradient(top, white, #fafafa);
+
+
+}
+
+
+.popup a.popup-down .name {
+
+
+  font-size: 16px;
+
+
+  line-height: 26px;
+
+
+  text-align: center;
+
+
+}
+
+
+.popup a.popup-down .size {
+
+
+  text-align: center;
+
+
+  color: #a0a0a0;
+
+
+  font-size: 12px;
+
+
+}
+
+
+.popup a.popup-down:hover {
+
+
+  background: #ff8a00;
+
+
+}
+
+
+.popup a.popup-down:hover .name {
+
+
+  color: #fff;
+
+
+}
+
+
+.popup a.popup-down:hover .size {
+
+
+  color: #ffeddc;
+
+
+}
+
+
+
+
+
+/* 找游戏 -- 游戏分类 */
+
+
+.game-classify {
+
+
+  margin-bottom: 25px;
+
+
+}
+
+
+
+
+
+.classify {
+
+
+  padding: 15px 0 10px 0;
+
+
+  border-bottom: 1px dotted #ebebeb;
+
+
+  overflow: hidden;
+
+
+  zoom: 1;
+
+
+}
+
+
+.classify.last {
+
+
+  border-bottom: 1px solid #ebebeb;
+
+
+}
+
+
+.classify:after {
+
+
+  content: '';
+
+
+  visibility: hidden;
+
+
+  display: block;
+
+
+  clear: both;
+
+
+}
+
+
+.classify .name {
+
+
+  width: 90px;
+
+
+  float: left;
+
+
+  color: #666;
+
+
+  font-size: 14px;
+
+
+  line-height: 28px;
+
+
+  font-weight: 700;
+
+
+  text-align: center;
+
+
+}
+
+
+.classify .type {
+
+
+  width: 890px;
+
+
+  float: left;
+
+
+}
+
+
+.classify .type a {
+
+
+  display: inline-block;
+
+
+  padding: 0 8px;
+
+
+  margin: 2px 0;
+
+
+  font-size: 14px;
+
+
+  line-height: 25px;
+
+
+}
+
+
+.classify .type a:hover {
+
+
+  text-decoration: underline;
+
+
+}
+
+
+.classify .type a.current {
+
+
+  background: #ff8a00;
+
+
+  color: #fff;
+
+
+}
+
+
+.classify .type a.current:hover {
+
+
+  text-decoration: none;
+
+
+}
+
+
+
+
+
+/* 找游戏 -- 游戏卡片 */
+
+
+.game-poker-con {
+
+
+  padding: 15px 0 0 10px;
+
+
+}
+
+
+
+
+
+.game-poker {
+
+
+  zoom: 1;
+
+
+  *margin-bottom: 20px;
+
+
+  _margin-bottom: 0;
+
+
+}
+
+
+.game-poker:after {
+
+
+  content: '';
+
+
+  visibility: hidden;
+
+
+  display: block;
+
+
+  clear: both;
+
+
+}
+
+
+.game-poker li {
+
+
+  width: 176px;
+
+
+  padding: 14px 0;
+
+
+  border: 1px solid #f5f5f5;
+
+
+  text-align: center;
+
+
+  position: relative;
+
+
+  float: left;
+
+
+  margin: 0 20px 20px 0;
+
+
+}
+
+
+.game-poker li a.info {
+
+
+  display: block;
+
+
+  position: relative;
+
+
+  text-align: center;
+
+
+}
+
+
+.game-poker li a.info img {
+
+
+  display: block;
+
+
+  width: 120px;
+
+
+  height: 120px;
+
+
+  margin: 0 auto 10px auto;
+
+
+}
+
+
+.game-poker li a.info p {
+
+
+  width: 166px;
+
+
+  margin: 0 auto;
+
+
+  font-size: 16px;
+
+
+  line-height: 26px;
+
+
+  white-space: nowrap;
+
+
+  text-overflow: ellipsis;
+
+
+  overflow: hidden;
+
+
+}
+
+
+.game-poker li a.info .radius120 {
+
+
+  left: 28px;
+
+
+  _left: 0;
+
+
+}
+
+
+.game-poker li a.info:hover {
+
+
+  cursor: pointer;
+
+
+}
+
+
+.game-poker li a.info:hover p {
+
+
+  color: #f60;
+
+
+}
+
+
+.game-poker li .type {
+
+
+  color: #999;
+
+
+  line-height: 22px;
+
+
+  cursor: default;
+  height: 22px;
+
+
+}
+
+
+.game-poker li .fav {
+
+
+  margin: 3px 0 10px 0;
+
+
+  height: 15px;
+
+
+  cursor: default;
+
+
+}
+
+
+.game-poker li .fav .good, .game-poker li .fav .bad {
+
+
+  display: inline-block;
+
+
+  width: 15px;
+
+
+  height: 15px;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico00.png) no-repeat 100px 100px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico00.gif) no-repeat 100px 100px;
+
+
+}
+
+
+.game-poker li .fav .good {
+
+
+  background-position: -1px -283px;
+
+
+}
+
+
+.game-poker li .fav .bad {
+
+
+  background-position: -50px -283px;
+
+
+}
+
+
+.game-poker li .down {
+
+
+  display: block;
+
+
+  width: 86px;
+
+
+  height: 28px;
+
+
+  border: 1px solid #ccc;
+
+
+  -moz-border-radius: 4px;
+
+
+  -khtml-border-radius: 4px;
+
+
+  -webkit-border-radius: 4px;
+
+
+  border-radius: 4px;
+
+
+  margin: 0 auto;
+
+
+  text-align: center;
+
+
+  line-height: 28px;
+
+
+  background: #fafafa;
+
+
+  background: -moz-linear-gradient(top, white, #fafafa);
+
+
+  background: -webkit-linear-gradient(top, white, #fafafa);
+
+
+  background: -ms-linear-gradient(top, white, #fafafa);
+
+
+  background: -o-linear-gradient(top, white, #fafafa);
+
+
+}
+
+
+.game-poker li .down:hover {
+
+
+  background: #ff8a00;
+
+
+  border-color: #ff8a00;
+
+
+  color: #fff;
+
+
+  font-weight: 700;
+
+
+}
+
+
+.game-poker li:hover {
+
+
+  background: #f5f5f5;
+
+
+}
+
+
+.game-poker li:hover .info p {
+
+
+  color: #f60;
+
+
+}
+
+
+.game-poker li:hover .down {
+
+
+  background: #ff8a00;
+
+
+  border-color: #ff8a00;
+
+
+  color: #fff;
+
+
+}
+
+
+.game-poker li.last {
+
+
+  margin-right: 10px;
+
+
+}
+
+
+
+
+
+/* 分页 */
+
+
+.page-change {
+
+
+  text-align: center;
+
+
+  position: relative;
+
+
+  height: 28px;
+
+
+  padding-bottom: 20px;
+
+
+}
+
+
+.page-change .change {
+
+
+  width: 78px;
+
+
+  height: 28px;
+
+
+  display: inline-block;
+
+
+  border: 1px solid #ccc;
+
+
+  line-height: 28px;
+
+
+  font-size: 14px;
+
+
+  background: #fafafa;
+
+
+  background: -moz-linear-gradient(top, white, #fafafa);
+
+
+  background: -webkit-linear-gradient(top, white, #fafafa);
+
+
+  background: -ms-linear-gradient(top, white, #fafafa);
+
+
+  background: -o-linear-gradient(top, white, #fafafa);
+
+
+}
+
+
+.page-change a.change:hover {
+
+
+  color: #fff;
+
+
+  background: #ff8a00;
+
+
+  border-color: #ff8a00;
+
+
+}
+
+
+.page-change span.change {
+
+
+  background: #f5f5f5;
+
+
+  color: #999;
+
+
+  border-color: #f5f5f5;
+
+
+  cursor: default;
+
+
+}
+
+
+.page-change .now {
+
+
+  height: 28px;
+
+
+  display: inline-block;
+
+
+  margin: 0 5px;
+
+
+  padding: 0 20px 0 10px;
+
+
+  line-height: 28px;
+
+
+  cursor: pointer;
+
+
+  position: relative;
+
+
+}
+
+
+.page-change .now.current, .page-change .now:hover {
+
+
+  color: #336fc1;
+
+
+}
+
+
+.page-change .now.current i, .page-change .now:hover i {
+
+
+  background-position: -90px -254px;
+
+
+}
+
+
+.page-change .now i {
+
+
+  width: 10px;
+
+
+  height: 10px;
+
+
+  display: block;
+
+
+  position: absolute;
+
+
+  right: 4px;
+
+
+  top: 8px;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+
+  background-position: -191px -252px;
+
+
+}
+
+
+.page-change .page-change-list {
+
+
+  width: 80px;
+
+
+  padding: 10px 6px;
+
+
+  border: 1px solid #dbdbdb;
+
+
+  background: #fff;
+
+
+  margin-left: 50%;
+
+
+  position: absolute;
+
+
+  left: -47px;
+
+
+  bottom: 58px;
+
+
+  display: none;
+
+
+}
+
+
+.page-change .page-change-list li {
+
+
+  height: 22px;
+
+
+}
+
+
+.page-change .page-change-list a, .page-change .page-change-list span {
+
+
+  line-height: 22px;
+
+
+  display: block;
+
+
+}
+
+
+.page-change .page-change-list a:hover {
+
+
+  background: #ff8a00;
+
+
+  color: #fff;
+
+
+}
+
+
+.page-change .page-change-list span {
+
+
+  background: #f5f5f5;
+
+
+  color: #666;
+
+
+  cursor: default;
+
+
+}
+
+
+
+
+
+/* 页面加载 */
+
+
+.page-load, .page-unload {
+
+
+  text-align: center;
+
+
+  height: 28px;
+
+
+  line-height: 28px;
+
+
+  padding-bottom: 20px;
+
+
+}
+
+
+.page-load img, .page-unload img {
+
+
+  margin-right: 10px;
+
+
+  vertical-align: middle;
+
+
+}
+
+
+.page-load a.page-reload, .page-unload a.page-reload {
+
+
+  margin: 0 4px;
+
+
+  color: #f60;
+
+
+}
+
+
+.page-load a.page-reload:hover, .page-unload a.page-reload:hover {
+
+
+  text-decoration: underline;
+
+
+}
+
+
+.page-load a.page-reload.more, .page-unload a.page-reload.more {
+
+
+  color: #333;
+
+
+}
+
+
+.page-load a.page-reload.more:hover, .page-unload a.page-reload.more:hover {
+
+
+  color: #f60;
+
+
+  text-decoration: underline;
+
+
+}
+
+
+
+
+
+.page-unload {
+
+
+  display: none;
+
+
+}
+
+
+
+
+
+.high-light-f60 {
+
+
+  color: #f60 !important;
+
+
+}
+
+
+
+
+
+/* 回到顶部 */
+
+
+.to-top {
+
+
+  width: 38px;
+
+
+  height: 38px;
+
+
+  display: inline-block;
+
+
+  _display: none;
+
+
+  border: 1px solid #ececec;
+
+
+  position: fixed;
+
+
+  left: 50%;
+
+
+  margin-left: 505px;
+
+
+  bottom: 20px;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+
+  background-color: #fdfdfd;
+
+
+  background-position: -38px -303px;
+
+
+}
+
+
+.to-top:hover {
+
+
+  background-color: #ff8a00;
+
+
+  background-position: 8px -302px;
+
+
+  border-color: #ff8a00;
+
+
+}
+
+
+
+
+
+/* 搜索结果列表 */
+
+
+.search-result-list {
+
+
+  margin-bottom: 20px;
+
+
+}
+
+
+.search-result-list li {
+
+
+  height: 120px;
+
+
+  padding: 15px 0;
+
+
+  border-bottom: 1px dotted #ebebeb;
+
+
+  position: relative;
+
+
+  margin-top: -1px;
+
+
+}
+
+
+.search-result-list li .game-ico {
+
+
+  width: 120px;
+
+
+  height: 120px;
+
+
+  position: relative;
+
+
+  margin: 0 15px;
+
+
+  float: left;
+
+
+}
+
+
+.search-result-list li .game-ico img {
+
+
+  display: block;
+
+
+  width: 120px;
+
+
+  height: 120px;
+
+
+}
+
+
+.search-result-list li .info {
+
+
+  width: 720px;
+
+
+  height: 120px;
+
+
+  float: left;
+
+
+}
+
+
+.search-result-list li .info .tit {
+
+
+  font-size: 18px;
+
+
+  font-weight: 700;
+
+
+  line-height: 34px;
+
+
+}
+
+
+.search-result-list li .info .tit a:hover {
+
+
+  text-decoration: underline;
+
+
+}
+
+
+.search-result-list li .info .android, .search-result-list li .info .apple {
+
+
+  width: 14px;
+
+
+  height: 14px;
+
+
+  display: inline-block;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+
+  margin-left: 5px;
+
+
+  vertical-align: middle;
+
+
+  _margin-top: 12px;
+
+
+}
+
+
+.search-result-list li .info .android {
+
+
+  background-position: -110px -320px;
+
+
+}
+
+
+.search-result-list li .info .apple {
+
+
+  background-position: -138px -320px;
+
+
+}
+
+
+.search-result-list li .info .text {
+
+
+  height: 48px;
+
+
+  color: #666;
+
+
+  text-indent: 2em;
+
+
+  line-height: 24px;
+
+
+  font-size: 14px;
+
+
+  overflow: hidden;
+
+
+  margin-bottom: 10px;
+
+
+}
+
+
+.search-result-list li .info .text a {
+
+
+  color: #666;
+
+
+}
+
+
+.search-result-list li .info .type {
+
+
+  color: #999;
+
+
+}
+
+
+.search-result-list li .down {
+
+
+  display: inline-block;
+
+
+  width: 86px;
+
+
+  height: 28px;
+
+
+  border: 1px solid #ccc;
+
+
+  -moz-border-radius: 4px;
+
+
+  -khtml-border-radius: 4px;
+
+
+  -webkit-border-radius: 4px;
+
+
+  border-radius: 4px;
+
+
+  background: #fafafa;
+
+
+  background: -moz-linear-gradient(top, white, #fafafa);
+
+
+  background: -webkit-linear-gradient(top, white, #fafafa);
+
+
+  background: -ms-linear-gradient(top, white, #fafafa);
+
+
+  background: -o-linear-gradient(top, white, #fafafa);
+
+
+  position: absolute;
+
+
+  top: 60px;
+
+
+  right: 15px;
+
+
+  line-height: 28px;
+
+
+  font-size: 14px;
+
+
+  text-align: center;
+
+
+}
+
+
+.search-result-list li .down:hover {
+
+
+  background: #ff8a00;
+
+
+  border-color: #ff8a00;
+
+
+  color: #fff;
+
+
+  font-weight: 700;
+
+
+}
+
+
+.search-result-list li:hover {
+
+
+  background: #f2f2f2;
+
+
+}
+
+
+.search-result-list li:hover .down {
+
+
+  background: #ff8a00;
+
+
+  border-color: #ff8a00;
+
+
+  color: #fff;
+
+
+}
+
+
+.search-result-list li a {
+
+
+  _display: block;
+
+
+}
+
+
+.search-result-list li a:hover {
+
+
+  cursor: pointer;
+
+
+}
+
+
+.search-result-list li a:hover .tit {
+
+
+  color: #f60;
+
+
+}
+
+
+.search-result-list li a:hover .text {
+
+
+  text-decoration: underline;
+
+
+}
+
+
+
+
+
+/* 无结果页 */
+
+
+.noserult {
+
+
+  border-bottom: 1px solid #ebebeb;
+
+
+}
+
+
+
+
+
+.noresult-con {
+
+
+  width: 440px;
+
+
+  margin: 10% auto 10% auto;
+
+
+  background: url("http://www.fpwap.com/skin/fpv7/images/no_result.png") left top no-repeat;
+
+
+}
+
+
+.noresult-con h4, .noresult-con p {
+
+
+  font-size: 14px;
+
+
+  font-weight: bold;
+
+
+  color: #666;
+
+
+  margin: 0 0 0 130px;
+
+
+}
+
+
+.noresult-con p {
+
+
+  font-weight: normal;
+
+
+  line-height: 24px;
+
+
+}
+
+
+.noresult-con .c-orange {
+
+
+  color: #f60;
+
+
+}
+
+
+
+
+
+/* 出错页面 */
+
+
+.error-con {
+
+
+  position: relative;
+
+
+}
+
+
+
+
+
+.con-404 {
+
+
+  width: 400px;
+
+
+  height: 300px;
+
+
+  position: absolute;
+
+
+  left: 50%;
+
+
+  margin: 5% 0 0 -200px;
+
+
+  text-align: center;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/404.png) center no-repeat;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/404.gif) center no-repeat;
+
+
+}
+
+
+.con-404 p {
+
+
+  margin-top: 270px;
+
+
+  font-size: 16px;
+
+
+  color: #555;
+
+
+  text-align: center;
+
+
+}
+
+
+.con-404 .home {
+
+
+  display: inline-block;
+
+
+  margin-top: 45px;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+
+  background-position: 0 -486px;
+
+
+  padding: 0 0 0 20px;
+
+
+  margin-right: 22px;
+
+
+}
+
+
+.con-404 .home:hover {
+
+
+  background-position: 0 -509px;
+
+
+}
+
+
+.con-404 .goback {
+
+
+  margin-top: 45px;
+
+
+  display: inline-block;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+
+  background-position: -72px -486px;
+
+
+  padding: 0 0 0 20px;
+
+
+}
+
+
+.con-404 .goback:hover {
+
+
+  background-position: -73px -509px;
+
+
+}
+
+
+
+
+
+/* 游戏资质\联系我们 */
+
+
+.about-con {
+
+
+  padding: 20px 15px;
+
+
+  border: 1px solid #ebebeb;
+
+
+}
+
+
+.about-con h4 {
+
+
+  font-size: 16px;
+
+
+  color: #666;
+
+
+}
+
+
+.about-con p {
+
+
+  font-size: 14px;
+
+
+  color: #666;
+
+
+  line-height: 28px;
+
+
+  padding: 0 0 15px 0;
+
+
+  margin-bottom: 15px;
+
+
+  border-bottom: 1px solid #ebebeb;
+
+
+}
+
+
+.about-con p span {
+
+
+  display: inline-block;
+
+
+  color: #999;
+
+
+  margin-top: 5px;
+
+
+}
+
+
+.about-con p em {
+
+
+  color: #999;
+
+
+  font-style: normal;
+
+
+}
+
+
+.about-con p textarea {
+
+
+  width: 100%;
+
+
+  line-height: 28px;
+
+
+  height: 28px;
+
+
+  text-indent: 10px;
+
+
+}
+
+
+.about-con p.last {
+
+
+  border-bottom: none;
+
+
+  padding-bottom: 0;
+
+
+  margin-bottom: 0;
+
+
+}
+
+
+
+
+
+/*网站地图*/
+
+
+.sidemap-con {
+
+
+  margin-top: 8px;
+
+
+}
+
+
+
+
+
+.sidemap-list {
+
+
+  margin: 10px 10px 0 10px;
+
+
+  border-top: 1px solid #f5f5f5;
+
+
+  padding-left: 14px;
+
+
+}
+
+
+.sidemap-list a {
+
+
+  font-size: 14px;
+
+
+  margin: 15px 30px 20px 0;
+
+
+  line-height: 14px;
+
+
+  height: 14px;
+
+
+  display: inline-block;
+
+
+}
+
+
+.sidemap-list a:hover {
+
+
+  text-decoration: underline;
+
+
+}
+
+
+
+
+
+.icon-share-qq, .icon-share-sina, .icon-share-qqweibo {
+
+
+  display: inline-block;
+
+
+  padding-left: 20px;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+
+  background-position: 0 -610px;
+
+
+  line-height: 16px;
+
+
+  margin-right: 12px;
+
+
+}
+
+
+
+
+
+.icon-share-sina {
+
+
+  background-position: -65px -610px;
+
+
+}
+
+
+
+
+
+.icon-share-qqweibo {
+
+
+  background-position: 0 -634px;
+
+
+}
+
+
+
+
+
+.icon-share-more {
+
+
+  background-position: -85px -634px;
+
+
+}
+
+
+
+
+
+.similar-con .little-tit {
+
+
+  height: 45px;
+
+
+  width: 100%;
+
+
+  border-bottom: 1px solid #f5f5f5;
+
+
+}
+
+
+.similar-con .little-tit h2 {
+
+
+  left: 0;
+
+
+  margin: 10px 0;
+
+
+}
+
+
+.similar-con .noborder {
+
+
+  border: none;
+
+
+}
+
+
+
+
+
+.game-con-8 .game-ul-list {
+
+
+  padding: 10px 0 10px 5px;
+
+
+}
+
+
+.game-con-8 .game-ul-list li {
+
+
+  margin: 0 15px 0 0;
+
+
+}
+
+
+.game-con-8 .game-ul-list li.last {
+
+
+  margin-right: 0;
+
+
+}
+
+
+
+
+
+/* 90x90 临时样式 */
+
+
+.width90 li a.info img {
+
+
+  width: 90px;
+
+
+  height: 90px;
+
+
+}
+
+
+.width90 li a.info .radius90 {
+
+
+  left: 43px;
+
+
+}
+
+
+
+
+
+.width90 li .game-ico {
+
+
+  width: 90px;
+
+
+  height: 90px;
+
+
+  margin-top: 9px;
+
+
+}
+
+
+.width90 li .game-ico img {
+
+
+  display: block;
+
+
+  width: 90px;
+
+
+  height: 90px;
+
+
+}
+
+
+
+
+
+.icon-android, .icon-iphone {
+
+
+  display: inline-block;
+
+
+  width: 19px;
+
+
+  height: 19px;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+
+  background-position: -160px -315px;
+
+
+}
+
+
+
+
+
+.icon-iphone {
+
+
+  background-position: -179px -315px;
+
+
+}
+
+
+
+
+
+/* 排行下载 */
+
+
+.side-rank {
+
+
+  width: 250px;
+
+
+  float: left;
+
+
+}
+
+
+.side-rank .box-text {
+
+
+  height: 530px;
+
+
+  overflow: hidden;
+
+
+}
+
+
+
+
+
+.side-rank-list {
+
+
+  zoom: 1;
+
+
+}
+
+
+.side-rank-list:after {
+
+
+  content: '';
+
+
+  visibility: hidden;
+
+
+  display: block;
+
+
+  clear: both;
+
+
+}
+
+
+.side-rank-list li {
+
+
+  float: left;
+
+
+  width: 100%;
+
+
+  display: block;
+
+
+  height: 52px;
+
+
+  border-bottom: 1px dotted #ebebeb;
+
+
+}
+
+
+.side-rank-list li:hover {
+
+
+  background: #f7f7f7;
+
+
+  border-bottom: none;
+
+
+  height: 53px;
+
+
+}
+
+
+.side-rank-list li .radius32 {
+
+
+  width: 32px;
+
+
+  height: 32px;
+
+
+  background: url("http://www.fpwap.com/skin/fpv7/images/img_radius.png") no-repeat 0 -150px;
+
+
+  _background: url("http://www.fpwap.com/skin/fpv7/images/img_radius.gif") no-repeat 0 -150px;
+
+
+  position: absolute;
+
+
+  top: 10px;
+
+
+  left: 0;
+
+
+}
+
+
+.side-rank-list li .btn {
+
+
+  float: left;
+
+
+  display: block;
+
+
+  margin: 1px auto;
+
+
+  width: 23px;
+
+
+  height: 23px;
+
+
+  margin-top: 15px;
+
+
+  border-radius: 3px;
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.png) no-repeat 100px 100px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/pcnew_ico.gif) no-repeat 100px 100px;
+
+
+  background-color: #f2f2f2;
+
+
+  text-indent: -500px;
+
+
+  overflow: hidden;
+
+
+}
+
+
+.side-rank-list li .down {
+
+
+  background-position: -89px -80px;
+
+
+}
+
+
+.side-rank-list li:hover .down {
+
+
+  background-position: -88px -37px;
+
+
+  background-color: #a3ce0e;
+
+
+}
+
+
+.side-rank-list li:hover .down.no {
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/lit_icon.png) no-repeat 3px -98px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/lit_icon.gif) no-repeat 3px -98px;
+
+
+  background-color: #f2f2f2;
+
+
+}
+
+
+.side-rank-list li .down.no {
+
+
+  background: url(http://www.fpwap.com/skin/fpv7/images/lit_icon.png) no-repeat 3px -98px;
+
+
+  _background: url(http://www.fpwap.com/skin/fpv7/images/lit_icon.gif) no-repeat 3px -98px;
+
+
+  background-color: #f2f2f2;
+
+
+  cursor: default;
+
+
+}
+
+
+.side-rank-list li .down.no:hover {
+
+
+  background-position: 3px -98px;
+
+
+  background-color: #f2f2f2;
+
+
+}
+
+
+.side-rank-list li .down:hover {
+
+
+  background-position: -88px -37px;
+
+
+  background-color: #a3ce0e;
+
+
+}
+
+
+.side-rank-list li .down-ip {
+
+
+  background-position: -128px -60px;
+
+
+}
+
+
+.side-rank-list li:hover .down-ip {
+
+
+  background-position: -88px -37px;
+
+
+  background-color: #83a7d4;
+
+
+}
+
+
+.side-rank-list li .down-ip:hover {
+
+
+  background-position: -88px -37px;
+
+
+  background-color: #83a7d4;
+
+
+}
+
+
+.side-rank-list li .side-rank-info {
+
+
+  float: left;
+
+
+  width: 160px;
+
+
+  padding: 10px 0 0 0;
+
+
+  margin-right: 14px;
+
+
+  height: 32px;
+
+
+  position: relative;
+
+
+  overflow: hidden;
+
+
+}
+
+
+.side-rank-list li .side-rank-info img {
+
+
+  float: left;
+
+
+  width: 32px;
+
+
+  height: 32px;
+
+
+  margin-right: 16px;
+
+
+}
+
+
+.side-rank-list li .side-rank-info p {
+
+
+  font-size: 14px;
+
+
+  display: inline-block;
+
+
+  width: 112px;
+
+
+  margin-top: 7px;
+
+
+  *margin-top: 5px;
+
+
+  float: left;
+
+
+  white-space: nowrap;
+
+
+  text-overflow: ellipsis;
+
+
+  overflow: hidden;
+
+
+}
+
+
+.side-rank-list li .side-rank-info:hover p {
+
+
+  text-decoration: underline;
+
+
+  color: #ff6600;
+
+
+}
+
+
+
+
+
+.side-rank-num {
+
+
+  float: left;
+
+
+  width: 17px;
+
+
+  height: 17px;
+
+
+  line-height: 17px;
+
+
+  font-size: 12px;
+
+
+  text-align: center;
+
+
+  color: #ffffff;
+
+
+  background: #cccccc;
+
+
+  display: inline-block;
+
+
+  margin: 18px 15px 0 10px;
+
+
+  cursor: default;
+
+
+}
+
+
+
+
+
+.first .side-rank-num {
+
+
+  background: #ff6600;
+
+
+}
+
+
+
+
+
+.second .side-rank-num {
+
+
+  background: #ff9000;
+
+
+}
+
+
+
+
+
+.third .side-rank-num {
+
+
+  background: #ffc000;
+
+
+}
+
+
+
+
+
+/* 图片介绍 */
+
+
+.pic-word-con {
+
+
+  border: 2px solid #fff;
+
+
+  display: block;
+
+
+  position: relative;
+
+
+  overflow: hidden;
+
+
+}
+
+
+.pic-word-con .text {
+
+
+  width: 100%;
+
+
+  height: 24px;
+
+
+  line-height: 24px;
+
+
+  text-align: center;
+
+
+  color: #fff;
+
+
+  position: absolute;
+
+
+  bottom: 0;
+
+
+  left: 0;
+
+
+  background: black;
+
+
+  background: rgba(0, 0, 0, 0.5);
+
+
+  white-space: nowrap;
+
+
+  text-overflow: ellipsis;
+
+
+  overflow: hidden;
+
+
+  transition: all 300ms;
+
+
+  -webkit-transition: all 300ms;
+
+
+  -moz-transition: all 300ms;
+
+
+  -o-transition: all 300ms;
+
+
+}
+
+
+.pic-word-con .pic {
+
+
+  display: block;
+
+
+  width: 100%;
+
+
+  height: 100%;
+
+
+  transition: all 500ms;
+
+
+  -webkit-transition: all 500ms;
+
+
+  -moz-transition: all 500ms;
+
+
+  -o-transition: all 500ms;
+
+
+}
+
+
+.pic-word-con:hover {
+
+
+  border: 2px solid #f60;
+
+
+}
+
+
+.pic-word-con:hover .pic {
+
+
+  transform: scale(1.05);
+
+
+  -webkit-transform: scale(1.05);
+
+
+  -moz-transform: scale(1.05);
+
+
+  -o-transform: scale(1.05);
+
+
+  -ms-transform: scale(1.05);
+
+
+}
+
+
+
+
+
+/* 游戏icon和文字 */
+
+
+.icon-word-list li {
+
+
+  height: 90px;
+
+
+  overflow: hidden;
+
+
+  border-bottom: 1px dotted #ebebeb;
+
+
+  cursor: pointer;
+
+
+}
+
+
+.icon-word-list li:hover {
+
+
+  background: #f7f7f7;
+
+
+}
+
+
+.icon-word-list li:hover .tit {
+
+
+  color: #f60;
+
+
+}
+
+
+.icon-word-list li:hover .btn {
+
+
+  color: #fff;
+
+
+  background: #ff8a00;
+
+
+  border-color: #ff8a00;
+
+
+}
+
+
+.icon-word-list a:hover {
+
+
+  _display: block;
+
+
+}
+
+
+.icon-word-list a:hover .btn {
+
+
+  _color: #fff;
+
+
+  _background: #ff8a00;
+
+
+  _border-color: #ff8a00;
+
+
+}
+
+
+.icon-word-list .pic {
+
+
+  width: 70px;
+
+
+  margin: 10px 10px 0 10px;
+
+
+  float: left;
+
+
+  position: relative;
+
+
+  _cursor: pointer;
+
+
+}
+
+
+.icon-word-list .pic img {
+
+
+  width: 70px;
+
+
+  height: 70px;
+
+
+}
+
+
+.icon-word-list .right-text {
+
+
+  width: 155px;
+
+
+  _width: 145px;
+
+
+  height: 80px;
+
+
+  margin-top: 10px;
+
+
+  float: left;
+
+
+  _cursor: pointer;
+
+
+}
+
+
+.icon-word-list .right-text .tit {
+
+
+  _width: 100%;
+
+
+  font-size: 14px;
+
+
+  line-height: 14px;
+
+
+  margin-bottom: 10px;
+
+
+  white-space: nowrap;
+
+
+  text-overflow: ellipsis;
+
+
+  overflow: hidden;
+
+
+}
+
+
+.icon-word-list .right-text .text {
+
+
+  _width: 100%;
+
+
+  color: #666;
+
+
+  font-size: 12px;
+
+
+  line-height: 14px;
+
+
+  margin-bottom: 10px;
+
+
+}
+
+
+.icon-word-list .right-text .text a {
+
+
+  color: #666;
+
+
+}
+
+
+.icon-word-list .right-text .btn {
+
+
+  display: block;
+
+
+  width: 58px;
+
+
+  height: 22px;
+
+
+  border: 1px solid #ccc;
+
+
+  line-height: 22px;
+
+
+  font-size: 12px;
+
+
+  text-align: center;
+
+
+  cursor: pointer;
+
+
+  background: #fafafa;
+
+
+  background: -moz-linear-gradient(top, white, #fafafa);
+
+
+  background: -webkit-linear-gradient(top, white, #fafafa);
+
+
+  background: -ms-linear-gradient(top, white, #fafafa);
+
+
+  background: -o-linear-gradient(top, white, #fafafa);
+
+
+  -moz-border-radius: 4px;
+
+
+  -khtml-border-radius: 4px;
+
+
+  -webkit-border-radius: 4px;
+
+
+  border-radius: 4px;
+
+
+}
+
+
+.icon-word-list .right-text .btn:hover {
+
+
+  color: #fff;
+
+
+  background: #ff8a00;
+
+
+  border-color: #ff8a00;
+
+
+}
+
+
+
+
+
+/* 视频介绍 */
+
+
+.video-word-con {
+
+
+  display: block;
+
+
+  position: relative;
+
+
+  overflow: hidden;
+
+
+  _border: 1px solid #fff;
+
+
+}
+
+
+.video-word-con .text {
+
+
+  width: 100%;
+
+
+  height: 30px;
+
+
+  line-height: 30px;
+
+
+  color: #fff;
+
+
+  position: absolute;
+
+
+  bottom: 0;
+
+
+  left: 0;
+
+
+  background: black;
+
+
+  background: rgba(0, 0, 0, 0.5);
+
+
+  transition: all 300ms;
+
+
+  -webkit-transition: all 300ms;
+
+
+  -moz-transition: all 300ms;
+
+
+  -o-transition: all 300ms;
+
+
+}
+
+
+.video-word-con .text .word {
+
+
+  width: 100%;
+
+
+  height: 100%;
+
+
+  display: block;
+
+
+    text-align: center;
+
+
+  white-space: nowrap;
+
+
+  text-overflow: ellipsis;
+
+
+  overflow: hidden;
+
+
+}
+
+
+.video-word-con .text .play {
+
+
+  display: none;
+
+}
+.video-word-con:hover .text .play{ display:none}
+
+.video-word-con .play {
+
+
+  width:48px;
+
+
+  height:48px;
+
+
+  position: absolute;
+
+
+  left: 50%;
+
+
+  top: 50%;
+
+
+  margin: -25px 0 0 -25px;
+
+
+
+
+
+  background:url(http://www.fpwap.com/skin/fpv7/llimages/video_icon.png) no-repeat center;background-position:0 0;
+
+
+
+}
+
+
+.video-word-con .pic {
+
+
+  display: block;
+
+
+  width: 100%;
+
+
+  height: 100%;
+
+
+}
+
+
+.video-word-con .meng {
+
+
+  width: 100%;
+
+
+  _width: 0;
+
+
+  height: 100%;
+
+
+  _height: 0;
+
+
+  position: absolute;
+
+
+  top: 0;
+
+
+  left: 0;
+
+
+  opacity: 0;
+
+
+  filter: alpha(opacity=0);
+
+
+  background: #000;
+
+
+  transition: all 300ms;
+
+
+  -webkit-transition: all 300ms;
+
+
+  -moz-transition: all 300ms;
+
+
+  -o-transition: all 300ms;
+
+
+  _display: none;
+
+
+}
+
+
+.video-word-con:hover {
+
+
+  _border: 1px solid #f60;
+
+
+}
+
+
+.video-word-con:hover .text {
+
+
+  bottom: -30px;
+
+
+}
+
+
+.video-word-con:hover .meng {
+
+
+  opacity: 0.5;
+
+
+  filter: alpha(opacity=50);
+
+
+}
+
+
+.video-word-con:hover .play {
+
+
+  display: block;
+
+
+  _display: none;
+
+  background:url(http://www.fpwap.com/skin/fpv7/llimages/video_icon.png) no-repeat center; background-position:-48px 0
+}
+
+
+
+
+/* 广告联盟代码 */
+
+.bdunion-1 {text-align: center;}
+
+/*编辑器样式*/
+.gameLoadBox{ width:660px; height:140px; background:#fafafa; border:1px solid #ebebeb; margin:10px auto;}
+
+.gameLoadBox .gameIcon{ width:100px; height:100px; display:block; float:left; margin:20px 0 0 20px;}
+
+.gameLoadBox .gameIcon img{ width:100px; height:100px;}
+
+.gameLoadBox .gameIcon td{ border:none;}
+
+.gameLoadBox .trInfor{overflow:hidden; float:left; line-height:30px;margin:20px 0 0 20px; font-size:16px; font-weight:600;}
+
+.gameLoadBox .trInfor td{ border:none;}
+
+.gameLoadBox .boxUl .titleLi{ font-weight:bold; color:#000;}
+
+.gameLoadBox .gameLoadUrl{ width:100px; height:40px; display:block; float:left; margin:20px 0 0 70px; font-size:18px; font-weight:600;}
+
+.gameLoadBox .gameLoadUrl a{margin-right:10px; width:100px; height:40px; line-height:40px; text-align:center; background:#75C233; color:#fff; text-decoration:none; color:#fff; margin-top:20px;display:block; padding:0 10px;}
+
+.gameLoadBox .gameLoadUrl a:hover{width:100px; height:40px; background:#64B91F;}
+.gameLoadBox .gameLoadUrl td{ border:none;}
+.gameLoadBox .gameErweima{ float:right; margin:10px 10px 0 0;height:100px; width:100px; background:#fff; padding:5px;}
+.gameLoadBox .gameErweima td{ border:none;}
+.gameLoadBox .gameErweima td img{ width:100px; height:100px;}
+
+
+
+
+.IosGameLoadUrl{ width:660px; height:140px; background:#fafafa; border:1px solid #ebebeb; margin:10px auto;}
+
+.IosGameLoadUrl .gameIcon{ width:100px; height:100px; display:block; float:left; margin:20px 0 0 20px;}
+
+.IosGameLoadUrl .gameIcon img{ width:100px; height:100px;}
+
+.IosGameLoadUrl .gameIcon td{ border:none;}
+
+.IosGameLoadUrl .trInfor{overflow:hidden; float:left; line-height:30px;margin:20px 0 0 20px; font-size:16px; font-weight:600;}
+
+.IosGameLoadUrl .trInfor td{ border:none;}
+
+.IosGameLoadUrl .boxUl .titleLi{ font-weight:bold; color:#000;}
+
+.IosGameLoadUrl .gameLoadUrl{ width:100px; height:40px; display:block; float:left; margin:20px 0 0 70px; font-size:18px; font-weight:600;}
+
+.IosGameLoadUrl .gameLoadUrl a{margin-right:10px; width:100px; height:40px; line-height:40px; text-align:center; background:#0088ff; color:#fff; text-decoration:none; color:#fff; margin-top:20px;display:block; padding:0 10px;}
+
+.IosGameLoadUrl .gameLoadUrl a:hover{width:100px; height:40px; background:#0C7CDF;}
+
+.IosGameLoadUrl .gameLoadUrl td{ border:none;}
+.IosGameLoadUrl .gameErweima{ float:right; margin:10px 10px 0 0;height:100px; width:100px; background:#fff; padding:5px;}
+.IosGameLoadUrl .gameErweima td{ border:none;}
+.IosGameLoadUrl .gameErweima td img{ width:100px; height:100px;}
+.sub-nav .ol-nav .nav_span{ position:relative; width:125px; display:block; float:left;}
+.sub-nav .ol-nav .nav_i{background: url(http://www.fpwap.com/skin/fpv7/images/navNew.png) no-repeat;width: 35px;height: 23px;position: absolute;right: -15px;top: -5px;}
+
+

@@ -1,0 +1,166 @@
+<extend name="Public/base"/>
+
+<block name="body">
+    <div class="main-place">
+        <span class="main-placetitle">位置：</span>
+        <ul class="main-placeul">
+            <li><a href="{:U('Model/index')}">系统</a></li>
+            <li><a href="{:U('Route/lists')}">扩展工具</a></li>
+            <li><a href="#">{$meta_title}</a></li>
+        </ul>
+        <div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">{$meta_title}</span>
+                    <span class="">用于配置平台所用到的支付功能相关参数</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+	<div class="tab-wrap">
+        <div class="tab_nav jstabnav">
+		<ul>
+			<li data-tab="tab1" class="current"><a href="javascript:void(0);" >支付宝</a></li>
+			<li data-tab="tab2"><a href="javascript:void(0);" >微信(扫码)</a></li>
+			<li data-tab="tab3"><a href="javascript:void(0);" >微信(APP)</a></li>
+			<li data-tab="tab4"><a href="javascript:void(0);" >威富通(中信)</a></li>
+            <li data-tab="tab6"><a href="javascript:void(0);" >威富通(官方)</a></li>
+            <li data-tab="tab7"><a href="javascript:void(0);" >竣付通</a></li>
+
+		</ul>
+        </div>
+		<div class="tab-content ">
+		<div id="tab1" class="tab-pane in tab1">
+		<form action="{:U('saveTool')}" method="post" class="form-horizontal alipay form_info_ml">
+			<ul class="form_info ">
+                <li><label>合作身份者id</label><input name="config[partner]" type="text" value="{$alipay['partner']}" class=""><i class="form_hint">合作身份者id，以2088开头的16位纯数字</i></li>
+                <li><label>安全检验码</label><input name="config[key]" type="text" value="{$alipay['key']}" class=""><i class="form_hint">安全检验码，以数字和字母组成的32位字符</i></li>
+                <li><label>收款帐户</label><input name="config[email]" type="text" value="{$alipay['email']}" class=""><i class="form_hint">卖家支付宝帐户</i></li>
+                <li><label>APPID</label><input name="config[appid]" type="text" value="{$alipay['appid']}" class=""><i class="form_hint">新版本APPID</i></li>
+                
+                <li><label>使用版本</label><span class="form_radio">
+                    <label><input name="config[usenew]" type="checkbox" value="1" <eq name="alipay['usenew']" value="1">checked="checked"</eq> class=""><i class="form_hint">是否使用新版本支付（默认老版本）</i>
+                <i class="form_hint">新接口启用状态</i></li>
+                
+                <li><label>启用状态</label><span class="form_radio">
+                    <label><input type="radio" name="status" value="0" <eq name="alipay_data['status']" value="0">checked="checked"</eq>> 禁用</label>
+                    <label><input type="radio" name="status" value="1" <eq name="alipay_data['status']" value="1">checked="checked"</eq>> 启用
+                </label></span><i class="form_hint">支付宝启用状态</i></li>
+                <li><label>&nbsp;</label><input type="hidden" name="name" value="alipay"></input><input type="submit" id="submit" value="确认保存" target-form="alipay" class="form_btn ajax-post"></li>
+            </ul>
+		</form>
+		</div>
+		</div>
+
+		<div class="tab-content">
+		<div id="tab2" class="tab-pane tab2">
+		<form action="{:U('saveTool')}" method="post" class="form-horizontal wei_xin form_info_ml">
+			<ul class="form_info ">
+                <li><label>商户号</label><input name="config[partner]" type="text" value="{$wei_xin['partner']}" class=""><i class="form_hint">微信商户号</i></li>
+                <li><label>APPID</label><input name="config[email]" type="text" value="{$wei_xin['email']}" class=""><i class="form_hint">绑定支付的APPID</i></li>
+                <li><label>密钥key</label><input name="config[key]" type="text" value="{$wei_xin['key']}" class=""><i class="form_hint">微信秘钥</i></li>
+                <li><label>启用状态</label><span class="form_radio">
+                    <label><input type="radio" name="status" value="0" <eq name="wei_xin_data['status']" value="0">checked="checked"</eq>> 禁用</label>
+                    <label><input type="radio" name="status" value="1" <eq name="wei_xin_data['status']" value="1">checked="checked"</eq>> 启用
+                </label></span><i class="form_hint">微信开启状态</i></li>
+                <li><label>&nbsp;</label><input type="hidden" name="name" value="wei_xin"></input><input type="submit" id="submit" value="确认保存" target-form="wei_xin" class="form_btn ajax-post"></li>
+            </ul>
+		</form>
+		</div>
+		</div>
+
+
+		<div class="tab-content">
+		<div id="tab3" class="tab-pane tab3">
+		<form action="{:U('saveTool')}" method="post" class="form-horizontal wei_xin_app form_info_ml">
+			<ul class="form_info ">
+                <li><label>商户号</label><input name="config[partner]" type="text" value="{$wei_xin_app['partner']}" class=""><i class="form_hint">微信商户号</i></li>
+                <li><label>APPID</label><input name="config[email]" type="text" value="{$wei_xin_app['email']}" class=""><i class="form_hint">绑定支付的APPID</i></li>
+                <li><label>密钥key</label><input name="config[key]" type="text" value="{$wei_xin_app['key']}" class=""><i class="form_hint">微信秘钥</i></li>
+                <li><label>启用状态</label><span class="form_radio">
+                    <label><input type="radio" name="status" value="0" <eq name="wei_xin_app_data['status']" value="0">checked="checked"</eq>> 禁用</label>
+                    <label><input type="radio" name="status" value="1" <eq name="wei_xin_app_data['status']" value="1">checked="checked"</eq>> 启用
+                </label></span><i class="form_hint">微信开启状态</i></li>
+                <li><label>&nbsp;</label><input type="hidden" name="name" value="wei_xin_app"></input><input type="submit" id="submit" value="确认保存" target-form="wei_xin_app" class="form_btn ajax-post"></li>
+            </ul>
+		</form>
+		</div>
+		</div>
+
+
+
+
+		<div class="tab-content">
+		<div id="tab4" class="tab-pane tab4">
+		<form action="{:U('saveTool')}" method="post" class="form-horizontal weixin form_info_ml">
+			<ul class="form_info ">
+                <li><label>商户号</label><input name="config[partner]" type="text" value="{$weixin['partner']}" class=""><i class="form_hint">威富通商户号</i></li>
+                <li><label>密钥key</label><input name="config[key]" type="text" value="{$weixin['key']}" class=""><i class="form_hint">微信秘钥</i></li>
+                <li><label>启用状态</label><span class="form_radio">
+                    <label><input type="radio" name="status" value="0" <eq name="weixin_data['status']" value="0">checked="checked"</eq>> 禁用</label>
+                    <label><input type="radio" name="status" value="1" <eq name="weixin_data['status']" value="1">checked="checked"</eq>> 启用
+                </label></span><i class="form_hint">微信开启状态</i></li>
+                <li><label>&nbsp;</label><input type="hidden" name="name" value="weixin"></input><input type="submit" id="submit" value="确认保存" target-form="weixin" class="form_btn ajax-post"></li>
+            </ul>
+		</form>
+		</div>
+		</div>
+
+
+
+
+
+
+        <div class="tab-content">
+        <div id="tab6" class="tab-pane tab6">
+        <form action="{:U('saveTool')}" method="post" class="form-horizontal weixin_gf form_info_ml">
+            <ul class="form_info ">
+                <li><label>商户号</label><input name="config[partner]" type="text" value="{$weixin_gf['partner']}" class=""><i class="form_hint">威富通商户号</i></li>
+                <li><label>密钥key</label><input name="config[key]" type="text" value="{$weixin_gf['key']}" class=""><i class="form_hint">微信秘钥</i></li>
+                <li><label>启用状态</label><span class="form_radio">
+                    <label><input type="radio" name="status" value="0" <eq name="weixin_gf_data['status']" value="0">checked="checked"</eq>> 禁用</label>
+                    <label><input type="radio" name="status" value="1" <eq name="weixin_gf_data['status']" value="1">checked="checked"</eq>> 启用
+                </label></span><i class="form_hint">微信开启状态</i></li>
+                <li><label>&nbsp;</label><input type="hidden" name="name" value="weixin_gf"></input><input type="submit" id="submit" value="确认保存" target-form="weixin_gf" class="form_btn ajax-post"></li>
+            </ul>
+        </form>
+        </div>
+        </div>
+
+
+        <div class="tab-content">
+        <div id="tab7" class="tab-pane tab7">
+        <form action="{:U('saveTool')}" method="post" class="form-horizontal jft form_info_ml">
+            <ul class="form_info ">
+                <li><label>商户号</label><input name="config[partner]" type="text" value="{$jft['partner']}" class=""><i class="form_hint">威富通商户号</i></li>
+                <li><label>密钥key</label><input name="config[key]" type="text" value="{$jft['key']}" class=""><i class="form_hint">微信秘钥</i></li>
+                <li><label>APPID</label><input name="config[appid]" type="text" value="{$jft['appid']}" class=""><i class="form_hint">app的唯一辨识，在商户后台进行app注册后即可获得</i></li>
+                <li><label>appkey</label><input name="config[appkey]" type="text" value="{$jft['appkey']}" class=""><i class="form_hint">   32位小写字符串，AES加密算法的密钥，在商户后台进行app注册后即可获得</i></li>
+                <li><label>VECTOR</label><input name="config[vector]" type="text" value="{$jft['vector']}" class=""><i class="form_hint">AES加密16位小写字符串，AES加密算法的向量，在商户后台进行app注册后即可获得</i></li>
+                <li><label>启用状态</label><span class="form_radio">
+                    <label><input type="radio" name="status" value="0" <eq name="jft_data['status']" value="0">checked="checked"</eq>> 禁用</label>
+                    <label><input type="radio" name="status" value="1" <eq name="jft_data['status']" value="1">checked="checked"</eq>> 启用
+                </label></span><i class="form_hint">竣付通开启状态</i></li>
+                <li><label>&nbsp;</label><input type="hidden" name="name" value="jft"></input><input type="submit" id="submit" value="确认保存" target-form="jft" class="form_btn ajax-post"></li>
+            </ul>
+        </form>
+        </div>
+        </div>
+
+
+
+	</div>
+</block>
+
+<block name="script">
+<script type="text/javascript">
+	//导航高亮
+	highlight_subnav('{:U('Tool/payset')}');
+	$(function(){
+		//支持tab
+		showTab();
+	})
+</script>
+</block>

@@ -1,0 +1,28 @@
+.lbbtn-right{ margin:10px 0 0 5px;}
+.gift-code-box{ padding-bottom:0; margin:15px;}
+/* .mod-con{ margin-bottom:0; border-top:0; overflow:hidden;} */
+.borleft{ border-left:3px solid #C4C3C3; margin-left:10px; margin-bottom:0px; padding-bottom:10px;}
+.borleft2{ border-left:3px solid #C4C3C3; margin-left:10px; margin-bottom:10px;}
+.timetitle{height:32px; line-height:32px;background:url(../images/flows_sp.png) no-repeat; padding-left:18px; position:relative;font-family:"微软雅黑"; font-size:14px; color:#fff;-webkit-background-size: 90px auto; }
+.timetitle i{width:22px; height:19px; position:absolute; left:-12px; top:6px; background:url(../images/flows_sp.png) no-repeat 0 -241px;}
+.code-box{ display:block; overflow:hidden;}
+.code-box p{ float:left;}
+.tadaybg{ background-position:8px -228px;margin: 10px 0;}
+.timeyest{ background-position:8px 0px;margin: 10px 0;}
+.timeqdatd{ background-position:8px -32px;margin: 10px 0;}
+.timeweek{ background-position:8px -261px;margin: 10px 0;}
+.timeqweek{height:34px; line-height:34px; margin:10px 0;background:url(../images/flows_sp2.png) no-repeat; color:#666;-webkit-background-size: 93px auto; }
+.timeyest i{ background-position:0 -300px;}
+.timeqdatd i{ background-position:0 -280px;}
+.timeweek i{ background-position:0 -260px;}
+.timeqweek i{ background-position:0 -320px;}
+.main-search .search-con{ border:1px solid #f60;}
+.main-search .search-btn{background: #f60; color:#fff; width:54px; font-size:14px;}
+.wxlbboxbg{ border:none;padding: 10px;padding-top: 10px;}
+.lbydtg{ width:100%; height:auto; max-width:720px; display:block; margin:0 auto;}
+.wxhftext{ display:inline-block; width:60px; text-align:center; background:#2ECC71; color:#fff; padding:3px 0;}
+.wxhfnum{display:inline-block;width:60px; text-align:center; background:#27AE60; color:#fff; padding:3px 0;}
+.pb10{ padding-bottom:5px;}
+.main-header .header-sub .logo .img{width: auto; height: 20px;margin: 6px 0;}
+.guide-icon-search{background-image: url(../images/s_icon.png);background-size: 22px;background-position: 0 5px;margin-top: 1px;background-repeat: no-repeat;}
+.mtopnav{line-height: inherit;    margin-bottom: 10px;}

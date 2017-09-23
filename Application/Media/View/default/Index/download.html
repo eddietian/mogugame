@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>APP客户端下载-安卓版|iOS版_游戏官网</title>
+    <meta name="keywords" content="">
+    <link href="{:get_cover(C('PC_SET_ICO'),'path')}" type="image/x-icon" rel="shortcut icon">
+    <meta name="description" content="免费下载,一键安装，手游攻略,手游礼包,一网打尽!找游戏,找福利!">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="baidu-site-verification" content="uGvVG91URw">
+    <script>
+        /*(function () {
+            var GetQueryString = function (name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null)return unescape(r[2]);
+                return null;
+            }
+            var vs = GetQueryString("version");
+            //检查手机
+            var URL = {
+                iosLink: "http://app.guopan.cn/newGpios.html" + location.search + location.hash,
+                androidLink: "http://app.guopan.cn/m/" + location.search + location.hash,
+                ltgpLink: "http://app.guopan.cn/gply/" + location.search + location.hash
+            }
+            var ua = navigator.userAgent.toLowerCase();
+            var platform = {
+                ios: function () {
+                    return (/iphone|ipad|ipod|ios/i.test(ua));
+                },
+                android: function () {
+                    return (/android/i.test(ua));
+                }
+            }
+            if (platform.ios()) {
+                window.location.href = URL.iosLink;
+            }
+            if (platform.android()) {
+                if (vs && vs.indexOf("ltgp") != -1) {
+                    window.location.href = URL.ltgpLink;
+                } else {
+                    window.location.href = URL.androidLink;
+                }
+            }
+        })();*/
+    </script>
+    <link rel="stylesheet" href="__CSS__/reset.css">
+    <link rel="stylesheet" href="__CSS__/common.css">
+    <link rel="stylesheet" href="__CSS__/download.css">
+    <script src="__JS__/jquery.min.js"></script>
+    <script src="__JS__/jquery.fullPage.min.js"></script>
+
+<script>
+$(function(){
+	$('#dowebok').fullpage({
+		
+		'navigation': true,
+	});
+});
+</script>
+</head>
+<body class="no-scroll">
+<div id="dowebok">
+<div class="section section-a noscale active">
+    <div class="top-menu">
+        <div class="container">
+            <div class="row">
+                <a href="" class="logo">
+                    <img src="{:get_cover(C('PC_SET_LOGO'),'path')}" alt="" height="54">
+                </a>
+                <div class="menu">
+                    <a href="{:U('index')}"><i class="icon icon-1"></i>返回官网</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content clearfix" style="zoom: 1;">
+        <div class="pull-left left-size">
+            <img src="__IMG__/phone.png" width="433" alt="手机展示">
+        </div>
+        <div class="pull-left right-size">
+            <div class="slogan" style="background-image:url(__IMG__/xigu.png);">
+                <h4 class="slogantext">玩游戏 , 拿福利 , 就上溪谷手游！</h4>
+            </div>
+            <div class="clearfix">
+                <div class="pull-left">
+                    <a id="download_And" class="download download_android" href="{$android.file_url}">
+                        <i class="icon"></i>
+                        <span class="downloadtext"><strong>Android 版</strong></span>
+                    </a>
+                    <a id="download_Ios" class="download download_ios" href="itms-services://?action=download-manifest&url={$ios.plist_url}">
+                        <i class="icon"></i>
+                        <span class="downloadtext"><strong>iPhone 版</strong></span>
+                    </a>
+                </div>
+                <div class="pull-left">
+                    <img class="qrcode" src="{:U('Index/qrcode',['url'=>base64_encode(base64_encode('http://'.$_SERVER['HTTP_HOST'].$android['file_url']))])}" alt="qrcode">
+                    <div style="width: 168px;padding-left: 47px;position: absolute;text-align: center;line-height: 18px;padding-top: 5px;"><p style="font-size:12px">安卓手机可使用浏览器扫描下载二维码</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wave wave-1" style="background-position-x: -100.43px;"></div>
+    <div class="wave wave-2" style="background-position-x: -404.529px;"></div>
+</div>
+<div class="section section-b noscale">
+<div class="title titlenotice">
+    <h1>精品手游，免费下载，一键安装</h1>
+    <h5>网罗当下热门游戏  总有一款适合你 让你一次玩到HIGH</h5>
+</div>
+<div class="content" >
+    <div class="game">
+        <div class="stage png">
+            <div class="flybase">
+                <div class="phone_box png"></div>
+                <div class="light_v bbb">
+                    <div class="light_vinner light_m transform-3d">
+                        <div class="transform_left_bottom lg_1 BgAnimate_1"></div>
+                    </div>
+                    <div class="light_vinner transform-3d">
+                        <div class="transform_left_bottom lg_2 BgAnimate_2"></div>
+                    </div>
+                    <div class="light_vinner light_r transform-3d">
+                        <div class="transform_left_bottom lg_3 BgAnimate_3"></div>
+                    </div>
+                </div>
+                <div class="base_container">
+                    <div class="base transform-3d">
+                        <div class="base_inner_frame transform-3d base_inner_frame_dh transform_center_bottom">
+                            <div class="base_inner transform-3ds aaa">
+                                <div class="object object1 transform-3d"><div></div></div>
+                                <div class="object object2 transform-3d"><div></div></div>
+                                <div class="object object3 transform-3d"><div></div></div>
+                                <div class="object object4 transform-3d"><div></div></div>
+                                <div class="object object5 transform-3d"><div></div></div>
+                                <div class="object object6 transform-3d"><div></div></div>
+                                <div class="object object7 transform-3d"><div></div></div>
+                                <div class="object object8 transform-3d"><div></div></div>
+                                <div class="object object9 transform-3d"><div></div></div>
+                                <div class="object object10 transform-3d"><div></div></div>
+                                <div class="object object11 transform-3d"><div></div></div>
+                                <div class="object object12 transform-3d"><div></div></div>
+                                <div class="object object13 transform-3d"><div></div></div>
+                                <div class="object object14 transform-3d"><div></div></div>
+                                <div class="object object15 transform-3d"><div></div></div>
+                                <div class="object object16 transform-3d"><div></div></div>
+                                <div class="object object17 transform-3d"><div></div></div>
+                                <div class="object object18 transform-3d"><div></div></div>
+                                <div class="object object19 transform-3d"><div></div></div>
+                                <div class="object object20 transform-3d"><div></div></div>
+                                <div class="object object21 transform-3d"><div></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img class="bg" src="__IMG__/section_c_1.png" width="100%" alt="bg">
+</div>
+</div>
+<div class="section section-c" style="background-color:#F8FCFF">
+    <div class="title titlenotice">
+        <h1>海量福利，超低折扣，每日更新</h1>
+        <h5>礼包 开服 充值折扣返利 助你攀登游戏巅峰</h5>
+    </div>
+    <div class="content" style="transform: scale(0.8);">
+        <img class="bg" src="__IMG__/section_c_1.png" alt="bg">
+        <div class="giftbg">
+            <p class="giftleft pzstonet "></p>
+            <p class="giftright pzstoneb "></p>
+            <div class="giftbox ">
+                <div class="giftpic vl "></div>
+                <div class="giftpic vr "></div>
+                <div class="giftpic vm "></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section section-d">
+    <div class="title titlenotice">
+        <h1>平台币，各类商品，想换就换</h1>
+        <h5>每日签到 应用评论 任务分享 不用花钱积分领到手软</h5>
+    </div>
+    <div class="content" style="transform: scale(0.8);">
+        <div class="mall">
+            <div class="mall1"></div>
+            <div class="mall2"></div>
+            <div class="mall3"></div>
+            <div class="mall4"></div>
+        </div>
+        <img class="bg" src="__IMG__/section_b_1_4c75723.png" alt="bg">
+    </div>
+</div>
+<div class="section section-f">
+    <div class="title titlenotice">
+        <h1>邀请好友得奖励，有福同享</h1>
+        <h5>邀请好友玩游戏，好友充值您获利，游戏一起玩，平台币一起赚</h5>
+    </div>
+    <div class="content" style="transform: scale(0.8);">
+        <div class="radar"></div>
+        <div class="p p1"></div>
+        <div class="p p2"></div>
+        <div class="p p3"></div>
+        <div class="p p4"></div>
+        <div class="p p5"></div>
+        <img class="bg" src="__IMG__/section_e_1_52e44a0.png" alt="bg">
+    </div>
+    <div class="footer">
+    <div class="Copyright">
+        <a style="text-align:center;	margin-right:5px;	color:#5e6263;    text-decoration: none;	" target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32030302000181"><img style="position:relative;	right:4px;	bottom:-2px;    vertical-align: middle;	" src="__IMG__/jc.png">苏公网安备 32030302000181号</a> <a style="color:#5e6263;	    text-decoration: none;" target="_blank" href="http://www.miitbeian.gov.cn/">ICP备案：苏ICP备15062631号-1 </a><br>
+        <span style="text-align: center;line-height: 25px;color:#5e6263;"> 徐州梦创信息科技版权所有 法律顾问：江苏青创律师事务所</span></div>
+</div>
+</div>
+
+<!--<div class="right_nav">
+    <a class="clearfix" data-idx="1"><img src="__IMG__/right_nav_game.png" alt="section_a"></a>
+    <a class="clearfix" data-idx="2"><img src="__IMG__/right_nav_welfare.png" alt="section_b"></a>
+    <a class="clearfix" data-idx="3"><img src="__IMG__/right_nav_mall.png" alt="section_c"></a>
+    <a class="clearfix" data-idx="4"><img src="__IMG__/right_nav_invitation.png" alt="section_d"></a>
+    <a class="clearfix unvis" data-idx="5"></a>
+    <a class="clearfix last active" data-idx="0"><img src="__IMG__/right_nav_top.png" alt="section_f"></a>
+</div>-->
+<div class="tips">
+    <div class="content">
+        <img class="qrcode" src="__IMG__/qrcode_007923a.png" alt="qrcode">
+        <p>iOS用户可以扫一扫二维码直接安装哦</p>
+    </div>
+    <div class="bg"><b>×</b></div>
+</div>
+
+
+</div>
+
+</body></html>

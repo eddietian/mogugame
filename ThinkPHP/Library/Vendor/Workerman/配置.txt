@@ -1,0 +1,22 @@
+1:	linux 服务器 下载workerman  linux版本	http://www.workerman.net/web-sender
+
+	复制vendor中的文件覆盖当前目录
+
+	可以运行以下脚本检查本地环境是否满足WorkerMan要求
+
+	执行:	php QrLogin.php start -d 启动推送服务
+
+	关闭执行 php QrLogin.php stop
+
+	curl -Ss http://www.workerman.net/check.php | php
+
+
+
+2:	windows 版本 下载windows版本	http://www.workerman.net/web-sender
+
+	复制vendor中的文件覆盖当前目录
+	
+	在当前目录下打开命令行	执行: php QrLogin start -d
+	
+	关闭执行 ctrl+c
+

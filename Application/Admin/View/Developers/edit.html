@@ -1,0 +1,267 @@
+<extend name="Public/base" />
+
+<block name="body">
+<!-- <link rel="stylesheet" type="text/css" href="__CSS__/admin_table.css" media="all"> -->
+<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="__STATIC__/provincecityarea/area1.js"></script>
+<script type="text/javascript" src="__STATIC__/provincecityarea/AreaData_min.js"></script>
+<script type="text/javascript" src="__STATIC__/provincecityarea/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="__JS__/jquery.mousewheel.js"></script>
+    <div class="main-place">
+        <span class="main-placetitle">位置：</span>
+        <ul class="main-placeul">
+            <li><a href="{:U('Developers/lists')}">开发者</a></li>
+            <li><a href="{:U('Developers/lists')}">开发者列表</a></li>
+            <li><a href="#">{$meta_title}</a></li>
+        </ul>
+    </div>
+    <!-- 标签页导航 -->
+<div class="tab-wrap">
+    <div class="tab_nav jstabnav">
+    <ul>
+		<li data-tab="tab1" class="current"><a href="javascript:void(0);">基础信息</a></li></li>
+        <li data-tab="tab2" ><a href="javascript:void(0);">结算信息</a></li>
+    </ul></div>
+    <div class="tab-content tab_content">
+    <!-- 表单 -->
+    <form id="form" action="{:U('edit?model='.$model['id'])}" method="post" class="form-horizontal">
+        <!-- 基础文档模型 -->
+        <div id="tab1" class="tab-pane in tab1 tab_table">
+            <table  border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <td class="l">登陆账号：</td>
+                        <td class="r">
+                           <input type="text" class="txt" name="account" value="{$data['account']}" disabled="disabled">
+                        </td>
+                         <td class="l">属性：</td>
+                        <td class="r">
+                            <if condition="$data['nature'] eq 1">公司<else/>个人</if>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="l">账号状态：</td>
+                        <td class="r table_radio">
+                            <label >
+                                <input type="radio" disabled="disabled" value="1" name="status" <eq name="data['status']" value="1">checked="checked"</eq>>正常
+                            </label >
+                            <label >
+                                <input type="radio" disabled="disabled" value="2" name="status" <eq name="data['status']" value="2">checked="checked"</eq>>锁定
+                            </label>
+                            <input type="hidden" name="status" value="{$data['status']}">
+                        </td>
+                          <td class="l">登陆密码：</td>
+                        <td class="r">
+                           <input type="text" class="txt" name="password" value="">
+                        </td>
+                    </tr>
+                    <tr>
+                     <if condition="$data['nature'] eq 1">
+                         <td class="l">公司名称：</td>
+                            <td class="r">
+                               <input type="text" class="txt" name="corporate_name" value="{$data['corporate_name']}">
+                            </td>
+                         <td class="l">公司简称：</td>
+                            <td class="r">
+                               <input type="text" class="txt" name="corporate_jname" value="{$data['corporate_jname']}">
+                            </td>
+                     <else/>
+                        <td class="l">开发者名称:</td>
+                            <td class="r">
+                               <input type="text" class="txt" name="nickname" value="{$data['nickname']}">
+                            </td>
+                     <td class="l">手机号码：</td>
+                        <td class="r">
+                           <input type="text" class="txt" name="mobile_phone" value="{$data['mobile_phone']}" >
+                        </td>             
+                    </if>
+
+                    </tr>
+                  <if condition="$data['nature'] eq 1">
+                    <tr>
+                            <td class="l">公司地址：</td>
+                            <td class="r">
+                               <input type="text" class="txt" name="corporate_address" value="{$data['address']}">
+                            </td>
+
+                        <td class="l">公司网址：</td>
+                        <td class="r">
+                           <input type="text" class="txt" name="corporate_url" value="{$data['corporate_url']}" >
+                        </td>
+                       
+                    </tr>
+                      <tr>
+                        <td class="l">联系人：</td>
+                        <td class="r">
+                           <input type="text" class="txt" name="link_man" value="{$data['link_man']}">
+                        </td>
+                        <td class="l">手机号码：</td>
+                        <td class="r">
+                           <input type="text" class="txt" name="mobile_phone" value="{$data['mobile_phone']}" >
+                        </td>
+                       
+                    </tr>
+                    <tr>
+                    </if>
+                   <tr>
+                        <td class="l">QQ:</td>
+                        <td class="r">
+                           <input type="text" class="txt" name="qq" value="{$data['qq']}">
+                        </td>
+                     <td class="l">邮箱：</td>
+                        <td class="r">
+                           <input type="text" class="txt" name="email" value="{$data['email']}">
+                        </td>
+                    </tr>
+                    <tr>
+                   <if condition="$data['nature'] eq 1">
+                          <td class="l">营业执照注册号：</td>
+                            <td class="r">
+                               <input type="text" class="txt" name="identity" value="{$data['identity']}" >
+                            </td>
+                        <else/>
+                          <td class="l">身份证号：</td>
+                            <td class="r">
+                               <input type="text" class="txt" name="identity" value="{$data['identity']}">
+                            </td>
+                    </if>
+
+                        <td class="l">注册时间：</td>
+                        <td class="r">
+                           <input type="text" class="txt" name="create_time" value="{:set_show_time($data['create_time'])}" disabled="disabled">
+                        </td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <td class="l">认证时间：</td>
+                        <td class="r">
+                            <input type="text" class="txt" name="operate_time" value="{:set_show_time($data['operate_time'])}" disabled="disabled">
+                        </td>
+                        <if condition="$data['nature'] eq 1">
+                            <td class="l">开发者名称:</td>
+                            <td class="r">
+                                <input type="text" class="txt" name="nickname" value="{$data['nickname']}">
+                            </td>
+                        </if>
+                    </tr>
+                   <if condition="$data['nature'] eq 1">
+                    <td class="l">营业执照：</td>
+                        <td class="r">
+                            <img src="{:get_cover($data['prove_img'],'path')}">
+                        </td>
+                        <else/>
+                    <td class="l">身份证：</td>
+                        <td class="r">
+                            <img src="{:get_cover($data['prove_img'],'path')}">
+                        </td>
+                    </if>
+
+                        <td class="l">备注：</td>
+                        <td class="r table_textarea" >
+                        <textarea name="mark1" class="txt_area1">{$data['mark1']}</textarea>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="tab3" class="tab-pane  tab2 tab_table">
+            <table  border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                <tr>
+                    <td class="l">对账人</td>
+                    <td class="r">
+                       <input type="text" class="txt" name="bank_link_man" value="{$data['bank_link_man']}" disabled="disabled">
+                    </td>
+                    <td class="l">对账人电话</td>
+                    <td class="r">
+                       <input type="text" class="txt" name="bank_link_phone" value="{$data['bank_link_phone']}" disabled="disabled">
+                    </td>
+                </tr>
+                <!--<tr>
+                    <td class="l">开户城市</td>
+                    <td class="r1 table_select3">
+                            <div class="info">
+                                <div>
+                                <select id="s_province" name="s_province" disabled="disabled"></select>  
+                                <select id="s_city" name="s_city" disabled="disabled"></select>  
+                                <select id="s_county" name="s_county" disabled="disabled"></select>
+                                <script class="resources library" src="__STATIC__/provincecityarea/Area.js" type="text/javascript"></script>
+
+                                <script type="text/javascript">
+                                    var pro="{:$data['bank_area']['0']}";
+                                    var city="{:$data['bank_area']['1']}";
+                                    var are="{:$data['bank_area']['2']}";
+                                    _init_area(pro,city,are);</script>
+                                </div>
+                                <div id="show"></div>
+                            </div>
+                            <script type="text/javascript">
+                                var showArea = function() {
+                                    $('#show').innerHTML = "<h3>省" + $('#s_province').value + " - 市" +
+                                    $('#s_city').value + " - 县/区" +
+                                    $('#s_county').value + "</h3>"
+                                }
+                                $('#s_county').attr('onchange','showArea()');
+                            </script>
+
+                    </td>
+                    <td class="l">收款银行</td>
+                    <td class="r">
+                       <input type="text" class="txt" name="bank_name" value="{$data['bank_name']}" disabled="disabled">
+                    </td>
+                </tr>-->
+                <tr>
+                    <td class="l">开户行名称</td>
+                    <td class="r">
+                       <input type="text" class="txt" name="bank_name" value="{$data['bank_name']}" disabled="disabled">
+                    </td>
+                    <td class="l">帐户名</td>
+                    <td class="r">
+                       <input type="text" class="txt" name="account_name" value="{$data['account_name']}" disabled="disabled">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="l">银行卡号</td>
+                    <td class="r">
+                       <input type="text" class="txt" name="bank_account" value="{$data['bank_account']}" disabled="disabled">
+                    </td>
+                    <td class="l"></td>
+                    <td class="r">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="l" >备注</td>
+                    <td class="r table_textarea" colspan='3'>
+                        <textarea name="mark2" class="txt_area1">{$data['mark2']}</textarea>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="form-item cf">
+            <input type='hidden' name="id" value="{$data['id']}" />
+            <button class=" submit_btn ajax-post " id="submit" type="submit" target-form="form-horizontal" autocomplete="off">确 定</button>
+
+        </div>
+    </form>
+    </div>
+</div>
+</block>
+
+<block name="script">
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript">
+//导航高亮
+highlight_subnav('{:U('developers/lists')}');
+Think.setValue("game_type_id", {$data.game_type_id|default = 0});
+$(function(){
+    showTab();
+    prov="{:substr($data['bank_area'],0,2)}";
+    city="{:substr($data['bank_area'],2,2)}";
+    ciarea="{:substr($data['bank_area'],4,2)}";
+});
+
+</script>
+</block>
+

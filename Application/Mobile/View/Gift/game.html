@@ -1,0 +1,95 @@
+<extend name="Public/bases"/>
+
+<block name="body" >
+<style>.header-sub .logo .game-icon{height: 30px;width: auto;border-radius: 0;margin: 6px 0;} .ms-none{display:none;}</style>
+<div class="mod-con game-info-con main-search mt44">
+	<div class="game-info">
+		<div class="pic">
+			<img src="{$game.icon|get_cover='path'}" alt="{$game.game_name}" width="60" height="60">
+		</div>
+		<div class="info">
+			<div>
+				<span class="name game-title-private"><?php echo preg_replace('/(\(.+)/i','',$game['game_name']);?>{$vo.giftbag_name}</span>
+				<p>{$game.game_type_name}</p>
+            </div>
+		</div>
+	</div>	
+	<div class="online-mod">
+		<a href="{:U('Game/detail?id='.$game['id'])}"><i class="spercit-ico-public"></i>专区</a>
+		<a href="{:U('Game/detail?id='.$game['id'])}"><i class="down-ico-public"></i>下载</a>
+	</div>
+</div>
+
+<div class="mod-con">
+    <div class="mtopnav">
+        <a href="{:U('index')}">礼包中心</a>
+        <a><?php echo preg_replace('/(\(.+)/i','',$game['game_name']);?>礼包</a>
+    </div>
+	<div class="hd">
+		<h2>礼包列表</h2>
+	</div>
+	<ul class="fahao-font-list" currentpage="{$page}" title="{:I('id')}" maxpage="{$total}" id="ajaxContainer">
+        <volist name="lists" id="vo">    
+        <li>
+            			
+            <a href="{:U('detail?id='.$vo['id'])}"><?php echo preg_replace('/(\(.+)/i','',$game['game_name']);?>{$vo.giftbag_name}</a>
+            <if condition="$vo.end_time gt time()">
+            <div class="btn-small-give">领取</div> 
+            <else />
+            <div class="btn-small-dis">结束</div> 
+            </if>
+        </li>
+        </volist>    
+    </ul>
+    <section>
+        <div class="loading" id="loadingTip"><i class="loading-child"></i><span class="loading-text">正在加载，请等待……</span></div>
+        <div class="loading ms-none" id="errorTip">对不起，加载失败请<a href="{:U('lists?id='.I('id'))}" class="error">重 试</a>!</div>
+        <div class="loading ms-none" id="moreBtn"><a href="javascript:" class="link">点此查看更多</a></div>
+    </section>	
+</div>
+
+<script type="text/javascript">
+<!--
+$("#gamename").on("input", function(o) {
+	$(".closeList").show();
+}, false);
+
+function searchClick(){
+	var isOk = /^(s*)$/.test(document.getElementById('gamename').value);
+	if(!isOk){
+		document.getElementById('form1').submit();
+	}
+	return false;	
+}
+//-->
+</script> 
+<script src="__JS__/ajaxload.js"></script>
+<script>
+    var title = $('#ajaxContainer').attr('title');
+    ajaxload('{:U("ajaxlists")}',{id:title},function(data) {
+        var ac = $('#ajaxContainer');
+        if (data.status == 1) {
+            ac.attr('currentpage',data.page);
+            var html = '',timestamp=(new Date().getTime())/1000;
+            for (var i in data.lists) {
+                var item = data.lists[i];
+                html += '<li>';
+                html += '<a href="__CONTROLLER__/detail/id/'+item['id']+'">[';
+                html += item['game_name']+']'+item['game_name']+item['giftbag_name']+'</a>';
+                if (item['end_time']>timestamp)
+                    html += '<div class="btn-small-give">领取</div>';
+                else 
+                    html += '<div class="btn-small-dis">结束</div> ';
+                html += '</li>';
+            }
+            ac.append(html);
+            $('.loading').addClass('ms-none');
+            $('#moreBtn').removeClass('ms-none');loads=false;
+        } else {
+            $('.loading').addClass('ms-none');
+            $('#moreBtn').removeClass('ms-none').html('对不起，数据已经加载完');
+        }
+    });
+</script>
+
+</block>

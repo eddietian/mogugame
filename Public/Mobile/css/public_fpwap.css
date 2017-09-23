@@ -1,0 +1,67 @@
+/* 
+
+* @description: 游戏官网共用 
+
+*/
+
+/*通用全局设定*/
+
+body,input,button,select,textarea,table{font:12px '微软雅黑',Arial,Helvetica,sans-serif,'宋体';}
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {margin:0;padding:0;}
+
+fieldset,img {border:0;}
+
+/*table{border-collapse:collapse;border-spacing:0;}*/
+
+ol,ul{list-style:none;}
+
+input,button,select,textarea{outline:none;}
+
+textarea{resize:none;}
+
+a:link, a:visited,a:hover, a:active {text-decoration: none;}
+
+/*重设 HTML5 标签*/
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {display:block;}
+
+audio,canvas,video {display:inline-block;*display:inline;*zoom:1;}
+
+/*==导航顶部==*/
+
+.header{width:100%;min-width: 1000px;height:36px;margin:0 auto;position:relative;z-index:10;}
+
+.header .top-bar{ width:1000px; margin:0 auto; position:relative; z-index:5;}
+
+.header .logo{position:absolute;left:0;z-index:11;}
+
+.header .logo img{padding-top: 2px;}
+
+.header a{color:#000;float:left;}
+
+.header .text{font-size:12px;color:#333;line-height:36px;float:left;width:300px;padding-left:7px;}
+
+.header .top-menu{position:absolute;right:0;z-index:11;float:left;}
+
+.header .top-menu li{font-size:12px;float:left;color:#000;line-height:36px;text-indent:1px;}
+
+.header .top-menu li a{margin:0 8px;}
+
+.header .top-menu li a:hover{color:#f60;text-decoration: none;}
+
+.header .bg{width:100%;height:36px;background:#fff;position:absolute;z-index:1;left:0;top:0;}
+
+/*==公用底部==*/
+
+.footer {color:#000;font-size: 12px;margin: 0 auto;margin-top: 15px;line-height: 24px;text-align: center;width:1000px;}
+
+    .footer .link a{padding:0 5px;}
+
+    .footer .fo_nav {margin: 0 7px;}
+
+/*==公用样式==*/
+
+.cf:after {visibility:hidden;display:block;font-size:0;content:"";clear:both;height:0;}
+
+.cf{zoom:1;}

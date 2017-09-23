@@ -1,0 +1,103 @@
+<extend name="Public/base" />
+<block name="body" >
+<!--end public nav-->
+<script src="__STATIC__/layer/layer.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="__CSS__/gift.css">
+  <div class="">
+    <img src="__IMG__/inner_banner2.jpg">
+  </div>
+  <div class="listcontentwrap">
+  <div class="rel mgt35 listcontent">
+    <div class="">
+      <div class="rel b-list-box">
+        <p class="abs"><i></i><span>礼包中心</span></p>
+        
+          <div class="abs2 searmo">
+            <input id="seagift" type="text" class="abs2s" value="{:I('game_name')}" placeholder="输入游戏名称">
+            <a class="abs2b" href="{:U('Gift/gift')}" id="btn-sergift" title="搜索"></a> 
+          </div>
+      </div>
+      <ul class="gifts-list-box" id="gift-list">
+      <if condition="$list_data eq '' or empty($list_data)">
+      <br><br><br><br>
+          <div style="text-align: center;">没找到您搜索的内容。。。</div>
+      <else/>
+      <volist name="list_data" id="data" mod="2">
+        <li class="<eq name='mod' value='1'>even</eq>"><img class="abs gift-img" src="{:get_cover($data['icon'],'path')}" alt="{$data.relation_game_name}"><a class="name">《{$data.relation_game_name}》{$data.giftbag_name}</a>
+          <div class="gift_details tabBox">
+              <ul class="details_title">
+                  <li class="tabTitle on">礼包内容</li>
+                  <li class="tabTitle">使用说明</li>
+              </ul>
+              <ul class="details_content">
+                  <li class="tabContent on">{$data.desribe}</li>
+                  <li class="tabContent">{$data.digest}</li>
+              </ul>
+              <div class="get_wrap">
+<a href="javascript:void(0)" class="get get-gifts-btn" data-href="{:U('Gift/gift_detail',array('gid'=>base64_encode($data['id'])))}"><i class="pq_icon"></i>立即领取</a>
+              </div>
+          </div>
+          </li>
+      </volist>
+      </if>
+      </ul>
+      <div class="page pagepp">
+          {$_page|default=''}
+      </div>
+    </div>
+    
+  </div>
+  </div>
+<script type="text/javascript" src="__JS__/gift/m-copy.js"></script>
+<script>
+$(".searmo").hover(function(){
+  $(this).addClass('on');
+});
+$(".searmo").mouseleave(function(){
+  $(this).removeClass('on');
+});
+$("#btn-sergift").click(function(){
+  $param=$('#seagift').val();
+  $href=$(this).attr('href');
+  if($param){
+    $href=$href.replace('.html','/game_name/'+$param+'.html');
+  }
+  $(this).attr('href',$href);
+});
+$('.gift-tab a').hover(function(){
+   var that = $(this),index = that.index();
+   that.addClass('on').siblings().removeClass('on');
+   that.closest('.gift-tab').siblings('.gift-tab-cont:eq('+index+')').show().siblings('.gift-tab-cont').hide();
+});
+/*$(".gpx1").mouseover(function(){
+  var that = $(this);
+  that.attr('style','display:none').next('div').attr('style','display:block');
+  // alert(that.parent().siblings().attr('style'));
+});*/
+$('.jslist li').hover(function(){
+    $(this).find('.gpx2').show().siblings().hide();
+    $(this).siblings().find('.gpx1').show().siblings().hide();
+});
+$(".get-gifts-btn").click(function(){
+  id= "{:session('user_auth.user_id')}";
+  if(!id){
+    layer.msg('您还未登录或UC用户暂不支持',function(){
+    }); return; false
+  }else{
+    window.location.href=$(this).attr('data-href');
+  }
+});
+$(function() {
+    $(".tabBox").each(function() {
+        var js_tabBox = $(this);
+        js_tabBox.find(".tabTitle").hover(function() {
+            var index = $(this).index();
+            $(this).addClass("on").siblings(".tabTitle").removeClass("on");
+            js_tabBox.find(".tabContent").eq(index).addClass("on").siblings(".tabContent").removeClass("on");
+            return false;
+        });
+    });
+
+});
+</script>
+</block>

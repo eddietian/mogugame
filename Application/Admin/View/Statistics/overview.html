@@ -1,0 +1,319 @@
+<extend name="Public/base"/>
+<block name="body">
+<link rel="stylesheet" href="__CSS__/open-egret.css">
+<!-- <link rel="shortcut icon" href="http://open.egret.com/misc/images/icon.png" /> -->
+<!-- <link rel="stylesheet" href="http://open.egret.com/misc/css/bootstrap.min.css"> -->
+<!-- <link href="http://open.egret.com/misc/css/font-awesome.min.css" rel="stylesheet"> -->
+<div class="main-place main-place-overview">
+    <span class="main-placetitle">位置：</span>
+    <ul class="main-placeul">
+        <li><a href="{:U('Statistics/overview')}">统计</a></li>
+        <li><a href="{:U('Statistics/overview')}">统计</a></li>
+        <li><a href="#">总览</a></li>
+    </ul>
+     <div class="question">
+        <i class="question_mark">?</i>
+        <ul class="question_content">
+            <li class="question_title">功能以及数据相关说明</li>
+            <li class="question_list">
+                <span class="">总览</span>
+                <span class="">针对全站数据信息一个总览功能</span>
+                <span class="" style="width:90px;margin-right: 20px;">累计流水</span>
+                <span class="">平台累计所有流水</span>
+                <span class="" style="width:90px;margin-right: 20px;">渠道总流水</span>
+                <span class="">所有渠道下的流水总计</span>
+                <span class="" style="width:90px;margin-right: 20px;">今日注册</span>
+                <span class="">今日注册平台的人数</span>
+                <span class="" style="width:90px;margin-right: 20px;">今日活跃</span>
+                <span class="">今日注册和今日登陆的人数</span>
+                <span class="" style="width:90px;margin-right: 20px;">今日流水</span>
+                <span class="">今日游戏内消费的金额</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class=" main_content">
+    <div class="row main_content_item">
+        <!-- <div class="main_content_title"><span>平台数据概况</span></div> -->
+        <!--<div class="main_content_main m-channel-data main_content_platform">
+            <div class="main_content_main_item">
+            <div class="col-md-2">
+                <strong class="s-c-blue">{$platform_data.all_user}</strong>
+                累计注册玩家
+            </div>
+            </div>
+            <div class="main_content_main_item">
+            <div class="col-md-2">
+                <strong class="s-c-blue">{$platform_data.all_pay_user}</strong>
+                累计付费玩家
+            </div></div><div class="main_content_main_item">
+            <div class="col-md-2">
+                <strong class="s-c-green">{$platform_data.all_pay}</strong>
+                累计流水
+            </div></div><div class="main_content_main_item">
+            <div class="col-md-2">
+                <strong class="s-c-green">{$platform_data.all_promote}</strong>
+                开通渠道数
+            </div></div><div class="main_content_main_item">
+            <div class="col-md-2">
+                <strong class="s-c-green">{$platform_data.all_game}</strong>
+                游戏接入数量
+            </div></div><div class="main_content_main_item">
+            <div class="col-md-2">
+                <strong class="s-c-blue">{$platform_data.all_android}</strong>
+                安卓游戏原包
+            </div></div><div class="main_content_main_item">
+            <div class="col-md-2">
+                <strong class="s-c-blue">{$platform_data.all_ios}</strong>
+                IOS游戏原包
+            </div></div><div class="main_content_main_item">
+            <div class="col-md-2">
+                <strong class="s-c-green">{$platform_data.all_tuser}</strong>
+                渠道注册玩家
+            </div></div><div class="main_content_main_item">
+            <div class="col-md-2">
+                <strong class="s-c-green">{$platform_data.all_tpay}</strong>
+                渠道总流水
+            </div></div>
+        </div>-->
+
+        <div class="main_content_main m-channel-data main_content_platform">
+            <div class="main_content_main_item">
+                <div class="col-md-2">
+                    <strong class="s-c-blue">{$shuju.player_regist_all}</strong>
+                    累计注册玩家
+                </div>
+            </div>
+            <div class="main_content_main_item">
+                <div class="col-md-2">
+                    <strong class="s-c-blue">{$shuju.payer_all}</strong>
+                    累计付费玩家
+                </div></div><div class="main_content_main_item">
+            <div class="col-md-2">
+                <strong class="s-c-green">{$shuju.pay_all}</strong>
+                累计流水
+            </div></div><div class="main_content_main_item">
+            <div class="col-md-2">
+                <strong class="s-c-green">{$shuju.pro_complete}</strong>
+                开通渠道数
+            </div></div><div class="main_content_main_item">
+            <div class="col-md-2">
+                <strong class="s-c-green">{$shuju.game_add_all}</strong>
+                游戏接入数量
+            </div></div><div class="main_content_main_item">
+            <div class="col-md-2">
+                <strong class="s-c-blue">{$shuju.game_and_all}</strong>
+                安卓游戏原包
+            </div></div><div class="main_content_main_item">
+            <div class="col-md-2">
+                <strong class="s-c-blue">{$shuju.game_ios_all}</strong>
+                IOS游戏原包
+            </div></div><div class="main_content_main_item">
+            <div class="col-md-2">
+                <strong class="s-c-green">{$shuju.pro_player_all}</strong>
+                渠道注册玩家
+            </div></div><div class="main_content_main_item">
+            <div class="col-md-2">
+                <strong class="s-c-green">{$shuju.pro_pay_all}</strong>
+                渠道总流水
+            </div></div>
+        </div>
+    </div>
+    <!--<div class="row main_content_item">
+        &lt;!&ndash; <div class="main_content_title"><span>实时数据概况</span></div> &ndash;&gt;
+        <div class="main_content_main m-channel-data main_content_realtime">
+        <div class="main_content_main_item mcmi1">
+        <div class="col-md-2">
+            <strong class="mcrt1">{$realtime_data.today_user}</strong>
+            今日注册
+        </div></div><div class="main_content_main_item  mcmi2">
+        <div class="col-md-2">
+            <strong class="mcrt2">{$realtime_data.thisweek_user}</strong>
+            本周注册
+        </div></div><div class="main_content_main_item mcmi3">
+        <div class="col-md-2">
+            <strong class="mcrt3">{$realtime_data.thismounth_user}</strong>
+            本月注册
+        </div></div><div class="main_content_main_item mcmi4">
+        <div class="col-md-2">
+            <strong class="mcrt4">{$realtime_data.today_active}</strong>
+            今日活跃
+        </div></div><div class="main_content_main_item mcmi5">
+        <div class="col-md-2">
+            <strong class="mcrt5">{$realtime_data.thisweek_active}</strong>
+            本周活跃
+        </div></div><div class="main_content_main_item mcmi6">
+        <div class="col-md-2">
+            <strong class="mcrt6">{$realtime_data.thismounth_active}</strong>
+            本月活跃
+        </div></div><div class="main_content_main_item mcmi7">
+        <div class="col-md-2">
+            <strong class="mcrt7">{$realtime_data.today_pay}</strong>
+            今日流水
+        </div></div><div class="main_content_main_item mcmi8">
+        <div class="col-md-2">
+            <strong class="mcrt8">{$realtime_data.thisweek_pay}</strong>
+            本周流水
+        </div></div><div class="main_content_main_item mcmi9">
+        <div class="col-md-2">
+            <strong class="mcrt9">{$realtime_data.thismounth_pay}</strong>
+            本月流水
+        </div></div></div>
+    </div>-->
+    <div class="row main_content_item">
+        <!-- <div class="main_content_title"><span>实时数据概况</span></div> -->
+        <div class="main_content_main m-channel-data main_content_realtime">
+            <div class="main_content_main_item mcmi1">
+                <div class="col-md-2">
+                    <strong class="mcrt1">{$shuju.player_regist_tod}</strong>
+                    今日注册
+                </div></div><div class="main_content_main_item  mcmi2">
+            <div class="col-md-2">
+                <strong class="mcrt2">{$shuju.player_regist_week}</strong>
+                本周注册
+            </div></div><div class="main_content_main_item mcmi3">
+            <div class="col-md-2">
+                <strong class="mcrt3">{$shuju.player_reigst_mon}</strong>
+                本月注册
+            </div></div><div class="main_content_main_item mcmi4">
+            <div class="col-md-2">
+                <strong class="mcrt4">{$shuju.act_tod}</strong>
+                今日活跃
+            </div></div><div class="main_content_main_item mcmi5">
+            <div class="col-md-2">
+                <strong class="mcrt5">{$shuju.act_week}</strong>
+                本周活跃
+            </div></div><div class="main_content_main_item mcmi6">
+            <div class="col-md-2">
+                <strong class="mcrt6">{$shuju.act_mon}</strong>
+                本月活跃
+            </div></div><div class="main_content_main_item mcmi7">
+            <div class="col-md-2">
+                <strong class="mcrt7">{$shuju.pay_tod}</strong>
+                今日流水
+            </div></div><div class="main_content_main_item mcmi8">
+            <div class="col-md-2">
+                <strong class="mcrt8">{$shuju.pay_week}</strong>
+                本周流水
+            </div></div><div class="main_content_main_item mcmi9">
+            <div class="col-md-2">
+                <strong class="mcrt9">{$shuju.pay_mon}</strong>
+                本月流水
+            </div></div></div>
+    </div>
+    <div class="m-box m-chart main_content_item2" style="height: 600px;">
+    <!-- Nav tabs -->
+    <ul class="nav nav-pills" role="tablist">
+        <li role="presentation" <if condition="$Think.get.type eq 1 or $Think.get.type eq ''"> class="active" </if>><a href="{:U('Statistics/overview',array('type'=>1))}" aria-controls="dayRank" role="tab" data-toggle="tab">日排行</a></li>
+        <li role="presentation" <if condition="$Think.get.type eq 2"> class="active" </if>><a href="{:U('Statistics/overview',array('type'=>2))}" aria-controls="weekRank" role="tab" data-toggle="tab">周排行</a></li>
+        <li role="presentation" <if condition="$Think.get.type eq 3"> class="active" </if>><a href="{:U('Statistics/overview',array('type'=>3))}" aria-controls="monthRank" role="tab" data-toggle="tab">月排行</a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="col-sm-4 main_content_time" >
+        <table class="table table-bordered table-striped table-hover egretRank mct1"  style="width: 30%; float: left" >
+            <caption class="">注册排行</caption>
+            <thead>
+                <tr>
+                    <th>排行</th>
+                    <th>游戏名称</th>
+                    <th>注册</th>
+                    <th>变化</th>
+                </tr>
+            </thead>
+            <tbody>
+                <volist name="zhuce" id="zhuce">
+                    <tr>
+                        <td>{:++$a}</td>
+                        <td><span style="color:#46A3FF">{$zhuce.fgame_name}</span></td>
+                        <td>{$zhuce.cg}</td>
+                        <td><if condition="$zhuce.change lt 0"><span style="color: green; font-weight: normal; font-size: 15px;">↑</span>{:substr($zhuce['change'],1)}<elseif condition="$zhuce.change eq 0"/>--<else/><span style="color: red;font-weight: normal; font-size: 15px;">↓</span>{$zhuce.change}</if></td>
+                    </tr>
+                </volist>
+            </tbody>
+        </table>
+        <table class="table table-bordered table-striped table-hover egretRank mct2"  style="width: 30%; margin: 0px 3%; float: left" >
+            <caption class="">活跃排行</caption>
+            <thead>
+                <tr>
+                    <th>排行</th>
+                    <th>游戏名称</th>
+                    <th>活跃</th>
+                    <th>变化</th>
+                </tr>
+            </thead>
+            <tbody>
+                <volist name="active" id="active">
+                    <tr>
+                        <td>{:++$b}</td>
+                        <td><span style="color:#46A3FF">{$active.game_name}</span></td>
+                        <td>{$active.cg}</td>
+                        <td><if condition="$active.change lt 0"><span style="color: green; font-weight: normal; font-size: 15px;">↑</span>{:substr($active['change'],1)}<elseif condition="$active.change eq 0"/>--<else/><span style="color: red;font-weight: normal; font-size: 15px;">↓</span>{$active.change}</if></td>
+                    </tr>
+                </volist>
+            </tbody>
+        </table>
+        <table class="table table-bordered table-striped table-hover egretRank mct3"  style="width: 30%; float: left" >
+            <caption class="">充值排行</caption>
+            <thead>
+                <tr>
+                    <th>排行</th>
+                    <th>游戏名称</th>
+                    <th>充值</th>
+                    <th>变化</th>
+                </tr>
+            </thead>
+            <tbody>
+                <volist name="pay" id="pay">
+                    <tr>
+                        <td>{:++$c}</td>
+                        <td><span style="color:#46A3FF">{$pay.game_name}</span></td>
+                        <td>{$pay.cg}</td>
+                        <td><if condition="$pay.change lt 0"><span style="color: green; font-weight: normal; font-size: 15px;">↑</span>{:substr($pay['change'],1)}<elseif condition="$pay.change eq 0"/>--<else/><span style="color: red;font-weight: normal; font-size: 15px;">↓</span>{$pay.change}</if></td>
+                    </tr>
+                </volist>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="m-box m-chart main_content_item2 " style="height: 600px;">
+<ul class="nav nav-pills jsnav" role="tablist">
+    <li role="presentation" class="active"><a href="{:U('Statistics/zhexian',array('key'=>1))}" aria-controls="dayRank" role="tab" data-toggle="tab">注册</a></li>
+    <li role="presentation" ><a href="{:U('Statistics/zhexian',array('key'=>2))}" aria-controls="weekRank" role="tab" data-toggle="tab">活跃</a></li>
+    <li role="presentation" ><a href="{:U('Statistics/zhexian',array('key'=>3))}" aria-controls="monthRank" role="tab" data-toggle="tab">充值</a></li>
+</ul>
+<div class="mchart" style="height: 550px;">
+    <iframe src="{:U('zhexian',array('key'=>1))}" id="iframepage" name="iframepage" frameBorder=0 scrolling=no width="100%"  height="100%" ></iframe>
+</div>
+</div>
+</div>
+    <div class="page">
+        {$_page|default=''}
+    </div>
+</block>
+
+<block name="script">
+<link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+<php>if(C('COLOR_STYLE')=='blue_color') echo '<link href="__STATIC__/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">';</php>
+<link href="__STATIC__/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+
+<script type="text/javascript">
+//导航高亮
+highlight_subnav('{:U('Statistics/overview')}');
+$("#main").removeClass('main');
+$("#main").addClass('openegretmain');
+</script>
+<!-- ECharts单文件引入 -->
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+    <script type="text/javascript">
+        $('.jsnav li a').on('click',function() {
+            var that=$(this),url = $.trim(that.attr('href')),li=that.closest('li'),sib = that.closest('.jsnav').siblings('.mchart');
+            li.addClass('active').siblings('li').removeClass('active');
+            sib.html('');
+            var html = '<iframe src="'+url+'" id="iframepage" name="iframepage" frameBorder=0 scrolling=no width="100%"  height="100%" ></iframe>';
+            sib.html(html);
+            return false;
+        });
+    </script>
+</block>

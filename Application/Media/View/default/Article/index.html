@@ -1,0 +1,212 @@
+<extend name="Public/base" />
+<block name="body" >
+<link rel="stylesheet" type="text/css" href="__CSS__/news.css">
+<!-- <script id="jsID" type="text/javascript">
+    jQuery("#header_1_p").slide({
+        type:"menu",// 效果类型，针对菜单/导航而引入的参数（默认slide）
+        titCell:".nLi", //鼠标触发对象
+        targetCell:".sub", //titCell里面包含的要显示/消失的对象
+        effect:"slideDown", //targetCell下拉效果
+        delayTime:300 , //效果时间
+        triggerTime:0, //鼠标延迟触发时间（默认150）
+        returnDefault:true //鼠标移走后返回默认状态，例如默认频道是“预告片”，鼠标移走后会返回“预告片”（默认false）
+    });
+</script> -->
+
+
+<!--内部切换-->
+<!-- <script>
+function setTab(name,cursel){
+  cursel_0=cursel;
+  for(var i=1; i<=links_len; i++){
+    var menu = document.getElementById(name+i);
+    var menudiv = document.getElementById("con_"+name+"_"+i);
+    if(i==cursel){
+      menu.className="off";
+      menudiv.style.display="block";
+    }
+    else{
+      menu.className="";
+      menudiv.style.display="none";
+    }
+  }
+}
+function Next(){                                                        
+  cursel_0++;
+  if (cursel_0>links_len)cursel_0=1
+  setTab(name_0,cursel_0);
+} 
+var name_0='one';
+var cursel_0=1;
+//循环周期，可任意更改（毫秒）
+var links_len,iIntervalId;
+onload=function(){
+  var links = document.getElementById("tab1").getElementsByTagName('li')
+  links_len=links.length;
+  for(var i=0; i<links_len; i++){
+    links[i].onmouseover=function(){
+      clearInterval(iIntervalId);
+      this.onmouseout=function(){
+        iIntervalId = setInterval(Next,ScrollTime);;
+      }
+    }
+  }
+  document.getElementById("con_"+name_0+"_"+links_len).parentNode.onmouseover=function(){
+    clearInterval(iIntervalId);
+    this.onmouseout=function(){
+      iIntervalId = setInterval(Next,ScrollTime);;
+    }
+  }
+  setTab(name_0,cursel_0);
+  iIntervalId = setInterval(Next,ScrollTime);
+}
+</script> -->
+<!--内部切换JS结束-->
+      <!--中间-->
+<div class="newswrap">
+        <div class="news_list">
+          <div class="left_news">
+          
+          
+          <div id="tab1">
+	<div class="menu">
+		<ul>
+			<!-- <li id="one1" onclick="setTab('one',1)" class="off">  <p class="tits"><span>新闻公告</span></p></li>
+			<li id="one2" onclick="setTab('one',2)">  <p class="tits"><span>游戏资讯</span></p></li>
+			<li id="one3" onclick="setTab('one',3)">  <p class="tits"><span>火爆活动</span></p></li> -->
+      <li id="one1" <if condition="$Think.get.category eq media_gg"> class="off" </if>>  
+      <p class="tits">
+        <span>
+        <a href="{:U('Article/index',array('category'=>'media_gg'))}">新闻公告</a>
+        </span>
+        
+        </p>
+        </li>
+      <li id="one2" <if condition="$Think.get.category eq media_zx"> class="off" </if> >  <p class="tits"><span><a href="{:U('Article/index',array('category'=>'media_zx'))}">游戏资讯</a></span></p></li>
+      <li id="one3" <if condition="$Think.get.category eq media_activity"> class="off" </if>>  <p class="tits"><span><a href="{:U('Article/index',array('category'=>'media_activity'))}">火爆活动</a></span></p></li>
+		</ul>
+	</div>
+
+        <ul class="ul_news">
+        <article:list name="article" category="$category['id']" row="5" child="true" identify="'media_activity','media_new','media_gg'" >
+
+              <li> <a href="{:U('Article/detail',array('id'=>$article['id']))}" ><img title="{$article.title}" src="{:get_cover($article['cover_id'],'path')}"></a>
+                <div class="news_div">
+                  <h3><a href="{:U('Article/detail',array('id'=>$article['id']))}" title="{$article.title}">{$article.title}</a></h3>
+                  <p><a href="{:U('Article/detail',array('id'=>$article['id']))}" ></a>{$article.description}</p>
+                  <em>更新时间：{:date('Y-m-d',$article['update_time'])}</em> </div>
+              </li>
+        </article:list>
+            </ul>
+  <div class="pages gifts-list-pages">
+    <div>
+      <div class="page pagepp">
+        <article:page cate="$category['id']" listrow="5" />
+      </div>
+      <span class="infoTextAndGoPageBtnWrap">
+        <span class="totalText"></span>
+      </span>
+    </div>
+    <div style="clear:both;">
+    </div>
+  </div>
+</div>
+</div>
+          
+          <!--右侧-->
+          <div class="right_news">
+            <p class="tits"><span>礼包中心</span></p>
+            <div class="bag">
+              <div class="bag_img"><volist name="carousel" id="carousel"><a href="{$carousel.url}" title="{$carousel.title}"><img src="{:get_cover($carousel['data'],'path')}"></a></volist></div>
+              <ul class="bag_ul">
+              <volist name="gift_like" id="gl">
+                <li> <a href="{:U('Gift/gift_detail',array('gid'=>base64_encode($gl['gift_id'])))}" title="{$gl.relation_game_name}" ><img src="{:get_cover($gl['icon'],'path')}"></a> <i><a href="{:U('Gift/gift_detail',array('gid'=>base64_encode($gl['gift_id'])))}" title="{$gl.relation_game_name}" >{$gl.relation_game_name}</a></i> <em>{$gl.giftbag_name}</em> <a class="lqlb" href="{:U('Gift/gift_detail',array('gid'=>base64_encode($gl['gift_id'])))}" >领取礼包</a> </li>
+              </volist>
+               <!--  <li> <a href="#" title="剑雨蜀山" target="_blank"><img src="__IMG__/game/logo(1).png"></a> <i><a href="#" title="剑雨蜀山" target="_blank">剑雨蜀山</a></i> <em>官网新手礼包</em> <a class="lqlb" href="#/" target="_blank">领取礼包</a> </li>
+                <li> <a href="#" title="剑雨仙域" target="_blank"><img src="__IMG__/game/logo(2).png"></a> <i><a href="#" title="剑雨仙域" target="_blank">剑雨仙域</a></i> <em>官网新手礼包</em> <a class="lqlb" href="#" target="_blank">领取礼包</a> </li>
+                <li> <a href="#" title="神泣之光" target="_blank"><img src="__IMG__/game/logo(3).png"></a> <i><a href="#" title="神泣之光" target="_blank">神泣之光</a></i> <em>官网新手礼包</em> <a class="lqlb" href="#" target="_blank">领取礼包</a> </li>
+                <li> <a href="#" title="苍穹绝仙" target="_blank"><img src="__IMG__/game/logo(4).png"></a> <i><a href="#" title="苍穹绝仙" target="_blank">苍穹绝仙</a></i> <em>官网新手礼包</em> <a class="lqlb" href="#" target="_blank">领取礼包</a> </li>
+                <li> <a href="#" title="仙剑五前传" target="_blank"><img src="__IMG__/game/logo(5).png"></a> <i><a href="#" title="仙剑五前传" target="_blank">仙剑五前传</a></i> <em>官网新手礼包</em> <a class="lqlb" href="#" target="_blank">领取礼包</a> </li> -->
+              </ul>
+            </div>
+            <p class="tits"><span>热门手游</span></p>
+            <div class="sideMenu">
+              <div class="pmtit"><em id="txtit">排名</em><i>游戏名称</i><i>下载数</i><i>题材</i></div>
+              <volist name="hot" id="new">
+                <h3 class="on"><em>{$new['rank']}</em><i>{$new.relation_game_name}</i><i>{$new.dow_num}</i><i>{$new.game_type_name}</i></h3>
+                <ul style="display: block;">
+
+                  <li><a href="{$new['and_dow_address']}" title="{$new.relation_game_name}"><img src="{:get_cover($new['icon'],'path')}"></a> <span><i></i><if condition="$new['and_id'] neq ''"><a href="{$new['and_dow_address']}" class="android" title="安卓下载">安卓下载</a></if><if condition="$new['ios_id'] neq ''"><a href="{$new['ios_dow_address']}" class="ios" title="IOS下载">IOS下载</a></if></span></li>
+                </ul>
+              </volist>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--中间--> 
+      <!--悬浮结束--> 
+      
+      <script type="text/javascript" src="__JS__/jquery-1.11.2.min.js"></script> 
+      <script type="text/javascript" src="__JS__/jquery.SuperSlide.2.1.1.js"></script> 
+      <script src="__STATIC__/layer/layer.js" type="text/javascript"></script>
+    <script src="__STATIC__/layer/extend/layer.ext.js" type="text/javascript"></script>
+    <script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+      <script type="text/javascript">
+// jQuery("#header_1_p").slide({ 
+// 	type:"menu",// 效果类型,针对菜单/导航而引入的参数(默认slide)
+// 	titCell:".nLi", //鼠标触发对象
+// 	targetCell:".sub", //titCell里面包含的要显示/消失的对象
+// 	effect:"slideDown", //targetCell下拉效果
+// 	delayTime:300 , //效果时间
+// 	triggerTime:0, //鼠标延迟触发时间(默认150)
+// 	returnDefault:true //鼠标移走后返回默认状态,例如默认频道是"预告片",鼠标移走后会返回"预告片"(默认false)
+// });
+
+//添加收藏夹
+function addBookmark(url,title){
+    url = url || window.location.href;;
+    title = title || document.title;
+    if (window.sidebar) {
+        window.sidebar.addPanel(title, url,"");
+    } else if( document.all ) {
+        window.external.AddFavorite( url, title);
+    } else {
+        alert('加入收藏失败，请使用 Ctrl+D 进行添加');
+        return true;
+    }
+}
+$(".collect").click(function(){addBookmark();})
+
+
+$(function(){
+    setTimeout(function(){
+        jQuery(".sideMenu").slide({
+            titCell:"h3", //鼠标触发对象
+            targetCell:"ul", //与titCell一一对应，第n个titCell控制第n个targetCell的显示隐藏
+            effect:"slideDown", //targetCell下拉效果
+            delayTime:200 , //效果时间
+            triggerTime:150, //鼠标延迟触发时间（默认150）
+            defaultPlay:true,//默认是否执行效果（默认true）
+            returnDefault:false //鼠标从.sideMen移走后返回默认状态（默认false）
+        });
+    },500);
+
+});
+$('.ios').click(function(){
+    var href = $(this).attr('href');
+    if(href == ''){
+      layer.msg('暂无安装包可供下载');
+      return false;
+    }
+});
+$('.android').click(function(){
+    var href = $(this).attr('href');
+    if(href == ''){
+      layer.msg('暂无安装包可供下载');
+      return false;
+    }
+});
+
+
+</script> 
+</block>

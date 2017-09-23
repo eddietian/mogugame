@@ -1,0 +1,94 @@
+<extend name="Public/subbases" />
+<block name="body" >
+<style>.ms-none{display:none;}</style>
+<div class="my-gift mt20">
+    <div class="lb-comtit">
+        <h2><span class="bor-icon"></span>我的礼包</h2>
+    </div>
+    <notempty name="lists">
+    <div class="alllb" id="ajaxContainer" currentpage="{$page}" title="gift" maxpage="{$total}">
+        <volist name="lists" id="vo">
+        <div class="mygiftbox clear">
+            <dl>
+                <dt><a href="{:U('Gift/detail?id='.$vo['gift_id'])}"><img src="{$vo.picurl}"></a></dt>
+                <dd>
+                    <h3><a href="{:U('Gift/detail?id='.$vo['gift_id'])}"><?php echo preg_replace('/(\(.+)/i','',$vo['game_name']);?>{$vo.gift_name}</a></h3>
+                    <p>领取时间 {$vo.datetime}</p>
+                </dd>
+            </dl>
+            <div class="mygiftnum">
+                <input type="text" value="激活码: {$vo.novice}">
+                <switch name="vo.status">
+                    <case value="1"><span>已使用</span></case>
+                    <case value="2"><span style="background:gray;">已过期</span></case>
+                    <default /><a href="javascript:void(0);" title="点击可以复制"  onclick="copy('{$vo.novice}')">马上激活</a>                
+                </switch>
+            </div>
+        </div>
+        </volist>    
+    </div>
+    <else />
+    <ul class="jqrdhg clear" style="display:block;">    
+        <li>暂无内容</li>
+    </ul>
+    </notempty>
+</div>
+<notempty name="lists">
+<section class="ztmorebox">
+    <div class="loading ztmore" id="loadingTip"><i class="loading-child"></i><span class="loading-text">正在加载，请等待……</span></div>
+    <div class="loading ms-none ztmore" id="errorTip">对不起，加载失败请<a href="{:U('rank?name='.I('name'))}" class="error">重 试</a>!</div>
+    <div class="loading ms-none ztmore" id="moreBtn"><a href="javascript:" class="link">点此查看更多</a></div>
+</section>
+<script src="__JS__/ajaxload.js"></script>
+<script>
+function copy(code){
+    try {
+        if (window.clipboardData.setData("Text", code)) {
+            alert("已复制到剪贴板");
+        } else {
+            var t = window.prompt("请按Ctrl+C快捷键进行复制!", code);
+        }
+    } catch (ex) {
+        var t = window.prompt("请按Ctrl+C快捷键进行复制!", code);
+    }
+}
+
+var ac = $('#ajaxContainer'),title=ac.attr('title');
+ajaxload('{:U("ajaxlists")}',{name:title},function(data) {
+    if (data.status == 1) {
+        ac.attr('currentpage',data.page);
+        var html = '';
+        for (var i in data.lists) {
+            var item = data.lists[i];
+            
+        html += '<div class="mygiftbox clear">';
+        html += '    <dl>';
+        html += '        <dt><a href="__MODULE__/Gift/detail/id/'+item['gift_id']+'"><img src="'+item['picurl']+'"></a></dt>';
+        html += '        <dd>';
+        html += '            <h3><a href="__MODULE__/Gift/detail/id/'+item['gift_id']+'">'+item['game_name']+item['gift_name']+'</a></h3>';
+        html += '            <p>领取时间 '+item['datetime']+'</p>';
+        html += '        </dd>';
+        html += '    </dl>';
+        html += '    <div class="mygiftnum">';
+        html += '        <input type="text" value="激活码: '+item['novice']+'">';
+            switch (parseInt(item['status'])) {
+                case 1: html += '<span>已使用</span>';break;
+                case 2: html += '<span style="background:gray;">已过期</span>';break;
+                default: html += '<a href="javascript:void(0);" title="点击可以复制"  onclick="copy(&#39;'+item['novice']+'&#39;)">马上激活</a> ';
+            }                    
+        html += '    </div>';
+        html += '</div>';
+        }
+        ac.append(html);
+        $('.loading').addClass('ms-none');
+        $('#moreBtn').removeClass('ms-none');loads=false;
+    } else {
+        $('.loading').addClass('ms-none');
+        $('#moreBtn').removeClass('ms-none').html('对不起，数据已经加载完');
+    }
+});
+
+
+</script>
+</notempty>
+</block>

@@ -1,0 +1,37 @@
+<div class="side1">
+    <div class="title"> <span>游戏排行</span>  </div>
+    <div class="game-ranklist">
+        
+        <volist name="list_rank" id="vo" >
+        <dl class="clearfix">
+            <dt> 
+    			<span class="ranknum num{$key+1}">{$key+1}</span> 
+    			<span class="rankpic"><a href="{:U('Game/game_detail?id='.$vo['sibling_id'].'')}">
+    				<img src="__ROOT__{$vo.icon|get_cover='path'}"></a></span> 
+    		</dt>
+            <dd>
+                <h3><a href="{:U('Game/game_detail?id='.$vo['sibling_id'].'')}">
+                        <?php echo preg_replace('/(\(.+)/i','',$vo['game_name']);?>
+                    </a></h3>
+                <div class="starwrap" >推荐：
+                    <div class="star">			
+                        <div class="star_num" style="width: {$vo.recommend_level}%;"></div>		
+                    </div>
+                </div>
+                <p class="rank-checkin">
+                    <if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq "" && $vo.ios_dow_address eq "" &&  $vo.ios_game_address eq "" '><a  class="down">暂无下载</a></if>
+                    <if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq ""'><else/>
+                        <a  href="<if condition='$vo.dow_status eq 0'>#<else/>{:U('Down/down_file?game_id='.$vo['and_id'].'&type=1')}</if>" class="down"> 安卓下载 </a>
+                    </if>
+                    <if condition='$vo.ios_dow_address eq "" && $vo.ios_game_address eq ""'><else/>
+                        <a  href="<if condition='$vo.dow_status eq 0'>#<else/>{:U('Down/down_file?game_id='.$vo['ios_id'].'&type=2')}</if>" class="down"> 苹果下载 </a>
+                    </if>
+                    
+                    <a href="{:U('Game/gift_list?game_id='.$vo['id'].'')}" class="gift">礼包</a>
+                </p>
+            </dd>
+        </dl>
+        </volist> 
+
+    </div>
+</div>

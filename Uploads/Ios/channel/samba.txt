@@ -1,0 +1,71 @@
+samba安装 
+http://blog.csdn.net/sinat_25306771/article/details/52753101
+
+http://sxct168.blog.51cto.com/824373/1669131
+
+
+重启smb服务
+
+samb还需要开放下面四个端口
+UDP 137
+UDP 138
+TCP 139
+TCP 445
+
+我们在iptable里配置一下策略
+[root@centos-web ~]# vi /etc/sysconfig/iptables
+
+#samb port
+-A RH-Firewall-1-INPUT -p udp -m udp --dport 137 -j ACCEPT
+-A RH-Firewall-1-INPUT -p udp -m udp --dport 138 -j ACCEPT
+-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 138 -j ACCEPT
+-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 139 -j ACCEPT
+
+[root@centos-web ~]#service iptables restart
+
+
+/etc/init.d/smb restart
+
+/etc/init.d/nmb restart
+
+访问
+smbclient //127.0.0.1/share
+
+指定用户名
+smbclient //121.41.21.221/share -U ioss
+
+
+
+共享一个目录，使用用户名和密码登录后才可以访问，要求可以读写；
+[global] 部分内容如下: 
+
+[global]
+workgroup = WORKGROUP
+security = user #share 不需要密码
+
+最后加入
+
+[share] 文件名
+
+comment = share all
+
+path = /tmp/samba   
+
+valid users=ioss
+
+available=yes
+
+browseable = yes   
+
+public = yes
+
+writable = yes
+
+
+创建系统账号：
+useradd user1
+添加user1/user2为samba账户：
+pdbedit -a user1        #需要输入用户密码2次
+
+
+

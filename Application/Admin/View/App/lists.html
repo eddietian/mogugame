@@ -1,0 +1,80 @@
+<extend name="Public/base"/>
+
+<block name="body">
+    <script src="__JS__/common.js"></script>
+    <!-- 标题栏 -->
+    <div class="main-place">
+        <span class="main-placetitle">位置：</span>
+        <ul class="main-placeul">
+            <li><a href="{:U('Config/group')}">站点</a></li>
+            <li><a href="{:U('Site/app')}">联运APP</a></li>
+            <li><a href="#">APP助手上传</a></li>
+        </ul>
+        <div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">APP助手上传</span>
+                    <span class="">用于上传相关app到服务器，便于用户下载</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+	<div class="cf top_nav_list">
+		<div class="fl button_list">
+		<empty name="model.extend">
+			<div class="tools">
+<!--                            <a class=" " href="{:U('add?model='.$model['id'])}"><span class="button_icon button_icon1"></span>新 增</a>
+                            <a class=" ajax-post confirm " target-form="ids" url="{:U('del?model='.$model['id'])}"><span class="button_icon button_icon2"></span>删 除</a>-->
+			</div>
+		</empty>
+		</div>
+		
+	</div>
+
+
+    <!-- 数据列表 -->
+    <div class="data_list">
+        <div class="">
+            <table>
+                <!-- 表头 -->
+                <thead>
+                    <tr>
+                        <th>
+                            <input class="check-all" type="checkbox">
+                        </th>
+                        <volist name="list_grids" id="field">
+                            <th>{$field.title}</th>
+                        </volist>
+                    </tr>
+                </thead>
+
+                <!-- 列表 -->
+                <tbody>
+                <empty name="list_data" >
+                <tr>
+                <td colspan="8" class="text-center"> aOh! 暂时还没有内容! </td>
+                </tr>
+                <else />
+                    <volist name="list_data" id="data">
+                        <tr>
+                            <td><input class="ids" type="checkbox" value="{$data['id']},{$data.file_type},{$data['game_id']}" name="ids[]"></td>
+                            <volist name="list_grids" id="grid">
+                                <td>{:get_list_field($data,$grid)}</td>
+                            </volist>
+                        </tr>
+                    </volist>
+                    </empty>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="page">
+        {$_page|default=''}
+    </div>
+    <script>
+        highlight_subnav('{:U('App/lists')}');
+    </script>
+</block>
+

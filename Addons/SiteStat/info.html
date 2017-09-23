@@ -1,0 +1,508 @@
+<link  href="__CSS__/index3.0.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="__JS__/jquery.e-calendar.js"></script>  
+<link rel="stylesheet" href="__CSS__/jquery.e-calendar.css"/>
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#calendar').eCalendar({
+        weekDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        textArrows: {previous: '<', next: '>'},
+        
+    });
+});
+</script>
+<div class="">
+<style>
+.fleft {float:left;}
+.fright {float:right;}
+.flbox {width:34%;position:relative;}
+.frbox {width:64%;position:relative;}
+.clearfix {clear:both;overflow:hidden;}
+.pd {padding: 15px;}
+.mt {margin-top:15px;}
+.show-num-mod {
+    margin: 25px 15px 0px 0px;
+}
+.columns-mod .bd{background-color:#fff;}
+
+.columns-mod .hd a.menu-opt-area{cursor:pointer;background:url(__IMG__/menu_opt.png) no-repeat; position:absolute; right:0px; top:0px; display:block; width:30px; height:30px;}
+.columns-mod .hd a.menu-opt-area:hover{ background-position:-30px 0px; text-decoration: none; border-bottom: 0px;}
+.shortcut li {width: 20%;
+    float: left;
+    text-align: center;
+    height: 120px;margin-top:5px;}
+.shortcut li a {display:block;padding-top:16px;color:#404040;}
+.shortcut li a:hover {border:none;color:#3EAFE1;}
+.shortcut li img {width:50px;height:50px;}
+.shortcut li font {    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;}
+
+.systemsinfo th,.systemsinfo td {font-size: 14px;
+    height: 40px;
+    line-height: 40px;}    
+.systemsinfo th{
+    text-align: left;    
+    padding-left: 3%;
+    width:30%;
+}
+.systemsinfo td {    
+    text-align: right;
+    width:60%;
+    padding-right: 3%;}
+.wait table {width:100%;text-align:center;}
+.wait td {line-height:32px;}
+.wait th {line-height:60px;}
+.wait a{color:#3EAFE1;text-decoration:underline;}
+.wait a:hover {cursor:pointer;}
+.wait td:first-child{width:20%;}
+.wait td:nth-child{width:60%;}
+.wait td:last-child{width:20%;}
+.personal{box-sizing:border-box;}
+.personalinfo i img{ margin-top:10px;}
+.personalinfo i{ display:block; width:80px; height:80px; background:#f1f5f7; border-radius:80px; text-align:center; vertical-align:middle; float:left;}
+.personal .personalinfo span{}
+.personalinfo{height: 85px;
+    margin-top: 25px;}
+.personal .personalinfo span:first-child{font-size:16px;}
+.personal .personalinfo span:last-child{font-size:16px;color:#3EAFE1;}
+.personal li {line-height:28px; font-size:14px; color:#222;}
+.personal  .per_l{ width:40%; padding:10px 0px 0px 5%;float:left;}
+.personal  .per_r{ width:50%; float:right; border-left: 1px dashed #ddd; height:255px;}
+.personal .per_wel  { background: #f1f5f7;
+    float: left;
+    padding: 3px 20px;
+    border-radius: 20px;
+    margin-top: 25px;
+    margin-left: 10px; }
+
+.datatit{    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px dashed #ddd;
+    width: 252px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top: 10px; }
+    
+.datatit img{    margin-top: 5px;
+    margin-right: 10px;
+    float: left;}
+.shortcutfram {border-radius:4px;}
+.layui-layer-setwin a {border:none;}
+.warntable{ width:100%;  }
+.warntable th, .warntable td{ height: 30px; line-height: 30px; text-align: center;  }
+.warntable td a{ color: #3EAFE1; }
+</style>
+
+<!--第一部分-->
+<div class="container-span top-columns cf overviewinfo">
+	<dl class="show-num-mod col_01">
+		<dt><i class="count-icon user-count-icon"></i></dt>
+		<dd>
+            <span>平台玩家        <div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">平台玩家</span>
+                    <span class="">汇总全平台的玩家数量</span>
+                </li>
+            </ul>
+        </div></span>
+            <strong>{$info.user|default=0}</strong>
+        </dd>
+        <ul style="clear:both;">
+        <li>昨日注册 <font> {$info.yesterday|default=0}</font></li>
+        <li class="last">今日注册<font> {$info.today|default=0}</font></li>
+        </ul>
+	</dl>
+    
+	<dl class="show-num-mod col_03">
+		<dt><i class="count-icon doc-count-icon"></i></dt>
+        <dd>
+            <span>七日活跃<div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">七日活跃用户</span>
+                    <span class="">七日内登录过平台的玩家数</span>
+                </li>
+            </ul>
+        </div></span>
+        <strong><if condition="$info.ulogin neq null">{$info.ulogin|default=0}<else/>0</if></strong>
+        </dd>
+        <ul style="clear:both;">
+        <li>昨日活跃  <font> <if condition="$info.tlogin eq ''">0<else/>{$info.tlogin}</if></font></li>
+        <li class="last">今日活跃<font> <if condition="$info.ylogin eq ''">0<else/>{$info.ylogin}</if></font></li>
+        </ul>
+	</dl>
+	<dl class="show-num-mod col_02">
+		<dt><i class="count-icon user-action-icon"></i></dt>
+		<dd>
+			<span>付费玩家<div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">付费玩家</span>
+                    <span class="">汇总全平台付费的玩家数量</span>
+                </li>
+            </ul>
+        </div></span>
+			<strong>{$info.afufei|default=0}</strong>
+		</dd>
+        <ul style="clear:both;">
+        <li>昨日人数<font> <if condition="$info.yfufei eq ''">0<else/>{$info.yfufei}</if></font></li>
+        <li class="last">今日人数 <font> <if condition="$info.tfufei eq ''">0<else/>{$info.tfufei}</if></font></li>
+        </ul>
+	</dl>
+	<dl class="show-num-mod col_04">
+		<dt><i class="count-icon wz-action-icon"></i></dt>
+		<dd>
+			<span>游戏充值<div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">游戏充值</span>
+                    <span class="">汇总游戏内的总充值（sdk里的现金支付,平台币支付，绑币支付）</span>
+                </li>
+            </ul>
+        </div></span>
+			<strong>{$info.asamount|default=0}</strong>
+		</dd>
+        <ul style="clear:both;">
+        <li>昨日充值 <font><if condition="$info.ysamount eq ''">0<else/>{$info.ysamount}</if></font></li>
+        <li class="last">今日充值 <font> <if condition="$info.tsamount eq ''">0<else/>{$info.tsamount}</if></font></li>
+        </ul>
+	</dl>
+    <dl class="show-num-mod col_05">
+		<dt><i class="count-icon category-count-icon"></i></dt>
+		<dd>
+            <span>平台游戏<div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">平台游戏</span>
+                    <span class="">汇总全平台的游戏数量</span>
+                </li>
+            </ul>
+        </div></span>
+            <strong>{$info.game|default=0}</strong>
+        </dd>
+        <ul style="clear:both;">
+        <li>昨日新增 <font> {$info.yadd|default=0}</font></li>
+        <li class="last">今日新增 <font> {$info.tadd|default=0}</font></li>
+        </ul>
+	</dl>
+    <dl class="show-num-mod col_06">
+		<dt><i class="count-icon wz-action-icon"></i></dt>
+		<dd>
+			<span>合作渠道<div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">合作渠道</span>
+                    <span class="">汇总全平台的合作渠道数量</span>
+                </li>
+            </ul>
+        </div></span>
+			<strong>{$info.promote|default=0}</strong>
+		</dd>
+        <ul style="clear:both;">
+        <li >昨日新增  <font><if condition="$info.ypadd eq ''">0<else/>{$info.ypadd}</if></font></li>
+        <li class="last">今日新增 <font> <if condition="$info.tpadd eq ''">0<else/>{$info.tpadd}</if></font></li>
+        </ul>
+	</dl>
+</div>
+<!--第一部分结束-->
+<!--第二部分-->
+<div class="clearfix">
+    <div class="fleft flbox">
+        <div class="columns-mod">
+            <div class="hd cf blockinfo">
+                <h5>个人信息<div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">个人信息</span>
+                    <span class="">显示当前登录的管理员相关信息</span>
+                </li>
+            </ul>
+        </div></h5>
+                <div class="title-opt">
+                </div>
+            </div>
+
+               <div class="bd personal">
+            <div class="per_l">
+                <div class="personalinfo">
+                    <i><img src="__IMG__/per.png"></i>
+                    <div class="per_wel"><span>您好</span>,<span>{$data.nickname}</span></div>
+                </div>
+                <ul>
+                    <li>当前角色：{$data.group}</li>
+                    <li>上次登录时间：{:date('Y-m-d H:i:s',$data['last_login_time'])}</li>
+                    <li>上次登录IP：{:long2ip($data['last_login_ip'])}</li>
+                    <li>累计登录次数：{$data.login}次</li>
+                </ul>
+                </div>
+                
+                
+                <!--日历-->
+                <div class="per_r">
+                
+                <h3 class="datatit"><i><img src="__IMG__/dataicon.png"></i>日历</h3>
+                <div id="calendar"></div>
+             
+                </div>
+                
+                <!--日历结束-->
+            </div>
+
+
+            <!-- <div class="bd personal">
+                <div class="personalinfo">
+                    <i></i>
+                    <div><span>您好</span>,<span>{$data.nickname}</span>，欢迎使用溪谷软件管理系统</div>
+                </div>
+                <ul>
+                    <li>当前角色：{$data.group}</li>
+                    <li>上次登录时间：{:date('Y-m-d H:i:s',$data['last_login_time'])}</li>
+                    <li>上次登录IP：{:long2ip($data['last_login_ip'])}</li>
+                    <li>累计登录次数：{$data.login}次</li>
+                </ul>
+            </div> -->
+        </div>
+    </div>
+    <div class="fright frbox">
+        <div class="columns-mod">
+            <div class="hd cf blockinfo">
+                <h5>快捷功能<div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">快捷功能</span>
+                    <span class="">用于快捷功能操作入口（系统默认20个功能，可自由设置10个作首页显示）</span>
+                </li>
+            </ul>
+        </div></h5>
+                <div class="title-opt">
+                </div>
+                <a title="设置快捷图标" class="menu-opt-area jkuaijie"></a>
+            </div>
+            <div class="bd shortcut">
+                <ul>
+                    <volist name=":get_kuaijie(1)" id="my">
+                        <li><a href="{:U($my['url'])}"><img src="{:get_cover($my['value'],'path')}" /><font>{$my.title}</font></a></li>
+                    </volist>
+                </ul>
+            </div>
+        </div>
+        <script src="__STATIC__/layer/layer.js" type="text/javascript"></script>
+        <script>
+        $('.jkuaijie').click(function(){
+            url="{:U('kuaijie')}";
+            var index = layer.open({
+                type: 2,
+                title: false,
+                closeBtn: 0, //不显示关闭按钮
+                shade: [0],
+                area: ['1px', '1px'],
+                offset: 'rb', //右下角弹出
+                time: 1, // 秒后自动关闭   这里设置成1ms 不显示过度页面
+                anim: 2,
+                content: ['', 'no'], //iframe的url，no代表不显示滚动条
+                end: function () { //
+                    layer.open({
+                        type: 2,
+                        skin:'shortcutfram',
+                        title: false,
+                        shadeClose: true,
+                        id:'shortcutfram',
+                        offset:'260px',
+                        shade: 0.1,
+                        maxmin: false, //开启最大化最小化按钮
+                        area:'1240px',
+                        content: [url,'no']//iframe的url
+                    });
+                }
+            });
+            
+        });
+        </script> 
+    </div>
+</div>
+<!--第二部分结束-->
+
+
+<!--第三部分-->
+<div class="clearfix mt">
+    <div class="fleft flbox">
+        <div class="columns-mod">
+            <div class="hd cf blockinfo">
+                <h5>提示事项<div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">提示事项</span>
+                    <span class="">提示当前系统需要操作的事项（此处显示内容为非必须操作事项）</span>
+                </li>
+            </ul>
+        </div></h5>
+                <div class="title-opt">
+                </div>
+            </div>
+            <div class="bd " style="height:300px;">         
+            <table cellpadding="1" cellspacing="1" class="warntable" >
+            <thead><tr><th>提示板块</th><th>提示内容</th></tr></thead>
+            <tbody class="athover">
+            <volist name="tishi[gac]" id="gac">
+            <tr><td>【原包管理】</td><td><a href="{:U('GameSource/lists')}" target="_blank"><span>【{$gac.game_name}】游戏原包尚未上传</span></a></td></tr>
+            </volist>
+            <volist name="tishi[prolc]" id="prolc">
+            <tr><td>【代充额度】</td><td><a href="{:U('Promote/pay_limit')}" target="_blank"><span>【{$prolc.account}】代充额度不足</span></a></td></tr>
+            </volist>
+            <volist name="tishi[rebc]" id="rebc">
+            <tr><td>【返利设置】</td><td><a href="{:U('Rebate/lists')}" target="_blank"><span>【{$rebc.game_name}】充值返利已到期</span></a></td></tr>
+            </volist>
+            <volist name="tishi[giftc]" id="giftc">
+            <tr><td>【礼包列表】</td><td><a href="{:U('Giftbag/lists')}" target="_blank"><span>【{$giftc.game_name}】{$giftc.giftbag_name}数量不足</span></a></td></tr>
+            </volist>
+            <volist name="tishi[pgiftc]" id="pgiftc">
+            <tr><td>【渠道礼包】</td><td><a href="{:U('PromoteGift/lists')}" target="_blank"><span>【{$pgiftc.game_name}】{$pgiftc.giftbag_name}数量不足</span></a></td></tr>
+            </volist>
+            </tbody>
+            </table>  
+            </div>
+        </div>
+    </div>
+    <div class="fright frbox">
+        <div class="columns-mod">
+            <div class="hd cf blockinfo">
+                <h5>待办事项<div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">代办事项</span>
+                    <span class="">显示当前系统待办事项（此时待办内容为必须操作事项）</span>
+                </li>
+            </ul>
+        </div></h5>
+                <div class="title-opt">
+                </div>
+            </div>
+            <div class="bd wait" style="height:300px;">
+                <table cellpadding="1" cellspacing="1" style="text-align: center;">
+<thead><tr><th>代办路径</th><th>代办内容</th><th>代办数量</th></tr></thead>
+<tbody class='athover'>
+<tr><td>【渠道管理】</td><td>渠道申请待审核数</td><td ><a href="{:U('Promote/lists')}"><span>{$daiban.pcount}</span></a></td></tr>
+<tr><td>【安卓分包】</td><td>渠道分包待打包数</td><td ><a href="{:U('Apply/and_lists')}"><span>{$daiban.appc}</span></a></td></tr>
+<tr><td>【渠道提现】</td><td>渠道提现待审核数</td><td ><a href="{:U('Query/withdraw')}"><span>{$daiban.withc}</span></a></td></tr>
+<tr><td>【游戏充值】</td><td>游戏充值待补单数</td><td ><a href="{:U('Spend/lists')}"><span>{$daiban.spenc}</span></a></td></tr>
+<tr><td>【APP分包】</td><td>APP分包待打包数</td><td ><a href="{:U('Apply/app_lists')}"><span>{$daiban.applyapp}</span></a></td></tr>
+<tr><td>【站内通知】</td><td>渠道包待更新数</td><td ><a href="{:U('Msg/lists')}"><span>{$daiban.msgc}</span></a></td></tr>
+</tbody>
+</table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--第三部分结束-->
+
+
+
+<!--第四部分-->
+<div class="clearfix mt">
+    <div class="fleft flbox">
+        <div class="columns-mod">
+            <div class="hd cf blockinfo">
+                <h5>系统信息<div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">系统信息</span>
+                    <span class="">显示当前版本以及相关信息</span>
+                </li>
+            </ul>
+        </div></h5>
+                <div class="title-opt">
+                </div>
+            </div>
+            <div class="bd systemsinfo" style="height:328px;">
+                <table style="width: 100%">
+<tbody>
+<tr><th>系统名称</th> <td>溪谷软件游戏管理系统</td></tr>
+<tr><th>系统版本号</th> <td>v3.0.1.25</td></tr>
+<tr><th>操作系统</th> <td>{$Think.const.PHP_OS}</td></tr>
+<tr><th>运行环境</th> <td>{$_SERVER['SERVER_SOFTWARE']}</td></tr>
+<tr><th>MYSQL版本</th> 
+    <php>
+        $system_info_mysql = M()->query("select version() as v;");
+    </php>
+<td>{$system_info_mysql.0.v}</td></tr>
+<tr><th>上传限制</th> <td>{:ini_get('upload_max_filesize')}</td></tr>
+<tr><th>更新时间</th> <td>2017年01月25日</td></tr>
+<tr><th>开发公司</th> <td>徐州梦创信息科技有限公司</td></tr>
+</tbody>
+</table>
+            </div>
+        </div>
+    </div>
+    <div class="fright frbox">
+        <div class="columns-mod">
+            <div class="hd cf blockinfo">
+                <h5>七天数据统计<div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">七天数据统计</span>
+                    <span class="">显示当前系统七天内玩家注册数和充值流水数（可点击自由开启关闭）</span>
+                </li>
+            </ul>
+        </div></h5>
+                <div class="title-opt">
+                </div>
+            </div>
+                <div class="" style="height:328px;width:100%;">
+                    <div id="z_chart" style="height:100%;position:relative"><div id="chart" style="height:100%;"></div></div>
+                </div>
+                <script type="text/javascript">
+                    var min = '{$ii.min}';
+                    var data=[{$ii.data}];
+                    var max = '{$ii.mix}';
+                    var cate = [{$ii.day}];
+
+
+                    var min1 = '{$user_ii.min}';
+                    var data1 = [{$user_ii.data}];
+                    var max1 = '{$user_ii.mix}';
+                    var cate1 =[{$user_ii.day}];
+                    var mix_t='{$mix_tu}'
+                    jQuery(function(){jQuery("#chart").kendoChart({
+                        legend:{"position":"top","labels":{"font":"12px  DejaVu Sans"}},
+                        series:[{"type":"line","data":data,"name":"七天流水（单位：元）","color":"#f8a20f","axis":"temp"},{"type":"line","data":data1,"name":"七天注册（单位：个）","color":"green","axis":"temp"}],
+                        valueAxes:[{"name":"temp","min":min,"max":mix_t}],
+                        categoryAxis:[{"categories":cate,"axisCrossingValue":[0,2],"justified":true,"line":{"visible":false},"majorGridLines":{"visible":false}}],
+                        tooltip:{"visible":true,"format":"{0}","shared":true}
+                    });});
+                </script>
+           
+        </div>
+    </div>
+</div>
+<!--第四部分结束-->
+
+<div class="clear"></div>
+</div>
+</block>

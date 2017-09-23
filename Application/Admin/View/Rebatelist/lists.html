@@ -1,0 +1,157 @@
+<extend name="Public/base"/>
+
+<block name="body">
+<link rel="stylesheet" href="__CSS__/select2.min.css" type="text/css" />
+<script type="text/javascript" src="__JS__/bootstrap.min.js"></script>
+<script type="text/javascript" src="__JS__/select2.min.js"></script>
+    <!-- 标题栏 -->
+    <div class="main-place">
+        <span class="main-placetitle">位置：</span>
+        <ul class="main-placeul">
+            <li><a href="{:U('Spend/lists')}">充值</a></li>
+            <li><a href="{:U('Rebate/lists')}">充值返利</a></li>
+            <li><a href="#">返利列表</a></li>
+        </ul>
+        <div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">返利列表</span>
+                    <span class="">所有玩家账号通过游戏充值获得返利绑定平台币的记录</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+	<div class="cf top_nav_list">
+		<!-- <div class="fl button_list">
+		<empty name="model.extend">
+			<div class="tools">
+				<button class="btn ajax-post confirm red" target-form="ids" url="{:U('del?model='.$model['id'])}">删 除</button>
+			</div>
+		</empty>
+		</div> -->
+		<!-- 高级搜索 -->
+
+		<div class="jssearch fr cf search_list" style="margin-bottom:-15px;">
+            <div class="input-list">
+                <label>玩家账号：</label>
+                <input type="text" name="{$model['search_key']|default='user_account'}" class="" value="{:I('user_account')}">
+            </div>
+            <div class="input-list input-list-game search_label_rehab">
+                <label>游戏名称：</label>
+                <select id="game_id" name="game_id" class="select_gallery" >
+                    <option value="">请选择游戏</option>
+                    <volist name=":get_game_list()" id="vo">
+                        <option game-id="{$vo.id}" value="{$vo.id}">{$vo.game_name}</option>
+                    </volist>
+                </select>
+            </div>
+                <div class="input-list">
+                <a class="sch-btn" href="javascript:;" id="search" url="{:U('rebatelist/lists','model='.$model['name'],false)}">搜索</a>
+            </div>
+            <div class="input-list">
+                <a class="sch-btn" href="{:U('Export/expUser',array_merge(array('id'=>14,),I('get.')))}">导出</a>
+            </div>
+		</div>
+	</div>
+
+
+    <!-- 数据列表 -->
+    <div class="data_list">
+        <div class="">
+            <table>
+                <!-- 表头 -->
+                <thead>
+                    <tr>
+                        <th>订单号</th>
+                        <th>返利时间</th>
+                        <th>玩家账号</th>
+                        <th>游戏名称</th>
+                        <th>充值金额</th>
+                        <th>返利比例</th>
+                        <th>返利绑币</th>
+                    </tr>
+                </thead>
+                <!-- 列表 -->
+                <tbody>
+                    <volist name="list_data" id="data">
+                        <tr>
+                            <td>{$data.pay_order_number}</td>
+                            <td>{:set_show_time($data['create_time'])}</td>
+                            <td>{:get_user_account($data['user_id'])}</td>
+                            <td>{$data['game_name']}</td>
+                            <td>{$data['pay_amount']}</td>
+                            <td>{:ratio_stytl($data['ratio'])}</td>
+                            <td>{$data.ratio_amount}</td>
+                        </tr>
+                    </volist>
+                    <tr class="data_summary">
+                        <td>汇总</td>
+                        <td colspan="6">当页充值/返利：{:null_to_0(array_sum(array_column($list_data,'pay_amount')))}元/{:null_to_0(array_sum(array_column($list_data,'ratio_amount')))}绑币 ； 今日充值/返利：{:null_to_0($ttotal['pay_amount'])}元/{:null_to_0($ttotal['ratio_amount'])}绑币 ； 昨日充值/返利：{:null_to_0($ytotal['pay_amount'])}元/{:null_to_0($ytotal['ratio_amount'])}绑币 ； 累计充值/返利：{:null_to_0($total['pay_amount'])}元/{:null_to_0($total['ratio_amount'])}绑币</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="page">
+        {$_page|default=''}
+    </div>
+</block>
+
+<block name="script">
+<script src="__STATIC__/layer/layer.js"></script>
+<script>
+<volist name=":I('get.')" id="vo">
+    Think.setValue('{$key}',"{$vo}");
+</volist>
+$(".select_gallery").select2();
+</script>
+<script type="text/javascript">
+//导航高亮
+highlight_subnav('{:U('Rebatelist/lists')}');
+$(function(){
+	//搜索功能
+	$("#search").click(function(){
+		var url = $(this).attr('url');
+        var query  = $('.jssearch').find('input').serialize();
+        query  += "&"+$('.jssearch').find('select').serialize();
+        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
+        query = query.replace(/^&/g,'');
+        if( url.indexOf('?')>0 ){
+            url += '&' + query;
+        }else{
+            url += '?' + query;
+        }
+		window.location.href = url;
+	});
+
+    //回车自动提交
+    $('.jssearch').find('input').keyup(function(event){
+        if(event.keyCode===13){
+            $("#search").click();
+        }
+    });
+
+    //点击排序
+    $('.list_sort').click(function(){
+        var url = $(this).attr('url');
+        var ids = $('.ids:checked');
+        var param = '';
+        if(ids.length > 0){
+            var str = new Array();
+            ids.each(function(){
+                str.push($(this).val());
+            });
+            param = str.join(',');
+        }
+
+        if(url != undefined && url != ''){
+            
+            window.location.href = url.replace(".html","") + '/ids/' + param;
+        }
+    });
+
+})
+</script>
+</block>

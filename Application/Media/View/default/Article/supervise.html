@@ -1,0 +1,114 @@
+<extend name="Public/base3" />
+<block name="body" >
+<link rel="stylesheet" type="text/css" href="__CSS__/news.css">
+    <!-- <script id="jsID" type="text/javascript">
+        jQuery("#header_1_p").slide({
+            type:"menu",// 效果类型，针对菜单/导航而引入的参数（默认slide）
+            titCell:".nLi", //鼠标触发对象
+            targetCell:".sub", //titCell里面包含的要显示/消失的对象
+            effect:"slideDown", //targetCell下拉效果
+            delayTime:300 , //效果时间
+            triggerTime:0, //鼠标延迟触发时间（默认150）
+            returnDefault:true //鼠标移走后返回默认状态，例如默认频道是“预告片”，鼠标移走后会返回“预告片”（默认false）
+        });
+    </script> -->
+      <!----中间---->
+      <div class="g-main">
+        <div class="news_list" style="margin-left: 17%;">
+          <div class="left_news">
+            <div class="text">
+                <div class="text_top">
+                    <h3>{$docu.title}</h3>
+                    <p>发布时间：{:date('Y-m-d',$docu['update_time'])}</p>
+                </div>
+                <!-- 文章内容 -->
+                {$article}
+                <!-- 文章内容 -->
+                <div class="article_next">
+
+                <if condition="$data neq ''">
+                    <ul class="prev_next">
+                      <li><if condition="$data['datatype'] eq 1">下一篇：<else/>上一篇：</if><a href="{:U('Article/detail',array('id'=>$data['id']))}">{$data.title}</a></li>
+                    </ul>
+                </if>
+                </div>
+
+   
+
+            </div>
+        </div>
+          
+          <!----右侧---->
+<!--           <div class="right_news">
+            <p class="tits"><span>礼包中心</span></p>
+            <div class="bag">
+              <div class="bag_img"><volist name="carousel" id="carousel"><a href="{$carousel.url}" title="{$carousel.title}"><img src="{:get_cover($carousel['data'],'path')}"></a></volist></div>
+              <ul class="bag_ul">
+              <volist name="gift_like" id="gl">
+                <li> <a href="{:U('Gift/gift_detail',array('gid'=>base64_encode($gl['gift_id'])))}" title="{$gl.relation_game_name}" ><img src="{:get_cover($gl['icon'],'path')}"></a> <i><a href="{:U('Gift/gift_detail',array('gid'=>base64_encode($gl['gift_id'])))}" title="{$gl.relation_game_name}" >{$gl.relation_game_name}</a></i> <em>{$gl.giftbag_name}</em> <a class="lqlb" href="{:U('Gift/gift_detail',array('gid'=>base64_encode($gl['gift_id'])))}" >领取礼包</a> </li>
+              </volist>
+                <li> <a href="#" title="剑雨蜀山" target="_blank"><img src="__IMG__/game/logo(1).png"></a> <i><a href="#" title="剑雨蜀山" target="_blank">剑雨蜀山</a></i> <em>官网新手礼包</em> <a class="lqlb" href="#/" target="_blank">领取礼包</a> </li>
+                <li> <a href="#" title="剑雨仙域" target="_blank"><img src="__IMG__/game/logo(2).png"></a> <i><a href="#" title="剑雨仙域" target="_blank">剑雨仙域</a></i> <em>官网新手礼包</em> <a class="lqlb" href="#" target="_blank">领取礼包</a> </li>
+                <li> <a href="#" title="神泣之光" target="_blank"><img src="__IMG__/game/logo(3).png"></a> <i><a href="#" title="神泣之光" target="_blank">神泣之光</a></i> <em>官网新手礼包</em> <a class="lqlb" href="#" target="_blank">领取礼包</a> </li>
+                <li> <a href="#" title="苍穹绝仙" target="_blank"><img src="__IMG__/game/logo(4).png"></a> <i><a href="#" title="苍穹绝仙" target="_blank">苍穹绝仙</a></i> <em>官网新手礼包</em> <a class="lqlb" href="#" target="_blank">领取礼包</a> </li>
+                <li> <a href="#" title="仙剑五前传" target="_blank"><img src="__IMG__/game/logo(5).png"></a> <i><a href="#" title="仙剑五前传" target="_blank">仙剑五前传</a></i> <em>官网新手礼包</em> <a class="lqlb" href="#" target="_blank">领取礼包</a> </li>
+              </ul>
+            </div>
+            <p class="tits"><span>热门手游</span></p>
+            <div class="sideMenu">
+              <div class="pmtit"><em id="txtit">排名</em><i>游戏名称</i><i>下载数</i><i>题材</i></div>
+              <volist name="new" id="new">
+                <h3 class="on"><em>{$new['rand']}</em><i>{$new.relation_game_name}</i><i>{$new.dow_num}</i><i>{$new.game_type_name}</i></h3>
+                <ul style="display: block;">
+                  <li><a href="#" title="{$new.relation_game_name}"><img src="{:get_cover($new['icon'],'path')}"></a> <span><i></i><if condition="$new.and_id neq ''"><a href="#" class="android" title="安卓下载">安卓下载</a></if><if condition="$new.ios_id neq ''"><a href="#" class="ios" title="IOS下载">IOS下载</a></if></span></li>
+                </ul>
+              </volist>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <!----中间----> 
+      <script type="text/javascript" src="__JS__/jquery-1.11.2.min.js"></script> 
+      <script type="text/javascript" src="__JS__/jquery.SuperSlide.2.1.1.js"></script> 
+      <script type="text/javascript">
+// jQuery("#header_1_p").slide({ 
+//  type:"menu",// 效果类型,针对菜单/导航而引入的参数(默认slide)
+//  titCell:".nLi", //鼠标触发对象
+//  targetCell:".sub", //titCell里面包含的要显示/消失的对象
+//  effect:"slideDown", //targetCell下拉效果
+//  delayTime:300 , //效果时间
+//  triggerTime:0, //鼠标延迟触发时间(默认150)
+//  returnDefault:true //鼠标移走后返回默认状态,例如默认频道是"预告片",鼠标移走后会返回"预告片"(默认false)
+// });
+
+//添加收藏夹
+function addBookmark(url,title){
+    url = url || window.location.href;;
+    title = title || document.title;
+    if (window.sidebar) {
+        window.sidebar.addPanel(title, url,"");
+    } else if( document.all ) {
+        window.external.AddFavorite( url, title);
+    } else {
+        alert('加入收藏失败，请使用 Ctrl+D 进行添加');
+        return true;
+    }
+}
+$(".collect").click(function(){addBookmark();})
+$(function(){
+    setTimeout(function(){
+        jQuery(".sideMenu").slide({
+            titCell:"h3", //鼠标触发对象
+            targetCell:"ul", //与titCell一一对应，第n个titCell控制第n个targetCell的显示隐藏
+            effect:"slideDown", //targetCell下拉效果
+            delayTime:200 , //效果时间
+            triggerTime:150, //鼠标延迟触发时间（默认150）
+            defaultPlay:true,//默认是否执行效果（默认true）
+            returnDefault:false //鼠标从.sideMen移走后返回默认状态（默认false）
+        });
+    },500);
+
+});
+
+</script> 
+</block>

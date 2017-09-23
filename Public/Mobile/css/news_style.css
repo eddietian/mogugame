@@ -1,0 +1,44 @@
+.newCent{padding:10px;}
+.newCent p{color:red;text-align:center;font-size:1pc;line-height:30px;}
+.mvideo-list li{position:relative;padding:10px 15px;border-bottom:1px solid #eee;}
+.mvideo-list li:before{position:absolute;top:36px;right:15px;display:block;width:6px;height:9px;background-image:url(http://m.fpwap.com/public/images/bg_sprite.png);background-position:0 -140px;background-size:150px auto;content:"";}
+.mvideo-list .fahao-list li a{display:-webkit-box;}
+.mvideo-list li:after{clear:both;display:block;visibility:hidden;height:0;content:"clear";}
+.mvideo-list .pic{float:left;width:85px;}
+.mvideo-list .info{display:table;table-layout:fixed;white-space:pre-wrap;word-wrap:break-word;}
+.mvideo-list .info p{overflow:hidden;color:#666;text-overflow:ellipsis;white-space:nowrap;font-size:9pt;}
+.mvideo-list a{color:#333;}
+.video-nav{background:#fff;}
+.video-nav ul{height:50px;border-bottom:1px solid #ebebeb;}
+.video-nav ul li{float:left;display:inline-block;width:25%;height:40px;text-align:center;font-size:1pc;line-height:50px;}
+.video-nav ul .hover{margin-top:1px;height:3pc;border-bottom:3px solid #f60;}
+.mvide-box{clear:both;display:none;overflow:hidden;background:#fff;}
+.m-pclist{position:relative;padding:0 10px;border-bottom:1px solid #eee;}
+.m-pclist .m-wrap{display:-webkit-box;-webkit-box-sizing:border-box;padding:10px 55px 10px 0;-webkit-box-pack:justify;}
+.m-pclist .btn{position:absolute;top:50%;right:10px;display:block;margin-top:-37px;width:45px;height:75px;color:#f60;text-align:center;font-size:30px;line-height:75px;}
+.m-pclist .btn font{color:#333;font-size:14px;}
+.m-pclist .icon-wrap{position:relative;display:block;margin-right:10px;-webkit-box-flex:0;}
+.m-pclist .content{line-height:24px;-webkit-box-flex:1;}
+.newsTit{margin:0 7px;padding:10px 0 0;}
+.newsTit li{float:left;-webkit-box-sizing:border-box;padding:6px 0;width:50%;border:1px solid #eaeaea;border-top:2px solid #eaeaea;color:#333;text-align:center;font-size:1pc;-webkit-box-pack:center;}
+.newsTit .cur{border:none;border-top:2px solid #ff784f;background-size:9pt;color:#ff784f;font-weight:700;background-position-y:-3px;}
+.newsTitBox{position:relative;display:none;padding:0 15px 10px;}
+.newsTitBox a{color:#333;text-decoration:none;font-size:14px;}
+.btn{border:none;background:0 0;}
+.swiper-wrapper{position:relative;box-sizing:content-box;width:100%;-webkit-transition-timing-function:ease-out;transition-timing-function:ease-out;-webkit-transition-duration:0s;transition-duration:0s;-webkit-transition-property:-webkit-transform,left,top;transition-property:transform,left,top;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);}
+.ui-tab-free .swiper-container{overflow:hidden;margin-bottom:-1px;height:40px;background-color:#eee;}
+.ui-tab-free .ui-tab-nav li{display:inline-block;padding:0 10px;height:40px;text-align:center;}
+.swiper-slide{float:left;margin:0 1%;margin-bottom:10px;padding:5px 0;width:23%;background-color:#f5f5f5;text-align:center;}
+.ui-tab-free .ui-tab-nav li a{position:relative;display:inline-block;color:#383838;white-space:nowrap;font:14px/40px 'Microsoft YaHei',sans-serif;}
+.ui-tab-nav a{display:inline-block;cursor:pointer;}
+.overflow{overflow:hidden;margin-top:10px;}
+.header-sub .logo .game-icon{margin:9pt 0;width:auto;height:20px;border-radius:0;}
+.main-header .header-content .inner{display:block;overflow:hidden;-webkit-box-sizing:border-box;margin:0 auto;width:55%;text-overflow:ellipsis;white-space:nowrap;-webkit-box-flex:0;}
+.mmaskbox2{z-index:1;}
+.module-header{border-top:2px solid #ff7950;}
+.prefix{border:1px solid #ff784f;background:0 0;color:#ff784f;}
+.module-topic-list li:nth-child(2) .prefix{border:1px solid #1ac269;background:0 0;color:#1ac269;}
+.module-topic-list li:nth-child(3) .prefix{border:1px solid #868cd8;background:0 0;color:#868cd8;}
+.module-topic-list li:nth-child(4) .prefix{border:1px solid #ffae00;background:0 0;color:#ffae00;}
+.module-topic-list li:nth-child(5) .prefix{border:1px solid #2bbdc4;background:0 0;color:#2bbdc4;}
+.module-topic-list .content .title{max-height:45px;line-height:25px;}

@@ -1,0 +1,94 @@
+<extend name="Public/base" />
+<block name="body" >
+<script src="__STATIC__/layer/layer.js" type="text/javascript"></script>
+  <div class="g-container">
+    <div class="g-main">
+      <include file="Public/user_head" />
+
+      <div class="user-bd laybox fix">
+       <include file="Public/user_base" />
+
+        <div class="user-section-wrap fl" id="user-section-wrap">
+          <div class="us2-mibao">
+            <form class="form1" action="{:U('resetpwd')}" method="post">
+              <div class="section-tit">修改密码</div>
+              <div class="w-item">
+                <label for="" class="w-label">用户名：</label>
+                <div class="w-div"><if condition="session('member_auth.nickname') eq 'Uc用户'">{:session('member_auth.account')}<else/>{$user.account}</if></div>
+              </div>
+              <div class="w-item">
+                <label for="" class="w-label">原密码：</label>
+                <input name="password_old" class="w-input" type="password" value="">
+              </div>
+              <div class="w-item">
+                <label for="" class="w-label">新密码：</label>
+                <input name="password" class="w-input" type="password">
+              </div>
+              <div class="w-item">
+                <label for="" class="w-label">确认新密码：</label>
+                <input name="password1" class="w-input" type="password">
+              </div>
+              <div class="w-item">
+                <label for="" class="w-label"></label>
+                <input type="button" class="g-btn fsumit" value="修 改">
+              </div>
+              <div class="utips">
+                <h4>友情提示</h4>
+                <ul>
+                  <li>修改游戏密码，是指根据原密码由您自定义新密码。</li>
+                  <li>混合使用数字、大小字母的密码能使您的账号更安全。</li>
+                  <li>当您疑似账号异常时，请换一台电脑重新修改游戏密码。</li>
+                </ul>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+  $(".fsumit").click(function(){
+    $opwd=$("input[name='password_old']").val();
+    $pwd=$("input[name='password']").val();
+    $pwd1=$("input[name='password1']").val();
+    if ($opwd == ''){
+      layer.msg('原密码不能为空',function(){});
+      return false;
+    }
+    if ($pwd == ''){
+      layer.msg('新密码不能为空',function(){});
+      return false;
+    }
+    if ($pwd1 == ''){
+      layer.msg('请填写确认密码',function(){});
+      return false;
+    }
+    if ($pwd.length <6 || $pwd.length >30 ) {
+      layer.msg('密码由6-30位字母、数字或下划线组成',function(){});
+      return false;
+    }
+    if (!(/^[a-zA-z0-9_]{6,30}$/.test($pwd))) {
+      layer.msg('密码由6-30位字母、数字或下划线组成',function(){});
+      return false;
+    }
+    if ($pwd !== $pwd1){
+      layer.msg('两次密码不一致，请重新输入',function(){});
+      return false;
+    }
+    data=$(".form1").serialize();
+    $.ajax({
+        type: 'POST',
+        url: "{:U('resetpwd')}" ,
+        data:data,
+        success:function(data){
+          if(data.status){
+            layer.msg(data.msg,{icon:1});
+          }else{
+            layer.msg(data.msg,{icon:2});
+          }
+        }
+    });
+  });
+  </script>
+</block>

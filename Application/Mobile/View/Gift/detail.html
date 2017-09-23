@@ -1,0 +1,94 @@
+<extend name="Public/bases"/>
+
+<block name="body" >
+<style>.header-sub .logo .game-icon{height: 30px;width: auto;border-radius: 0;margin: 6px 0;}</style>
+<section>
+    <div class="mod-con pdb10">
+        <div class="mtopnav">
+            <a href="{:U('index')}">礼包中心</a>
+            <a href="{:U('lists?id='.$data['game_id'])}"><?php echo preg_replace('/(\(.+)/i','',$data['game_name']);?>礼包</a>                   
+        </div>
+        <article class="gift-code-box pd0">
+            <div class="gift-card">
+                <img src="{$data.icon|get_cover='path'}" alt="{$data.game_name}" class="img60">
+                <div class="box-flex">
+                    <h3 class="gift-card-title"><?php echo preg_replace('/(\(.+)/i','',$data['game_name']);?>{$data.giftbag_name}</h3>
+                    <p class="giftc-info">已有<em> {$data.number} </em>人领取，剩余<em> {$data.novicepercent} % </em></p>
+                </div>
+            </div>
+            <div class="giftc-copy-box">
+                <div class="code-box" style="display: block;" id="js-code-box">                  
+                    <a class="lbbtn-give" id="getgift" href="javascript:;">领 取</a>
+                </div>
+                <div id="getgiftnotice"></div>
+            </div>
+        </article>
+        <p class="take-time">有效期间：<span class="c-orange">{$data.start_time|date='Y-m-d H:i',###} 至 {$data.end_time|date='Y-m-d H:i',###}</span></p>
+        <p class="take-time">领取资格：<span class="c-orange">注册会员均可参与</span></p>
+        <p></p>
+    </div>        
+    <section class="pd10 newlbbox">
+        <h3>礼包内容</h3>
+        <article class="gift-user-info">
+            <div class="dateilImg"><p>{$data.desribe}</p></div>
+        </article>
+        <div class="borderline"></div>
+        <h3>使用方法</h3>
+        <article class="gift-user-info">
+            <div class="dateilImg"><p></p><p>{$data.digest}</p><p></p></div>
+        </article>      
+    </section>
+    <a href="{:U('lists?id='.$data['game_id'])}" class="mod-more mtb10">查看【<?php echo preg_replace('/(\(.+)/i','',$data['game_name']);?>】所有礼包<span class="icon-link"></span></a>
+        		
+    <section class="pd10 wxlbbox">
+        <h3>关注微信领取礼包方法</h3>
+        <p>第一步,查找“<font class="c-orange">{:C('WAP_SET_WEIXIN')}</font>”并关注</p>
+        <p>第二步,回复游戏名称如“古剑仙缘”</p>
+        <p>第三步,根据提示回复对应礼包数字ID：{$data.id}</p>
+    </section>
+    <div class="ad">
+        <div class="adbox">
+            <advert:carousel name="vo" category="38" limit="1" >
+            <a href="{$vo.url}" target="_blank">
+                <img src="{$vo.data|get_cover='path'}" title="{$vo.title}" alt="{$vo.title}" border="0">
+            </a>
+            </advert:carousel>
+        </div>
+    </div>
+    <div class="mod-con way-mod">
+        <div class="online-mod">
+            <a href="{:U('Game/detail?id='.$data['game_id'])}"><i class="spercit-ico-public"></i>专区</a>
+            <a href="{:U('Game/detail?id='.$data['game_id'])}"><i class="down-ico-public"></i>下载</a>
+        </div>    
+    </div>
+</section>
+
+<script>
+$(function() {
+    $('#getgift').on('click',function() {
+        var that = $(this), giftid = '{$data.id}',giftname = '{$data.giftbag_name}',gameid='{$data.game_id}',gamename='{$data.game_name}';
+        $.ajax({
+            type:'POST',
+            dataType:'json',
+            url:'{:U("Unlr/getGameGift")}',
+            data:{giftid:giftid,giftname:giftname,gameid:gameid,gamename:gamename},
+            beforeSend:function(){
+                $('body').append('<div id="animatesbox"><div id="animates"><img src="__IMG__/load.gif" width="100%" height="100%" /><span class="animatestext">领取中</span></div></div>');
+                $('#animatesbox').show().css('height',$('body').height());
+                that.text('领取中');
+            },success:function(data) {
+                $('#animatesbox').remove();
+                if (parseInt(data.status) != 0) {
+                    that.text('已领取').closest('#js-code-box').siblings('#getgiftnotice').html('<div style="color:green;" >'+data.msg+'，您的礼包激活码：'+data.data+'</div>');
+                } else {
+                    that.text('领取').closest('#js-code-box').siblings('#getgiftnotice').html('<div style="color:red;" >'+data.msg+'</div>');
+                }
+            },
+            error:function(e) {
+                $('#animatesbox').remove();
+            }
+        });
+    });
+});
+</script>
+</block>

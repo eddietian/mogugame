@@ -1,0 +1,331 @@
+.wizard {
+    margin: 40px auto 0;
+    width: 1000px;
+    color: #888;
+    font-size: 14px;
+    font-family: "MicroSoft YaHei";
+}
+
+.wizard .wizard-header {
+    height: 128px;
+    background: #2781cc;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+.wizard .wizard-header .step {
+    width: 33%;
+    float: left;
+    text-align: center;
+    color: #bfd9f0;
+    font-size: 18px;
+    position: relative;
+}
+
+.wizard .wizard-header .step:before,
+.wizard .wizard-header .step:after {
+    height: 1px;
+    background: #1a588b;
+    display: block;
+    width: 35%;
+    content: " ";
+    position: absolute;
+    top: 44%;
+}
+
+.wizard .wizard-header .step:after {
+    right: 0;
+}
+
+.wizard .wizard-header .step.first:before,
+.wizard .wizard-header .step.last:after {
+    content: none;
+}
+
+.wizard .wizard-header .step span.icon {
+    display: block;
+    width: 36px;
+    height: 36px;
+    margin: 28px auto 16px;
+    border: 1px solid #1a588b;
+    border-radius: 50%;
+}
+
+.wizard .wizard-header .step span.icon i {
+    width: 5px;
+    height: 5px;
+    background: #1a588b;
+    display: block;
+    border-radius: 50%;
+    margin: 16px auto;
+}
+.wizard .wizard-header .step span.icon svg {
+    display: none;
+}
+
+.wizard .wizard-header .step.finish span.icon {
+    background: #45e087;
+    border-color: #45e087;
+}
+
+.wizard .wizard-header .step.finish span.icon i {
+    display: none;
+}
+.wizard .wizard-header .step.finish span.icon svg {
+    display: block;
+}
+
+.wizard .wizard-header .step.active span.icon {
+    border-color: #bfd9f0;
+}
+
+.wizard .wizard-header .step.active span.icon i {
+    background: #bfd9f0;
+}
+
+.wizard .wizard-body .step.active {
+    display: block;
+}
+
+.wizard .wizard-body .step {
+    display: none;
+}
+.wizard .wizard-body .step p{
+    margin-bottom: 18px;
+}
+
+.wizard .wizard-body .step .sub-step {
+    border: 1px solid #d7d7d7;
+    border-top: none;
+    display: table;
+    width: 998px;
+}
+
+.wizard .wizard-body .step .sub-step .title {
+    padding: 20px 8px 26px 16px;
+    height: 30px;
+    line-height: 30px;
+    clear: both;
+}
+
+.wizard .wizard-body .step .sub-step .title i {
+    display: block;
+    float: left;
+    margin-top: 3px;
+    width: 24px;
+    height: 24px;
+    background: #04b9bf;
+    color: #fff;
+    border-radius: 50%;
+    line-height: 24px;
+    text-align: center;
+    font-style: normal;
+    margin-right: 18px;
+}
+
+.wizard .wizard-body .step .sub-step .title h4 {
+    display: inline;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: normal;
+    color: #333;
+    margin-right: 10px;
+}
+
+.wizard .wizard-body .step .sub-step .title span.arrow {
+    position: relative;
+    #top: 7px;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid #f0f0f0;
+    margin-top: 3px;
+}
+
+.wizard .wizard-body .step .sub-step .title span.description {
+    background: #f0f0f0;
+    border-radius: 2px;
+    display: inline;
+    padding: 5px;
+}
+
+.wizard .wizard-body .step .sub-step .title span.description {
+    font-size: 13px;
+    background: #f0f0f0;
+    border-radius: 2px;
+    display: inline;
+    padding: 5px;
+}
+
+.wizard .wizard-body .step .sub-step table td.fields {
+    width: 647px;
+    border: none;
+    padding: 10px 26px;
+}
+
+.wizard .wizard-body .step .sub-step table td.fields .label {
+    color: #333;
+    margin: 0 0 14px;
+    clear: both;
+}
+
+.wizard .wizard-body .step .sub-step table td.fields .field{
+    margin-bottom: 20px;
+}
+
+.wizard .wizard-body .step .sub-step table td.fields .uploadify{
+}
+.wizard .wizard-body .step .sub-step table td.fields .uploadify .fileName{
+    padding-left: 12px;
+}
+.wizard .wizard-body .step .sub-step table td.fields .uploadify.uploaded{
+    opacity: 0;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+}
+.wizard .wizard-body .step .sub-step table td.fields .uploadify-queue{
+    width: 543px;
+    line-height: 32px;
+    margin: auto auto 10px 20px;
+    list-style-type: decimal;
+}
+.wizard .wizard-body .step .sub-step table td.fields .uploadify-queue .uploadify-queue-item{
+    border-bottom: 1px solid #e6e6e6;
+
+}
+.wizard .wizard-body .step .sub-step table td.fields .uploadify-queue .fileName{
+    padding: 0 16px 0 12px;
+}
+.wizard .wizard-body .step .sub-step table td.fields .uploadify-queue .progressbar{
+    height: 32px;
+    width: 0;
+    display: block;
+    top:0;
+    left: 0;
+    position: absolute;
+    background: #e4f2ff;
+    z-index: -1;
+}
+
+.wizard .wizard-body .step .sub-step table td.fields .uploadify-queue .cancel{
+    float: right;
+    padding-right: 18px;
+}
+.check-btn, .wizard .wizard-body .step .sub-step table td.fields .uploadify .uploadify-button .uploadify-button-text  {
+    display: inline-block;
+    margin: 0 20px;
+    background: #19a9d5 none;
+    border-radius: 2px;
+    color: #fff;
+
+    padding: 6px 12px;
+    line-height: 20px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    min-width: 100px;
+}
+
+.wizard .wizard-body .step .sub-step table td.fields label.file input {
+
+}
+
+.wizard .wizard-body .step .sub-step table td.fields button {
+    display: block;
+    float: left;
+    margin: 0 20px 20px;
+    height: 34px;
+    background: #19a9d5 none;
+    border-radius: 2px;
+    color: #fff;
+
+    padding: 6px 12px;
+    line-height: 20px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    min-width: 100px;
+}
+
+.wizard .wizard-body .step .sub-step table td.description {
+    padding: 10px 20px;
+    border: 0 none;
+    border-left: 1px solid #d7d7d7;
+}
+
+.wizard .wizard-body .step .sub-step .button-set{
+    margin-top: 30px;
+    height: 34px;
+    padding: 8px 12px;
+    background: #f4f9ff;
+}
+
+.wizard .wizard-body .step .sub-step .button-set button, button.submit-feedback{
+    display: block;
+    float: left;
+    margin: 0 20px;
+    height: 34px;
+    background: #23ad44 none;
+    border-radius: 2px;
+    color: #fff;
+    font-family: "MicroSoft YaHei";
+    padding: 6px 12px;
+    line-height: 20px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    min-width: 100px;
+}
+
+.checkbox{
+    display: block;
+    padding: 8px;
+}
+.checkbox input{
+    margin:-3px 10px 0 0;
+}
+.video-learn{
+    margin-left: 20px;
+}
+.pop{display: none;}
+.body-mask{display: none;}
+.error_msg{font-family: "Arial",​"SimSun",​"宋体"}
+a.switch-phase{color: #FFFFFF;text-decoration: none;}
+.center{text-align: center;}
+.last-box{border: none;margin: 10px auto 10px}
+.task-list{list-style-type: upper-alpha;margin-left: 20px}
+#feedback-msg{color: #ff0000;}
+#feedback-error-msg{text-align: center;color: #ff0000;}
+.error-page p{margin: 20px auto 20px;}
+.error-page .fb-box{text-align: center;height: 40px;width: 100px; margin: 20px auto;}
+.error-page .submit-feedback{text-align: center;margin-left: 0px;}
+.header-v2 .head-inner .logo span {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 18px;
+    line-height: 50px;
+    margin-left: 15px;
+    color: #fff;
+}

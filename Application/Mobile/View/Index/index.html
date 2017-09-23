@@ -1,0 +1,295 @@
+<extend name="Public/bases"/>
+
+<block name="body" >
+<script type="text/javascript" src="__JS__/touchslider.js"></script>
+<section class="normal-module">
+    <div class="big-banner" >
+        <ul id="slider" class="slider">
+            <volist name=":get_adv_data('wap_index')" id="vo">
+                <li>
+                    <a href="{$vo.url}" target="{$vo.target}">
+                    <img width="{$vo.width}" height="{$vo.height}" src="{:get_cover($vo['data'],'path')}">
+                    </a>
+                </li>
+            </volist>
+        </ul>
+        <div id="pagenavi" class="pagenavi" >
+            <volist name=":get_adv_data('wap_index')" id="vo">
+                <a href="#" <eq name="key" value="0">class="active" </eq>></a>
+            </volist>
+        </div>
+    </div>
+    <script>
+    var as=document.getElementById('pagenavi').getElementsByTagName('a');
+    for(var i=0;i<as.length;i++){
+        (function(){
+            var j=i;
+            as[i].onclick=function(){
+                t4.slide(j);
+                return false;
+            }
+        })();
+    }
+    var t4=new TouchSlider('slider',{speed:1000, direction:0, interval:3000, fullsize:true});
+    t4.on('before',function(m,n){
+        as[m].className='';
+        as[n].className='active';
+    })
+    </script>
+    <ul class="mod-icon-list cf mod_ll">  
+        <li  class="pdy">
+            <a href="{:U('Game/index')}"><div class="top_p lb_f"></div>
+            <span class="label pad">游戏</span></a>
+        </li>
+        <!-- <li class="pdy">
+            <a href="{:U('Game/open')}"><div class="top_p tu_f"></div>
+            <span class="label pad">开服</span></a>
+        </li>  -->
+        <li class="pdy">
+            <a href="{:U('Gift/index')}"><div class="top_p yxk_f"> </div>
+            <span class="label pad">礼包</span></a>
+        </li>
+        <li class="pdy">
+            <a href="{:U('Activity/index')}"><div class="top_p lt_f">     </div>
+            <span class="label pad">活动</span></a>
+        </li>
+        <li class="pdy">
+            <a href="{:U('Video/index')}"><div class="top_p sp_f"></div>
+            <span class="label pad">视频</span></a>
+        </li>
+        <!--
+        <li class="pdy">
+            <a href="{:U('News/index')}"><div class="top_p news_f"></div>
+            <span class="label pad">新闻</span></a>
+        </li>
+        <li class="pdy">
+            <a href="{:U('Strategy/index')}"><div class="top_p gl_f"></div>
+            <span class="label pad">攻略</span></a>
+        </li> -->
+      
+    </ul>
+</section>
+
+<section class="normal-module">
+    <div class="module-header ">
+        <p class="title">编辑推荐</p>
+        <a class="module-more comtit-a" href="javascript:;" id="next">换一换</a> 
+    </div>
+    <ul id="slider">
+        <game:index name="vo" recommend_status="1" sort="sort desc" group="relation_game_id" limit="4" field="" >
+        <div class="div1 ">
+            <li class="game-essay-list-item no-bot-bor">		 
+                <a class="m-wrap"  href="{:U('Game/detail?id='.$vo['relation_game_id'])}">
+                    <span class="icon-wrap ">
+                        <img class="game-icon" src="{$vo.icon|get_cover='path'}" alt="">
+                    </span>
+                    <div class="content">
+                        <p class="game-title">
+                            <span class="inner-text xz-inner-text">
+                                {$vo.relation_game_name}
+                            </span>
+                            <span class="ico"></span>
+                        </p>
+                        <p class="game-review"><span class="item">{$vo.game_type_name}</span></p>
+                        <p class="game-review">评分：{$vo.game_score}分<span></span></p>
+                    </div>
+                </a>
+                <if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq "" && $vo.ios_dow_address eq "" &&  $vo.ios_game_address eq "" '><a class="btn11">暂无下载</a></if>
+                <if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq ""'><else/>
+                    <a  href="<if condition='$vo.dow_status eq 0'>#<else/>{:U('Down/down_file?game_id='.$vo['relation_game_id'].'&type=1')}</if>" class="<if condition='$vo.ios_dow_address eq "" && $vo.ios_game_address eq ""'>btn11<else/>btn</if>"> 安卓下载 </a>
+                </if>
+                <if condition='$vo.ios_dow_address eq "" && $vo.ios_game_address eq ""'><else/>
+                    <a  href="<if condition='$vo.dow_status eq 0'>#<else/>{:U('Down/down_file?game_id='.$vo['relation_game_id'].'&type=2')}</if>" class="<if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq ""'>btn11<else/>btn1</if>"> 苹果下载 </a>
+                </if>
+                
+                <span class="pre-verline"></span>
+            </li>
+            <div class="wxlbbox">
+                <i></i>
+                <p>{$vo.features}</p>
+            </div>
+        </div>	
+		</game:index>
+	    </ul>    
+</section>
+
+<div class="normal-module">
+    <div class="module-header">
+        <p class="title">热门游戏</p>
+    </div>
+    <ul class="normal-app-list cf">
+       <volist name="hot" id="vo">
+        <li>
+            <i class="i_sc"></i> 
+            <a href="{:U('Game/detail?id='.$vo['relation_game_id'])}" ><img class="game-icon" src="{$vo.icon|get_cover='path'}" width="60" height="60"></a>
+            <p class="game-title" type="btn" href="{:U('Game/detail?id='.$vo['id'])}" style="height: 20px;"><?php echo preg_replace('/(\(.+)/i','',$vo['game_name']);?></p>
+            <p class="textalgin" style="height: 20px; margin: 0 auto;">{$vo.game_type_name}</p>
+            <if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq "" && $vo.ios_dow_address eq "" &&  $vo.ios_game_address eq "" '><a class="btn11">暂无下载</a></if>
+            <if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq ""'><else/>
+                <a  href="<if condition='$vo.dow_status eq 0'>#<else/>{:U('Down/down_file?game_id='.$vo['relation_game_id'].'&type=1')}</if>" class="<if condition='$vo.ios_dow_address eq "" && $vo.ios_game_address eq ""'>btn11<else/>btn</if>"> 安卓下载 </a>
+            </if>
+            <if condition='$vo.ios_dow_address eq "" && $vo.ios_game_address eq ""'><else/>
+                <a  href="<if condition='$vo.dow_status eq 0'>#<else/>{:U('Down/down_file?game_id='.$vo['relation_game_id'].'&type=2')}</if>" class="<if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq ""'>btn11<else/>btn1</if>"> 苹果下载 </a>
+            </if>
+            
+        </li>
+       </volist>
+    </ul>
+    <a class="module-more block" type="btn" href="{:U('Game/index')}">进入游戏库<em class="modify"></em></a>        
+</div>
+
+<section class="normal-module">
+    <div class="module-header ">
+        <p class="title">礼包精选</p>
+    </div>
+    <ul class="gift-new-list">
+        <gift:index name="vo" recommend_status="1" sort="tab_giftbag.sort desc"  limit="5" field="" >
+		<li>
+            <div class="pic">
+                <a href="{:U('Gift/detail?id='.$vo['id'])}">
+                    <img class="" src="{$vo.icon|get_cover='path'}" width="60" height="60">
+                </a>
+            </div>
+			<div class="info">
+				<span class="name">
+                    <a href="{:U('Gift/detail?id='.$vo['id'])}"><?php echo preg_replace('/(\(.+)/i','',$vo['game_name']);?>{$vo.giftbag_name}</a>
+                </span>
+				<p></p><p>{$vo.desribe}</p><p></p>
+			</div>
+			<div class="btns"><a href="{:U('Gift/detail?id='.$vo['id'])}" class="lb-btn">领取</a></div>
+		</li>	
+        </gift:index>
+	</ul>
+    <a class="module-more block" type="btn" href="{:U('Gift/index')}">进入礼包中心<em class="modify"></em></a> 
+</section>
+
+<section class="normal-module">
+    <div class="module-header ">
+        <p class="title">新闻资讯</p>
+    </div>
+	<ul class="ttlist cf">
+        <article:index name="vo" category="43" sort="level desc,update_time" limit="5" field="" >
+	  	 	<li>
+                <span>{$vo.category_title}</span>
+                <a href="{:U('News/detail?id='.$vo['id'])}">{$vo.title}</a>
+            </li>	
+        </article:index>
+	</ul>
+	<ul class="mvideo-list ">
+        <article:index name="vo" category="43" notnull="cover_id" sort="level desc,update_time" page="1" limit="5" field="" >
+        <li>
+            <a href="{:U('News/detail?id='.$vo['id'])}">
+                <div class="pic">
+                    <img class="" src="{$vo.cover_id|get_cover='path'}" alt="{$vo.title}" width="120" height="68">
+                </div>
+                <div class="info">
+                    <span class="name">{$vo.title}</span>
+                    <p>{$vo.update_time|date='Y-m-d',###}</p>
+                </div>
+            </a>
+        </li>
+        </article:index>
+    </ul>
+	<a class="module-more block" type="btn" href="{:U('News/index')}">进入新闻中心<em class="modify"></em></a>
+</section>
+ 
+<div style="clear:both;"></div>
+	
+<div class="normal-module">
+    <div class="module-header">
+        <p class="title">最新游戏</p>
+    </div>
+	<ul class="normal-app-list cf">
+        <volist name="new" id="vo">
+		<li>
+                    <a  href="{:U('Game/detail?id='.$vo['relation_game_id'])}"><img class="game-icon" src="{$vo.icon|get_cover='path'}" width="60" height="60"></a>
+                    <p class="game-title" type="btn" href="{:U('Game/detail?id='.$vo['game_id'])}" style=" height: 20px;"><?php echo preg_replace('/(\(.+)/i','',$vo['game_name']);?></p>
+                    <p class="textalgin" style=" height: 19px;margin: 0 auto; ">{$vo.game_type_name}</p>
+                    <if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq "" && $vo.ios_dow_address eq "" &&  $vo.ios_game_address eq "" '><a class="btn11">暂无下载</a></if>
+                    <if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq ""'><else/>
+                        <a  href="<if condition='$vo.dow_status eq 0'>#<else/>{:U('Down/down_file?game_id='.$vo['relation_game_id'].'&type=1')}</if>" class="<if condition='$vo.ios_dow_address eq "" && $vo.ios_game_address eq ""'>btn11<else/>btn</if>"> 安卓下载 </a>
+                    </if>
+                    <if condition='$vo.ios_dow_address eq "" && $vo.ios_game_address eq ""'><else/>
+                        <a  href="<if condition='$vo.dow_status eq 0'>#<else/>{:U('Down/down_file?game_id='.$vo['relation_game_id'].'&type=2')}</if>" class="<if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq ""'>btn11<else/>btn1</if>"> 苹果下载 </a>
+                    </if>
+		</li>
+        </volist>
+	</ul>
+    <a class="module-more block" type="btn" href="{:U('Game/index')}">进入游戏库<em class="modify"></em></a>
+</div>
+
+<div style="clear:both;"></div>
+
+<section class="normal-module"> 
+    <div class="module-header">
+        <p class="title">热门分类</p>
+        <p class="aside">总能找到你喜欢的一类</p>
+    </div>
+	<ul class="classy-list">
+        <li type="btn" href="{:U('Game/category')}" name="uc_gd_adm">
+            <div class="item">全部</div>
+        </li>
+        <volist name=":get_game_type_all()" id="vo">
+        <if condition="$i lt 15">
+        <li name="uc_gd_adm">
+            <a href="{:U('Game/lists?type='.$vo['id'])}"><div class="item">{$vo.type_name}</div></a>
+        </li>
+        </if>            
+        </volist>
+    </ul>
+    <div class="more-btn-wrap mt10">
+        <a class="btn btn-sec-g" type="btn" href="{:U('Game/category')}">进入分类频道<em class="modify"></em></a>
+    </div>
+</section>
+
+<div class="normal-module">
+    <div class="module-header">
+        <p class="title">推荐游戏</p>
+    </div>
+	<div class="netgame-today">
+        <ul>
+			<volist name="tui" id="vo">
+            <li class="game-essay-list-item">
+				<i class="num-modify weekitop num-modify-{$i}">{$i}</i>
+				<a class="m-wrap pdl30" type="btn" href="{:U('Game/detail?id='.$vo['relation_game_id'])}">
+						<span class="icon-wrap ">
+							<img class="game-icon" src="{$vo.icon|get_cover='path'}" alt="{$vo.game_name}">
+						</span>
+					<div class="content">
+						<p class="game-title"><span class="inner-text"><?php echo preg_replace('/(\(.+)/i','',$vo['game_name']);?></span>
+							<span class="ico"></span>
+						</p>
+						<p class="textalgin" style="width:100px"><span class="item"></span></p>
+						<p class="game-review">{$vo.game_type_name}</p>
+					</div>
+				</a>
+                                <if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq "" && $vo.ios_dow_address eq "" &&  $vo.ios_game_address eq "" '><a class="btn11">暂无下载</a></if>
+                                <if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq ""'><else/>
+                                    <a  href="<if condition='$vo.dow_status eq 0'>#<else/>{:U('Down/down_file?game_id='.$vo['relation_game_id'].'&type=1')}</if>" class="<if condition='$vo.ios_dow_address eq "" && $vo.ios_game_address eq ""'>btn11<else/>btn1</if>"> 安卓下载 </a>
+                                </if>
+                                <if condition='$vo.ios_dow_address eq "" && $vo.ios_game_address eq ""'><else/>
+                                    <a  href="<if condition='$vo.dow_status eq 0'>#<else/>{:U('Down/down_file?game_id='.$vo['relation_game_id'].'&type=2')}</if>" class="<if condition='$vo.and_dow_address eq "" && $vo.add_game_address eq ""'>btn11<else/>btn</if>"> 苹果下载 </a>
+                                </if>
+				<span class="pre-verline"></span>
+			</li>
+            </volist>
+		</ul>
+    </div>
+    <a class="module-more block" type="btn" href="{:U('Game/rank')}">更多热门游戏<em class="modify"></em></a>
+</div>
+
+<script>
+    var aslider=$('#slider .div1');
+    aslider.eq(0).addClass('show');
+    var num=-1;
+    $('#next').click(function(){
+        num++;
+        if(num==aslider.length-1){
+            aslider.eq(0).addClass('show').siblings().removeClass('show');
+            num=-1;
+        }else{
+            aslider.eq(num).next().addClass('show').siblings().removeClass('show');
+        }
+    })
+</script>
+</block>

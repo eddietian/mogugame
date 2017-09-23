@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1" />
+<title>竣付通php_Demo</title>
+    <meta name="description" content="jquery ajax tab选项卡通过鼠标点击导航条标签选项卡滑动切换，内容异步加载选项卡切换。简单的网页模板单页选项卡切换展示。"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__/jftbase.css" />
+    <link rel="stylesheet" type="text/css" href="__CSS__/jftindex.css" />
+    <script type="text/javascript" src="__JS__/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="__JS__/jftindex.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h4><i class="ico ico-warning"></i>所有支付方式接收我方回调更新数据时，必须增加防止二次通知语句，否则造成损失由商户自行承担。</h4>
+        <p class="war">本次Demo体验为真实环境，不予提现，请小额测试，如需大额测试请更换正式账号。</p>
+        <div class="wrap">
+            <ul id="nav">
+                <li class="current"><a class="J_menuItem" href="category/UnionPay.html">网银支付</a></li>
+                <li><a class="J_menuItem" href="category/Quick.html">快捷支付</a></li>
+                <li><a class="J_menuItem" href="category/Alipay.html">支付宝</a></li>
+                <li><a class="J_menuItem" href="category/WeChat.html">微信支付</a></li>
+                <li><a class="J_menuItem" href="category/Card.html">点卡</a></li>
+                <li><a class="J_menuItem" href="category/QQ.html">QQ支付</a></li>
+                <li><a class="J_menuItem" href="category/Jingdong.html">京东支付</a></li>
+            </ul>
+            <div id="page-wrapper">
+                <div class="row J_mainContent" id="content-main">
+                    <iframe id="J_iframe" width="100%" height="100%" src="category/UnionPay.html" frameborder="0" data-id="index_v1.html" seamless=""></iframe>
+                </div>
+            </div>
+        </div>      
+    </div>
+
+</body>
+</html>

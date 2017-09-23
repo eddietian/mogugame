@@ -1,0 +1,34 @@
+<extend name="Public/base" />
+<block name="body" >
+  <div class="g-container">
+    <div class="g-main">
+      <include file="Public/user_head" />
+      <div class="user-bd laybox fix">
+        <include file="Public/user_base" />
+        <div class="user-section-wrap fl" id="user-section-wrap">
+													<div class="us2-index">
+	<div class="section-tit">帐号安全</div>
+	<div class="safe-setting-box">	
+		<div class="safe-item">
+			<i class="u-phone"></i>
+			<div class="u-tips">
+				<strong class="stit">手机号码<if condition="$user.phone eq ''">(未设置)<else/>(已设置)</if></strong>
+				<p>用于密码修改时短信提示和密码遗失时重置密码</p>
+			</div>
+			<a href="{:U('users_phone')}" class="g-btn" ><if condition="$user.phone eq ''">绑定手机<else/>解绑手机</if></a>	
+		</div>
+		<div class="safe-item">
+			<i class="u-idcard"></i>
+			<div class="u-tips">
+				<strong class="stit">证件信息<if condition="$user.idcard eq ''">(未设置)<else/>(已设置)</if></strong>
+				<p>用于帐号防沉迷认证和密码遗失时重置密码</p>
+			</div>
+			<a href="{:U('users_index')}" class="g-btn" ><if condition="$user.idcard eq ''">设置证件<else/>查看证件</if></a>	
+		</div>
+	</div>
+</div>
+											</div>
+      </div>
+    </div>
+  </div>
+</block>

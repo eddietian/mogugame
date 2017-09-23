@@ -1,0 +1,49 @@
+<div class="user-hd laybox">
+        <div class="user-hd-left fl">
+          <div class="user-avatar"> <a href="javascript:;"><img src="__IMG__/game/noavatar_middle.gif" width="100" height="100"></a> 
+            <!-- <a href="javascript:avapopOpen();" class="btn-avatar">修改头像</a> --> 
+          </div>
+          <ul class="user-info">
+            <li>您好，<b><if condition="session('member_auth.nickname') eq 'Uc用户'">Uc用户<else/>{$user.nickname}</if></b>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#" class="quit">[退出]</a> </li>
+            <li>账号：<if condition="session('member_auth.nickname') eq 'Uc用户'">{:session('member_auth.account')}<else/>{$user.account}</if></li>
+            <li>上次登录时间：<if condition="session('member_auth.nickname') eq 'Uc用户'">*******<else/>{:date('Y-m-d H:i:s',$user['login_time'])}</if></li>
+            <li><a href="{:U('Gift/gift')}" class="g-btn-s btn-getlb">领取礼包</a></li>
+          </ul>
+        </div>
+        <div class="user-hd-right fl">
+          <ul class="remgame-list fix">
+          <volist name="game_like" id="gl">
+            <li> <a href="#" class="img"><img src="{:get_cover($gl['icon'],'path')}" alt="" width="70" height="70"></a>
+              <!-- <div class="__data__" data_id="" page="" postfix="user_center" style="display: none; "> -->
+                <!-- <div></div> -->
+                <!-- <span>蜀山伏魔录安卓下载次数</span></div> -->
+              <div class="info"> <a href="#" class="name">《{$gl.relation_game_name}》</a>
+                <p><span style="color: red">{$gl.dow_num}</span>次下载</p>
+                <a href="{:U('Game/game_detail',array('id'=>$gl['relation_game_id']))}" class="g-btn-s">立即下载</a> </div>
+            </li>
+          </volist>
+          </ul>
+        </div>
+      </div>
+<script>
+    $('.quit').click(function(){
+         changyanurl="http://changyan.sohu.com/api/2/logout?client_id='{:C('changyan.partner')}'";
+      $.ajax({
+              type: 'get',
+              url: changyanurl,
+              cache: false,
+              dataType: "jsonp",  //跨域采用jsonp方式  
+              processData: false,
+            complete:function (data) {
+            }
+        });
+        url = "{:U('Member/logout')}";
+        $.ajax({
+            type: 'POST',
+            url: url ,
+            success:function(data){
+                window.location.href=data.reurl;
+            }
+        });
+    });
+</script>

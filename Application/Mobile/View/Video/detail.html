@@ -1,0 +1,108 @@
+<extend name="Public/bases"/>
+
+<block name="body" >
+<link rel="stylesheet" href="__CSS__/play.css">
+<link rel="stylesheet" href="__CSS__/newvideoinfor.css">
+<link rel="stylesheet" href="__CSS__/mcompinglun.css">
+<link rel="stylesheet" href="__CSS__/wapcomtop_main.css">
+<style>
+.main-header .header-sub .logo .game-icon {
+    height: 30px;width: auto;border-radius: 0;margin: 6px 0;
+}
+.v-game-infor h1{font-size:16px; font-weight:bold;}
+.mtopnav{border-bottom:none}
+
+.mtopnav a{color:#666;}
+.mmaskbox2{z-index: 11;}
+</style>
+<section class="main-wrap" id="fix-main">
+    <div class="mtopnav">
+        <a href="{:U('Index/index')}">{:C('WAP_SET_TITLE')}</a>
+        <a href="{:U('index')}">视频</a>   
+    </div>
+    <div class="fpwapykvideo" >
+    {$data.content}
+    </div>
+    <script>$('.fpwapykvideo embed').css('width','100%');
+    $('.fpwapykvideo iframe').css('width','100%');</script>
+    <notempty name="game">
+    <div class="v-gameload">
+    	<a href="{:U('Game/detail?id='.$game['id'])}">
+            <div class="icon-wrap ">
+                    <img src="{$game.icon|get_cover='path'}" class="game-icon">
+            </div>
+            <div class="content">
+                <h3><?php echo preg_replace('/(\(.+)/i','',$game['game_name']);?></h3>
+                <p>{$game.game_type_name}</p>
+            </div>
+            <strong>下载</strong>
+        </a>
+    </div>
+    </notempty>
+    <div class="v-game-infor">
+    	<h1>{$data.title}</h1>
+        <p class="author">
+            <a >{$data.uid|get_username}</a>
+            <span>发布于</span>{$data.create_time|date='Y-m-d H:i:s',###}
+        </p>
+        <div class="game-introduced-box">
+            <div class="game-introduced-show" style="height: 40px;">
+                <div class="game-introduced-con">
+                    {$data.description}
+                </div>
+            </div>	
+            <div class="info_control"><a class="chakqb" href="javascript:;" style="display: block;">展开 &gt;&gt;</a><a class="sqqb" href="javascript:;" style="display: none;">收起 &gt;&gt;</a></div> 
+        </div>
+        <div class="clear"></div>
+        <div class="hot-videolist">
+            <div class="v-comtit">热门视频</div>
+            <div class="swiper-container swiper-container-horizontal">
+            	<ul class="boxul cf swiper-wrapper">
+                    <article:index name="vo" category="51" notnull="cover_id" sort="view desc" limit="12"  >
+                    <neq name="data.id" value="$vo.id">
+                    <li class="swiper-slide swiper-slide-active">
+                        <a href="{:U('detail?id='.$vo['id'])}">
+                            <div class="bgfff">
+                                <span class="play"></span>
+                                <img src="{$vo.cover_id|get_cover='path'}" class="game-icon">
+                                <p class="sty-cen">{$vo.title}</p>
+                            </div>
+                        </a>
+                    </li> 
+                    </neq>
+                    </article:index>     
+                </ul>
+   			 </div>
+        </div>
+           
+        <div class="blk clearfix game-list">
+           <div class="v-comtit">游戏推荐</div>
+            <ul>
+            <game:index name="vo" recommend_status="1" sort="sort desc" limit="8" field="" >
+                <li>
+                    <a href="{:U('Game/detail?id='.$vo['relation_game_id'])}">
+                        <p><img src="{$vo.icon|get_cover='path'}" class="game-icon"></p>
+                        <span><?php echo preg_replace('/(\(.+)/i','',$vo['game_name']);?></span>
+                        <strong>下载</strong>
+                    </a>
+                </li>
+            </game:index>                 			
+            </ul>     
+        </div>            
+    </div>
+</section>
+<script>
+    $(function() {
+        $('.chakqb').on('click',function() {
+            $(this).hide();
+            $('.sqqb').show();
+            $('.game-introduced-show').css({'height':'auto'});
+        });
+        $('.sqqb').on('click',function() {
+            $(this).hide();
+            $('.chakqb').show();
+            $('.game-introduced-show').css({'height':'40px'});
+        });
+    });
+</script>
+</block>

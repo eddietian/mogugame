@@ -1,0 +1,53 @@
+.main-header{position:fixed;top:0;right:0;left:0;z-index:10;height:44px;border-bottom:1px solid #ccc;background:#f5f5f5;-webkit-box-shadow:0 1px 4px rgba(0,0,0,.1);}
+.main-header .header-content{position:absolute;overflow:hidden;width:100%;height:44px;color:#333;text-align:center;font-size:18px;line-height:44px;}
+.main-header .header-widget{-webkit-box-sizing:border-box;height:44px;}
+.main-header .header-sub{float:left;}
+.main-header .header-sub .logo{overflow:hidden;padding:0 0 0 10px;height:44px;}
+.main-header .header-sub .logo .img{height:44px;}
+.main-header .header-sub .guide-icon-return{margin:5px 0 0 5px;}
+.main-header .header-aside{float:right;display:-webkit-box;}
+.main-header .header-aside .aside-item{display:block;-webkit-box-sizing:border-box;margin-right:5px;padding-top:5px;height:44px;-webkit-box-flex:0;}
+.main-header .header-aside .aside-item.press .guide-icon,.main-header .header-sub .guide-icon.press{border:1px solid #dedede;background:#fff;}
+.mmaskbox2{position:absolute;top:42px;left:0;z-index:1;display:none;width:100%;height:100%;background:rgba(0,0,0,.7);}
+/* .guide-icon-nav i{display:block;-webkit-box-sizing:border-box;margin:8px 10px 0 0;width:25px;height:33px;-webkit-border-radius:2px;background-image:url(../images/topmenubg.png);background-repeat:no-repeat;content:'';-webkit-background-size:25px auto;}
+ */.mmask .leftmeun{position:fixed;top:43px;right:-60%;z-index:999;width:60%;height:100%;background:#fff;-webkit-transition:all .4s ease;transition:all .4s ease;}
+.mmask .show{right:0;}
+.toplogin{padding:10px 0;border-bottom:1px solid #ccc;text-align:center;}
+.toplogin a{color:#333;text-decoration:none;}
+.toplogin i{display:block;margin:0 auto;width:34px;height:37px;background:url(../images/comicon79.png) no-repeat;background-position:0 -81px;}
+.side-nav li a{position:relative;display:block;padding:5px 10px;height:30px;border-bottom:1px solid #ddd;color:#333;text-decoration:none;font-size:14px;line-height:30px;}
+.side-nav li a i{position:absolute;top:10px;right:0;width:28px;height:1pc;background-image:url(../images/comicon79.png);background-position:right center;background-size:28px 56px;background-repeat:no-repeat;content:'';-webkit-background-size:28px 56px;-moz-background-size:28px 56px;}
+.topfix-holder{width:100%;height:44px;}
+.lb-logo{float:left;margin:14px 0 0 5px;padding:1px 5px;border-radius:5px;background:#f90;color:#fff;font-weight:700;}
+.comtit-a{padding:5px;border:1px solid #f60;border-radius:3px;background:0 0;color:#f80;text-decoration:none;font-size:9pt;}
+.textalgin{color:#999;text-align:center;}
+.fh-nav{padding:5px 0;}
+.fh-nav ul{display:-webkit-box;margin:10px 0 10px 10px;}
+.fh-nav li{margin-right:10px;width:33.3%;height:36px;-webkit-border-radius:2px;background-color:#ffb300;color:#fff;text-align:center;font-size:14px;line-height:36px;-webkit-box-flex:1;}
+.fh-nav li a{display:block;color:#fff;}
+.fh-nav li:nth-child(1){border:1px solid;border-color:#1282ea;background:#56a7fe;}
+.fh-nav li:nth-child(2){border:1px solid;border-color:#fa8036;background:#fb9f35;}
+.fh-nav li:nth-child(3),.fh-nav li:nth-child(4){border:1px solid;border-color:#51a30b;background:#75c531;}
+.fh-search{z-index:0;margin-bottom:0;}
+.gift-rec-list .info{padding-top:10px;}
+.ck-btn{display:block;margin-top:5px;width:70px;height:25px;border:1px solid #f60;border-radius:2px;color:#f60;text-align:center;font-size:14px;line-height:25px;}
+.gift-rec-list .pic{position:relative;}
+.gift-rec-list .pic i{position:absolute;right:10px;display:block;padding:0 8px;height:1pc;border-radius:8px;background:red;color:#fff;text-align:center;font-style:normal;line-height:1pc;}
+.wxhftext{background:#2ecc71;}
+.wxhfnum,.wxhftext{display:inline-block;padding:3px 0;width:60px;color:#fff;text-align:center;}
+.wxhfnum{background:#27ae60;}
+.pb10{padding-bottom:5px;}
+.fh-mod-con{margin-bottom:10px;padding:10px;background:#fff;}
+.gift-new-list .info{padding-top:6px;}
+.pdtb3{padding:3px 0;}
+.focus{position:relative;overflow:hidden;margin:0 auto;}
+.focus .hd{position:absolute;bottom:5px;z-index:1;width:100%;height:11px;text-align:center;}
+.focus .hd ul{padding:3px 5px;font-size:0;}
+.focus .hd ul,.focus .hd ul li{display:inline-block;height:5px;vertical-align:top;}
+.focus .hd ul li{overflow:hidden;margin:0 5px;width:5px;border-radius:5px;background:#8c8c8c;}
+.focus .hd ul .on{background:#f90;}
+.focus .bd{position:relative;z-index:0;overflow:hidden;height:140px;}
+.focus .bd li img{width:100%;height:140px;}
+.focus .bd li a{-webkit-tap-highlight-color:transparent;}
+.jhsh{height:140px;}
+.btns .btn-give{border:1px solid #439e24;border-radius:3px;background-image:none;color:#439e24;}

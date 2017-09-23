@@ -1,0 +1,101 @@
+<extend name="Public/bases"/>
+
+<block name="body" >
+<link rel="stylesheet" href="__CSS__/list.css">
+<link rel="stylesheet" href="__CSS__/wapcomtop_main.css">
+<style>
+    .header-sub .logo .game-icon{height: 30px;width: auto;border-radius: 0;margin: 6px 0;}
+    .ms-none{display:none;}
+    .label-title{font-family: sans-serif;}
+</style>
+<div>
+    <ul id="ajaxContainer" currentpage="{$page}" key="{$lists.key}" maxpage="{$total}" >
+        <volist name="lists.data" id="sub" >        
+        <li class="newgame-list-header newgame-list-header-sched bg-white" type="btn">
+            <div class="label-title <switch name='key'><case value='即将开始'>label-title-gray</case><case value='今天'>label-title-blue-short</case><case value='昨天'>label-title-blue-short</case><default/>label-title-purple</switch>">{$key}</div>
+            <span class="pre-verline <switch name='key'><case value='即将开始'>pre-verline-gray</case><default/>pre-verline-blue</switch>"></span>
+        </li>
+        <volist name="sub" id="vo">
+        <li class="game-essay-list-item">
+			<a class="m-wrap" type="btn" href="{:U('detail?id='.$vo['game_id'])}">
+				<span class="icon-wrap" type="btn" href="{:U('detail?id='.$vo['game_id'])}">
+					<img class="game-icon lazy " src="{$vo.picurl}" alt="" type="btn" href="{:U('detail?id='.$vo['game_id'])}">
+				</span>
+				<div class="content">
+					<p class="game-title"><span class="inner-text"><?php echo preg_replace('/(\(.+)/i','',$vo['game_name']);?></span>
+						<span class="ico ico-gift-radius"></span>
+					</p>
+					<p class="game-info"><span class="item">{$vo.game_type_name}</span></p>
+					<p class="game-info"><span class="item">{$vo.datetime}</span><span class="item-exp">{$vo.server_name}</span></p>
+				</div>
+			</a>
+			<a class="btn11" type="btn" href="{:U('detail?id='.$vo['game_id'])}">下载</a>
+			<span class="pre-verline"></span>
+		</li>
+        </volist>
+        </volist>
+    </ul>
+</div>
+<section>
+    <div class="loading" id="loadingTip"><i class="loading-child"></i><span class="loading-text">正在加载，请等待……</span></div>
+    <div class="loading ms-none" id="errorTip">对不起，加载失败请<a href="{:U('open')}" class="error">重 试</a>!</div>
+    <div class="loading ms-none" id="moreBtn"><a href="javascript:" class="link">点此查看更多</a></div>
+</section>
+<script src="__JS__/ajaxload.js"></script>
+<script>
+    var ac = $('#ajaxContainer'),key = ac.attr('key');;
+    ajaxload('{:U("ajaxopen")}',{},function(data) {
+        if (data.status == 1) {
+            ac.attr('currentpage',data.page);
+            var html = '',d = data.lists.data,k=data.lists.key;
+            for (var i in d) {
+                var item = d[i];
+                if (i != key) {
+                html += '<li class="newgame-list-header newgame-list-header-sched bg-white" type="btn">';
+                html += '<div class="label-title ';
+                switch(i) {
+                    case '即将开始': html += ' label-title-gray ';break;
+                    case '今天': html += ' label-title-blue-short ';break;
+                    case '昨天': html += ' label-title-blue-short ';break;
+                    default: html += 'label-title-purple';
+                }
+                html += '">'+i+'</div><span class="pre-verline ';
+                if (i == '即将开始')
+                    html += ' pre-verline-gray ';
+                else
+                    html += ' pre-verline-blue ';
+                html += '"></span></li>';
+                }
+                for (var j in item) {
+                    var sub = item[j];
+            html += ' <li class="game-essay-list-item">';
+			html += '<a class="m-wrap" type="btn" href="__CONTROLLER__/detail/id/'+sub['game_id']+'">';
+			html += '	<span class="icon-wrap" type="btn" href="__CONTROLLER__/detail/id/'+sub['game_id']+'">';
+			html += '		<img class="game-icon lazy " src="'+sub['picurl']+'" alt="" type="btn" href="__CONTROLLER__/detail/id/'+sub['game_id']+'">';
+			html += '	</span>';
+			html += '	<div class="content">';
+			html += '		<p class="game-title"><span class="inner-text">'+sub['game_name']+'</span>';
+			html += '			<span class="ico ico-gift-radius"></span>';
+			html += '		</p>';
+			html += '		<p class="game-info"><span class="item">'+sub['game_type_name']+'</span></p>';
+			html += '		<p class="game-info"><span class="item">'+sub['datetime']+'</span>';
+            html += '     <span class="item-exp">'+sub['server_name']+'</span></p>';
+			html += '	</div>';
+			html += '</a>';
+			html += '<a class="btn" type="btn" href="__CONTROLLER__/detail/id/'+sub['game_id']+'">下载</a>';
+			html += '<span class="pre-verline"></span>';
+            html += '</li>';
+                }
+            }
+            key = k;
+            ac.append(html);
+            $('.loading').addClass('ms-none');
+            $('#moreBtn').removeClass('ms-none');loads=false;
+        } else {
+            $('.loading').addClass('ms-none');
+            $('#moreBtn').removeClass('ms-none').html('对不起，数据已经加载完');
+        }
+    });
+</script>	
+
+</block>

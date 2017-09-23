@@ -1,0 +1,176 @@
+<extend name="Public/bases"/>
+
+<block name="body" >
+    <link rel="stylesheet" href="__CSS__/wapcomtop_main.css">
+    <style>
+body {font-size: 100%;font:normal 12px '5FAE8F6F96C59ED1',Arial,'5B8B4F53',sans-serif;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;-webkit-tap-highlight-color:rgba(0,0,0,0); color: #333; line-height: 1.5;}
+/*page01-css*/
+.sty-cen{ margin:0 auto; text-align:center; display:block;}
+.fred{ color:#c0281f;}
+.photo-box{ background:#f4f4f4;-webkit-box-sizing: border-box; overflow:hidden; padding-bottom:10px;}
+.boxul{margin:10px 5px;overflow: hidden;}
+.bgfff{ background:#fff;padding:5px; border-radius:5px;}
+.boxul li{float: left;width: 50%; -webkit-box-sizing: border-box;padding:5px; position:relative;}
+.boxul li a{ text-decoration:none;}
+.boxul li img{width:100%;}
+.boxul li p{ padding-top:5px; color:#666; height:40px; line-height:20px;}
+.video-tit{display: -webkit-box;-webkit-box-pack: justify;padding: 0 15px;border: solid #d5d5d5;border-width: 1px 0;-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);height: 43px;line-height: 43px;position: relative;background:#fff;border-left:3px solid #f60; font-size:16px;}
+.play {width:30px;height:30px;position: absolute;left: 50%;top: 50%;margin: -38px 0 0 -15px;background:url(http://www.fpwap.com/UploadFiles/article/information/2015/12/15/e9e6b0aec9d01ed08423e3eff0882f1a.png) no-repeat; background-position:-30px 0}
+.fr{ float:right;}
+a,p{ text-decoration:none}
+
+.column
+{
+    height:110px;
+    margin-bottom: 10px;
+    background-color: #fff;
+
+    font-size: 14px;
+}
+.column li
+{
+    float: left;
+    width: 25%;
+    text-align: center;
+}
+.column li a
+{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.column li i
+{ display:block;
+    width: 65px;
+    height: 65px;
+    margin: 10px auto 4px; background:url(http://www.fpwap.com/UploadFiles/article/information/2015/12/23/66f1ee67883a4c44d7ff3811e9c658e3.png) no-repeat left; background-size:260px 65px
+}
+.column .column-tit{ font-style:normal;font-size:14px; color:#333}
+.column .i2{ background-position:-65px 0}
+.column .i3{background-position:-130px 0}
+.column .i4{background-position:-195px 0}
+.clearfix:after{ display: table; content: ""; clear: both;}
+.top_fix{ margin-bottom:15px}  
+/**/
+   .i-module
+{
+    padding: 0 7px;
+    margin-bottom: 5px;
+    background-color: #fff;
+	margin-top: 15px;
+}
+.i-module-tit
+{
+    height: 35px;
+    border-bottom: 1px #d9d9d9 solid;
+    font-size: 20px;
+    color: #000;
+    line-height: 35px;
+    overflow:hidden;
+}
+.i-info li:after
+{
+    display: table;
+    content: "";
+    clear: both;
+}
+.i-info li
+{
+    height: 80px;
+    overflow: hidden;
+    border-bottom: 1px #E0E0E0 solid;
+}
+.i-info li:last-child
+{
+    border: 0 none;
+}
+.i-info li a
+{
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 10px 0;
+}
+.i-info li img
+{
+    float: left;
+    width: 90px;
+    margin-right: 8px;
+    height:59px;
+}
+.i-info-des
+{
+    overflow: hidden;
+    font-size: 13px;
+}
+.i-info-tit
+{
+    height: 36px;
+    margin-bottom: 6px;
+    overflow: hidden;
+	color: #333;
+	font-size: 13px;
+}
+.i-info-txt
+{
+    font-size: 12px;
+    color: #999;
+}
+.i-info-spe{ margin-left:5px}
+.index_more{display:block;text-align:center;border:1px #d9d9d9 solid;line-height:30px;width:100%;background:#fff; color:#333} 
+.ms-none{display:none;}
+</style>
+    <section class="main-wrap" id="fix-main">
+        <ul id="ajaxContainer" currentpage="{$page}" title="{:I('name')}" maxpage="{$total}" class="i-info i-module">
+            <volist name="lists" id="vo">
+            <li>
+              <a href="{:U('detail?id='.$vo['id'])}" title="{$vo['title']}">
+                  <img src="{$vo.cover_id|get_cover='path'}" alt="{$vo['title']}">
+                  <div class="i-info-des">
+                      <p class="i-info-tit">
+                          {$vo['title']}</p>
+                      <p class="i-info-txt">
+                          <span class="i-info-spe">发表于时间:</span>
+                          <span>{$vo.update_time|date='Y-m-d',###}</span>
+                          </p>
+                  </div>
+              </a>
+            </li>           
+            </volist>               
+        </ul>
+      	<section>
+	    	<div class="loading" id="loadingTip"><i class="loading-child"></i><span class="loading-text">正在加载，请等待……</span></div>
+			<div class="loading ms-none" id="errorTip">对不起，加载失败请<a href="{:U('News/lists?name='.I('name'))}" class="error">重 试</a>!</div>
+            <div class="loading ms-none" id="moreBtn"><a href="javascript:" class="link">点此查看更多</a></div>
+        </section>
+    </section>
+    <script src="__JS__/ajaxload.js"></script>
+    <script>
+        ajaxload('{:U("ajaxlists")}',{},function(data) {
+            var ac = $('#ajaxContainer');
+            if (data.status == 1) {
+                ac.attr('currentpage',data.page);
+                var html = '';
+                for (var i in data.lists) {
+                    var item = data.lists[i];
+                    html += '<li>';
+                    html += '<a href="__CONTROLLER__/detail/id/'+item['id']+'" title="'+item['title']+'">';
+                    html += '<img src="'+item['picurl']+'" alt="'+item['title']+'">';
+                    html += '<div class="i-info-des">';
+                    html += '<p class="i-info-tit">'+item['title']+'</p>';
+                    html += '<p class="i-info-txt"><span class="i-info-spe">发表于时间:</span>';
+                    html += '<span>'+item['update_time']+'</span></p></div></a>';
+                    html += '</li>';
+                }
+                ac.append(html);
+                $('.loading').addClass('ms-none');
+                $('#moreBtn').removeClass('ms-none');loads=false;
+            } else {
+                $('.loading').addClass('ms-none');
+                $('#moreBtn').removeClass('ms-none').html('对不起，数据已经加载完');
+            }
+        });
+
+    </script>
+</block>

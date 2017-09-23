@@ -1,0 +1,105 @@
+<extend name="Public/bases"/>
+
+<block name="body" >
+<style>
+    .header-sub .logo .game-icon{height: 30px;width: auto;border-radius: 0;margin: 6px 0;}
+    .mod-con {
+        margin-bottom: 0;
+        border-top: 0;
+        overflow: hidden;
+    }
+    .ms-none{display:none;}
+</style>
+
+<section class="mod-con wxlbboxbg">
+    <div class="mtopnav">
+        <a href="{:U('index')}">礼包中心</a> &gt; 
+        <a>{$category.title}</a>
+    </div>    
+</section>
+
+<section class="borleft" id="ajaxContainer" key="{$lists.key}" currentpage="{$page}" title="{:I(name)}" maxpage="{$total}" >
+    <volist name="lists.data" id="sub" >
+    <div class="timetitle <switch name='key'><case value='今天'>tadaybg</case><case value='昨天'>timeyest</case><case value='前天'>timeqdatd</case><case value='一周以前'>timeqweek</case><default/>timeweek</switch>"><i></i>{$key}</div>                        
+        <volist name="sub" id="vo">
+            <div class="mod-con ">
+                <article class="gift-code-box">
+                    <a href="{:U('detail?id='.$vo['id'])}" >
+                        <div class="gift-card">
+                            <img src="{$vo.picurl}" class="img60">
+                            <div class="box-flex">
+                                <h3 class="gift-card-title"><?php echo preg_replace('/(\(.+)/i','',$vo['game_name']);?>{$vo.giftbag_name}</h3>
+                                <p class="giftc-info">剩余<em> {$vo.number} </em>，总共<em> {$vo.total} </em></p>
+                            </div>
+                            <div class="btn-give">领取</div>
+                        </div>
+                        <div class="giftc-copy-box">
+                            <div class="code-box" id="js-code-box">
+                                <p>{$vo.desribe}</p>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+            </div>
+        </volist>
+    </volist>
+</section>
+<section>
+    <div class="loading" id="loadingTip"><i class="loading-child"></i><span class="loading-text">正在加载，请等待……</span></div>
+    <div class="loading ms-none" id="errorTip">对不起，加载失败请<a href="{:U('lists?name='.I('name'))}" class="error">重 试</a>!</div>
+    <div class="loading ms-none" id="moreBtn"><a href="javascript:" class="link">点此查看更多</a></div>
+</section>	
+<script src="__JS__/ajaxload.js"></script>
+<script>
+    var ac = $('#ajaxContainer'),title = ac.attr('title'), key = ac.attr('key');
+    ajaxload('{:U("ajaxlists")}',{name:title},function(data) {
+        if (data.status == 1) {
+            ac.attr('currentpage',data.page);
+            var html = '',d = data.lists.data,k=data.lists.key;
+            for (var i in d) {
+                var item = d[i];
+                if (i != key) {
+                html += '<div class="timetitle ';
+                switch (i) {
+                    case '今天': html += 'tadaybg';break;
+                    case '昨天': html += 'timeyest';break;
+                    case '前天': html += 'timeqdatd';break;
+                    case '一周以前': html += 'timeqweek';break;
+                    default: html += 'timeweek';
+                }
+                html += '"><i></i>'+i+'</div>';
+                }
+                for (var j in item) {
+                    var sub = item[j];
+                    html += '<div class="mod-con ">';
+        html += '<article class="gift-code-box">';
+            html += '<a href="__CONTROLLER__/detail/id/'+sub['id']+'" >';
+                html += '<div class="gift-card">';
+                   html += ' <img src="'+sub['picurl']+'" class="img60">';
+                    html += '<div class="box-flex">';
+                    html += '    <h3 class="gift-card-title">'+sub['game_name']+sub['giftbag_name']+'</h3>';
+                    html += '    <p class="giftc-info">剩余<em> '+sub['number']+' </em>，总共<em> '+sub['total']+' </em></p>';
+                    html += '</div>';
+                   html += ' <div class="btn-give">领取</div>';
+                html += '</div>';
+                html += '<div class="giftc-copy-box">';
+                html += '    <div class="code-box" id="js-code-box">';
+                html += '        <p>'+sub['desribe']+'</p>';
+               html += '     </div>';
+              html += '  </div>';
+          html += '  </a>';
+        html += '</article>';
+ html += '  </div>';
+                }
+            }
+            key = k;
+            ac.append(html);
+            $('.loading').addClass('ms-none');
+            $('#moreBtn').removeClass('ms-none');loads=false;
+        } else {
+            $('.loading').addClass('ms-none');
+            $('#moreBtn').removeClass('ms-none').html('对不起，数据已经加载完');
+        }
+    });
+</script>
+</block>

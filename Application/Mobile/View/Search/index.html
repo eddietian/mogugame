@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" name="viewport">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <title>{:seo_replace(C('wap_search.seo_title'),'','wap')}</title>
+        <meta name="keywords" content="{:seo_replace(C('wap_search.seo_keyword'),'','wap')}">
+        <meta name="description" content="{:seo_replace(C('wap_search.seo_description'),'','wap')}">  
+         
+        <link href="__CSS__/search.css" rel="stylesheet" type="text/css">          
+        <script type="text/javascript" src="__JS__/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="    __JS__/assistLink.js"></script>
+        <style>
+            .ms-none{display:none;}
+            .loading {
+                padding: 10px 0;
+                color: #999;
+                text-align: center;
+                font-size: 9pt;
+            }
+            .loading-child {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    vertical-align: middle;
+    -webkit-animation: load 1.2s infinite linear;
+}
+            .loading-text {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+    font-size: 9pt;
+}
+.loading .error {
+    color: red;
+}
+        </style>
+    </head>
+    <body>
+        <div id="wrap" style="position: relative;">
+            <div id="head">    
+                <div id="head_d">
+                        <span class="s_back_wr">
+                            <div onclick="backRefer();" class="head-a">  
+                                <img src="__IMG__/back.png" width="12px" height="20px" border="0" class="s_back" id="s_back_i">
+                            </div>
+                        </span>
+                        <span class="s_ipt_wr" id="search_input_container" style="background-color:#fff;">
+                            <b class="icon" id="icon_remove" onclick="removeText();" ></b>
+                            <input name="w" id="kw" class="s_ipt" style="background-color:#fff;"  placeholder="请输入关键字" value="{$w}" maxlength="100" autocomplete="off"> 
+                            <input name="t" value="{$t}" type="hidden">
+                            <a id="aclick" url="{:U('Search/index')}" style="display:none;"></a>
+                        </span>
+                        <div onclick="submitMobile();" class="head-a">
+                            <span class="s_btn_wr">
+                                <img src="__IMG__/fdj2.png" width="20px" height="20px" border="0" id="su" class="s_btn">
+                            </span>
+                        </div>  
+                        <ul id="bdcs-search-sug-list" class="bdcs-search-sug-list" style="top: 48px; left: 0px; width: 412px;"></ul>  
+                </div>
+            </div>                                                                                                                                                                                   
+            <div id="channel" class="channel-banner" style="background-color:#FFFFFF">
+                <div class="cb-center" id="mobileChannel">
+                    <ul id="mobileChannel-ul" class="clearfix" style="left: 0px;">
+                        <li class="no-selected <eq name='t' value='tag' >selected</eq>"><a type="btn" href="{:U('index?w='.$w)}">全站</a></li>
+                        <li class="no-selected <eq name='t' value='game' >selected</eq>"><a type="btn" href="{:U('index?t=game&w='.$w)}">游戏</a></li>
+                        <li class="no-selected <eq name='t' value='gift' >selected</eq>"><a type="btn" href="{:U('index?t=gift&w='.$w)}">礼包</a></li>
+                        <li class="no-selected <eq name='t' value='news' >selected</eq>"><a type="btn" href="{:U('index?t='.$a.'&w='.$w)}">文章</a></li>
+                    </ul>
+                    <div class="channel-left" id="channel-left"></div>
+                    <div class="channel-right" id="channel-right"></div>
+                </div>
+            </div>
+            <div id="container" class="clearfix">
+                <div id="center" class="content">
+                    <div id="results" class="content-main">
+                    <if condition="$t eq 'tag' ">    
+                        <if condition="empty($game) and empty($gift) and empty($news) " >
+                            <div class="nors">
+                                <br>
+                                <p>抱歉，没有找到与<em>{$w}</em>相关的结果。</p>
+                                <br>
+                                <p>建议您尝试变换检索词，或者去<a href="http://www.baidu.com/s?wd={$w}&amp;ie=utf-8&amp;tn=SE_pscse_053x7tyx" target="_blank" style="color: #0000c0;">百度一下&gt;&gt;</a></p>
+                                <br>
+                            </div>
+                        <else />
+                            <notempty name="game">
+                            <div >
+                                <p class="result-title">相关游戏</p>
+                                <div class="result-list gameblock-result-list">
+                                    <volist name="game" id="vo">
+                                    <div class="result-item result-game-item result-item-sub">
+                                        <div onclick="window.location=&#39;{:U('Game/detail?id='.$vo['id'])}&#39;" class="game-legend-a" ontouchstart="this.className = &#39;result_content_div&#39;" ontouchend="this.className = &#39;game-legend-a result_content_end&#39;;" ontouchmove="this.className = &#39;game-legend-a result_content_end&#39;;"> 
+                                            <div class="result-game-item-pic" style="width:90px;height:90px;">
+                                                <img src="{$vo.icon|get_cover='path'}" alt="{$vo.game_name}" style="width:90px;height:90px;" class="result-game-item-pic-link-img"> 
+                                            </div>
+                                            <div class="result-game-item-detail">
+                                                    <h3 class="result-item-title result-game-item-title">{$vo.rgame_name}</h3>
+                                                <p class="result-game-item-desc">{:mb_substr($vo['describe'],0,80,'utf-8')}</p>
+                                                <div class="result-game-item-info"></div>
+                                            </div>       
+                                            <div style="clear: both;"></div>
+                                        </div>
+                                    </div>
+                                    </volist>
+                                    <div class="gameblock-more">
+                                        <div type="btn" href="{:U('Game/lists')}" area="1" class="gameblock-more-item area-more">
+                                            <div class="gameblock-more-temp block-more-button">
+                                                更多相关游戏&nbsp;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;  
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="block-line">
+                                </div>
+                            </div>
+                            </notempty>
+                            <notempty name="gift">
+                            <div >
+                                <p class="result-title">相关礼包</p>
+                                <div class="result-list gameblock-result-list">
+                                    <volist name="gift" id="vo">
+                                    <div class="result-item result-game-item result-item-sub">
+                                        <div onclick="window.location=&#39;{:U('Gift/detail?id='.$vo['id'])}&#39;" class="game-legend-a" ontouchstart="this.className = &#39;result_content_div&#39;" ontouchend="this.className = &#39;game-legend-a result_content_end&#39;;" ontouchmove="this.className = &#39;game-legend-a result_content_end&#39;;"> 
+                                            <div class="result-game-item-pic" style="width:90px;height:90px;">
+                                                <img src="{$vo.icon|get_cover='path'}" alt="{$vo.game_name}{$vo.giftbag_name}" style="width:90px;height:90px;" class="result-game-item-pic-link-img"> 
+                                            </div>
+                                            <div class="result-game-item-detail">
+                                                    <h3 class="result-item-title result-game-item-title">{$vo.rgame_name}{$vo.rgiftbag_name}</h3>
+                                                <p class="result-game-item-desc">{$vo['desribe']}</p>
+                                                <div class="result-game-item-info"></div>
+                                            </div>       
+                                            <div style="clear: both;"></div>
+                                        </div>
+                                    </div>
+                                    </volist>
+                                    <div class="gameblock-more">
+                                        <div type="btn" href="{:U('Gift/lists')}" area="1" class="gameblock-more-item area-more">
+                                            <div class="gameblock-more-temp block-more-button">
+                                                更多相关礼包&nbsp;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;  
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="block-line">
+                                </div>
+                            </div>
+                            </notempty>
+                            <notempty name="news">
+                            <div>
+                                <p class="result-title">相关文章</p>
+                                <div class="result-list gameblock-result-list">
+                                    <volist name="news" id="vo">
+                                    <?php $c = explode('_',$vo['cname']);
+                                    if (empty($vo['game_id']) or $vo['game_id'] == 0) {
+                                        $url = ucfirst($c[1]).'/detail?';
+                                    } else {
+                                        $url = 'Game/newsdetail?name='.$c[1].'&';
+                                    }?>
+                                    <div class="result f s0 resultSub ">
+                                        <div style="outline:none;display: block;" onclick="window.location=&#39;{:U($url.'id='.$vo['id'])}&#39;" ontouchstart="this.className = &#39;result_content_div&#39;" ontouchend="this.className = &#39;result_content_end&#39;;" ontouchmove="this.className = &#39;result_content_end&#39;;">
+                                            <h3 class="c-title  ">{$vo.rtitle}</h3>
+                                            <div>
+                                                <div class="c-abstract-image">
+                                                    <div class="c-abstract  ">{:mb_substr($vo['description'],0,80,'utf-8')}</div>
+                                                </div>
+                                                <div class="c-image page-pic">
+                                                    <table cellspacing="0" cellpadding="0" align="center"><tbody>
+                                                    <tr><td>
+                                                        <img src="{$vo.cover_id|get_cover='path'}" onload="$(this).css(&#39;margin-top&#39;,35-$(this).height()*0.5+&#39;px&#39;);" onerror="$(this).parents(&#39;.c-image&#39;).hide();$(this).parents(&#39;.c-image&#39;).next().removeClass(&#39;c-abstract-image&#39;).addClass(&#39;c-content&#39;);$(this).parents(&#39;.c-image&#39;).prev().css(&#39;width&#39;,&#39;100%&#39;);" border="0" class="result-image" style="margin-top: -1px;"></td></tr></tbody></table>
+                                                </div>
+                                                <br clear="both">                                    
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <span class="c-showurl">{:U($url.'id='.$vo['id'])}  {$vo.create_time|date='m-d',###}</span>
+                                        </div>
+                                    </div>
+                                    </volist>
+                                    <div class="gameblock-more">
+                                        <div type="btn" href="{:U(ucfirst($a).'/index')}" area="2" class="gameblock-more-item area-more">
+                                            <div class="gameblock-more-temp block-more-button">
+                                                更多相关文章&nbsp;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;  
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </notempty>
+                        </if>
+                    <else />
+                        <notempty name="lists">
+                            <if condition="$t eq 'game'">
+                            <div id="ajaxContainer" currentpage="{$page}" keyword="{$w}" type="{$t}" maxpage="{$total}" class="result-list">
+                                <volist name="lists" id="vo">
+                                <div class="result-item result-game-item result-item-sub">
+                                    <div onclick="window.location=&#39;{$vo.url}&#39;" class="game-legend-a" ontouchstart="this.className = &#39;result_content_div&#39;" ontouchend="this.className = &#39;game-legend-a result_content_end&#39;;" ontouchmove="this.className = &#39;game-legend-a result_content_end&#39;;"> 
+                                        <div class="result-game-item-pic" style="width:90px;height:90px;">
+                                            <img src="{$vo.picurl}" alt="{$vo.game_name}" style="width:90px;height:90px;" class="result-game-item-pic-link-img"> 
+                                        </div>
+                                        <div class="result-game-item-detail">
+                                                <h3 class="result-item-title result-game-item-title">{$vo.rgame_name}</h3>
+                                            <p class="result-game-item-desc">{$vo.describe}</p>
+                                            <div class="result-game-item-info"></div>
+                                        </div>       
+                                        <div style="clear: both;"></div>
+                                    </div>
+                                </div>
+                                </volist>
+                            </div>
+                            <elseif condition="$t eq 'gift'" />
+                            <div id="ajaxContainer" currentpage="{$page}" keyword="{$w}" type="{$t}" maxpage="{$total}" class="result-list">
+                                <volist name="lists" id="vo">
+                                <div class="result-item result-game-item result-item-sub">
+                                    <div onclick="window.location=&#39;{$vo.url}&#39;" class="game-legend-a" ontouchstart="this.className = &#39;result_content_div&#39;" ontouchend="this.className = &#39;game-legend-a result_content_end&#39;;" ontouchmove="this.className = &#39;game-legend-a result_content_end&#39;;"> 
+                                        <div class="result-game-item-pic" style="width:90px;height:90px;">
+                                            <img src="{$vo.picurl}" alt="{$vo.rgame_name}{$vo.rgiftbag_name}" style="width:90px;height:90px;" class="result-game-item-pic-link-img"> 
+                                        </div>
+                                        <div class="result-game-item-detail">
+                                                <h3 class="result-item-title result-game-item-title">{$vo.rgame_name}{$vo.rgiftbag_name}</h3>
+                                            <p class="result-game-item-desc">{$vo['desribe']}</p>
+                                            <div class="result-game-item-info"></div>
+                                        </div>       
+                                        <div style="clear: both;"></div>
+                                    </div>
+                                </div>
+                                </volist>
+                            </div>
+                            <else />
+                            <div id="ajaxContainer" currentpage="{$page}" keyword="{$w}" type="{$t}" maxpage="{$total}" class="result-list">
+                                <volist name="lists" id="vo">
+                                <div class="result f s0 resultSub ">
+                                    <div style="outline:none;display: block;" onclick="window.location=&#39;{$vo.url}&#39;" ontouchstart="this.className = &#39;result_content_div&#39;" ontouchend="this.className = &#39;result_content_end&#39;;" ontouchmove="this.className = &#39;result_content_end&#39;;">
+                                        <h3 class="c-title  ">{$vo.rtitle}</h3>
+                                        <div>
+                                            <div class="c-abstract-image">
+                                                <div class="c-abstract  ">{$vo.description}</div>
+                                            </div>
+                                            <div class="c-image page-pic">
+                                                <table cellspacing="0" cellpadding="0" align="center"><tbody>
+                                                <tr><td>
+                                                    <img src="{$vo.picurl}" onload="$(this).css(&#39;margin-top&#39;,35-$(this).height()*0.5+&#39;px&#39;);" onerror="$(this).parents(&#39;.c-image&#39;).hide();$(this).parents(&#39;.c-image&#39;).next().removeClass(&#39;c-abstract-image&#39;).addClass(&#39;c-content&#39;);$(this).parents(&#39;.c-image&#39;).prev().css(&#39;width&#39;,&#39;100%&#39;);" border="0" class="result-image" style="margin-top: -1px;"></td></tr></tbody></table>
+                                            </div>
+                                            <br clear="both">                                    
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="c-showurl">{$vo.url}  {$vo.datetime}</span>
+                                    </div>
+                                </div>
+                                </volist>
+                            </div>
+                            </if>
+                            <section>
+                                <div class="loading" id="loadingTip"><i class="loading-child"></i><span class="loading-text">正在加载，请等待……</span></div>
+                                <div class="loading ms-none" id="errorTip">对不起，加载失败请<a href="{:U('rank?name='.I('name'))}" class="error">重 试</a>!</div>
+                                <div class="loading ms-none" id="moreBtn"><a href="javascript:" class="link">点此查看更多</a></div>
+                            </section>
+                            <script src="__JS__/ajaxload.js"></script>
+                            <script>
+                                var ac = $('#ajaxContainer'),keyword = ac.attr('keyword'),type = ac.attr('type');
+                                ajaxload('{:U("ajaxlists")}',{w:keyword,t:type},function(data) {
+                                    if (data.status == 1) {
+                                        ac.attr('currentpage',data.page);
+                                        var html = '',timestamp=(new Date().getTime())/1000;
+                                        if (type == 'game') {
+                                            for (var i in data.lists) {
+                                                var item = data.lists[i];
+                                html += '<div class="result-item result-game-item result-item-sub">';
+                                html += '    <div onclick="window.location=&#39;'+item['url']+'&#39;" class="game-legend-a" ontouchstart="this.className = &#39;result_content_div&#39;" ontouchend="this.className = &#39;game-legend-a result_content_end&#39;;" ontouchmove="this.className = &#39;game-legend-a result_content_end&#39;;"> ';
+                                html += '        <div class="result-game-item-pic" style="width:90px;height:90px;">';
+                                html += '            <img src="';
+                                if (item['picurl'])
+                                    html += item['picurl'];
+                                html += '" alt="'+item['rgame_name']+'" style="width:90px;height:90px;" class="result-game-item-pic-link-img"> ';
+                                html += '        </div>';
+                                html += '        <div class="result-game-item-detail">';
+                                html += '                <h3 class="result-item-title result-game-item-title">'+item['rgame_name']+'</h3>';
+                                html += '            <p class="result-game-item-desc">'+item['describe']+'</p>';
+                                html += '            <div class="result-game-item-info"></div>';
+                                html += '        </div>';
+                                html += '        <div style="clear: both;"></div>';
+                                html += '    </div>';
+                                html += '</div>';
+                                            }
+                                        } else if (type == 'gift') {
+                                            for (var i in data.lists) {
+                                                var item = data.lists[i];
+                                html += '<div class="result-item result-game-item result-item-sub">';
+                                html += '    <div onclick="window.location=&#39;'+item['url']+'&#39;" class="game-legend-a" ontouchstart="this.className = &#39;result_content_div&#39;" ontouchend="this.className = &#39;game-legend-a result_content_end&#39;;" ontouchmove="this.className = &#39;game-legend-a result_content_end&#39;;"> ';
+                                html += '        <div class="result-game-item-pic" style="width:90px;height:90px;">';
+                                html += '            <img src="';
+                                if (item['picurl'])
+                                    html += item['picurl'];
+                                html += '" alt="'+item['rgame_name']+item['rgiftbag_name']+'" style="width:90px;height:90px;" class="result-game-item-pic-link-img"> ';
+                                html += '        </div>';
+                                html += '        <div class="result-game-item-detail">';
+                                html += '                <h3 class="result-item-title result-game-item-title">'+item['rgame_name']+item['rgiftbag_name']+'</h3>';
+                                html += '            <p class="result-game-item-desc">'+item['desribe']+'</p>';
+                                html += '            <div class="result-game-item-info"></div>';
+                                html += '        </div>   ';    
+                                html += '        <div style="clear: both;"></div>';
+                                html += '    </div>';
+                                html += '</div>';                
+                                            }
+                                        } else {
+                                            for (var i in data.lists) {
+                                                var item = data.lists[i];
+                                html += '<div class="result f s0 resultSub ">';
+                                html += '    <div style="outline:none;display: block;" onclick="window.location=&#39;'+item['url']+'&#39;" ontouchstart="this.className = &#39;result_content_div&#39;" ontouchend="this.className = &#39;result_content_end&#39;;" ontouchmove="this.className = &#39;result_content_end&#39;;">';
+                                html += '        <h3 class="c-title  ">'+item['rtitle']+'</h3>';
+                                html += '        <div>';
+                                html += '            <div class="c-abstract-image">';
+                                html += '                <div class="c-abstract  ">'+item['description']+'</div>';
+                                html += '            </div>';
+                                html += '            <div class="c-image page-pic">';
+                                html += '                <table cellspacing="0" cellpadding="0" align="center"><tbody>';
+                                html += '                <tr><td>';
+                                html += '                    <img src="';
+                                if (item['picurl'])
+                                    html += item['picurl'];
+                                html += '" onload="$(this).css(&#39;margin-top&#39;,35-$(this).height()*0.5+&#39;px&#39;);" onerror="$(this).parents(&#39;.c-image&#39;).hide();$(this).parents(&#39;.c-image&#39;).next().removeClass(&#39;c-abstract-image&#39;).addClass(&#39;c-content&#39;);$(this).parents(&#39;.c-image&#39;).prev().css(&#39;width&#39;,&#39;100%&#39;);" border="0" class="result-image" style="margin-top: -1px;"></td></tr></tbody></table>';
+                                html += '            </div>';
+                                html += '            <br clear="both">';                          
+                                html += '        </div>';
+                                html += '    </div>';
+                                html += '    <div>';
+                                html += '        <span class="c-showurl">'+item['url']+'  '+item['datetime']+'</span>';
+                                html += '    </div>';
+                                html += '</div>';              
+                                            }
+                                        }
+                                        ac.append(html);
+                                        $('.loading').addClass('ms-none');
+                                        $('#moreBtn').removeClass('ms-none');loads=false;
+                                    } else {
+                                        $('.loading').addClass('ms-none');
+                                        $('#moreBtn').removeClass('ms-none').html('对不起，数据已经加载完');
+                                    }
+                                });
+                            </script>	
+                        <else />
+                            <div class="nors">
+                                <br>
+                                <p>抱歉，没有找到与<em>{$w}</em>相关的结果。</p>
+                                <br>
+                                <p>建议您尝试变换检索词，或者去<a href="http://www.baidu.com/s?wd={$w}&amp;ie=utf-8&amp;tn=SE_pscse_053x7tyx" target="_blank" style="color: #0000c0;">百度一下&gt;&gt;</a></p>
+                                <br>
+                            </div>
+                        </notempty>
+                    </if>
+                    </div>
+                </div>
+            </div>
+        </div>                              
+        <script type="text/javascript">
+				function submitMobile() {
+					var that=$('#kw'), val = that.val(),t = that.siblings('input').val();
+					var a = $('#aclick'),url=a.attr('url');
+					a.attr('href',url.replace(/(\.html|\.htm)$/,'')+'/w/'+val+'/t/'+t);
+					
+					document.getElementById("aclick").click();
+				}
+            $('#kw').on('keyup',function(event) {
+                var keycode = event.keyCode;
+                if (keycode == 13) {
+                    submitMobile();
+                } else
+                    if (keycode == "") {
+                        $("#icon_remove").hide();
+                    } else {
+                        $("#icon_remove").show();
+                    }
+            });
+            
+            if ($("#kw").val() == '') {
+                $("#icon_remove").hide();
+            }
+
+            function removeText() {
+                $("#kw").attr("value", "");
+                $("#icon_remove").hide();
+            }
+            
+
+            function backRefer() {
+                var refer = document.referrer;
+                if (refer && refer.indexOf('Search/index') == -1) {
+                    window.location.href = refer;
+                } else {
+                   window.history.go(-1);
+                }
+                                        
+            }
+        </script>                           
+    </body>
+</html>

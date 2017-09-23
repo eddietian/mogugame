@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Cache-Control" content="no-cache">
+        <meta name="viewport" content="width = device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="MobileOptimized" content="320">
+        <title>{:seo_replace(C('wap_index.seo_title'),'','wap')}</title>
+        <meta name="keywords" content="{:seo_replace(C('wap_index.seo_keyword'),'','wap')}">
+        <meta name="description" content="{:seo_replace(C('wap_index.seo_description'),'','wap')}">  
+        
+        <link rel="stylesheet" href="__CSS__/comfp.css">
+        <link rel="stylesheet" href="__CSS__/membercenter.css">
+        
+        <script src="__JS__/jquery.js"></script>
+        <script src="__JS__/logintips.js"></script>
+        
+    </head>
+    <body>
+        <div class="header">
+                <div class="top-bar">
+                    <ul class="contorl">
+                        <li><a href="{:U('Index/index')}" >首页</a>|</li>
+                        <li><a href="javascript:SetHome(&#39;{:U('Index/index')}&#39;)" name="totop" target="_self">设为首页</a>|</li>
+                        <li><a href="javascript:AddFavorite(&#39;{:U('Index/index')}&#39;, &#39;{:C('WAP_SET_TITLE')}_手机网游第一门户&#39;)" target="_self">加入收藏</a></li>
+                    </ul>
+                    <ul class="share">
+
+                    <li class="normal"><a href="{:U('Game/index')}"  title="游戏">游戏</a>|</li>
+                    <li class="normal"><a href="{:U('Gift/index')}"  title="礼包">礼包</a>|</li>								
+                    <li class="normal"><a href="{:U('News/index')}"  title="资讯">资讯</a>|</li>								
+                    <li class="normal" id="login"><a href="{:U('index')}">{:session('suser_auth.nickname')}</a></li>
+                    <li class="normal" id="reg"><a href="javascript:;" onclick="userislogout()" target="_self">退出</a></li>
+                </ul>
+            </div>
+        </div>
+        <header class="main-header ucFixBug">
+            <div class="header-widget">
+                <div class="header-sub">
+                    <div class="logo" >
+                        <a href="{:U('Index/index')}"><img src="{:get_cover(C('WAP_SET_LOGO'),'path')}" class="img" alt="平台">
+                    </a></div>
+                    <span class="fl grzx">个人中心</span>
+                </div>  
+            </div>
+        </header>
+        <div class="new_header">
+            <a href="{:U('Index/index')}"> <img src="{:get_cover(C('WAP_SET_LOGO'),'path')}"></a>
+            <span class="fl grzx">个人中心</span>
+        </div>
+        <div class="bg">
+            <div class="s-main">
+                <div class="membercenter"></div>
+                <div class="nav-member">
+                    <ul>
+                        <li class="<eq name='ACTION_NAME' value='index'>activenew</eq>"><a href="{:U('index')}">修改信息</a></li>
+                        <li class="<eq name='ACTION_NAME' value='gift'>activenew</eq>"><a href="{:U('gift')}">我的礼包</a></li>
+                        <li class="<eq name='ACTION_NAME' value='play'>activenew</eq>"><a href="{:U('play')}">玩过游戏</a></li>
+                        <li class="<eq name='ACTION_NAME' value='modify'>activenew</eq>"><a href="{:U('modify')}">修改密码</a></li>
+                    </ul>
+                </div>
+                
+                <block name="body"></block>
+            
+                <div class="mask"></div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>{:C('WAP_SET_COPYRIGHT')} &nbsp;&nbsp;&nbsp;&nbsp; {:C('WAP_SET_FOR_THE_RECORD')}</p>
+        </div>
+        <script>
+            $('.nav-member ul li').hover(function(){ 
+                $(this).addClass('active'); 
+            },function(){ 
+                $(this).removeClass('active'); 
+            });
+            var UURL = '__MODULE__/Unlr',SURL='__MODULE__/Subscriber';
+        </script>
+        <script src="__JS__/common.js"></script>
+    </body>
+</html>

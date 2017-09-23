@@ -1,0 +1,145 @@
+<extend name="Public/base"/>
+
+<block name="body">
+<link rel="stylesheet" href="__CSS__/select2.min.css" type="text/css" />
+<script type="text/javascript" src="__JS__/bootstrap.min.js"></script>
+<script type="text/javascript" src="__JS__/select2.min.js"></script>
+    <!-- 标题栏 -->
+    <div class="main-place">
+        <span class="main-placetitle">位置：</span>
+        <ul class="main-placeul">
+            <li><a href="{:U('PromoteWelfare/lists')}">福利管理</a></li>
+            <li><a href="{:U('PromoteCoin/send_lists')}">平台币发放</a></li>
+            <li><a href="#">{$meta_title}</a></li>
+        </ul>
+        <div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">{$meta_title}</span>
+                    <span class="">给一级/二级渠道发放平台币，此平台币只可在会长代充是使用（一级渠道可以给二级渠道转移）</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+	<div class="cf top_nav_list">
+		<div class="fl button_list">
+		<empty name="model.extend">
+			<div class="tools">
+				<a class=" " href="{:U('send',['promote_type'=>1])}"><span class="button_icon button_icon1"></span>给一级渠道发放</a>
+				<a class=" " href="{:U('send',['promote_type'=>2])}"><span class="button_icon button_icon1"></span>给二级渠道发放</a>
+				<!--<a class=" ajax-post confirm " target-form="ids" url="{:U('del?model='.$model['id'])}"><span class="button_icon button_icon2"></span>删 除</a>-->
+			</div>
+		</empty>
+		</div>
+		<!-- 高级搜索 -->
+		<div class="jssearch fr cf search_list">
+			<div class="input-list input-list-game search_label_rehab">
+                <label>渠道帐号：</label>
+                <select name="promote_id" class="select_gallery" style="width:150px;">
+                    <option value="">请选择渠道</option>
+                    <volist name=":get_promote_list()" id="vo">
+                        <option  value="{$vo.id}">{$vo.account}</option>
+                    </volist>
+                </select>
+            </div>
+            <div class="input-list">
+            <label>渠道等级：</label>
+                <select id="promote_type" name="promote_type"  style="width:100px;">
+                    <option value="">请选择</option>
+                    <option value="1">一级渠道</option>
+                    <option value="2">二级渠道</option>
+                </select>
+            </div>
+            <div class="input-list">
+                <a class="sch-btn" href="javascript:;" id="search" url="{:U('send_lists','model='.$model['name'],false)}">搜索</a>
+            </div>
+		</div>
+	</div>
+
+
+    <!-- 数据列表 -->
+    <div class="data_list">
+        <div class="">
+            <table>
+                <!-- 表头 -->
+                <thead>
+                <tr>
+                    <th>
+                        <input class="check-all" type="checkbox">
+                    </th>
+                    <volist name="list_grids" id="field">
+                        <th>{$field.title}</th>
+                    </volist>
+                </tr>
+                </thead>
+
+                <!-- 列表 -->
+                <tbody>
+                <empty name ="list_data">
+                <tr>
+                <td colspan="8" class="text-center"> aOh! 暂时还没有内容! </td>
+                </tr>
+                <else />
+                <volist name="list_data" id="data">
+                    <tr>
+                        <td><input class="ids" type="checkbox" value="{$data['id']},{$data.file_type},{$data['game_id']}" name="ids[]"></td>
+                        <volist name="list_grids" id="grid">
+                            <td>{:get_list_field($data,$grid)}</td>
+                        </volist>
+                    </tr>
+                </volist>
+                </empty>
+                <tr class="data_summary">
+                    <td>汇总</td>
+                    <td colspan="8">今日发放：{$sum.to_day|default=0}个 ； 昨日发放：{$sum.yse_day|default=0}个 ； 累计发放：{$sum.all_num}个</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="page">
+        {$_page|default=''}
+    </div>
+</block>
+
+<block name="script">
+<script type="text/javascript">
+
+    Think.setValue("promote_id","{:I('promote_id')}");
+    Think.setValue("promote_type","{:I('promote_type')}");
+
+    $(".select_gallery").select2();
+</script>
+<script type="text/javascript">
+highlight_subnav('{:U('PromoteCoin/send_lists')}');
+if('{$Think.get.game_name}'!=''){
+    $('#select2-game_id-container').text('{$Think.get.game_name}');
+}
+$(function(){
+	//搜索功能
+	$("#search").click(function(){
+		var url = $(this).attr('url');
+        var query  = $('.jssearch').find('input').serialize();
+        query  += "&"+$('.jssearch').find('select').serialize();
+        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
+        query = query.replace(/^&/g,'');
+        if( url.indexOf('?')>0 ){
+            url += '&' + query;
+        }else{
+            url += '?' + query;
+        }
+		window.location.href = url;
+	});
+
+    //回车自动提交
+    $('.jssearch').find('input').keyup(function(event){
+        if(event.keyCode===13){
+            $("#search").click();
+        }
+    });
+
+})
+</script>
+</block>

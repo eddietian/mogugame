@@ -1,0 +1,110 @@
+<extend name="Public/base" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+<block name="body">
+<link rel="stylesheet" href="__CSS__/select2.min.css" type="text/css" />
+<script type="text/javascript" src="__JS__/bootstrap.min.js"></script>
+<script type="text/javascript" src="__JS__/select2.min.js"></script>
+<style>
+    .select2-container--default .select2-selection--single {
+            color: #000;
+        resize: none;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #a7b5bc #ced9df #ced9df #a7b5bc;
+        box-shadow: 0px 3px 3px #F7F8F9 inset;height:35px;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height:35px;
+    }
+</style>
+	<!-- 标题栏 -->
+	<div class="main-place">
+        <span class="main-placetitle">位置：</span>
+        <ul class="main-placeul">
+            <li><a href="{:U('User/index')}">用户</a></li>
+            <li><a href="{:U('Member/user_info')}">玩家组</a></li>
+            <li><a href="#">{$meta_title}</a></li>
+        </ul>
+        <div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">{$meta_title}</span>
+                    <span class="">玩家账户的防沉迷开关以及相关配置</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <form action="{:U('User/age')}" method="post" class="form-horizontal alipay form_info_ml">
+        <ul class="form_info ">
+            <li><label style="width: 130px;">防沉迷开关</label><span class="form_radio">
+                    <label><input type="radio" name="status" value="0" <eq name="data.status" value="0">checked="checked"</eq>> 是</label>
+                    <label><input type="radio" name="status" value="1" <eq name="data.status" value="1">checked="checked"</eq>> 否
+                </label>
+            </span>
+            </li>
+            <hr style="height:2px;border:none;border-top:2px solid #555555;padding-top:22px;width:750px;float:left;"/>
+            <eq name="data.status" value="1"> <div style="display: none;"> </eq>
+            <li><label style="width: 130px;">未实名认证提示时间</label><input name="hours" type="text" value="{$data['hours']}" class=""></li>
+            <li><label style="width: 130px;">未实名认证提示内容</label><textarea name="contents_off" type="text" value="{$data['contents_off']}" class="">{$data.contents_off}</textarea></li>
+            <hr style="height:2px;border:none;border-top:2px solid #555555;padding-top:22px;width:750px;float:left;" />
+            <li><label style="width: 130px;">未满18岁防沉迷时间</label><input placeholder="第一次" style="width:120px;" name="hours_off_one" type="text" value="{$data['hours_off_one']}" class="">小时<input placeholder="第二次" style="width:120px;" name="hours_off_two" type="text" value="{$data['hours_off_two']}" class="">小时</li>
+            <li><label style="width: 130px;">第一次提示内容</label><textarea name="contents_one" type="text" value="{$data['contents_one']}" class="">{$data.contents_one}</textarea></li>
+            <li><label style="width: 130px;">第二次提示内容</label><textarea name="contents_two" type="text" value="{$data['contents_two']}" class="">{$data.contents_two}</textarea></li>
+            <li><label style="width: 130px;">是否强制下线</label><span class="form_radio">
+                    <label><input type="radio" name="bat" value="0" <eq name="data.bat" value="0">checked="checked"</eq>> 是</label>
+                    <label><input type="radio" name="bat" value="1" <eq name="data.bat" value="1">checked="checked"</eq>> 否
+                </label>
+            </span>
+            </li>
+            <li><label style="width: 130px;">恢复时间</label><input name="hours_cover" type="text" value="{$data['hours_cover']}" class=""></li>
+            <eq name="data.status" value="1"></div></eq>
+            <li><label>&nbsp</label><input type="hidden" name="name" value="age_prevent"><input type="submit" id="submit" value="确认保存" target-form="alipay" class="form_btn ajax-post"></li>
+        </ul>
+    </form>
+    </div>
+</block>
+
+<block name="script">
+<script>
+<volist name=":I('get.')" id="vo">
+    Think.setValue('{$key}',"{$vo}");
+</volist>
+$(".select_gallery").select2();
+</script>
+	<script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+	<script type="text/javascript">
+	//搜索功能
+	$("#search").click(function(){
+		var url = $(this).attr('url');
+        var query  = $('.jssearch').find('input').serialize();
+        query  += "&" + $('.jssearch').find('select').serialize();
+        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
+        query = query.replace(/^&/g,'');
+        if( url.indexOf('?')>0 ){
+            url += '&' + query;
+        }else{
+            url += '?' + query;
+        }
+		window.location.href = url;
+	});
+	//回车搜索
+	$(".search-input").keyup(function(e){
+		if(e.keyCode === 13){
+			$("#search").click();
+			return false;
+		}
+	});
+    //导航高亮
+    highlight_subnav('{:U('user/age')}');
+    if('{$Think.get.game_name}'!=''){
+        $('#select2-game_id-container').text('{$Think.get.game_name}');
+    }
+    $(".jssearch").find(".drop-down1").hover(function(){
+        $("#sub-sch-menu").removeClass("hidden");
+    },function(){
+        $("#sub-sch-menu").addClass("hidden");
+    });
+	</script>
+</block>

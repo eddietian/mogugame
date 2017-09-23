@@ -1,0 +1,7 @@
+<ul class="user-menu fl" id="user-menu">
+<li <if condition="ACTION_NAME eq users_index"> class="active"</if> > <a href="{:U('users_index')}" class="menu-1"><i></i> 账号资料</a> </li>
+<li <if condition="ACTION_NAME eq 'users_safe' or ACTION_NAME eq 'users_phone'"> class="active"</if> > <a href="{:U('users_safe')}" class="menu-2"><i></i> 帐号安全</a> </li>
+<li <if condition="ACTION_NAME eq 'resetpwd'"> class="active"</if> > <a href="{:U('resetpwd')}" class="menu-3"><i></i> 修改密码</a> </li>
+<li <if condition="ACTION_NAME eq 'users_gift'"> class="active"</if>> <a href="{:U('users_gift')}" class="menu-4"><i></i> 礼包中心</a> </li>
+<li <if condition="ACTION_NAME eq 'users_db'"> class="active"</if>> <a href="{:U('users_db')}" class="menu-5"><i></i> 绑币余额</a> </li>
+</ul>

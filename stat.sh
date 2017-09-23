@@ -1,0 +1,1 @@
+sh -c "cd /www/web/3_vlcms_com/public_html/;php cli.php auto/stat;"

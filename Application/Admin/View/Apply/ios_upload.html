@@ -1,0 +1,409 @@
+<extend name="Public/base" />
+
+<block name="body">
+<link rel="stylesheet" type="text/css" href="__STATIC__/bootstrap.min.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/admin_table.css" media="all">
+
+<link rel="stylesheet" type="text/css" href="__STATIC__/webuploader/webuploader.css" media="all">
+<script src="__STATIC__/md5.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="__STATIC__/webuploader/webuploader.js"></script>
+    <div class="main-place">
+        <span class="main-placetitle">位置：</span>
+        <ul class="main-placeul">
+            <li><a href="{:U('Promote/lists')}">渠道</a></li>
+            <li><a href="{:U('Promote/lists')}">渠道管理</a></li>
+            <li><a href="#">IOS包上传</a></li>
+        </ul>
+    </div>
+    <!-- 标签页导航 -->
+<div class="tab-wrap">
+    <div class="tab_nav jstabnav">
+    <ul>
+        <li data-tab="tab1" class="current"><a href="javascript:void(0);">基础</a></li>
+    </ul></div>
+    <div class="tab-content tab_content">
+    <!-- 表单 -->
+    <form id="form" action="{:U('add_ios')}" method="post" class="form-horizontal">
+        <!-- 基础文档模型 -->
+        <div id="tab1" class="tab-pane in tab1 tab_table">
+            <table  border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                  <tr>
+                        <td class="l">渠道账号：</td>
+                        <td class="r">
+                           <input type="text" class="txt" name="account" value="{:get_promote_name($data['promote_id'])}" disabled="disabled">
+                           <input type="hidden" name="promote_id" id="promote_id" value="{$data['promote_id']}">
+                        </td>
+                        <td class="l">申请游戏：</td>
+                        <td class="r">
+                           <input type="text" class="txt time" name="game_name" value="{$data['game_name']}" disabled="disabled">
+                           <input type="hidden" name="game_id" id="game_id" value="{$data['game_id']}">
+                        </td>
+                    </tr>
+                      <td class="l">证书名称：</td>
+                    <td class="r">
+                        <select id="certid" name="certid">
+                            <option value="0" selected="">请选择证书</option>
+                            <volist name=':get_applecert()' id='vo'>
+                                <option value="{$vo.id}" sdk_version="{$vo.name}">{$vo.name}</option>
+                            </volist>
+                        </select>
+                    </td>
+                  <!-- <tr>
+                    <td class="l">文件包：</td>
+                    <td class="r" colspan='3'>
+                        <div id="uploader" class="wu-example">
+                            <div class="btns">
+                                <if condition="get_tool_status('qiniu_storage') eq 1 and get_tool_status('oss_storage') neq 1">
+                                    <div id="picker" class="webuploader_btn">上传IOS包</div>
+                                    <div id="error_info"><p class="state"></p></div>
+                                    <else/>
+                                    <div id="picker" class="webuploader_btn">上传IOS包</div>
+                                </if>
+                            </div> -->
+                            <!--用来存放文件信息-->
+<!--                             <div id="thelist" class="uploader-list">
+                            </div>
+                        </div>
+                        <input type="hidden" name="id" value="{$data['id']}">
+                        <input type="hidden" id="file_id" name="file_id"     value="{$data['file_id']}"/>
+                        <input type="hidden" id="file_name" name="file_name" value="{$data['file_name']}"/>
+                        <input type="hidden" id="file_url"  name="file_url"  value="{$data['file_url']}"/>
+                        <input type="hidden" id="file_size" name="file_size" value="{$data['file_size']}"/>
+                    </td>
+                  </tr> -->
+                 
+                </tbody>
+            </table>
+        </div>
+        <div class="form-item cf">
+            <button class=" submit_btn  ajax-post  " id="submit" type="submit" target-form="form-horizontal">确 定</button>
+            
+        </div>
+    </form>
+    </div>
+</div>
+</block>
+
+<block name="script">
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<if condition="get_tool_status('qiniu_storage') eq 1 and get_tool_status('oss_storage') neq 1">
+    <script type="text/javascript" src="__STATIC__/qiniu/qiniu.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/qiniu/js/plupload.full.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/qiniu/js/jquery.plupload.queue/jquery.plupload.queue.js"></script>
+    <script type="text/javascript">
+        //导航高亮
+        highlight_subnav('{:U('Apply/ios_lists')}');
+        $('#submit').click(function(){
+            $('#form').submit();
+        });
+
+        var uploader = Qiniu.uploader({
+            runtimes: 'html5,flash,html4',      // 上传模式，依次退化
+            browse_button: 'picker',         // 上传选择的点选按钮，必需
+            // 在初始化时，uptoken，uptoken_url，uptoken_func三个参数中必须有一个被设置
+            // 切如果提供了多个，其优先级为uptoken > uptoken_url > uptoken_func
+            // 其中uptoken是直接提供上传凭证，uptoken_url是提供了获取上传凭证的地址，如果需要定制获取uptoken的过程则可以设置uptoken_func
+//             uptoken : '<Your upload token>', // uptoken是上传凭证，由其他程序生成
+             uptoken_url: "{$uptoken_url}",         // Ajax请求uptoken的Url，强烈建议设置（服务端提供）
+            // uptoken_func: function(file){    // 在需要获取uptoken时，该方法会被调用
+            //    // do something
+            //    return uptoken;
+            // },
+            get_new_uptoken: true,             // 设置上传文件的时候是否每次都重新获取新的uptoken
+//             downtoken_url: "",
+            // Ajax请求downToken的Url，私有空间时使用，JS-SDK将向该地址POST文件的key和domain，服务端返回的JSON必须包含url字段，url值为该文件的下载地址
+//             unique_names: true,              // 默认false，key为文件名。若开启该选项，JS-SDK会为每个文件自动生成key（文件名）
+//             save_key: true,                  // 默认false。若在服务端生成uptoken的上传策略中指定了sava_key，则开启，SDK在前端将不对key进行任何处理
+            domain: "{:C('qiniu_storage.domain')}",     // bucket域名，下载资源时用到，必需
+//            container: 'uploader',             // 上传区域DOM ID，默认是browser_button的父元素
+            flash_swf_url: '__STATIC__/qiniu/js/Moxie.swf',  //引入flash，相对路径
+            max_retries: 3,                     // 上传失败最大重试次数
+            chunk_size: '4mb',                  // 分块上传时，每块的体积
+            auto_start: true,                   // 选择文件后自动上传，若关闭需要自己绑定事件触发上传
+            multi_selection: false,             //只能上传一个文件
+            filters: {
+                mime_types : [ //只允许ipa文件
+                    { title : "ipa File", extensions : "ipa" },
+                ],
+            },
+
+            //x_vars : {
+            //    查看自定义变量
+            //    'time' : function(up,file) {
+            //        var time = (new Date()).getTime();
+            // do something with 'time'
+            //        return time;
+            //    },
+            //    'size' : function(up,file) {
+            //        var size = file.size;
+            // do something with 'size'
+            //        return size;
+            //    }
+            //},
+            init: {
+                'FilesAdded': function(up, files) {
+                    plupload.each(files, function(file) {
+//                        上传初始化显示
+                        $("#thelist").append( '<div id="' + file.id + '" class="item">' +
+                                '<h4 class="info">' + file.name + '</h4>' +
+                                '<p class="state">等待上传...</p>' +
+                                '</div>' );
+                    });
+
+                },
+                'BeforeUpload': function(up, file) {
+                    // 每个文件上传前，处理相关的事情
+                },
+                'UploadProgress': function(up, file) {
+                    // 每个文件上传时，处理相关的事情
+
+                    //上传时显示进度条
+                    var $li = $( '#'+file.id );
+                    var $percent = $li.find('.progress .progress-bar');
+                    // 避免重复创建
+                    if ( !$percent.length ) {
+                        $percent = $('<div class="progress progress-striped active">' +
+                                '<div class="progress-bar" role="progressbar" style="width: 0%">' +
+                                '</div>' +
+                                '</div>').appendTo( $li ).find('.progress-bar');
+                    }
+                    $li.find('p.state').text('上传中');
+                    $percent.css( 'width', up.total.percent + '%' );
+                    $percent.text( up.total.percent + '%' );
+
+                },
+                'FileUploaded': function(up, file, info) {
+                    // 每个文件上传成功后，处理相关的事情
+                    // 其中info是文件上传成功后，服务端返回的json，形式如：
+                    // {
+                    //    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+                    //    "key": "gogopher.jpg"
+                    //  }
+
+                    //隐藏进度条
+                    $( '#'+file.id ).find('.progress').fadeOut();
+                    $( '#'+file.id ).find('p.state').text('已上传');
+
+//                     查看简单反馈
+                     var domain = up.getOption('domain');
+                     var res = $.parseJSON(info);
+                    $("#file_name").val(res.key);
+                    $("#file_url").val(domain);
+                    $("#file_size").val(res.size);
+
+
+
+                },
+                'Error': function(up, err, errTip) {
+                    //上传出错时，处理相关的事情
+                    $( '#error_info' ).find('p.state').text(errTip);
+                },
+                'UploadComplete': function() {
+                    //队列文件处理完毕后，处理相关的事情
+                    $("#picker").attr('style','display:none');
+                },
+                'Key': function(up, file) {
+                    // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+                    // 该配置必须要在unique_names: false，save_key: false时才生效
+                    var key = "game_package"+$("#game_id").val()+"-"+$("#promote_id").val()+".ipa";
+                    // do something with key here
+                    return key
+                }
+            }
+        });
+
+        // domain为七牛空间对应的域名，选择某个空间后，可通过 空间设置->基本设置->域名设置 查看获取
+
+        // uploader为一个plupload对象，继承了所有plupload的方法
+
+
+    </script>
+
+    <else />
+
+<script type="text/javascript">
+//导航高亮
+highlight_subnav('{:U('Apply/ios_lists')}');
+$('#submit').click(function(){
+    $('#form').submit();
+});
+var userInfo = {userId:"kazaff", md5:""};   //用户会话信息
+var chunkSize = 5000 * 1024;        //分块大小
+var uniqueFileName = null;          //文件唯一标识符
+var md5Mark = null;
+var backEndUrl = "{:U('File/shard_upload',array('session_id'=>session_id()))}";
+WebUploader.Uploader.register({
+    "before-send-file" : "beforeSendFile", 
+    "before-send"      : "beforeSend", 
+    "after-send-file"  : "afterSendFile"
+}, {
+    beforeSendFile: function(file){
+        //秒传验证
+        var task = new $.Deferred();
+        var start = new Date().getTime();
+        (new WebUploader.Uploader()).md5File(file, 0, 10*1024*1024).progress(function(percentage){
+            //console.log(percentage);
+        }).then(function(val){
+            //console.log("总耗时: "+((new Date().getTime()) - start)/1000);
+            md5Mark = val;
+            userInfo.md5 = val;
+            $.ajax({
+                type: "POST"
+                , url: backEndUrl
+                , data: {status: "md5Check", md5: val}
+                , cache: false
+                , timeout: 1000 //todo 超时的话，只能认为该文件不曾上传过
+                , dataType: "json"
+            }).then(function(data, textStatus, jqXHR){
+                alert(data.chunk);
+                //console.log(data);
+                if(data.ifExist){   //若存在，这返回失败给WebUploader，表明该文件不需要上传
+                    task.reject();
+                    uploader.skipFile(file);
+                    file.path = data.path;
+                }else{
+                    task.resolve();
+                    //拿到上传文件的唯一名称，用于断点续传
+                    uniqueFileName = md5(''+userInfo.userId+file.name+file.type+file.lastModifiedDate+file.size);
+                }
+            }, function(jqXHR, textStatus, errorThrown){    //任何形式的验证失败，都触发重新上传
+                task.resolve();
+                //拿到上传文件的唯一名称，用于断点续传
+                uniqueFileName = md5(''+userInfo.userId+file.name+file.type+file.lastModifiedDate+file.size);
+            });
+        });
+        return $.when(task);
+    }
+    , beforeSend: function(block){
+        //分片验证是否已传过，用于断点续传
+        var task = new $.Deferred();
+        $.ajax({
+            type: "POST"
+            , url: backEndUrl
+            , data: {
+                status: "chunkCheck"
+                , name: uniqueFileName
+                , chunkIndex: block.chunk
+                , size: block.end - block.start
+            }
+            , cache: false
+            , timeout: 1000 //todo 超时的话，只能认为该分片未上传过
+            , dataType: "json"
+        }).then(function(data, textStatus, jqXHR){
+            if(data.ifExist){   //若存在，返回失败给WebUploader，表明该分块不需要上传
+                task.reject();
+            }else{
+                task.resolve();
+            }
+        }, function(jqXHR, textStatus, errorThrown){    //任何形式的验证失败，都触发重新上传
+            task.resolve();
+        });
+
+        return $.when(task);
+    }
+    , afterSendFile: function(file){
+        var chunksTotal = 0;
+        if((chunksTotal = Math.ceil(file.size/chunkSize)) > 1){
+            //合并请求
+            var task = new $.Deferred();
+            $.ajax({
+                type: "POST"
+                , url: backEndUrl
+                , data: {
+                    status: "chunksMerge"
+                    , name: uniqueFileName
+                    , chunks: chunksTotal
+                    , ext: file.ext
+                    , md5: md5Mark
+                }
+                , cache: false
+                , dataType: "json"
+            }).then(function(data, textStatus, jqXHR){
+                //todo 检查响应是否正常
+                task.resolve();
+                file.path = data.path;
+                $("#file_name").val(data.name);
+                $("#file_url").val(data.path);
+                $("#file_size").val(file.size);
+            }, function(jqXHR, textStatus, errorThrown){
+                task.reject();
+            });
+            return $.when(task);
+        }else{
+            //UploadComlate(file);
+        }
+    }
+});
+var uploader = WebUploader.create({
+    // 选完文件后，是否自动上传。
+    auto: true,
+    // swf文件路径
+    swf: '__STATIC__/webuploader/Uploader.swf',
+    // 文件接收服务端。
+    server: "{:U('File/shard_upload',array('session_id'=>session_id()))}",
+    // 选择文件的按钮。可选。
+    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+    pick: {id:'#picker'},
+    //dnd: "#theList",
+    paste: document.body,
+    // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+    resize: false,
+    accept:{extensions: 'ipa',mimeTypes:'.ipa'},
+    disableGlobalDnd: true,
+    fileNumLimit:1,
+    threads:3,
+    compress: false,
+    prepareNextFile: true,
+    formData: function(){return $.extend(true, {}, userInfo);},
+    duplicate:true,
+    chunked:true,
+    chunkSize: 5*1000*1024,
+    duplicate: true
+});
+// 当有文件被添加进队列的时候
+uploader.on( 'fileQueued', function( file ) {
+    $("#thelist").append( '<div id="' + file.id + '" class="item">' +
+        '<h4 class="info">' + file.name + '</h4>' +
+        '<p class="state">等待上传...</p>' +
+    '</div>' );
+});
+
+// 文件上传过程中创建进度条实时显示。
+uploader.on( 'uploadProgress', function( file, percentage ) {
+    var $li = $( '#'+file.id ),
+        $percent = $li.find('.progress .progress-bar');
+    // 避免重复创建
+    if ( !$percent.length ) {
+        $percent = $('<div class="progress progress-striped active">' +
+          '<div class="progress-bar" role="progressbar" style="width: 0%">' +
+          '</div>' +
+        '</div>').appendTo( $li ).find('.progress-bar');
+    }
+    $li.find('p.state').text('上传中');
+    $percent.css( 'width', percentage * 100 + '%' );
+    $percent.text( (percentage * 100).toFixed(0) + '%' );
+});
+
+uploader.on( 'uploadSuccess', function( file , response) {
+    $( '#'+file.id ).find('p.state').text('已上传');
+    // alert(JSON.stringify(response));
+
+    if(!response.chunk){
+        $("#file_name").val(response.name);
+        $("#file_url").val(response.path);
+        $("#file_size").val(response.size);
+    }
+    //alert($("#file_name").val()+";"+$("#file_url").val()+";"+$("#file_size").val())
+});
+
+uploader.on( 'uploadError', function( file ) {
+    $( '#'+file.id ).find('p.state').text('上传出错');
+});
+
+uploader.on( 'uploadComplete', function(file) {
+    $( '#'+file.id ).find('.progress').fadeOut();
+});
+</script>
+    </if>
+</block>

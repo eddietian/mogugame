@@ -1,0 +1,46 @@
+<extend name="Public/base"/>
+
+<block name="body">
+    <div class="main-place">
+        <span class="main-placetitle">位置：</span>
+        <ul class="main-placeul">
+            <li><a href="{:U('Model/index')}">系统</a></li>
+            <li><a href="{:U('Model/index')}">系统设置</a></li>
+            <li><a href="#">{$meta_title}</a></li>
+        </ul>
+    </div>
+    <form action="{:U()}" method="post" class="form-horizontal form_info_ml">
+        <ul class="form_info form_info_menu">
+            <li><label>标题</label><div class="form_main"><input type="text" class="" name="title" value="{$info.title|default=''}" placeholder="请输入标题"></div><i class="form_hint">用于后台显示的配置标题</i></li>
+            <li><label>排序</label><div class="form_main"><input type="text" class="" name="sort" value="{$info.sort|default=0}" placeholder="请输入排序"></div><i class="form_hint">用于分组显示的顺序</i></li>
+            <li><label>链接</label><div class="form_main"><input type="text" class="" name="url" value="{$info.url|default=''}" placeholder="请输入链接"></div><i class="form_hint">U函数解析的URL或者外链</i></li>
+            <li><label>上级菜单</label><div class="form_main"><span class="form_select"><select name="pid">
+                    <volist name="Menus" id="menu">
+                        <option value="{$menu.id}">{$menu.title_show}</option>
+                    </volist>
+                </select></span></div><i class="form_hint">所属的上级菜单</i></li>
+            <li><label>分组</label><div class="form_main"><input type="text" class="" name="group" value="{$info.group|default=''}" placeholder="请输入分组"></div><i class="form_hint">用于左侧分组二级菜单</i></li>
+            <li><label>是否隐藏</label><div class="form_main"><span class="form_radio"><label><input type="radio" name="hide" value="1"> 是</label>
+                <label><input type="radio" name="hide" value="0"> 否</label></span></div><i class="form_hint"></i></li>
+            <li><label>仅开发者模式可见</label><div class="form_main"><span class="form_radio"><label><input type="radio" name="is_dev" value="1"> 是</label>
+                <label><input type="radio" name="is_dev" value="0"> 否</label></span></div><i class="form_hint"></i></li>
+            <li><label>说明</label><div class="form_main"><input type="text" class="" name="tip" value="{$info.tip|default=''}" placeholder="请输入说明"></div><i class="form_hint">菜单详细说明</i></li>
+            
+        </ul>
+        <div class="form-item">
+            <input type="hidden" name="id" value="{$info.id|default=''}">
+            <button class=" submit_btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+            <button class=" back_btn" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        Think.setValue("pid", {$info.pid|default = 0});
+        Think.setValue("hide", {$info.hide|default = 0});
+        Think.setValue("is_dev", {$info.is_dev|default = 0});
+        //导航高亮
+        highlight_subnav('{:U('index')}');
+    </script>
+</block>

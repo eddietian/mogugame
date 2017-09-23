@@ -1,0 +1,78 @@
+<extend name="Public/bases"/>
+
+<block name="body" >
+<section class="mod-con">
+    <div class="fh-nav">
+        <ul class="cf">
+            <li><a href="{:U('today')}">今日发放</a></li>
+            <li><a href="{:U('lists?name=1')}">推荐礼包</a></li>
+            <li><a href="{:U('lists?name=2')}">热门礼包</a></li>
+        </ul>
+    </div>
+</section>
+
+<div class="mod-con qiang-gift">
+    <div class="hd"><h2>热门游戏礼包</h2><span class="hd-info"></span></div>
+    <ul class="gift-rec-list">
+        <gift:index name="vo" recommend_status="2" sort="tab_giftbag.sort desc" limit="4" >
+        <li>
+            <a href="{:U('lists?id='.$vo['game_id'])}">
+                <div class="pic">
+                    <i class="today-lbnum">{:count(explode(',',$vo['novice']))}</i>
+                    <img src="{$vo.icon|get_cover='path'}" width="60" height="60">
+                </div>
+                <div class="info">
+                  <span class="name"><?php echo preg_replace('/(\(.+)/i','',$vo['game_name']);?></span>
+                  <p>{$vo.giftbag_name}</p>
+                  <p><span class="ck-btn">查看</span></p>
+                </div>
+            </a>
+        </li>
+        </gift:index>
+    </ul>
+    <a href="{:U('lists')}" class="mod-more">查找更多礼包<span class="icon-link"></span></a>
+</div>
+<div class="ad27"></div>
+<section class="mod-con">
+    <div class="hd"><h2>大家正在抢</h2></div>
+    <ul class="gift-new-list">
+        <gift:record name="vo" limit="8" >              
+        <li>
+            <div class="pic">
+                <a href="{:U('detail?id='.$vo['id'])}">
+                    <img src="{$vo.icon|get_cover='path'}" width="60" height="60">
+                </a>
+            </div>
+            <div class="info">
+                <span class="name"><a href="{:U('detail?id='.$vo['id'])}"><?php echo preg_replace('/(\(.+)/i','',$vo['game_name']);?>{$vo.giftbag_name}</a></span>
+                <p class="pdtb3">总共：{$vo.total}，剩余：<span class="c-orange">{$vo.number}</span></p>
+                <p>{$vo.desribe}</p>              
+            </div>
+            <div class="btns"><a href="{:U('detail?id='.$vo['id'])}" class="btn-give">领取</a></div>
+        </li>	
+        </gift:record>               						
+	</ul>
+    <a href="{:U('lists')}" class="mod-more">查找更多礼包<span class="icon-link"></span></a>                        
+</section>
+<section class="mod-con">
+    <div class="hd"><h2>推荐礼包</h2></div>
+    <ul class="gift-new-list">
+        <gift:index name="vo" recommend_status="1" sort="sort desc" isrecord="true" limit="10" >
+        <li>
+            <div class="pic">
+                <a href="{:U('detail?id='.$vo['id'])}">
+                    <img src="{$vo.icon|get_cover='path'}" width="60" height="60">
+                </a>
+            </div>
+            <div class="info">
+                <span class="name"><a href="{:U('detail?id='.$vo['id'])}"><?php echo preg_replace('/(\(.+)/i','',$vo['game_name']);?>{$vo.giftbag_name}</a></span>
+                <p class="pdtb3">总共：{$vo.total}，剩余：<span class="c-orange">{$vo.number}</span></p>
+                <p>{$vo.desribe}</p>
+            </div>
+            <div class="btns"><a href="{:U('detail?id='.$vo['id'])}" class="btn-give">领取</a></div>
+        </li>
+        </gift:index>                    	
+	</ul>
+    <a href="{:U('lists?name=1')}" class="mod-more">更多推荐礼包<span class="icon-link"></span></a>                        
+</section>
+</block>

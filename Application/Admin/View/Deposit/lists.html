@@ -1,0 +1,306 @@
+<extend name="Public/base"/>
+
+<block name="body">
+<link rel="stylesheet" href="__CSS__/select2.min.css" type="text/css" />
+<script type="text/javascript" src="__JS__/bootstrap.min.js"></script>
+<script type="text/javascript" src="__JS__/select2.min.js"></script>
+    <!-- 标题栏 -->
+    <div class="main-place">
+        <span class="main-placetitle">位置：</span>
+        <ul class="main-placeul">
+            <li><a href="{:U('Spend/lists')}">充值</a></li>
+            <li><a href="{:U('Spend/lists')}">订单管理</a></li>
+            <li><a href="#">{$meta_title}</a></li>
+        </ul>
+        <div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">{$meta_title}</span>
+                    <span class="">玩家充值平台币到账户的记录，不包含消费平台币的记录，如需查询平台币使用，请到游戏充值中查询</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="cf top_nav_list">
+        <!-- 高级搜索 -->
+        <div class="jssearch fr cf search_list">
+            <div class="input-list">
+                <label>用户账号：</label>
+                <input type="text" id="search-input" name="user_account" class="" value="{:I('user_account')}"
+                       placeholder="请输入用户账号"/>
+            </div>
+            <div class="input-list">
+                <label>订单账号：</label>
+                <input type="text" id="search-input" name="pay_order_number" class="" value="{:I('pay_order_number')}"
+                       placeholder="请输入订单账号"/>
+            </div>
+            <div class="input-list">
+                <label>充值时间：</label>
+                <input type="text" id="time-start" name="time-start" class="" value="{:I('time-start')}"
+                       placeholder="起始时间"/>
+                -
+                <div class="input-append date" id="datetimepicker" style="display:inline-block">
+                    <input type="text" id="time-end" name="time-end" class="" value="{:I('time-end')}"
+                           placeholder="结束时间"/>
+                    <span class="add-on"><i class="icon-th"></i></span>
+                </div>
+            </div>
+            <div class="input-list">
+                <label>充值IP：</label>
+                <input type="text" id="search-input" name="pay_ip" class="" value="{:I('pay_ip')}"
+                       placeholder="请输入充值IP"/>
+            </div>
+            <div class="sleft">
+                <label>订单状态：</label>
+                <select name="pay_status">
+                    <option value="">全部</option>
+                    <option value="0">未支付</option>
+                    <option value="1">成功</option>
+                </select>
+            </div>
+            <div class="input-list input-list-spend search_label_rehab">
+            <label>充值方式：</label>
+                <select id="pay_way_id" name="pay_way" class="select_gallery" >
+                    <option value="">请选择充值方式</option>
+                        <option value="1">支付宝</option>
+                        <option value="2">微信（扫码）</option>
+                        <option value="3">微信APP</option>
+                        <option value="4">威富通</option>
+                        <option value="5">聚宝云</option>
+                </select>
+            </div>
+            <!-- <div class="sleft">
+                <input type="text" name="{$model['search_key']|default='user_account'}" class="search-input" value="{:I('user_account')}" placeholder="请输入用户账号">
+            </div> -->
+            <input type="hidden" name="" value="" class="sortBy">
+            <div class="input-list">
+                <a class="sch-btn" href="javascript:;" id="search"
+                   url="{:U('Deposit/lists','model='.$model['name'],false)}">搜索</a>
+            </div>
+            <div class="input-list search_total">
+                <a class="sch-btn" href="{:U('Export/expUser',array_merge(array('id'=>8,),I('get.')))}">导出</a>
+                <!-- <span class="totalvalue">(共计充值<i>{$total}</i>元)</span> -->
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- 数据列表 -->
+    <div class="data_list">
+        <div>
+            <table>
+                <!-- 表头 -->
+                <thead>
+                <tr>
+                    <th>订单号</th>
+                    <!-- <th>充值时间</th> -->
+                    <th><a class="paixu" data-order='create_time'>
+                        <if condition="$userarpu_order eq 4 and  $userarpu_order_type eq 'create_time'">充值时间▲
+                            <elseif condition="$userarpu_order eq 3 and $userarpu_order_type eq 'create_time'"/>
+                            充值时间▼
+                            <else/>
+                            充值时间<img src="__IMG__/up-down.png" width="13px"></if>
+                    </a></th>
+                    <th>玩家账号</th>
+                    <th>充值IP</th>
+                    <th>所属渠道</th>
+                    <!-- <th>充值金额</th> -->
+                    <th><a class="paixu" data-order='pay_amount'>
+                        <if condition="$userarpu_order eq 4 and  $userarpu_order_type eq 'pay_amount'">充值金额▲
+                            <elseif condition="$userarpu_order eq 3 and $userarpu_order_type eq 'pay_amount'"/>
+                            充值金额▼
+                            <else/>
+                            充值金额<img src="__IMG__/up-down.png" width="13px"></if>
+                    </a></th>
+                    <th>充值方式</th>
+                    <th>订单状态</th>
+                </tr>
+                </thead>
+
+                <!-- 列表 -->
+                <tbody>
+                <empty name ="list_data">
+                <td colspan="11" class="text-center"> aOh! 暂时还没有内容! </td>
+                <else />
+                <volist name="list_data" id="data">
+                    <tr>
+                        <td>{:$data['pay_order_number']}</td>
+                        <td>{:set_show_time($data['create_time'],'','pay')}</td>
+                        <td>{$data.user_account}</td>
+                        <td>{$data.pay_ip}</td>
+                        <td>{$data.promote_account}</td>
+                        <td><span>{$data.pay_amount}</span></td>
+                        <td>{:get_pay_way($data['pay_way'])}</td>
+                        <td>
+                            <if condition="$data['pay_status'] eq 1"><span style="color: #46A3FF;">{:get_info_status($data['pay_status'],9)}</span>
+                                <else/>
+                                {:get_info_status($data['pay_status'],9)}
+                            </if>
+                        </td>
+                    </tr>
+                </volist>
+                </empty>
+                <tr class="data_summary">
+                    <td>汇总</td>
+                    <td colspan="7">
+                        当页充值：{:array_sum(array_column(array_status2value('pay_status','',$list_data),'pay_amount'))}元 ；
+                        今日充值：{$ttotal}元 ； 昨日充值：{$ytotal}元 ； 累计充值：{$total}元（此处只汇总充值成功的订单）
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="page">
+        {$_page|default=''}
+    </div>
+    <!-- <span><a href="{:U('Export/expUser',array(
+    'id'=>8,
+    'user_nickname'=>I('user_nickname'),
+    'time-start'=>I('time-start'),
+    'time-end'=>I('time-end'),
+    'start'=>I('start'),
+    'end'=>I('end'),
+    ))}">导出数据(excel格式)</a></span> -->
+</block>
+
+<block name="script">
+    <link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+    <php>if(C('COLOR_STYLE')=='blue_color') echo '
+        <link href="__STATIC__/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">
+        ';
+    </php>
+    <link href="__STATIC__/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"
+            charset="UTF-8"></script>
+    <script>
+    <volist name=":I('get.')" id="vo">
+        Think.setValue('{$key}',"{$vo}");
+    </volist>
+    $(".select_gallery").select2();
+    </script>
+    <script type="text/javascript">
+        //导航高亮
+        highlight_subnav('{:U('Deposit/lists')}');
+        $(function () {
+            //搜索功能
+            $("#search").click(function () {
+                var url = $(this).attr('url');
+                var query = $('.jssearch').find('input').serialize();
+                query += "&" + $('.jssearch').find('select').serialize();
+                query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g, '');
+                query = query.replace(/^&/g, '');
+                if (url.indexOf('?') > 0) {
+                    url += '&' + query;
+                } else {
+                    url += '?' + query;
+                }
+                window.location.href = url;
+            });
+            $(".paixu").click(function () {
+                var that = $(this);
+                $data_order = that.attr('data-order');
+                $order_type = '{$userarpu_order}';
+                if ($order_type == '' || $order_type == '4') {
+                    $(".sortBy").attr('name', 'data_order');
+                    val = '3,' + $data_order;
+                    $(".sortBy").attr('value', val);
+                    $("#search").click();
+                } else if ($order_type == '3') {
+                    $(".sortBy").attr('name', 'data_order');
+                    val = '4,' + $data_order;
+                    $(".sortBy").attr('value', val);
+                    $("#search").click();
+                }
+            });
+            //回车自动提交
+            $('.jssearch').find('input').keyup(function (event) {
+                if (event.keyCode === 13) {
+                    $("#search").click();
+                }
+            });
+
+
+            $('#time-start').datetimepicker({
+                format: 'yyyy-mm-dd',
+                language: "zh-CN",
+                minView: 2,
+                autoclose: true
+            });
+
+            $('#datetimepicker').datetimepicker({
+                format: 'yyyy-mm-dd',
+                language: "zh-CN",
+                minView: 2,
+                autoclose: true,
+                pickerPosition: 'bottom-left'
+            })
+
+
+            $(".drop-down2").on('click', function (event) {
+                var navlist = $(this).find('.i_list_li');
+                if (navlist.hasClass('hidden')) {
+                    navlist.removeClass('hidden');
+                    $('#promoteid').focus().val('');
+                } else {
+                    navlist.addClass('hidden');
+                }
+                $(document).one("click", function () {
+                    navlist.addClass('hidden');
+                });
+                event.stopPropagation();
+            });
+            var a = $('.i_list_li li a');
+            $('#promoteid').on('keyup', function (event) {
+                var val = $.trim($(this).val()).toLowerCase();
+                $('#promoteid').val(val);
+                $('#promoteidh').val(-1);
+            });
+
+            $('#promoteidlist').find("a").each(function () {
+                $(this).click(function () {
+                    var text = $.trim($(this).text()).toLowerCase(),
+                        val = $(this).attr('value');
+                    $('#promoteid').val(text);
+                    $('#promoteidh').val(val);
+                })
+            });
+
+            $(".d_list").find(".drop-down11").hover(function () {
+                $(this).find(".nav-list").removeClass("hidden");
+            }, function () {
+                $(this).find(".nav-list").addClass("hidden");
+            });
+
+            $(".drop-down11 .nav-list li").find("a").each(function () {
+                var that = $(".drop-down11");
+                $(this).click(function () {
+                    var text = $(this).text(), val = $(this).attr("value");
+                    that.find(".sort-txt").text(text).attr("data", val);
+                    that.find(".nav-list").addClass("hidden");
+                    that.siblings('.hiddenvalue').val(val);
+                })
+            });
+
+            $(".d_list").find(".drop-down12").hover(function () {
+                $(this).find(".nav-list").removeClass("hidden");
+            }, function () {
+                $(this).find(".nav-list").addClass("hidden");
+            });
+
+            $(".drop-down12 .nav-list li").find("a").each(function () {
+                var that = $(".drop-down12");
+                $(this).click(function () {
+                    var text = $(this).text(), val = $(this).attr("value");
+                    that.find(".sort-txt").text(text).attr("data", val);
+                    that.find(".nav-list").addClass("hidden");
+                    that.siblings('.hiddenvalue').val(val);
+                })
+            });
+        })
+    </script>
+</block>

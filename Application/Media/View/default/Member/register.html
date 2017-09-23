@@ -1,0 +1,467 @@
+<extend name="Public/base" />
+<block name="body" >
+<link type="text/css" rel="stylesheet" href="__CSS__/reg.css">
+<link rel="stylesheet" href="__CSS__/global.css">
+<script type="text/javascript" src="__JS__/rule.js"></script>
+<script src="__JS__/jquery.cookie.js" charset="utf-8"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__STATIC__/jquery-1.10.2.min.js"></script>
+<![endif]-->
+<div id="container" class="clearfix">
+   <div class="wrap clearfix">
+       <div class="left_sidebar">
+    	<ul>
+			<li class="reg_username current" id="yhm-register">
+        <span class="username"></span><a title="用户名注册">用户名注册</a>
+      </li>
+      <li class="reg_phone" id="phone-register">
+        <span class="phone"></span><a title="手机注册">手机注册</a>
+      </li>
+    	</ul>
+        <div class="reg_other">
+            <p>已有溪谷游戏账号？</p>
+            <a class="link_login" href="{:U('Member/plogin')}" title="立即登录">立即登录</a>
+            <img src="__IMG__/wx.jpg" alt="溪谷微信">
+            <p>关注微信公众号有惊喜</p>
+        </div>
+       </div> 
+       <div id="content" class="clearfix"> 
+        <form  id="mNameRegisterFormPop" >          
+            <div style="display:block;" id="register-fs1" class="reg-content">
+               <div class="reg_cue"><p class="fl">您当前选择的是 <span class="c_f45c01">用户名注册</span> 方式</p></div>
+               <div class="hz-regist-tip">以下内容我们承诺您的信息安全，不会透露给第三方。</div>
+
+                    <div class="hz_tr">
+                        <div class="hz_td1"><i class="reg_red">*</i> 用户账号：</div>
+                        <div class="hz_td2">
+                          <input type="text" id="userNameByNamePop" datatype="h6-15" ajaxurl="{:U('checkUser')}" ajaxdata="username" nullmsg="*用户名不能为空" errormsg="*由6~15个数字、字母、下划线字符组成" placeholder="由6~15个数字、字母、下划线字符组成" class="hz_reg_txt formcontroller" name="uname">
+                        </div>
+                        <div class="hz_prompt error-msg o_check_tip" style="color: red;"></div>
+                    </div>
+                    <div class="hz_tr">
+                        <div class="hz_td1"><i class="reg_red">*</i> 设置密码：</div>
+                        <div class="hz_td2"><input type="password" id="userPassPop" datatype="a6-30" nullmsg="*密码不能为空" errormsg="*6~30位数字、字母或特殊字符组成" placeholder="6~30位数字、字母或特殊字符组成" class="hz_reg_txt formcontroller" name="upwd"></div>
+                        	<div class="hz_prompt error-msg o_check_tip" style="color: red;"></div>
+                    </div>
+                	<div class="hz_tr">
+                        <div class="hz_td1"><i class="reg_red">*</i> 确认密码：</div>
+                        <div class="hz_td2"><input type="password" id="userConfirmPasssPop" datatype="a6-30" recheck="upwd" nullmsg="*确认密码不能为空" errormsg="*两次密码不一致"  class="hz_reg_txt formcontroller" id="r_upwd2" name="rpwd"></div>
+                        <div class="hz_prompt  error-msg o_check_tip" style="color: red;"></div>
+                    </div>
+                    <div class="hz_tr">
+                          <div class="hz_td1"><i class="reg_red">*</i> 验证码：</div>
+                          <div class="hz_td2"><input type="text" id="" datatype="w"  nullmsg="*验证码不能为空" errormsg="*验证码错误" placeholder="请输入右侧验证码" class="hz_reg_txt formcontroller" name="r_quan"><img style="width:102px; height:34px; float:left; margin:1px 0 0 10px; cursor:pointer; border:1px solid #f3f3f3;" alt="验证码" src="{:U('verify?vid=666')}" class="checkyzm" title="点击换一张"></div>
+                          	<div class="hz_prompt error-msg o_check_tip" style="color: red;"></div>
+                      </div>
+                    <div class="clearfix"></div>
+                    <div class="hz-fcmzr-wrap clearfix">
+                        <p class="hz-fcmzr2">根据2010年8月1日实施的《网络游戏管理暂行办法》，网络游戏用户需使用有效身份证件进行实名注册。为保证流畅游戏体验，享受健康游戏生活，请广大溪谷手游的玩家尽快实名注册。</p>
+                    </div>
+                    
+                    <div class="hz_tr">
+                        <div class="hz_td1"><if condition="C('PC_REAL_NAME_REGISTER') == 1"><i class="reg_red">*</i></if> 真实姓名：</div>
+                        <div class="hz_td2"><input type="text" class="hz_reg_txt <if condition="C('PC_REAL_NAME_REGISTER') == 1">formcontroller</if>"  id="rrealname" datatype="z" ajaxurl="{:U('isCnameajax')}" ajaxdata="name" nullmsg="*姓名不能为空" errormsg="*姓名输入不正确" placeholder="请输入真实姓名" name="rname"></div>
+                        	<div class="hz_prompt error-msg o_check_tip" style="color: red;"></div>
+                    </div>
+                    <div class="hz_tr">
+                        <div class="hz_td1"><if condition="C('PC_REAL_NAME_REGISTER') == 1"><i class="reg_red">*</i></if> 身份证号：</div>
+                        <div class="hz_td2"><input type="text" class="hz_reg_txt <if condition="C('PC_REAL_NAME_REGISTER') == 1">formcontroller</if>" id="r_icard" datatype="ic" ajaxurl="{:U('isIdcardajax')}" ajaxdata="idcard" nullmsg="*身份证号码不能为空" errormsg="*身份证号码填写不正确,如果有字母请小写" placeholder="请输入身份证号码,如果有字母请小写" name="icard"></div>
+                        	<div class="hz_prompt error-msg o_check_tip" style="color: red;"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="hz_regist_p1 clearfix rel">
+                    <p class="abs an2 lg-slides sureagreement on"><span class="abs an2 lg-on">ON</span><a id="lg-slides1" class="abs an2 lg-slides-btn" status="right"></a><span class="abs an2 lg-off">OFF</span></p>
+                <script>
+                $(".sureagreement").click(function(){
+                  $(this).toggleClass('on');
+                });
+                </script>
+                    <p class="abs agreed">我已看过并同意《<a href="{:U('Article/agreement')}" target="_blank">溪谷游戏通行证协议</a>》</p>
+                    <div class="hz_prompt2"></div>
+                    </div>
+                    <div class="hz-registbtn-wrap"><input type="submit"  value="完成注册" id="registerByNameSubmitPop" class="hz_regist_btn" >
+                    <input type="reset" name="reset" style="display: none;" /></div>
+            </div>
+          </form> 
+          <form id="mPhoneRegisterFormPop">
+            <div class="reg-content" id="register-fs12" style="display:none;">
+                 <div class="reg_cue"><p class="fl">您当前选择的是 <span class="c_f45c01">手机注册</span> 方式</p></div>
+                 <div class="hz-regist-tip">以下内容我们承诺您的信息安全，不会透露给第三方。</div>
+                      <div class="hz_tr">
+                          <div class="hz_td1"><i class="reg_red">*</i> 验证码：</div>
+                          <div class="hz_td2"><input type="text" id="r_quan" datatype="w"  nullmsg="*验证码不能为空" errormsg="*验证码错误" placeholder="请输入右侧验证码" class="hz_reg_txt formcontroller" name="r_quan"><img style="width:102px; height:34px; float:left; margin:1px 0 0 10px; cursor:pointer; border:1px solid #f3f3f3;" alt="验证码" src="{:U('verify?vid=1000')}" class="checkcode" title="点击换一张"></div>
+                          	<div class="hz_prompt error-msg o_check_tip" style="color: red;"></div>
+                      </div>
+                      <div class="hz_tr">
+                          <div class="hz_td1"><i class="reg_red">*</i> 手机号码：</div>
+                          <div class="hz_td2"><input type="text" datatype="m" ajaxurl="{:U('checkPhone')}" ajaxdata="username" nullmsg="*手机号码不能为空" errormsg="*手机号码填写错误" placeholder="请输入您的手机号码" id="telnum" name="telnum" class="hz_reg_txt formcontroller"></div>
+                          	<div class="hz_prompt error-msg o_check_tip" style="color: red;"></div>
+                          
+                      </div>
+                      
+                      <div class="hz_tr">
+                          <div class="hz_td1"><i class="reg_red">*</i> 手机验证：</div>
+                          <div class="hz_td2">
+                          <input type="text" id="r_telyzm" datatype="w" nullmsg="*安全码不能为空" errormsg="*安全码填写错误" placeholder="请输入手机安全码" class="hz_reg_txt fl formcontroller" name="msg_code">
+                          <span class="sent-yzm fl" id="getSafeCodePop" style="border: 1px;">发送安全码</span></div>
+                          	<div class="hz_prompt error-msg o_check_tip" style="color: red;"></div>
+                      </div>
+                      <div class="hz_tr">
+                          <div class="hz_td1"><i class="reg_red">*</i> 设置密码：</div>
+                          <div class="hz_td2"><input type="password" datatype="a6-30" nullmsg="*密码不能为空" errormsg="*6~30位数字、字母或特殊字符组成" placeholder="6~30位数字、字母或特殊字符组成" name="upwd" id="pwd2" status="error" class="hz_reg_txt formcontroller"></div>
+                          	<div class="hz_prompt error-msg o_check_tip" style="color: red;"></div>
+                      </div>
+                  	<div class="hz_tr">
+                          <div class="hz_td1"><i class="reg_red">*</i> 确认密码：</div>
+                          <div class="hz_td2"><input type="password"datatype="a6-30" recheck="upwd" nullmsg="*确认密码不能为空" errormsg="*两次密码不一致" name="rpwd" id="pwd3" status="error" class="hz_reg_txt formcontroller"></div>
+                          	<div class="hz_prompt error-msg o_check_tip" style="color: red;"></div>
+                      </div>
+                      <div class="clearfix"></div>
+                      <div class="hz-fcmzr-wrap">
+                          <p class="hz-fcmzr2">根据2010年8月1日实施的《网络游戏管理暂行办法》，网络游戏用户需使用有效身份证件进行实名注册。 为保证流畅游戏体验，享受健康游戏生活，请广大溪谷手游的玩家尽快实名注册。</p>
+                      </div>
+                      
+                      <div class="hz_tr">
+                          <div class="hz_td1"><if condition="C('PC_REAL_NAME_REGISTER') == 1"><i class="reg_red">*</i></if> 真实姓名：</div>
+                          <div class="hz_td2"><input type="text" class="hz_reg_txt <if condition="C('PC_REAL_NAME_REGISTER') == 1">formcontroller</if>" datatype="z" ajaxurl="{:U('isCnameajax')}" ajaxdata="name" nullmsg="*姓名不能为空" errormsg="*姓名输入不正确" placeholder="请输入真实姓名" id="t_name" name="rname" status="error"></div>
+                          	<div class="hz_prompt error-msg o_check_tip" style="color: red;"></div>
+                      </div>
+                      <div class="hz_tr">
+                          <div class="hz_td1"><if condition="C('PC_REAL_NAME_REGISTER') == 1"><i class="reg_red">*</i></if> 身份证号：</div>
+                          <div class="hz_td2"><input type="text" id="t_icard" datatype="ic" ajaxurl="{:U('isIdcardajax')}" ajaxdata="idcard" nullmsg="*身份证号码不能为空" errormsg="*身份证号码填写不正确,如果有字母请小写" placeholder="请输入身份证号码,如果有字母请小写" name="t_icard" class="hz_reg_txt <if condition="C('PC_REAL_NAME_REGISTER') == 1">formcontroller</if>" status="error"></div>
+                          	<div class="hz_prompt error-msg o_check_tip" style="color: red;"></div>
+                      </div>
+                      <div class="hz_regist_p1 clearfix rel">
+                      <p class="abs an2 lg-slides sureagreement1 on"><span class="abs an2 lg-on">ON</span><a id="lg-slides2" class="abs an2 lg-slides-btn" status="right"></a><span class="abs an2 lg-off">OFF</span></p>
+                      <script>
+                        $(".sureagreement1").click(function(){
+                          $(this).toggleClass('on');
+                        });
+                      </script>
+                      <p class="abs agreed">我已看过并同意《<a href="{:U('Article/agreement')}" target="_blank">溪谷游戏通行证协议</a>》</p>
+                      <div class="hz_prompt2"></div>
+                      </div>
+                      <div class="hz-registbtn-wrap"><input type="submit" id="pregisterByNameSubmitPop" value="完成注册" class="hz_regist_btn"></div>   
+            </div>     
+          </form> 
+	   </div>
+   </div>	
+</div>
+</block>
+<block name="script" >
+<script type="text/javascript" src="__STATIC__/layer/layer.js"></script>
+<script>
+$(function(){
+  $('input.formcontroller:enabled').blur(function(){
+    check($(this));
+  });
+  $("#mNameRegisterFormPop").unbind('submit').submit(function(){
+    var that = $(this),btn = that.find('input[type=submit]');
+    that.find('input.formcontroller:enabled').each(function(){
+      check($(this));
+    });
+    if(!$(".sureagreement").hasClass('on')){
+      alert("您还没有同意注册协议呢！");
+      return false;
+    }
+    if (that.find('.o_check_wrong').length<1) {
+      if(btn.hasClass('disabled')) {return false;}
+      btn.addClass('disabled');
+      $.ajax({
+          type: 'POST',
+          async: true,
+          dataType: 'json',
+          url: "{:U('register')}",
+          data: $('#mNameRegisterFormPop').serialize(),
+          beforeSend: function() {
+              btn.val('注册中').attr('disabled',true);
+          },
+          success: function(data) {
+              switch (parseInt(data.status)) {
+              case 1:
+                btn.val('注册成功，即将登录').attr('disabled',true);
+                  setTimeout(function() {
+                     btn.val('正在登录...').attr('disabled',true);
+                      var name = $.trim($('#userNameByNamePop').val()),pwd = $.trim($('#userPassPop').val());                          
+                      $.ajax({
+                          type: 'POST',
+                          async: true,
+                          dataType: 'json',
+                          url: "{:U('login')}",
+                          data: {account:name,password:pwd},
+                          beforeSend: function() {
+                          },
+                          success: function(data) {
+                              switch (parseInt(data['status'])) {
+                              case 1000:
+                              $("#mNameRegisterFormPop").val(data.msg);                                
+                                    setTimeout(function() {
+                                        window.location='{:U("users_index")}';                    
+                                    },1000);              
+                                    break;
+                              default:
+                                  layer.alert(data.msg);
+                                  break;
+                              }
+                              return false;
+                          },
+                          error: function() { 
+                              alert('服务器故障，请重新登录');
+                              btn.val('完成注册');
+                              
+                          },
+                          cache: false
+                      });    
+                          
+                  },1000);
+                  break;
+              default:
+            	  $('.checkyzm').click();
+                  alert(data.msg); btn.removeClass('disabled');
+                  // $("#mNameRegisterFormPop").val('注册').attr('disabled', false);
+                  // break;
+              }
+          },
+          error: function() {
+              alert('服务器故障，稍后再试'); btn.removeClass('disabled');
+              // $("#mNameRegisterFormPop").val('注册').attr('disabled', false);
+          },
+          cache: false
+      });
+
+
+    }
+    return false;
+  });
+  $("#getSafeCodePop").click(function(){
+	if($("#getSafeCodePop").hasClass('disabled') && $.cookie('secondsremainede')>0){
+		return false;  
+	}
+    ajaxurl="{:U('checkverifycode')}";
+    $.ajax({
+      async: false,type:'post',dataType:'json',url:ajaxurl,data:{code:$("#r_quan").val()},success:function(data){
+          if(data.status==0){
+              s = $("#r_quan").closest('div').siblings('.o_check_tip'),
+              s.removeClass('o_check_right').addClass('o_check_wrong').text('*'+data.msg);
+              $("#getSafeCodePop").addClass('disabled');
+              $('.checkcode').click();
+              return false;   
+          }else{
+            $("#getSafeCodePop").removeClass('disabled');
+          }
+      },error:function(){
+      }
+    });
+    $.ajax({
+      async: false,type:'post',dataType:'json',url:"{:U('checkPhone')}",data:{username:$("#telnum").val()},success:function(data){
+          if(data.status==0){
+              s = $("#telnum").closest('div').siblings('.o_check_tip'),
+              s.removeClass('o_check_right').addClass('o_check_wrong').text('*'+data.msg);
+              dd=false;
+          }else{
+              dd=true;
+          }
+      },error:function(){
+      }
+    });
+    if(dd&&!$("#getSafeCodePop").hasClass('disabled')){
+      sendcode();
+    }else{
+      $("#getSafeCodePop").addClass('disabled');
+    }
+  });
+  function sendcode (){ 
+      // 发送安全码
+      if (!$("#getSafeCodePop").hasClass('disabledtwo')&&!$("#getSafeCodePop").hasClass('disabled')) {
+        var e = $("#getSafeCodePop"),p = $.trim($('#telnum').val());
+        e.addClass('disabledtwo');
+        e.attr('style','border:0;color: #E4D9D1;');
+        $.ajax({
+          type:'post',
+          async: false,
+          url: "{:U('telsvcode')}",
+          data: {phone:p},
+          dataType: 'json',
+          success: function(d) {
+            if (d.status == 1) {
+            	addCookie("secondsremainede",60,60);//添加cookie记录,有效时间60s
+                settime();
+	            $.cookie('phone',p);
+             //timedown('#getSafeCodePop');
+            } else {
+            	layer.msg(d.msg);
+              e.removeAttr('style');
+            } 
+          },
+          error:function(){
+            alert('服务器故障，稍后再试');
+          }
+        });
+      }
+  };
+  
+  function addCookie(name,value,expiresHours){ 
+	//判断是否设置过期时间,0代表关闭浏览器时失效
+		if(expiresHours>0){ 
+			var date=new Date(); 
+			date.setTime(date.getTime()+expiresHours*1000); 
+			$.cookie(name, escape(value), {expires: date});
+			$.cookie('nowtimed',date.getTime());
+		}else{
+			$.cookie(name, escape(value));
+		}
+	} 
+	//修改cookie的值
+	function editCookie(name,value,expiresHours){
+		if(expiresHours>1){ 
+			var date=new Date(); 
+			date.setTime(date.getTime()+expiresHours*1000); //单位是毫秒
+			$.cookie(name, escape(value), {expires: date});
+		} else{
+			$.cookie(name, escape(value));
+		}
+	} 
+	//根据名字获取cookie的值
+	function getCookieValue(name){ 
+		return $.cookie(name);
+	}
+	$(function(){
+		s = $.cookie('secondsremainede');
+		if(s>0){
+			settime();//开始倒计时
+			$('#telnum').val($.cookie('phone'));
+		}else{
+			$.cookie('phone','');
+		}
+		
+	})
+	//发送验证码
+	//开始倒计时
+	var countdown;
+	function settime(obj){
+		var obj = $('#getSafeCodePop');
+		countdown=getCookieValue("secondsremainede");
+		if (countdown == 0 || isNaN(countdown)) { 
+			obj.removeClass('disabled').removeClass('disabledtwo').removeAttr('style').text('发送安全码')
+			return;
+		} else { 
+			obj.addClass('disabledtwo');
+			obj.attr('style','border:0;color: #E4D9D1;');
+			obj.addClass("disabled"); 
+			obj.text(countdown + "秒后重发"); 
+			countdown--;
+			editCookie("secondsremainede",countdown,countdown+1);
+		} 
+		setTimeout(function() { settime() },1000) //每1000毫秒执行一次
+	} 
+
+  
+  function timedown(e) {
+    var t = t?t:60,s = $(e);
+    s.addClass('disabled');
+    var a = setInterval(function() {
+        t--;
+        s.text(t + '秒后重发'),
+        0 == t && (s.removeClass('disabled').text('获取验证码'), clearInterval(a))
+    },1e3)
+  };
+
+
+  $("#mPhoneRegisterFormPop").unbind('submit').submit(function(){
+    var that = $(this),btn = that.find('input[type=submit]');
+    that.find('input.formcontroller:enabled').each(function(){
+      check($(this));
+    });
+    if(!$(".sureagreement1").hasClass('on')){
+      alert("您还没有同意注册协议呢！");
+      return false;
+    }
+    if (that.find('.o_check_wrong').length<1) {
+      if(btn.hasClass('disabled')) {return false;}
+      btn.addClass('disabled');
+      $.ajax({
+          type: 'POST',
+          async: false,
+          dataType: 'json',
+          url: "{:U('telregister')}",
+          data: $('#mPhoneRegisterFormPop').serialize(),
+          beforeSend: function() {
+              btn.val('注册中').attr('disabled',true);
+          },
+          success: function(data) {
+              switch (parseInt(data.status)) {
+              case 1:
+                btn.val('注册成功，即将登录').attr('disabled',true);
+                  setTimeout(function() {
+                     btn.val('正在登录...').attr('disabled',true);
+                      var name = $.trim($('#telnum').val()),pwd = $.trim($('#pwd2').val());                         
+                      $.ajax({
+                          type: 'POST',
+                          async: false,
+                          dataType: 'json',
+                          url: "{:U('login')}",
+                          data: {account:name,password:pwd},
+                          beforeSend: function() {
+                          },
+                          success: function(data) {
+                              switch (parseInt(data['status'])) {
+                              case 1000:
+                              $("#pregisterByNameSubmitPop").val(data.msg);                                
+                                    setTimeout(function() {
+                                        window.location.href='{:U("users_index")}';                    
+                                    },1000);              
+                                    break;
+                              default:
+                                  alert(data.msg);
+                                  break;
+                              }
+                              return false;
+                          },
+                          error: function() { 
+                              alert('服务器故障，请重新登录');
+                              btn.val('完成注册');
+                              
+                          },
+                          cache: false
+                      });    
+                          
+                  },1000);
+                  break;
+              default:
+                  alert(data.msg); btn.removeClass('disabled');
+                  // $("#mNameRegisterFormPop").val('注册').attr('disabled', false);
+                  // break;
+              }
+          },
+          error: function() {
+              alert('服务器故障，稍后再试'); btn.removeClass('disabled');
+              // $("#mNameRegisterFormPop").val('注册').attr('disabled', false);
+          },
+          cache: false
+      });
+
+
+    }
+    return false;
+  });
+
+
+  $('.checkyzm').on('click',function() {
+      $(this).attr('src','__MODULE__/Member/verify/vid/666/t/'+(new Date).getTime());
+  });
+  $('.checkcode').on('click',function() {
+      $(this).attr('src','__MODULE__/Member/verify/vid/1000/t/'+(new Date).getTime());
+  });
+  $('#yhm-register').click(function(){
+    $(this).addClass('current').siblings().removeClass('current');
+    $('#register-fs1').attr('style','display:block');
+    $('#register-fs12').attr('style','display:none');
+  });
+  $('#phone-register').click(function(){
+    $(this).addClass('current').siblings().removeClass('current');
+    $('#register-fs12').attr('style','display:block');
+    $('#register-fs1').attr('style','display:none');
+  });
+});
+</script>
+</block>

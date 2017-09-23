@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8" >
+        <link rel="shortcut icon" href="">
+        
+        <title>{$data.game_name}</title>
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+        <link href="__CSS__/game.css" rel="stylesheet">
+        
+        <script src="__JS__/jquery.min.js"></script>
+        <script src="__JS__/jquery.touchSlider.js"></script>
+        
+    </head>
+    <body>
+        <div class="header">
+            <div class="inner">
+                <h1 class="title">{$data.game_name}</h1>
+            </div>    
+        </div>    
+        <div class="main">
+            <div class="inner">
+                <div class="top clearfix">
+                    <div class="icon"><img src="{$data['icon']}" style="width: 80px;height: 80px"></div>
+                    <div class="game">
+                        <h4 class="title"><span class="name">{$data.game_name}</span>
+                            <for start="1" end="$data.game_score">
+                            <img src="__IMG__/star.png" >
+                            </for>
+                        </h4>
+                        <div class="data"><span>{$data.game_size}M</span> <span>{$data.dow_num}人下载</span></div>
+                        <p class="voic" title="{$data['features']}">{:msubstr($data['features'],0,30)}</p>
+                    </div>
+                    <div class="rebate">
+                        <img src="__IMG__/rebate.png" >
+                        <span class="rebatetxt">返利{$data.ratio}%</span>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="screenshot clearfix">
+                        <img class="nonepic" src="__IMG__/tupian.png" style="width:180px;height: 270px">
+                        <div class="touchslider">
+                            <div class="touchslider-viewport">
+                                <div class="touchslider-item">
+                                    <volist name="data.screenshot" id="vo">
+                                    <img src="{$vo}" style="width:180px;height: 270px">
+                                    </volist>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <h4 class="title">游戏介绍</h4>
+                        <p class="content">
+                            {$data.introduction}
+                        </p>
+                    </div>
+                    <div class="download">
+                        <a href="{:U('Down/android_app_down')}">
+                        <img class="download1" src="__IMG__/download.png">
+                        </a>
+                        <div class="download2">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+           
+        </div>
+        <script>
+            $(function() {
+                 $(".touchslider").touchSlider({mouseTouch:true, autoplay:false});
+            });
+        </script>
+    </body>
+</html>

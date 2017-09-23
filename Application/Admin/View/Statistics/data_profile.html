@@ -1,0 +1,142 @@
+<extend name="Public/base"/>
+<block name="body">
+<link rel="stylesheet" href="__CSS__/open-egret.css">
+<script src="__JS__/common.js"></script>
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+        <div class="main-place">
+            <span class="main-placetitle">位置：</span>
+            <ul class="main-placeul">
+                <li><a href="{:U('Statistics/overview')}">统计</a></li>
+                <li><a href="{:U('Statistics/overview')}">统计</a></li>
+                <li><a href="#">数据概况</a></li>
+            </ul>
+            <div class="question">
+                <i class="question_mark">?</i>
+                <ul class="question_content">
+                    <li class="question_title">功能以及数据相关说明</li>
+                    <li class="question_list">
+                        <span class="">数据概况</span>
+                        <span class="">快速查看1天，7天，30天，1年的全站注册人数和充值金额（此处充值金额只包含游戏充值，不包含账户未消费的平台币）</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-10 f-pl-10 main_content_dataoverview">
+        <div class="m-box m-chart " style="height: 700px;">
+            <ul class="nav nav-pills jsnav" role="tablist">
+                <li role="presentation" <if condition="$Think.get.key eq 1 or $Think.get.key eq ''"> class="active"</if>><a href="{:U('Statistics/data_profile',array('key'=>1))}" aria-controls="dayRank" role="tab" data-toggle="tab">1天</a></li>
+                <li role="presentation" <if condition="$Think.get.key eq 2"> class="active"</if>><a href="{:U('Statistics/data_profile',array('key'=>2))}" aria-controls="weekRank" role="tab" data-toggle="tab">7天</a></li>
+                <li role="presentation" <if condition="$Think.get.key eq 3"> class="active"</if>><a href="{:U('Statistics/data_profile',array('key'=>3))}" aria-controls="monthRank" role="tab" data-toggle="tab">30天</a></li>
+                <li role="presentation" <if condition="$Think.get.key eq 4"> class="active"</if>><a href="{:U('Statistics/data_profile',array('key'=>4))}" aria-controls="monthRank" role="tab" data-toggle="tab">1年</a></li>
+            </ul>
+            <div class="mchart" style="height: 650px;">
+                <div id="maindata_profile" style="height:600px"></div>
+            </div>
+        </div>   
+        </div>
+        <!-- ECharts单文件引入 -->
+        <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+         <script type="text/javascript">
+            // 路径配置
+            require.config({
+                paths: {
+                    echarts: 'http://echarts.baidu.com/build/dist'
+                }
+            });
+     
+            // 使用
+            require(
+                [
+                    'echarts',
+                    'echarts/chart/bar', // 使用柱状图就加载bar模块，按需加载
+                    'echarts/chart/line'
+                ],
+                function (ec) {
+                    // 基于准备好的dom，初始化echarts图表
+                    var myChart = ec.init(document.getElementById('maindata_profile')); 
+                    // $(".saas").click(function(){
+                    //  alert(111);
+                    // });
+                    option = {
+    // title: {
+    //     text: '折线图堆叠'
+    // },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['注册人数（人）','充值金额（元）']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        splitLine :{
+            show :false,
+        },
+        <if condition="$qingxie gt 15">
+            axisLabel: {
+            rotate: 30,
+            },
+        </if>
+        boundaryGap: false,
+        data: {$xAxis}
+    },
+    // xAxis : [
+    //     {
+    //     <if condition="$qingxie gt 15">
+    //         axisLabel: {
+    //         rotate: 30,
+    //         },
+    //     </if>
+    //     data: {$xAxis}
+    //     }
+    // ],
+    // grid: {
+    // x: 40,
+    // x2: 20,
+    // y2: 100,
+    // },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'注册人数（人）',
+            type:'line',
+            stack: '总量',
+            data:{$xzdate}
+        },
+        {
+            name:'充值金额（元）',
+            type:'line',
+            stack: '总量',
+            data:{$xsdate}
+        },
+    ]
+};
+                    // 为echarts对象加载数据 
+                    myChart.setOption(option); 
+                }
+            );
+        </script>
+        <!-- <script type="text/javascript">
+            $('.jsnav li a').on('click',function() {
+                var that=$(this),li=that.closest('li');
+                li.addClass('active').siblings('li').removeClass('active');
+            });
+        </script> -->
+<script>
+//导航高亮
+highlight_subnav('{:U('Statistics/data_profile')}');
+</script>
+</block>

@@ -1,0 +1,209 @@
+<extend name="Public/base" />
+<block name="body" >
+<link type="text/css" rel="stylesheet" href="__CSS__/reg.css">
+<script src="__STATIC__/layer/layer.js" type="text/javascript"></script>
+<script type="text/javascript" src="__JS__/reg.min.js"></script>
+<div id="container" class="clearfix">
+        <div class="passwords">
+	<div class="head_parent">
+    	<div class="head">
+          <a class="current" href="{:U('Member/findpwd')}">手机找回密码</a>
+    	</div>
+    </div>
+  <div class="email01 phone03 clearfix">
+  <input type="hidden" name="state" id="state" value="1">
+  	  <div class="sent_q" style="display:block;">
+      <dl>
+   		  <dt>用户名：</dt>
+   		  <dd><input id="loginname" type="text" name="loginname"><span class="sent_tip">请输入用户账号</span></dd>
+   	  </dl>
+      <dl class="hz_user06">
+   		  <dt>手机号码：</dt>
+   		  <dd><input type="text" id="mobile" name="telnum"><span class="sent_tip">请输入绑定的手机号码</span></dd>
+      </dl>
+      <dl>
+   		  <dt>验证码：</dt>
+   		  <dd><input id="seccode" class="yzm" type="text" name="seccode"><span class="yzmimg"><img width="105" height="35" class="checkcode" src="{:U('verify?vid=4')}" title="点击换一张"></span><span class="sent_tip yzmm">请输入验证码</span></dd>
+       </dl>
+          <input type="button" value="提&nbsp;交" class="sbm sbm5">
+       </div>
+         
+       <div class="sent_h" style="display:none;">
+        <dl>
+        <dt>短信验证码：</dt>
+        <dd><input type="text" value="" name="pcode" id="phone_info"><span class="sent_tip jcode">请输入您手机收到的验证码</span>
+        <p class="re_phone_djs"><span id="pwd_find_sec">120</span>秒后重新发送</p>
+        <p class="re_phone_djs_hide" style="display: none"><a style="color: red" id="pwd_find_sec_hide">重新发送</a></p>
+        </dd>
+        </dl>
+        
+        <dl>
+        <dt>新密码：</dt>
+        <dd><input type="password" name="password" id="upwd"><span class="sent_tip jpwd" >请输入你要设定的新密码</span></dd>
+        </dl>
+        
+        <dl>
+        <dt>确认新密码：</dt>
+        <dd><input type="password" name="password1" id="rpwd"><span class="sent_tip jpwd1">请再次输入你要设定的新密码</span></dd>
+        </dl>
+        
+        <dl>
+        <dt>验证码：</dt><dd><input type="text" value="" name='ppceode' class="yzm" id="seccode2">
+        <span class="yzmimg"><img width="70" height="35" alt="验证码" src="{:U('verify?vid=5')}" style="vertical-align:middle; margin-right:10px;" id="vv" title="点击换一张"></span><span class="sent_tip ppceode">请输入验证码</span></dd>
+        </dl>
+        
+        <input type="button" class="sbm sbm6" value="确&nbsp;认">
+     </div>	
+  
+    </div>       
+   </div>	
+</div>
+<script type="text/javascript">
+$('.checkcode').on('click',function() {
+      $(this).attr('src','__MODULE__/Member/verify/vid/4/t/'+(new Date).getTime());
+  });
+$('#vv').on('click',function() {
+      $(this).attr('src','__MODULE__/Member/verify/vid/5/t/'+(new Date).getTime());
+  });
+$('#loginname').blur(function(){
+  if($('#loginname').val()==''){
+    $('#loginname').siblings().attr('style','color:red');
+  }
+  // data={"name":$('#loginname').val(),'phone':$("#mobile").val(),'code':$("#seccode").val() };
+  data={"name":$('#loginname').val(),'type':1};
+  ajaxinput(data);
+});
+$('#mobile').blur(function(){
+  if($('#mobile').val()==''){
+    $('#mobile').siblings().attr('style','color:red');
+  }
+  if($('#mobile').val().length !== 11 || !(/^[1][358][0-9]{9}$/.test($('#mobile').val()))){
+    $('#mobile').siblings().text('手机格式不正确').attr('style','color:red');
+  }
+  // data={"name":$('#loginname').val(),'phone':$("#mobile").val(),'code':$("#seccode").val() };
+  data={"name":$('#loginname').val(),"phone":$('#mobile').val(),'type':2};
+  ajaxinput(data);
+});
+$('.sbm5').click(function(){
+  if($('#mobile').val()==''){
+    $('#mobile').siblings().attr('style','color:red');
+  }
+  if($('#mobile').val().length !== 11 || !(/^[1][358][0-9]{9}$/.test($('#mobile').val()))){
+    $('#mobile').siblings().text('手机格式不正确').attr('style','color:red');
+  }
+  if($('#seccode').val()==''){
+    $('#seccode').siblings().attr('style','color:red');
+  }
+  data={"name":$('#loginname').val(),"phone":$('#mobile').val(),'code':$("#seccode").val(),'type':3};
+  ajaxinput(data);
+});
+function ajaxinput(data){
+  $.ajax({
+    type: 'POST',
+    url: '{:U("Member/checkfindpwd")}' ,
+    data: data ,
+    success: function(data){
+      if(data.status==-1){
+        $('#loginname').siblings().text(data.msg).attr('style','color:red');
+      }else if(data.status==1){
+        $('#loginname').siblings().text(data.msg).attr('style','color:green');
+      }else if(data.status==-2){
+        $('#mobile').siblings().text(data.msg).attr('style','color:red');
+      }else if(data.status==2){
+        $('#mobile').siblings().text(data.msg).attr('style','color:green');
+      }else if(data.status==-3){
+        $('.yzmm').text(data.msg).attr('style','color:red');
+      }else if(data.status==3){
+        $('.sent_q').attr('style','display:none');
+        $('.sent_h').attr('style','display:block');
+        sendcode();
+      }
+    },
+    error:function(){
+    }
+  });
+}
+$(".re_phone_djs_hide").click(function(){
+  sendcode();
+});
+function sendcode(){
+  if(!$('#pwd_find_sec').hasClass('gg-btntn')){
+      $.ajax({
+          type:'post',
+          dataType:'json',
+          data:'phone='+$('#mobile').val(),
+          url:'{:U("telsvcode")}',
+          success:function(data) {
+              switch (parseInt(data.status)) {
+                  case 1: {
+                      r(1);
+                  };break;   
+                  default: 
+                      $('.jcode').text(data.msg);
+                      $('#pwd_find_sec').text(data.msg+'请刷新重试');                           
+              }
+          },
+          error:function() {
+              alert('服务器故障，请稍候再试。。。。');
+          }
+      });
+      var r = function(i, t) {
+          if (i>0) {
+              var r = 120;
+              e='#pwd_find_sec';
+              $(e).removeClass('gg-btn').addClass('gg-btntn');
+              var a = setInterval(function() {
+                  r--;
+                  if($(".re_phone_djs_hide").attr('style')=='display:block'){
+                    $('.re_phone_djs_hide').attr('style','display:none');
+                    $('.re_phone_djs').attr('style','display:block'); 
+                  }
+                  $(e).text(r),
+                  0 == r && ($(e).removeClass('gg-btntn').addClass('gg-btn'), $('.re_phone_djs').attr('style','display:none'), $('.re_phone_djs_hide').attr('style','display:block'),clearInterval(a))
+              },1e3)
+          } 
+      };
+    }
+}
+$(".sbm6").click(function(){
+    $pwd=$("input[name='password']").val();
+    $pcode=$("input[name='pcode']").val();
+    $pwd1=$("input[name='password1']").val();
+    $ppceode=$("input[name='ppceode']").val();
+    if($pcode==''){
+      $('.jcode').attr('style','color:red');
+      return false;
+    }
+    if ($pwd.length <6 || $pwd.length >30 ) {
+     $('.jpwd').text('密码由6-30位字母、数字或下划线组成').attr('style','color:red');
+      return false;
+    }
+    if (!(/^[a-zA-z0-9_]{6,30}$/.test($pwd))) {
+      $('.jpwd').text('密码由6-30位字母、数字或下划线组成').attr('style','color:red');
+      return false;
+    }
+    if ($pwd !== $pwd1){
+      $('.jpwd1').text('两次密码不一致，请重新输入').attr('style','color:red');
+      return false;
+    }
+    if($ppceode==''){
+      $('.ppceode').attr('style','color:red');
+      return false;
+    }
+    data={'account':$('#loginname').val(),'phone':$('#mobile').val(),"pcode":$pcode,"pwd":$pwd,"ppceode":$ppceode};
+    $.ajax({
+        type: 'POST',
+        url: "{:U('findpwd')}" ,
+        data:data,
+        success:function(data){
+          if(data.status){
+            layer.msg(data.msg,{icon:1});
+            location.reload();
+          }else{
+            layer.msg(data.msg,{icon:2});
+          }
+        }
+    });
+  });
+</script>
+</block>

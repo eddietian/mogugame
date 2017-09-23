@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta http-equiv="Cache-Control" content="no-cache">
+        <meta name="viewport" content="width = device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="MobileOptimized" content="320">
+        <link rel="shortcut icon" href="{:C('PC_SET_ICO')}">
+        <link rel="stylesheet" href="__CSS__/public_fpwap.css">
+        <link rel="stylesheet" href="__CSS__/pcnew_public.css">
+        <link rel="stylesheet" href="__CSS__/pcnew_ol.css">
+        <if condition="ACTION_NAME eq 'login' ">
+        <title>{:seo_replace(C('wap_login.seo_title'),'','wap')}</title>
+        <meta name="keywords" content="{:seo_replace(C('wap_login.seo_keyword'),'','wap')}">
+        <meta name="description" content="{:seo_replace(C('wap_login.seo_description'),'','wap')}">  
+        <link rel="stylesheet" href="__CSS__/login.css">
+        <elseif condition="ACTION_NAME eq 'register' or ACTION_NAME eq 'forget' " />
+        <title>{:seo_replace(C('wap_register.seo_title'),'','wap')}</title>
+        <meta name="keywords" content="{:seo_replace(C('wap_register.seo_keyword'),'','wap')}">
+        <meta name="description" content="{:seo_replace(C('wap_register.seo_description'),'','wap')}">  
+        <link rel="stylesheet" href="__CSS__/style.3.0.23.css">
+        <link rel="stylesheet" href="__CSS__/register.css">
+        
+        <else />
+        <title>{:seo_replace(C('wap_index.seo_title'),'','wap')}</title>
+        <meta name="keywords" content="{:seo_replace(C('wap_index.seo_keyword'),'','wap')}">
+        <meta name="description" content="{:seo_replace(C('wap_index.seo_description'),'','wap')}">  
+        </if>
+
+    </head>
+    <body>
+        <header class="main-header ucFixBug">       
+            <div class="header-widget">
+                <div class="header-sub">
+                    <div class="logo" >
+                        <a href="{:U('Index/index')}"><img src="{:get_cover(C('WAP_SET_LOGO'),'path')}" class="img" alt="安卓平台">
+                    </a>
+                    </div>
+                </div>  
+            </div>
+        </header>
+    
+        <div class="new_header">
+            <a href="{:U('Index/index')}"> 
+                <img src="{:get_cover(C('WAP_SET_LOGO'),'path')}" style="height:92px;">
+            </a>
+            <ul class="index">
+                <li><a href="{:U('Index/index')}" >首页</a>|</li>
+                <li><a href="{:U('Gift/index')}" name="totop" target="_self">礼包中心</a>|</li>
+                <if condition="ACTION_NAME eq 'register' or ACTION_NAME eq 'forget' ">
+                <li><a href="{:U('login')}" target="_self">我要登录</a>&gt;&gt;</li>
+                <elseif condition="ACTION_NAME eq 'login' " />
+                <li><a href="{:U('register')}" target="_self">我要注册</a></li>
+                <else />
+                </if>
+            </ul>
+        </div>
+        <div class="bg">
+            
+            <block name="body"></block>
+            
+        </div>        
+        <div class="footer">
+            <p>{:C('WAP_SET_COPYRIGHT')} &nbsp;&nbsp;&nbsp;&nbsp; {:C('WAP_SET_FOR_THE_RECORD')}</p>
+        </div>
+        <script>var UURL = "__MODULE__/Unlr",SURL="__MODULE__/Subscriber";</script>
+        <script src="__JS__/common.js"></script>
+        <script type="text/javascript" src="__JS__/assistLink.js"></script>
+    </body>
+</html>

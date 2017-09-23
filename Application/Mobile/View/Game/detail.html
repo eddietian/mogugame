@@ -1,0 +1,174 @@
+<extend name="Public/bases"/>
+
+<block name="body" >
+<link rel="stylesheet" href="__CSS__/detail.css">
+<link rel="stylesheet" href="__CSS__/wapcomtop_main.css">
+<link rel="stylesheet" href="__CSS__/swiper-3.3.1.min.css">
+<script src="/Public/Mobile/js/swiper-3.3.1.jquery.min.js"></script>
+<script type="text/javascript" src="__JS__/touchslider.js"></script>
+
+<style>
+    .header-sub .logo .game-icon{height: 30px;width: auto;border-radius: 0;margin: 6px 0;}
+
+.btnlb{display: block;background: #f80;width: 100%;padding: 3px 0;text-align: center;color: #fff;font-size: 14px;border: 1px solid #f60; text-decoration:none;}
+#mask{width:100%; height:100%;background:#000;opacity:0.9;filter:alpha(opacity=90);z-index:9999;position:fixed;top:0;left:0;display:none;}
+#mask img{position:fixed; left:50%; top:0; width:50%; z-index:10000;}
+.btn-sm-js{ background:#ccc; border:1px solid #C2C1C1;line-height: 24px;width:49px; font-size:12px;}
+.mult-btn-wrap .blue{ background:#08f; border:1px solid #033ED8;}
+.qqlists{height: 30px;display: block;width: 90px;  position: absolute;right: 15px;  margin-top: 20px;}
+.ad27 img{display:block;width:100%;}
+.combtnhide{display: block;background: #6bb247;width: 100%;padding: 5px 0;text-align: center;color: #fff;font-size: 14px;}
+.green{background: #6bb247;border: 1px solid #4F9A2A;}
+.blue{ background:#08f;}
+#blockTop{padding-top: 15px;}
+.app-detailshow li .mult-btn-wrap{padding-top: 0;}
+.btnlbgs{display: block;background: #03B0AC;width: 100%;padding: 3px 0;text-align: center;color: #fff;font-size: 14px;border: 1px solid #04949B;}
+.main-header .header-content .inner a{ color:#333; text-decoration:none;}
+/**/
+.main-header .header-sub .logo .img{padding-right:45px;background: url() right no-repeat;background-size: 40px;}
+.main-header .header-sub .logo .img{height:20px;margin:12px 0}
+.textalgin {
+    height: 19px;    text-align: center;
+}
+.gifticon {height: 65px;
+    display: block;
+    width: 46px;
+    background: url(__IMG__/gifticon.png) no-repeat;
+    background-size: 46px;}
+</style>
+<section class="normal-module"> 
+    <ul class="app-essay-list app-detailshow">
+        <li>
+            <div class="m-wrap">
+                <span class="icon-wrap">
+                    <img class="game-icon" src="{$data.icon|get_cover='path'}" alt="{$data.game_name}">
+                </span>
+                <div class="content">
+                    <p class="game-title"></p>
+                    <h1 class="inner-text"><?php echo preg_replace('/(\(.+)/i','',$data['game_name']);?></h1>
+                    <p></p>
+                    <p class="game-info">
+                        <span class="item">{$data.game_type_name}</span>|
+                        <span class="item">{:get_open_type($data['category'])}</span>
+                    </p>
+                    <div class="game-widget">
+                        <p class="star">
+                            <?php $rl = $data['game_score']/2;
+                                $flag = strstr($rl,'.');$rl;$s=5-$rl;?>
+                            <for start="0" end="intval($rl)">
+                                <i class="star-item"></i>
+                            </for>
+                            <if condition="$flag eq '.5' "><i class="star-item half"></i></if>
+                            <for start="0" end="intval($s)">
+                            <i class="star-item zero"></i>
+                            </for>                   
+                        </p>
+                    </div>
+                </div>
+                <div style="position: absolute;right: 10px; top:15px;">
+                    <a href="{:U('Gift/lists?id='.$data['id'])}" style="text-decoration: none;" >
+                        <em class="gifticon"></em>
+                    </a>
+                </div>
+            </div>
+            <div id="blockTop" style="position: relative; top: 0px; box-shadow: none;">         
+                <p class="mult-btn-wrap">
+<!--                    <if condition="$data['game_address']"> 
+                    <a class="green combtnhide"  type="btn" href="{$data.game_address}" style="display: block;">下载1</a>
+                    <else />
+                    <a class="green combtnhide"  type="btn" href="{:U('Down/down_file?game_id='.$scgift['id'].'&type=1')}" style="display: block;">下载2</a>
+                    </if>-->
+                    <if condition='$data.and_dow_address eq "" && $data.add_game_address eq "" && $data.ios_dow_address eq "" &&  $data.ios_game_address eq "" '><a class="btn">暂无下载</a></if>
+                    <if condition='$data.and_dow_address eq "" && $data.add_game_address eq ""'><else/>
+                        <a  href="<if condition='$data.dow_status eq 0'>#<else/>{:U('Down/down_file?game_id='.$data['relation_game_id'].'&type=1')}</if>" class="btn" > 安卓下载 </a>
+                    </if>
+                    <if condition='$data.ios_dow_address eq "" && $data.ios_game_address eq ""'><else/>
+                        <a  href="<if condition='$data.dow_status eq 0'>#<else/>{:U('Down/down_file?game_id='.$data['relation_game_id'].'&type=2')}</if>" class="btn" > 苹果下载 </a>
+                    </if>
+                    
+                </p>                         
+            </div>
+            <div id="blockTopHolder" style="height: 59px; display: none;"></div>
+        </li>
+    </ul> 
+</section>
+<section class="normal-module" >
+    <div class="module-header">
+        <p class="title bottom-line-title">游戏详情</p>
+    </div>
+    <div class="ad27" style="padding:15px;font-size:14px;">
+        <div>{:str_replace("~","\<\br>",$data['introduction'])} </div>
+    </div>
+    
+        <div class="module-header">
+        <p class="title bottom-line-title">游戏截图</p>
+    </div>
+
+   <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <volist name=":get_screenshot($data['screenshot'])" id="sd">
+                <div class="swiper-slide"><img src="{$sd|get_cover='path'}" width="100%" height="480"/></div>
+                </volist>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+        </div>
+        <script>
+        var mySwiper = new Swiper('.swiper-container', {
+            autoplay: 5000,
+            pagination : '.swiper-pagination',
+            loop : true,
+        })
+        </script> 
+
+</section>
+
+<section class="normal-module"> 
+    <div class="module-header">
+        <p class="title bottom-line-title">游戏推荐</p>
+        <p class="aside">好玩大家一起玩！</p>
+    </div>
+    <ul class="normal-app-list cf">
+    <game:index name="vo" recommend_status="1" where="id!='.$data['id'].'" sort="sort desc" group="relation_game_id"  limit="8" field="" >
+        <li>
+            <a href="{:U('detail?id='.$vo['relation_game_id'])}"><img class="game-icon" src="{$vo.icon|get_cover='path'}" width="60" height="60"></a>
+            <a class="game-title" type="btn" href="{:U('detail?id='.$vo['relation_game_id'])}"><?php echo preg_replace('/(\(.+)/i','',$vo['game_name']);?></a>
+        </li>	
+    </game:index>    
+    </ul>
+</section> 
+<div style="clear:both;"></div>
+<section class="normal-module"> 
+    <div class="module-header">
+        <p class="title bottom-line-title">最热游戏</p>
+    </div>		        
+    <ul class="normal-app-list cf">
+    <game:index name="vo" sort="dow_num desc" where="id!='.$data['id'].'"  group="relation_game_id"  limit="8" field="" >
+        <li>
+            <a href="{:U('detail?id='.$vo['relation_game_id'])}"><img class="game-icon lazy" src="{$vo.icon|get_cover='path'}" width="60" height="60"></a>
+            <a class="game-title" type="btn" href="{:U('detail?id='.$vo['relation_game_id'])}"><?php echo preg_replace('/(\(.+)/i','',$vo['game_name']);?></a>
+            <p class="textalgin">{$vo.game_type_name}</p>
+            <a class="btn" type="btn" href="{:U('detail?id='.$vo['relation_game_id'])}">开始</a>
+        </li>
+    </game:index>
+    </ul>
+    <a class="module-more block" type="btn" href="{:U('lists')}">进入游戏库<em class="modify"></em></a>        
+</section>
+    <script>
+    var as=document.getElementById('pagenavi').getElementsByTagName('a');
+    for(var i=0;i<as.length;i++){
+        (function(){
+            var j=i;
+            as[i].onclick=function(){
+                t4.slide(j);
+                return false;
+            }
+        })();
+    }
+    var t4=new TouchSlider('slider',{speed:1000, direction:0, interval:3000, fullsize:true});
+    t4.on('before',function(m,n){
+        as[m].className='';
+        as[n].className='active';
+    })
+    </script>
+</block>

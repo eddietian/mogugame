@@ -1,0 +1,145 @@
+<extend name="Public/base"/>
+
+<block name="body">
+	<div class="main-place">
+        <span class="main-placetitle">位置：</span>
+        <ul class="main-placeul">
+            <li><a href="{:U('Model/index')}">系统</a></li>
+            <li><a href="{:U('Route/lists')}">扩展工具</a></li>
+            <li><a href="#">{$meta_title}</a></li>
+        </ul>
+        <div class="question">
+            <i class="question_mark">?</i>
+            <ul class="question_content">
+                <li class="question_title">功能以及数据相关说明</li>
+                <li class="question_list">
+                    <span class="">{$meta_title}</span>
+                    <span class="">用于配置云存储的相关参数，目前支持阿里云OSS存储和七牛存储</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+	<div class="tab-wrap">
+		<div class="tab_nav jstabnav">
+		<ul>
+			<li data-tab="tab1" class="current"><a href="javascript:void(0);" >OSS设置</a></li>
+			<li data-tab="tab2"><a href="javascript:void(0);" >七牛设置</a></li>
+            <li data-tab="tab3"><a href="javascript:void(0);" >腾讯云设置</a></li>
+            <li data-tab="tab4"><a href="javascript:void(0);" >百度云设置</a></li>
+            <!-- <li data-tab="tab5"><a href="javascript:void(0);" >金山云设置</a></li> -->
+		</ul></div>
+		<div class="tab-content">
+		<div id="tab1" class="tab-pane in tab1">
+		<form action="{:U('saveTool')}" method="post" class="form-horizontal OSS form_info_ml">
+			<ul class="form_info ">
+                <li><label>bucket名称</label><input name="config[bucket]" type="text" value="{$oss_storage['bucket']}" class=""><i class="form_hint">oss的bucket名称</i></li>
+                <li><label>AccessKeyId</label><input name="config[accesskeyid]" type="text" value="{$oss_storage['accesskeyid']}" class=""><i class="form_hint">从OSS获得的AccessKeyId</i></li>
+                <li><label>AccessKeySecr</label><input name="config[accesskeysecr]" type="text" value="{$oss_storage['accesskeysecr']}" class=""><i class="form_hint">从OSS获得的AccessKeySecr</i></li>
+                <li><label>访问域名</label><input name="config[domain]" type="text" value="{$oss_storage['domain']}" class=""><i class="form_hint">您选定的OSS数据中心访问域名，例如oss-cn-hangzhou.al</i></li>
+                 <li><label>oss绑定</label><input name="config[bd_domain]" type="text" value="{$oss_storage['bd_domain']}" class=""><i class="form_hint">您选定的Bucket绑定域名 例如：www.vlcms.com</i></li>
+
+                <li><label>启用状态</label><span class="form_radio">
+                    <label><input type="radio" name="status" value="0" <eq name="oss_storage_data['status']" value="0">checked="checked"</eq>> 禁用</label>
+                    <label><input type="radio" name="status" value="1" <eq name="oss_storage_data['status']" value="1">checked="checked"</eq>> 启用
+                </label></span><i class="form_hint">OSS和七牛同时开启的话默认OSS</i></li>
+                <li><label>&nbsp;</label><input type="hidden" name="name" value="oss_storage"><input type="submit" id="submit" value="确认保存" target-form="OSS" class="form_btn ajax-post"></li>
+            </ul>
+		</form>
+		</div>
+		</div>
+
+		<div class="tab-content">
+		<div id="tab2" class="tab-pane tab2">
+		<form action="{:U('saveTool')}" method="post" class="form-horizontal qiniu form_info_ml">
+			<ul class="form_info ">
+                <li><label>bucket名称</label><input name="config[bucket]" type="text" value="{$qiniu_storage['bucket']}" class=""><i class="form_hint">七牛的bucket名称</i></li>
+                <li><label>AccessKeyId</label><input name="config[AccessKey]" type="text" value="{$qiniu_storage['AccessKey']}" class=""><i class="form_hint">从七牛获得的AccessKey</i></li>
+                <li><label>AccessKeySecr</label><input name="config[SecretKey]" type="text" value="{$qiniu_storage['SecretKey']}" class=""><i class="form_hint">从七牛获得的SecretKey</i></li>
+                <li><label>访问域名</label><input name="config[domain]" type="text" value="{$qiniu_storage['domain']}" class=""><i class="form_hint">您选定的七牛数据中心访问域名，例如oss-cn-hangzhou.al</i></li>
+                <li><label>启用状态</label><span class="form_radio">
+                    <label><input type="radio" name="status" value="0" <eq name="qiniu_storage_data['status']" value="0">checked="checked"</eq>> 禁用</label>
+                    <label><input type="radio" name="status" value="1" <eq name="qiniu_storage_data['status']" value="1">checked="checked"</eq>> 启用
+                </label></span><i class="form_hint">OSS和七牛同时开启的话默认OSS</i></li>
+                <li><label>&nbsp;</label><input type="hidden" name="name" value="qiniu_storage"><input type="submit" id="submit" value="确认保存" target-form="qiniu" class="form_btn ajax-post"></li>
+            </ul>
+		</form>
+		</div>
+		</div>
+
+     <div class="tab-content">
+        <div id="tab3" class="tab-pane tab3">
+        <form action="{:U('saveTool')}" method="post" class="form-horizontal qiniu2 form_info_ml">
+            <ul class="form_info ">
+                <li><label>bucket名称</label><input name="config[bucket]" type="text" value="{$cos_storage['bucket']}" class=""><i class="form_hint">腾讯云的bucket名称</i></li>
+                <li><label>appId</label><input name="config[AccessKey]" type="text" value="{$cos_storage['AccessKey']}" class=""><i class="form_hint">从腾讯cos获取的appId</i></li>
+                <li><label>secretId</label><input name="config[SecretId]" type="text" value="{$cos_storage['SecretId']}" class=""><i class="form_hint">从腾讯cos获取的secretId</i></li>
+                <li><label>secretKey</label><input name="config[SecretKey]" type="text" value="{$cos_storage['SecretKey']}" class=""><i class="form_hint">从腾讯cos获取的secretKey</i></li>
+                <li><label>设置区域</label><input name="config[domain]" type="text" value="{$cos_storage['domain']}" class=""><i class="form_hint">设置COS所在的区域，如gz &nbsp 对应关系如下 华南(gz)&nbsp;华中(sh)&nbsp;华北(tj)&nbsp;华东(sh)
+               </i></li>
+                <li><label>启用状态</label><span class="form_radio">
+                    <label><input type="radio" name="status" value="0" <eq name="cos_storage_data['status']" value="0">checked="checked"</eq>> 禁用</label>
+                    <label><input type="radio" name="status" value="1" <eq name="cos_storage_data['status']" value="1">checked="checked"</eq>> 启用
+                </label></span><i class="form_hint">OSS和七牛同时开启的话默认OSS</i></li>
+                <li><label>&nbsp;</label><input type="hidden" name="name" value="cos_storage"><input type="submit" id="submit" value="确认保存" target-form="qiniu2" class="form_btn ajax-post"></li>
+            </ul>
+        </form>
+        </div>
+        </div>
+
+
+
+    <div class="tab-content">
+        <div id="tab4" class="tab-pane tab4">
+        <form action="{:U('saveTool')}" method="post" class="form-horizontal qiniu3 form_info_ml">
+            <ul class="form_info ">
+                <li><label>bucket名称</label><input name="config[bucket]" type="text" value="{$bos_storage['bucket']}" class=""><i class="form_hint">百度云的bucket名称</i></li>
+                <li><label>AccessKeyId</label><input name="config[AccessKey]" type="text" value="{$bos_storage['AccessKey']}" class=""><i class="form_hint">从百度云获得的AccessKey</i></li>
+                <li><label>AccessKeySecr</label><input name="config[SecretKey]" type="text" value="{$bos_storage['SecretKey']}" class=""><i class="form_hint">从百度云获得的SecretKey</i></li>
+                <li><label>访问域名</label><input name="config[domain]" type="text" value="{$bos_storage['domain']}" class=""><i class="form_hint">您选定的百度云数据中心访问域名，例如su.bcebos.com</i></li>
+                <li><label>启用状态</label><span class="form_radio">
+                    <label><input type="radio" name="status" value="0" <eq name="bos_storage_data['status']" value="0">checked="checked"</eq>> 禁用</label>
+                    <label><input type="radio" name="status" value="1" <eq name="bos_storage_data['status']" value="1">checked="checked"</eq>> 启用
+                </label></span><i class="form_hint">OSS和七牛同时开启的话默认OSS</i></li>
+                <li><label>&nbsp;</label><input type="hidden" name="name" value="bos_storage"><input type="submit" id="submit" value="确认保存" target-form="qiniu3" class="form_btn ajax-post"></li>
+            </ul>
+        </form>
+        </div>
+        </div>
+
+    <!-- <div class="tab-content">
+        <div id="tab5" class="tab-pane tab5">
+        <form action="{:U('saveTool')}" method="post" class="form-horizontal qiniu4 form_info_ml">
+            <ul class="form_info ">
+                <li><label>bucket名称</label><input name="config[bucket]" type="text" value="{$ks3_storage['bucket']}" class=""><i class="form_hint">金山云的bucket名称</i></li>
+                <li><label>AccessKeyId</label><input name="config[AccessKey]" type="text" value="{$ks3_storage['AccessKey']}" class=""><i class="form_hint">从金山云获得的AccessKey</i></li>
+                <li><label>AccessKeySecr</label><input name="config[SecretKey]" type="text" value="{$ks3_storage['SecretKey']}" class=""><i class="form_hint">从金山云获得的SecretKey</i></li>
+                <li><label>访问域名</label><input name="config[domain]" type="text" value="{$ks3_storage['domain']}" class=""><i class="form_hint">您选定的金山云数据中心访问域名，例如ks3-cn-beijing.ksyun.com</i></li>
+                <li><label>启用状态</label><span class="form_radio">
+                    <label><input type="radio" name="status" value="0" <eq name="ks3_storage_data['status']" value="0">checked="checked"</eq>> 禁用</label>
+                    <label><input type="radio" name="status" value="1" <eq name="ks3_storage_data['status']" value="1">checked="checked"</eq>> 启用
+                </label></span><i class="form_hint">OSS和七牛同时开启的话默认OSS</i></li>
+                <li><label>&nbsp;</label><input type="hidden" name="name" value="ks3_storage"><input type="submit" id="submit" value="确认保存" target-form="qiniu4" class="form_btn ajax-post"></li>
+            </ul>
+        </form>
+        </div>
+        </div> -->
+
+
+
+
+
+</div>
+
+
+</block>
+
+<block name="script">
+<script type="text/javascript">
+	//导航高亮
+	highlight_subnav('{:U('Tool/storage')}');
+	$(function(){
+		//支持tab
+		showTab();
+	})
+</script>
+</block>

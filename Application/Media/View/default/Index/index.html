@@ -1,0 +1,471 @@
+<extend name="Public/base" />
+<block name="body" >
+<link rel="stylesheet" href="__CSS__/index.css">
+  <div class="slide-box" id="slide-box"> 
+  <style type="text/css">
+  .wx-box{ padding-top: 0px; height: 105px; text-align: center;}
+  .wx-box img{ width:80px; height: 80px; display: block; margin:0 auto;}
+
+  </style>
+   
+    
+    <ul class="slide-bd" >
+    <volist name='carousel' id="slide">
+      <li style="display: list-item;"> <a href="{$slide.url}" target="{$slide.target}" ><img style="width: 1910px;height: 500px;" src="{:get_cover($slide['data'],'path')}" alt=""></a> </li>
+    </volist>
+    </ul>
+  </div>
+  <div class="g-container">
+    <div class="g-main">·
+      <div class="mod-game-rem fix jschangbox">
+        <div class="g-tit"> <i class="icon i-crown"></i> <span>游戏推荐</span> 
+          <a href="javascript:;" class="btn-refresh changebtn jschange">换一组<i class="icon-change"></i></a>  
+        </div>
+        <div class="chpanwrap">
+        <ul class="rmd-game-list fix chpan ">
+        <volist name="recommend" id="rec">
+          <li class="laybox">
+            <a href="{:U('Game/game_detail',array('id'=>$rec['relation_game_id']))}" class="game-pic">
+            <img src="{:get_cover($rec['cover'],'path')}" style="width: 277px; height: 144px;">
+            <div class="hot-font f-turn">
+              <div class="bg"></div>
+              <div class="con">
+                <img src="{:U('Game/dow_url_generate',array('game_id'=>$rec['relation_game_id']))}" style="width: 100px; height: 100px;">
+                <div class="txt">
+                  <p>游戏类型：{$rec.game_type_name}</p>
+                  <p><font style=" display:block; float: left;">评分：</font><i title="评分{$rec['game_score']}分" class="tjstart"><em style="width:{:$rec['game_score']*10}%" ></em></i></p>
+                  <p><i class="icon i-downl"></i> {:$rec['anddow']+$rec['iosdow']}人下载</p>
+                </div>
+              </div>
+            </div>
+            </a>
+            <div class="game-info">
+              <h3 class="game-name">{$rec.relation_game_name}</h3>
+              <p class="game-intro" title="{$rec.features}">{$rec.features}</p>
+              <div class="game-other fix">
+                <a style="cursor:default;" href="{:U('Game/game_detail',array('id'=>$rec['relation_game_id']))}" class="btn-like "><i class="icon i-like i-downl"></i> {:$rec['anddow']+$rec['iosdow']}人下载</a> <a href="{:U('Game/game_detail',array('id'=>$rec['relation_game_id']))}" class="g-btn">进入官网</a> </div>
+            </div>
+          </li>
+        </volist>
+        </ul>
+        </div>
+      </div>
+      <script>
+          $(function() {
+              $('.jschangbox .chpanwrap .chpan').eq(0).addClass('active');
+              $('.jschange').on('click',function() {
+                  $.get("{:U('recommend1')}",function(data){
+                      if(data.status){
+                          html="";
+                          $(data.data).each(function(){
+                              html+='<li class="laybox">';
+                              html+='<a href="'+this.relation_game_id+'" class="game-pic">';
+                              html+='<img src="'+this.cover+'" style="width: 277px; height: 176px;">';
+                              html+='<div class="hot-font f-turn"><div class="bg"></div><div class="con">';
+                              html+='<img src="'+this.dow_url_generate+'" style="width: 100px; height: 100px;">';
+                              html+='<div class="txt">';
+                              html+='<p>游戏类型：'+this.game_type_name+'</p>';
+                              html+='<p><font style=" display:block; float: left;"> 评分：</font>';
+                              html+='<i title="评分'+this.game_score+'分" class="tjstart">';
+                              html+='<em style="width:'+this.percent+'%" ></em></i></p>';
+                              html+='<p><i class="icon i-downl"></i> '+this.down_total+'人下载</p></div></div></div></a>';
+                              html+='<div class="game-info"><h3 class="game-name">'+this.relation_game_name+'</h3>';
+                              html+='<p class="game-intro">'+this.features+'</p>';
+                              html+='<div class="game-other fix"><a style="cursor:default;" href="'+this.game_detail+'" class="btn-like ">';
+                              html+='<i class="icon i-like i-downl"></i> '+this.down_total+'人下载</a>';
+                              html+='<a href="'+this.game_detail+'" class="g-btn">进入官网</a> </div></div></li>';
+                          })
+                          $('.rmd-game-list').html('').html(html);
+                      }else{
+                          layer.msg(data.msg);
+                      }
+                  })
+//                  // $.ajax({
+//                  //   type:'POST',
+//                  //   url:'{:U('index',array('act'=>'aa'))}',
+//                  //   success:function(res){
+//                  //     if(res.status ==1){
+//                  //       alert(11);
+//                  //     }
+//                  //   }
+//                  // });
+//                  var parent = $(this).closest('.jschangbox').find('.chpanwrap');
+//                  var chpan = parent.find('.chpan');
+//                  var cur = parseInt(parent.find('.chpan.active').index(),10)+1;
+//                  console.log(cur);
+//                  if (cur>=chpan.length || cur<0){cur=0;}
+//                  chpan.removeClass('active').eq(cur).addClass('active');
+              });
+          });
+      </script>
+      <div class="fix">
+        <div class="mod-hot-game fl">
+          <div class="g-tit"> <i class="icon i-fire"></i> <span>热门游戏</span> <span class="itip"> <!-- <em><i class="icon i-s"></i> 自研</em> <em><i class="icon i-h"></i> 热门</em> <em><i class="icon i-n"></i> 最新</em> --> </span> <a href="{:U('Game/game_center')}" class="btn-more">更多&nbsp;+</a> </div>
+          <ul class="hot-game-list fix">
+          <volist name="hot" id="hot" >
+            <li class="laybox "> <a href="{:U('Game/game_detail',array('id'=>$hot['relation_game_id']))}" class="img fl"> <img src="{:get_cover($hot['icon'],'path')}" width="96" height="96" class="lazy-load" alt=""> </a>
+              <div class="ginfo fl"> <a href="{:U('Game/game_detail',array('id'=>$hot['relation_game_id']))}" class="gname"> {$hot.relation_game_name} <!-- <i class="icon i-h"></i>  --></a>
+                <p>{:$hot['anddow']+$hot['iosdow']}次下载</p>
+                <a href="{:U('Game/game_detail',array('id'=>$hot['relation_game_id']))}" class="g-btn">立即下载</a> </div>
+            </li>
+          </volist>
+          </ul>
+        </div>
+        <!-- 游戏开服表 -->
+        <div class="mod-rank-game fr">
+          <!-- 这个判断用于筛选开服时间大于等于今天的服，测试期间可注释 --> 
+          <!-- 处理游戏信息 -->
+          
+          <div class="g-tit"> <i class="ikai i-kaifu"></i> <span>游戏开服表</span> </div>
+          <div class="rank-kf-list laybox">
+            <div class="rank-kf-tit fix"> <span class="kf-tit-name">游戏名称</span> <span class="kf-tit-date">日期</span> <span class="kf-tit-time">时间</span> <span class="kf-tit-zone">区服</span> <span class="kf-tit-down">下载</span> </div>
+            <div class="rank-kf-wrap">
+              <div class="rank-kf-tab rank_kf_tab" id="rank-kf-tab" style="margin-left: 0px;">
+                <volist name="area" id="arvo" mod="9">
+                  <if condition="$mod eq 0">
+                    <ul>
+                  </if>
+                  <li>
+                    <div class="kf-tab-box clearfix">
+                      <span class="kf-tab-name">
+                      <a href="{:U('Game/game_detail',array('id'=>$arvo['relation_game_id']))}">{$arvo.relation_game_name}</a>
+                    </span>
+                      <span class="kf-tab-date" style="cursor:default;">{:date('m-d',$arvo['start_time'])}</span>
+                      <span class="kf-tab-time" style="cursor:default;">{:date('H:i',$arvo['start_time'])}</span>
+                      <span class="kf-tab-zone" style="cursor:default;">
+                       {:get_title($arvo['server_name'],5)}
+                      </span>
+                      <a class="ikai tab-down"
+                         href="{:U('Game/game_detail',array('id'=>$arvo['relation_game_id']))}"></a>
+                      <!-- <if condition="$arvo.gift_id neq ''">
+                        <a class="ikai tab-gift"
+                           href="{:U('Game/game_detail',array('id'=>$arvo['relation_game_id']))}"></a>
+                      </if> -->
+                    </div>
+                    <p class="kf-tab-line"></p>
+                  </li>
+                  <eq name="mod" value="8"></ul></eq>
+                </volist>
+              </div>
+            </div>
+            <div class="kf-tab-page"> <span id="current_game_page" class="pageState"></span> <a onclick="_switch(&#39;left&#39;)" class="prev">&lt;</a><a onclick="_switch(&#39;right&#39;)" class="next">&gt;</a> </div>
+          </div>
+        </div>
+      </div>
+      <!--广告图-->
+      <!-- <div>
+          <volist name="midcarousel" id="midc">
+              <a href="{$midc.url}" target="{$midc.target}" title="{$midc.title}"><img width="1200px" height="150px" src="{:get_cover($midc['data'],'path')}"></a>
+          </volist>
+      </div> -->
+      <!--广告图结束-->
+      
+      <div class="fix">
+        <div class="mod-zx-box fl">
+          <div class="g-tit"> <i class="icon i-sms"></i> <span>最新资讯</span> </div>
+          <div class="zx-list laybox">
+            <div class="hd"> <volist name="zixuncarousel" id="zixunc"><a href="{$zixunc.url}" target="{$zixunc.target}" title="{$zixunc.title}"><img width="350px" height="80px" src="{:get_cover($zixunc['data'],'path')}"></a></volist><i class="cr"></i> </div>
+            <ul class="bd">
+            <volist name="newzixun" id="newa" offset="0" length='9'>
+              <switch name="newa.category_id">
+              <case value="41">
+              <li>
+              <span class="type-1">
+                公告
+                </span>
+                <span class="tit"><a href="{:U('Article/detail',array('id'=>$newa['id']))}" >{$newa.title}</a></span> <span class="date">{:date('m-d',$newa['update_time'])}</span>
+              </li> 
+              </case>
+              <case value="43">
+              <li>
+              <span class="type-1">
+                资讯
+                </span>
+                <span class="tit"><a href="{:U('Article/detail',array('id'=>$newa['id']))}" >{$newa.title}</a></span> <span class="date">{:date('m-d',$newa['update_time'])}</span> 
+              </case>
+              </li> 
+              </switch>
+            </volist>
+            </ul>
+          </div>
+        </div>
+        <div class="mod-hd-box fl">
+          <div class="g-tit"> <i class="icon i-star"></i> <span>火爆活动</span> </div>
+          <div class="hd-list laybox"> 
+              <a href="{:U('Article/detail',array('id'=>$firhuodong['id']))}" class="hd"> <img src="{:get_cover($firhuodong['cover_id'],'path')}" width="352" height="200" class="lazy-load">
+              <p>{$firhuodong['title']}</p>
+              <i class="cr"></i> </a>
+            <div class="bd fix">
+              <volist name="huodong" id="hud">
+              <a href="{:U('Article/detail',array('id'=>$hud['id']))}"> <img src="{:get_cover($hud['cover_id'],'path')}"  width="166" height="85" class="lazy-load"></a>  
+            </volist>
+            </div>
+          </div>
+        </div>
+        <div class="mod-channel-box fr">
+          <div class="g-tit"> <i class="icon i-rocket"></i> <span>快速通道</span> </div>
+          <div class="channel-list laybox">
+            <div class="hd fix"> <a href="{:U('Member/register')}" target="_blank" class="item item-5"> <s class="s"><s class="s2"></s></s> <i></i>
+              <p>免费注册</p>
+              </a> <a href="{:U('Recharge/pay')}" target="_blank" class="item item-6"> <s class="s"><s class="s2"></s></s> <i></i>
+              <p>账号充值</p>
+              </a> <a href="{:U('Member/resetpwd')}" target="_blank" class="item item-1"> <s class="s"><s class="s2"></s></s> <i></i>
+              <p>修改密码</p>
+              </a> <a href="{:U('Member/findpwd')}" target="_blank" class="item item-2"> <s class="s"><s class="s2"></s></s> <i></i>
+              <p>密码找回</p>
+              </a> <a href="{:U('Member/users_safe')}" target="_blank" class="item item-3"> <s class="s"><s class="s2"></s></s> <i></i>
+              <p>绑定手机</p>
+              </a> <a href="{:U('Member/users_index')}" target="_blank" class="item item-4"> <s class="s"><s class="s2"></s></s> <i></i>
+              <p>实名认证</p>
+              </a> <a href="{:U('Article/supervise')}" target="_blank" class="item item-7"> <s class="s"><s class="s2"></s></s> <i></i>
+              <p>家长监督</p>
+              </a> <a href="{:U('Member/users_index')}" target="_blank" class="item item-9"> <s class="s"><s class="s2"></s></s> <i></i>
+              <p>修改资料</p>
+              </a> </div>
+            <h3 class="kslink"><a href="{:U('Service/index')}">进入客服中心</a></h3>
+            <div class="bd fix"> <a href="http://wpa.qq.com/msgrd?v=3&amp;uin={:C('PC_SET_SERVER_QQ')}&amp;site=qq&amp;menu=yes" target="_blank" class="server-online fl"> <i></i>
+             <p>在线客服</p>
+              <span>Online Service</span> </a>
+              <div class="other fl"> <div class="item item-kf">
+                  <p>客服QQ</p>
+                  <em>{:C('PC_SET_SERVER_QQ')}</em> </div>
+                <div class="item item-kf">
+                  <p>客服电话5*24</p>
+                  <em>{:C('PC_SET_SERVER_TEL')}</em> </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mod-lb-box">
+        <div class="g-tit"> <i class="icon i-gift"></i> <span>热门礼包</span> <a href="{:U('Gift/gift')}" class="btn-more">更多&nbsp;+</a> </div>
+        <ul class="lb-list laybox fix">
+        <volist name="gift" id="gift">
+          <li> <a href="{:U('Gift/gift_detail',array('gid'=>base64_encode($gift['gift_id'])))}" class="item">
+            <div class="img"> <img src="{:get_cover($gift['icon'],'path')}" alt="" width="98" height="98" class="lazy-load"><i class="icon i-rgift"></i> </div>
+            <div class="info">
+              <p class="lbname">{$gift.giftbag_name}</p>
+              <p class="gname">{$gift['relation_game_name']}</p>
+              <p class="nums">剩余：<em>{$gift['gift_num']['wei']}</em>/{$gift['gift_num']['all']}</p>
+              <span class="g-btn-s">立即领取</span> </div>
+            </a>
+          </li>
+        </volist>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="g-mn g-friendLst">
+	<h2 class="m-title cd jsmorebox">
+		<i class="bor"></i>
+		<p class="u-tit">友情链接</p>
+		<a href="javascript:;" class="more jsmore">+更多 <i class="iconfont icon-angle-down"></i></a>
+	</h2>
+	<div class="m-friendLst cd jsmorewrap">
+		<ul>
+			<li>
+      <volist name=":get_links()" id='data' mod="9">
+        <a target="_blank" href="{$data.link_url}" title="{$data.title}" >{$data.title}</a>
+       <eq name="mod" value="8"></li><li></eq>
+      </volist>
+      </li>
+  </div>
+</div>
+  
+<script type="text/javascript" src="__JS__/jquery.slideBox.js"></script> 
+<script type="text/javascript" src="__JS__/main_2016.js"></script> 
+<script type="text/javascript" src="__JS__/game_kf.js"></script>
+<script src="__STATIC__/layer/layer.js" type="text/javascript"></script>
+<script src="__STATIC__/layer/extend/layer.ext.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(function() {
+    $('.jsmore').click(function() {
+        var that = $(this);
+        var sib = that.closest('.jsmorebox').siblings('.jsmorewrap');
+        if (sib.height()<=50) {
+          last = sib.find('li:last');
+          that.find('.iconfont').removeClass('icon-angle-up').addClass('icon-angle-down');
+          height = last.position().top + last.height();
+          sib.animate({'height': '75px'},'slow');
+        } else {
+          that.find('.iconfont').removeClass('icon-angle-down').addClass('icon-angle-up');
+          sib.animate({'height':"25"+'px'},'slow');
+        }
+        
+    });
+});
+(function(){
+  $("#remuser").val('1');
+    $("#lg-slides").click(function(){
+        if($("#lg-slides").hasClass("on")){
+          $("#remuser").val('0');
+          $("#lg-slides").removeClass('on').addClass('off');
+        }else{
+            $("#lg-slides").removeClass('off').addClass('on');
+        } 
+    });
+    $(".rzm-img").click(function(){
+        var e = (new Date).getTime();
+          codeurl="__MODULE__/Member/verify/t/";
+          $(this).attr('src', codeurl + e);
+    });
+    $("#userlogin").click(function(){
+        $(".loading").attr('style','');
+        var data = $("#formlogin").serializeArray();
+        url = "{:U('Member/login')}";
+        $.ajax({
+            type: 'POST',
+            url: url ,
+            data: data ,
+            success: function(data){
+                if(data.status==-1000){
+                    layer.tips(data.msg
+                        , '.lg-name', {
+                            tips: [1, 'red'],time: 1000
+                        });
+                    $(".rzm-img").click();
+                }
+                if(data.status==-1001){
+                    layer.tips(data.msg
+                        , '.lg-name', {
+                            tips: [1, 'red'],time: 1000
+                    });
+                    $(".rzm-img").click();
+                }
+                if(data.status==-1002){
+                    layer.tips(data.msg
+                        , '.lg-pwd', {
+                            tips: [1, 'red'],time: 1000
+                    });
+                    $(".rzm-img").click();
+                }
+                if(data.status==-1003){
+                    if(data.code==-10031){
+                         $(".rzm-img").click();
+                    }
+                    layer.tips(data.msg
+                        , '.lg-yzm', {
+                            tips: [1, 'red'],time: 1000
+                    });
+                }
+                if(data.status==-1004){
+                  if(data.code==-1004){
+                    layer.prompt({
+                      title: '动态密码'
+                    }, function (value, index, elem) {
+                      username=$('.lg-name').val();
+                      password=$('.lg-pwd').val();
+                      $.ajax({
+                        type: 'POST',
+                        async: true,
+                        dataType: 'json',
+                        url: url,
+                        data:{account:username,password:password,code:value},
+                        success:function(res){
+                          switch (parseInt(res.status)) {
+                            case 1000:
+                              layer.msg(res.msg, {icon: 1,});
+                              location.reload();
+                              break;
+                            default:
+                              layer.msg(res.msg, {icon: 2,})
+                              break;
+                          }
+                        }
+                      });
+                      layer.close(index);
+                    });
+                  }else{
+                    layer.msg(data.msg, {icon: 2,})
+                  }
+                    
+                }
+                if(data.status==1000){
+                    layer.msg(data.msg, {icon: 1,});
+                    location.reload();
+                }
+                if(data.status==-500){
+                    layer.msg("服务器故障！", {icon: 2,})
+                }
+            },
+            error:function(){
+                layer.msg("服务器故障！", {icon: 2,})
+            },
+            complete:function(){
+                $(".loading").attr('style','display:none');
+            }
+
+        });
+    });
+    $('.user-exit').click(function(){
+       changyanurl="http://changyan.sohu.com/api/2/logout?client_id='{:C('changyan.partner')}'";
+      $.ajax({
+              type: 'get',
+              url: changyanurl,
+              cache: false,
+              dataType: "jsonp",  //跨域采用jsonp方式  
+              processData: false,
+            complete:function (data) {
+            }
+        });
+        url = "{:U('Member/logout')}";
+        $.ajax({
+            type: 'POST',
+            url: url ,
+            success:function(data){
+                window.location.href=data.reurl;
+            }
+        });
+    });
+
+//      QrLogin();
+//
+//    function QrLogin() {
+//        var ws = new WebSocket('ws://{$Think.SERVER.HTTP_HOST}:1234');
+//        ws.onopen = function () {
+//            $.ajax({
+//                Type: 'POST',
+//                dataType: 'json',
+//                async: false,
+//                url: "{:U('QrLogin/getToken')}",
+//                success: function (res) {
+//                    token = res.token;
+//                    ws.send(token);
+//                    tabewm(token);
+//                }
+//            })
+//        };
+//        ws.onmessage = function (e) {
+//            var res = e.data;
+//            res = eval('(' + res + ')');
+//            if (res.status == 1) {
+//                $.ajax({
+//                    Type: 'POST',
+//                    dataType: 'json',
+//                    data: {token: res.token},
+//                    url: "{:U('QrLogin/QrLogin')}",
+//                    success: function (data) {
+//                        if (data.status == 1) {
+//                            location.reload();
+//                        }
+//                    }
+//                })
+//            }
+//        };
+//    }
+    function tabewm(token) {
+        $.get('{:U("QrLogin/inQrCode")}',{token:token},function(data) {
+            $('#QrCode').html(data+'溪谷令牌扫码登录');
+        });
+        setTimeout(function(){
+            QrLogin();
+        },100000);
+
+    }
+})();
+</script>
+</block>
+</html>

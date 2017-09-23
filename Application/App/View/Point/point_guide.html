@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" >
+    <link rel="shortcut icon" href="">
+
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="__CSS__/point.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="main">
+    <div class="inner integral">
+        <img class="integralbg" src="__IMG__/integral.png" >
+        <div class="container">
+            <div class="content clearfix">
+                <h4 class="title">一、如何获取积分</h4>
+                <div class="items clearfix">
+                    <img class="icon" src="__IMG__/signin.png">
+                    <div class="text">
+                        <div class="font"><span>每日签到</span><span>(连续签到天数越多，积分越多)</span></div>
+                        <img class="line" src="__IMG__/line.png">
+                    </div>
+                </div>
+                <div class="items clearfix">
+                    <img class="icon" src="__IMG__/comments.png">
+                    <div class="text">
+                        <div class="font"><span>应用评论</span><span>(每日仅限{$data['comment']['time_of_day']}次)</span><span>+{$data['comment']['point']}/次</span></div>
+                        <img class="line" src="__IMG__/line.png">
+                    </div>
+                </div>
+                <div class="items clearfix">
+                    <img class="icon" src="__IMG__/share.png">
+                    <div class="text">
+                        <div class="font"><span>分享APP</span><span>(每日仅限{$data['share_app']['time_of_day']}次)</span><span>+{$data['share_app']['point']}/次</span></div>
+                        <img class="line" src="__IMG__/line.png">
+                    </div>
+                </div>
+                <div class="items clearfix">
+                    <img class="icon" src="__IMG__/share.png">
+                    <div class="text">
+                        <div class="font"><span>分享游戏</span><span>(每日仅限{$data['share_game']['time_of_day']}次)</span><span>+{$data['share_game']['point']}/次</span></div>
+                        <img class="line" src="__IMG__/line.png">
+                    </div>
+                </div>
+                <div class="items clearfix">
+                    <img class="icon" src="__IMG__/share.png">
+                    <div class="text">
+                        <div class="font"><span>分享文章</span><span>(每日仅限{$data['share_app']['time_of_day']}次)</span><span>+{$data['share_app']['point']}/次</span></div>
+                        <img class="line" src="__IMG__/line.png">
+                    </div>
+                </div>
+                <div class="items clearfix">
+                    <img class="icon" src="__IMG__/registered.png">
+                    <div class="text">
+                        <div class="font"><span>邀请好友注册</span><span>(次数不限)</span><span>+{$data['invite_friend']['point']}/人</span></div>
+                        <img class="line" src="__IMG__/line.png">
+                    </div>
+                </div>
+                <div class="items clearfix">
+                    <img class="icon" src="__IMG__/consumption.png">
+                    <div class="text">
+                        <div class="font"><span>充值消费</span><span>(次数不限)</span><span>+{$data['recharge_spend']['point']}/元</span></div>
+                        <img class="line" src="__IMG__/line.png">
+                    </div>
+                </div>
+                <h4 class="title">二、积分用途</h4>
+                <div class="items clearfix">
+                    <p class="paragraph">1、可在积分商城中进行<a href="javascript:;" onclick="commodity()">商品兑换</a></p>
+                    <p class="paragraph">2、可参与<a href="javascript:;" onclick="ptb()">兑换平台币</a></p>
+                </div>
+                <h4 class="title">三、积分规则</h4>
+                <div class="items clearfix">
+                    <p class="paragraph">1、积分是溪谷手游平台发放的奖励，只适用于平台内的<span class="keyword">指定用途，不可转让，不可提现</span></p>
+                    <p class="paragraph">2、若发现存在<span class="keyword">作弊，刷积分</span>嫌疑，一经核实，溪谷手游有权<span class="keyword">收回所有积分</span></p>
+                    <p class="paragraph">3、溪谷手游对平台内的规则享有最终解释权</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+
+</div>
+<script>
+    function ismobile(){
+        var u = navigator.userAgent, app = navigator.appVersion;
+        if(/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){
+            if(window.location.href.indexOf("?mobile")<0){
+                try{
+                    if(/iPhone|mac|iPod|iPad/i.test(navigator.userAgent)){
+                        return '0';
+                    }else{
+                        return '1';
+                    }
+                }catch(e){}
+            }
+        }else if( u.indexOf('iPad') > -1){
+            return '0';
+        }else{
+            return '1';
+        }
+    };
+
+    function commodity() {
+        try {
+            if (ismobile() == '0') {
+                window.webkit.messageHandlers.GoodExchange.postMessage(null);
+            } else if (ismobile() == '1') {
+                javascript:window.android.CommodityExchange();
+            } else {
+                javascript:window.android.CommodityExchange();
+            }
+        } catch(e) {
+            window.location.reload();
+        }
+    }
+    function ptb() {
+        try {
+            if (ismobile() == '0') {
+                window.webkit.messageHandlers.PTBExchange.postMessage(null);
+            } else if (ismobile() == '1') {
+                javascript:window.android.PTBExchange();
+            } else {
+                javascript:window.android.PTBExchange();
+            }
+        } catch(e) {
+            window.location.reload();
+        }
+    }
+
+</script>
+</body>
+</html>

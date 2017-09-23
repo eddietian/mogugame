@@ -1,0 +1,134 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/******新闻列表******/
+.left_news{width:810px;float:left;height:auto;margin-right:40px;display:inline;}
+
+.tits{    height: 32px;
+    line-height: 29px;
+    border-bottom: 1px solid #ddd;
+    color: #03B4F5;}
+.tits span{height: 32px;
+    line-height: 28px;
+    font-size: 20px;
+    float: left;
+    border-bottom: 2px solid #03B4F5;
+    padding: 0 2px;}
+.tits a{color: #666;padding-right: 14px;    float: right;}
+.ul_news{width:100%;height:auto;    margin: 10px 0px;float: left;}
+.ul_news li{width:100%;height:136px!important;float:left;border-bottom:1px solid #ddd;}
+.ul_news li img{float:left;width:268px;height:136px;}
+.ul_news li img:hover{border:4px solid #03B4F5;width:260px;}
+.news_div{float:left;width:470px;height:136px;margin-left:18px}
+.news_div a{color:#666;    float: left;}
+.news_div a:hover{color:#03B4F5}
+.news_div h3{font-size:18px;font-weight:700;width:100%;    float: left;    margin-bottom: 9px; height:40px; overflow:hidden;}
+.news_div p{width:100%;margin:10px 0;line-height:21px;font-size:13px;height:63px;overflow:hidden}
+.news_div em{float:right;font-size:14px;}
+
+.right_news{width:350px;float:right;height:auto;display:inline;}
+.bag{border:1px solid #E3E3E3;width:348px;height:430px;margin:18px 0px;}
+.bag_img{width:338px;margin:5px;    float: left;}
+.bag_img img,.bag_img a{width:338px;height:172px;float:left;} 
+.bag_ul{    float: left;margin:5px;width:338px;}
+.bag_ul li{float:left;width:155px;margin-left:10px;margin-bottom:15px}
+.bag_ul li img{width:66px;height:66px;float:left}
+.bag_ul li em{float:left;width:88px;font-size:12px;color:#9a9a9a;text-align:center;}
+.bag_ul li i{float:left;width:88px;font-size:15px;color:#565656;text-align: center;
+width: 85px;
+overflow: hidden;
+height: 22px;}
+.bag_ul li i a:hover{color:#03B4F5}
+.bag_ul .lqlb{width:76px;display:block;float:right;border:1px solid #03B4F5;color:#03B4F5;border-radius:10px;text-align:center;margin-top:4px}
+.bag_ul .lqlb:hover{background:#03B4F5;color:#fff;}
+
+.sideMenu{height: 440px;border: 1px solid #E6E7E6;margin-top:13px;}
+.sideMenu .pmtit{margin-bottom:10px;}
+.sideMenu .pmtit,.sideMenu h3{color:#6a6f74;font-size:16px;width:310px;margin:0 auto;margin-top:1px;overflow: hidden;
+height: 25px;}
+.sideMenu .pmtit{height:48px;line-height:48px}
+.sideMenu h3{border-top:1px dashed #F5F5F5;height:30px;line-height:30px}
+.sideMenu .pmtit em,.sideMenu h3 em{text-indent:12px;float:left;width:50px;text-align:center;font-weight:400}
+.sideMenu .pmtit i,.sideMenu h3 i{text-align:center;float:left;width:72px;font-weight:400;margin-left:11px}
+.sideMenu h3 em,.sideMenu h3 i{font-size:12px}
+.sideMenu ul{display:none;width:310px;background:#FBFBFB;height:85px;border:1px solid #E8E8E8;border-top:none;margin:0 auto}
+.sideMenu ul li img{float:left;margin:0 4px 4px 20px;width:75px;height:75px;}
+.sideMenu ul li a{color:#6a6f74}
+.sideMenu ul li span{float:left;width:200px;line-height:19px;margin-left:8px;overflow:hidden;margin-top:0}
+.sideMenu .on{border:1px solid #E8E8E8;border-bottom:none;background:#FBFBFB}
+.sideMenu .pmtit #txtit{text-indent:4px}
+.sideMenu ul li span i{margin-bottom:5px;float:left;width:95%;overflow:hidden;height:38px}
+.sideMenu ul li span a{display:block;width:90px;height:20px;background:url(../images/ico.png) no-repeat;float:left;margin-bottom:5px;border-radius:10px;border:1px solid #898989;color:#898989;text-indent:29px}
+.sideMenu ul li span a:hover{text-decoration:none;background:#03B4F5;border:1px solid #03B4F5;color:#fff}
+.sideMenu ul li span .android{background-position:10px 1px}
+.sideMenu ul li span .ios{background-position:10px -26px;margin-left:10px}
+.sideMenu ul li span .android:hover{background:#03B4F5 url(../images/ico.png) -17px 1px no-repeat}
+.sideMenu ul li span .ios:hover{background:#03B4F5 url(../images/ico.png) -17px -26px no-repeat}
+
+
+/*新闻页 上面的新闻页复制到这里了*/
+.text{height: auto; line-height:30px;}
+.text_top{width:100%;text-align:center;padding: 30px 0px;}
+.text_top h3{font-size:18px;color:#03B4F5;}
+.text_top p{color:#676767;font-size: 13px;margin-top: 5px;}
+/* 上下篇文章 */
+.article_next{height:30px; line-height:30px; overflow:hidden; margin-top:20px;}
+.article_next li{float:left; width:100%; color:#000;text-align:center; font-size:16px;height: 30px;
+    line-height: 30px;
+    background: #F0F0F0;}
+.article_next li a{padding-left:6px; color:#666;font-family:"宋体"}
+.article_next li a:hover{ text-decoration:underline;}
+/******新加看完后心情******/
+.expression{width:100%;height:220px;margin-bottom:30px;margin-top:15px}
+.expression p{border-bottom:1px solid #ddd;height:40px;line-height:40px}
+.expression p em{font-size:18px;border-bottom:2px solid #EA581D;height:40px;float:left}
+.expression div{width:100%;height:150px;margin-top:30px;background:url(../images/expression.png) 18px 2px no-repeat}
+.expression div a{display:block;float:left;height:140px;width:89px;margin-left:18px}
+.expression div a em{font-size:18px;text-align:center;width:100%;float:left;margin-top:107px;color:#020000}
+.expression div a em i{font-size:12px;color:#b20b0b}
+/******页面 2016.8.10改******/
+
+
+
+/*切换*/
+.left_news  #tab1 li{ float:left; height:40px; line-height:40px;}
+.left_news  #tab1 .menu{ height:40px; line-height:40px;}
+.left_news  #tab1 .menu ul{ height:40px; line-height:40px; border-width:1px;border-style:solid;border-color:transparent;border-bottom-color:#ddd;width:100%;}
+.left_news #tab1 li.off .tits span{height:40px;line-height:40px;color:#03B4F5;border-bottom:2px solid #03B4F5;}
+.left_news #tab1 li .tits span{ height:40px; line-height:40px; color:#333; border-bottom:none; padding: 0px 15px;}
+.left_news #tab1 li .tits { border-bottom:0px;}
+
+
+.newswrap {background:#FFF;}
+.newswrap .news_list {padding:20px;overflow:hidden;width:1200px;margin:0 auto;clear:both;position:relative;}
+.newswrap .ul_news {border-left:1px solid #E8E8E8;border-right:1px solid #E8E8E8;margin:0;}
+.newswrap .ul_news li {padding:20px;float:none!important;width:auto;}
+
+.newscontent {border:1px solid #E8E8E8;border-top:0;padding:10px;}
+
+
+.pages {padding:8px 0 9px;border:1px solid #E8E8E8;border-top:0;width:100%;}
+.page {padding:10px 0 ;}
+.page span {background:#03B4F5;line-height:28px;height:auto;}
+
+.page a, .page a:visited, .page a:active,.pagepp .current {
+    border-radius: 3px;
+    display: inline-block;
+    line-height: 28px;
+    font-size: 14px;
+    color: #525252;
+    padding: 0 12px;
+    background: transparent;
+    vertical-align: middle;
+    margin: 0 3px;
+    transition:all .3s linear;
+    border:1px solid #cfcece;height:auto;
+}
+.page a:hover,
+.pagepp .current {
+     background:#03B4F5;border-color:#03B4F5;color:#FFF;
+}
+
+
+.footerBox,.NewFootGroup{background:#f1f2f3;}

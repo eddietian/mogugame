@@ -1,0 +1,37 @@
+<extend name="Public/base" />
+<block name="body" >
+  <div class="g-container">
+    <div class="g-main">
+      <include file="Public/user_head" />
+      
+      <div class="user-bd laybox fix">
+       <include file="Public/user_base" />
+        
+        <div class="user-section-wrap fl" id="user-section-wrap">
+          <div class="us2-mibao">
+           <div class="section-tit">绑币余额</div>
+           
+           <table class="bd_tab">
+           <thead>
+           <tr>
+             
+
+<th>游戏名称</th>
+             <th>绑币余额</th>
+           </tr>
+           </thead>
+           <tbody>
+           <volist name="list_data" id="data">
+             <tr>
+               <td>{$data.game_name}</td>
+               <td class="org">{$data.bind_balance}</td>
+             </tr>
+           </volist>
+           </tbody>
+           </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</block>

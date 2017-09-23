@@ -1,0 +1,45 @@
+<extend name="Public/subbases" />
+<block name="body" >
+<div class="grxx-form mt20">
+    <div class="lb-comtit">
+        <h2><span class="bor-icon"></span>基本信息</h2>
+    </div>
+    <form id="userxinlist" action="{:U('profile')}" method="post" class="clear" enctype="multipart/form-data">
+        <div class="jbifnor">          
+            <p><strong>昵称：</strong><input type="text" name="nickname" id="nickname" class="cominputtext" placeholder="请输入修改昵称" value="{$user.nickname}"></p>
+            <notempty name="user.phone">
+            <p><strong>电话：</strong>{$user.phone}</p>
+            <else/>
+            <p><strong>电话：</strong><input type="text" name="phone" class="cominputtext" placeholder="" value=""></p>
+            </notempty>
+            <notempty name="user.real_name">
+            <p><strong>姓名：</strong>{$user.real_name}</p>
+            <else/>
+            <p><strong>姓名：</strong><input type="text" name="real_name" class="cominputtext" placeholder="输入姓名请慎重" value=""><span style="color:red;"> * 请慎重！确认提交后不可更改</span></p>
+            </notempty>
+            <notempty name="user.idcard">
+            <p><strong>身份证：</strong>{$user.idcard}</p>
+            <else/>
+            <p><strong>身份证：</strong><input type="text" name="idcard" class="cominputtext" placeholder="输入身份证请慎重" value=""> <span style="color:red;"> * 请慎重！确认提交后不可更改</span></p>
+            </notempty>
+            <p><button class="btn btn-warning" type="button" onclick="qredit()">确认修改</button></p>
+         </div>
+    </form>
+</div>
+<script>
+function qredit(){    
+    if ($.trim($('#nickname').val()) == '') {showTooltips('userxinlist','昵称不可为空',2000);return false;}
+    var that = $('#userxinlist');
+    $.post(that.attr('action'),that.serialize(),function(data){
+		if(data.status==1){
+            showTooltips('userxinlist',data.msg,2000);
+            setTimeout(function() {
+                window.location.reload();
+            },2200); 
+		}else{
+			showTooltips('userxinlist',data.msg,2000);			 
+		} 
+	},'json');	
+}	
+</script>
+</block>

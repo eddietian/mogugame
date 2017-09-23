@@ -1,0 +1,269 @@
+..
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+    <head>
+
+        <meta charset="utf-8">
+        <title>{:C('WEB_SITE_TITLE')}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- CSS -->
+     
+        <link rel="stylesheet" href="__CSS__/reset.css">
+        <link rel="stylesheet" href="__CSS__/supersized.css">
+        <link rel="stylesheet" href="__CSS__/login_new.css">
+        <script src="__JS__/jquery-3.0.0.min.js" ></script>
+        <script src="__STATIC__/layer/layer.js" type="text/javascript"></script>
+        <style>
+        .tip {
+            position: fixed;
+            top: 38%;display:none;
+            /* left: 38%; */width:340px;left:0;right:0;margin:0 auto;
+            background-color:#4C4C4C;
+            background: rgba(0,0,0,.7);color:#fff;
+            box-shadow: 1px 8px 10px 1px #9b9b9b;
+            border-radius: 1px;padding:20px 10px;
+            z-index: 111111;}
+        .tip .tipmain {text-align:center;}
+        .tip .tipicon {width:20px;height:20px;border-radius:100%;background:#fff;vertical-align:middle;display:inline-block;background-image:url(__IMG__/tipicon_right.png);background-repeat:no-repeat;background-position:center center;background-size:77%;}
+        .tip.tip_right .tipicon {background-image:url(__IMG__/tipicon_right.png);}
+        .tip.tip_error .tipicon {background-image:url(__IMG__/tipicon_error.png);}
+        .tip .tipinfo {display:inline-block;margin-left:10px;}
+
+        </style>
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+
+    <body class="loginbg">
+        <div class="loginposition">
+        <div class="loginleft">
+            <img src="__IMG__/logintext.png" >
+        </div>
+        <div class="loginbox boxsize">
+            <div class="loginform ">
+                <form class="inputlogin" method="post" >
+                    <h1 class="logintitle">溪谷管理平台</h1>
+                    <div class="user boxsize">
+                        <img src="__IMG__/username.png" alt="user">
+                        <input type="text" name="username" class="username" placeholder="管理员账号" aria-required="true" aria-invalid="true" aria-describedby="">
+                        <!-- <span id="usernameerror" class="loginnotice helpblock">登陆账号必须填写</span> -->
+                    </div>
+                    <div class="password boxsize">
+                        <img src="__IMG__/password.png" alt="password">
+                        <input type="password" placeholder="密码" name="password" data-rule-required="true" aria-required="true">
+                        <!-- <span id="passworderror" class="loginnotice helpblock">密码必须填写</span> -->
+                    </div>
+                    <div class="verify boxsize">
+                        <div class="verifywrap">
+                            <div class="verifycode boxsize">
+                                <img src="__IMG__/barcode.png" alt="verify">
+                                <input type="text" name="verify" class="ssssssaaaa" placeholder="请填写验证码" >
+                            </div>
+                            <img class="verifyimg reloadverify" title="点击切换" alt="验证码" src="{:U('Public/verify')}">
+                        </div>
+                        <!-- <span id="verifyerror" class="loginnotice helpblock">验证码必须填写</span> -->
+                    </div>
+                    <div class="buttonbox boxsize">
+                        <button type="submit" id="loginbtn" class="loginbtn">登<span></span>录</button>
+                    </div>
+                    <div class="changebutton jchangebutton">
+                        <img src="__IMG__/scan.png" alt="scanlogin">
+                    </div>
+                </form>
+                <form class="scanlogin hidden" >
+                    <h1 class="logintitle">扫码登录</h1>
+                    <img class="scanimg wx_qrcode" src="" alt="" >
+                    <p>微信扫码登录</p>
+                    <div class="changebutton">
+                        <img src="__IMG__/input.png" alt="inputlogin">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="tip" class="tip"><a class="tipclose hidden" ></a><div class="tipmain"><div class="tipicon"></div><div class="tipinfo">这是内容</div></div></div>
+        <script>
+            /**顶部警告栏*/
+            var content = $('#main');
+            var top_alert = $('#tip');
+            //$('body').append('<div class="notice"><div><i></i>成功</div></div>');
+            
+            top_alert.find('.tipclose').on('click', function () {
+                top_alert.removeClass('block').slideUp(200);
+                // content.animate({paddingTop:'-=55'},200);
+            });
+
+            window.updateAlert = function (text,c) {
+                text = text||'default';
+                c = c||false;
+                if ( text!='default' ) {
+                    top_alert.find('.tipinfo').text(text);
+                    if (top_alert.hasClass('block')) {
+                    } else {
+                        top_alert.addClass('block').slideDown(200);
+                        // content.animate({paddingTop:'+=55'},200);
+                    }
+                } else {
+                    if (top_alert.hasClass('block')) {
+                        top_alert.removeClass('block').slideUp(200);
+                        // content.animate({paddingTop:'-=55'},200);
+                    }
+                }
+                if ( c!=false ) {
+                    top_alert.removeClass('tip_error tip_right').addClass(c);
+                }
+            };
+        </script>
+        <!-- Javascript -->
+        <script>
+            $(function(){
+                $(".inputlogin").unbind('submit').submit(function(){
+                    $.ajax({
+                        type: 'POST',
+                        async: false,
+                        dataType: 'json',
+                        url: "{:U('login')}",
+                        data: $(".inputlogin").serialize(),
+                        success: function(data) {
+                            if(data.status!=1){
+                                updateAlert(data.info,'tip_error');
+                                setTimeout(function(){
+                                    $('#tip').find('.tipclose').click();
+                                },1500);
+                                if(data.status==-1){
+                                    $(".reloadverify").click();
+                                }
+                            }else{
+                                updateAlert(data.msg,'tip_right');
+                                setTimeout(function(){
+                                    $('#tip').find('.tipclose').click();
+                                },1500);
+                                location.reload();
+                            }
+                        },
+                        error:function(){
+                            updateAlert('服务器错误','tip_error');
+                            setTimeout(function(){
+                                $('#tip').find('.tipclose').click();
+                            },1500);
+                        }
+                    });
+                    return false;
+                });
+
+
+
+                $('.changebutton').on('click',function(){
+                    get_openid();
+                    setTimeout(function(){
+                        $('.jchangebutton').click();
+                    },120000);
+                    var that = $(this),parent = that.closest('form');
+                    parent.addClass('hidden').siblings('form').removeClass('hidden');
+                });
+                function QrLogin(token) {
+                    var ws = new WebSocket('ws://{$Think.SERVER.HTTP_HOST}:1234');
+                    ws.onopen = function () {
+                      ws.send(token);
+                    };
+                    ws.onmessage = function (e) {
+                        var res = e.data;
+                        res = eval('(' + res + ')');
+                        console.log(res,res.status);
+                        if (res.status == 1) {
+                            $.ajax({
+                                Type: 'POST',
+                                dataType: 'json',
+                                data: {token: res.token},
+                                url: "{:U('QrLogin/QrLogin')}",
+                                success: function (data) {
+                                    // console.log(data);
+                                    if (data.status == 1) {
+                                        updateAlert('登陆成功','tip_right');
+                                        setTimeout(function(){
+                                            $('#tip').find('.tipclose').click();
+                                        },1500);
+                                        location.reload();
+                                    }else{
+                                        updateAlert(data.msg,'tip_error');
+                                        setTimeout(function(){
+                                            $('#tip').find('.tipclose').click();
+                                        },1500);
+                                    }
+                                }
+                            })
+                        }
+                    };
+                }
+                function get_openid(){
+                    $.ajax({
+                      type:"POST",
+                      url:"{:U('get_openid')}",
+                      dataType:"json",
+                      success:function(res){
+                        if(res.status){
+                            $('.wx_qrcode').attr('src',res.data);
+                            QrLogin(res.token);
+                        }else{
+                            $.ajax({
+                              type:"POST",
+                              url:"{:U('wite_token')}",
+                              dataType:"json",
+                              success:function(res){
+                                if(res.status){
+                                    $('.wx_qrcode').attr('src',res.data);
+                                }else{
+                                    alert('服务器错误');
+                                }
+                              },
+                            })
+                        }
+                      },
+                      error:function(){
+                      }
+                    })
+                };
+                var verifyimg = $(".verifyimg").attr("src");
+                $(".reloadverify").click(function(){
+                    if( verifyimg.indexOf('?')>0){
+                        $(".verifyimg").attr("src", verifyimg+'&random='+Math.random());
+                    }else{
+                        $(".verifyimg").attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+                    }
+                });
+                // $(".loginbtn").click(function(){
+                //     url = "{:U('checkVerify')}";
+                //     $.ajax({
+                //         type: 'POST',
+                //         url: url ,
+                //         data: {'verify':$('.ssssssaaaa').val()} ,
+                //         success: function(data){
+                //             if(data.status==0){
+                //                 layer.tips(data.msg
+                //                     , '.ssssssaaaa', {
+                //                         tips: [1, 'green'],time: 1000
+                //                 });
+                //             }else{
+                //                 $('.inputlogin').submit();
+                //             }
+                //         },
+                //         error:function(){
+                //             layer.msg('服务器错误', {icon: 2,})
+                //         },
+                //         complete:function(){
+                //         }
+
+                //     });   
+                // });
+            });
+        </script>
+        </div>
+    </body>
+
+</html>
+

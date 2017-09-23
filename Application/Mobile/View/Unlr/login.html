@@ -1,0 +1,100 @@
+<extend name="Public/loginreg" />
+<block name="body" >
+<div class="s-main">
+	<div class="loginalert dlbox">
+        <div class="loginpd">
+            <div class="loginwrap">
+                <div class="loginh">
+                    <div class="fl">会员登录</div>                    
+                </div>
+                <form method="post" id="login_form" data-url="{$url}">
+                    <div class="logininput">
+                        <span class="control-group" id="mobile_input">
+                            <div class="input_add_long_background">
+                                <input name="account" class="loginusername" id="account" value="" placeholder="账号" onblur="__changeUserName(&#39;phone&#39;);">
+                            </div>
+                        </span>
+                        <span class="passwordbox" id="pwd_input" style=" position:relative;">
+                            <span class="pass_tips">您输入的密码有误</span>
+                            <input type="password" name="password" placeholder="密码" id="pwd" class="loginuserpasswordp">
+                        </span>                        
+                    </div>
+                    <div class="loginbtn">
+                        <div class="loginsubmit">
+                            <input type="button" onclick="userlogin()" value="登录" class="btn">
+                        </div>                        
+                    </div>
+                </form>
+            </div>
+            <div class="b1">还没有账号？
+                <a class="zcbtn" href="{:U('register?url='.base64_encode($url))}">立即注册</a>|
+                <a class="zcbtn" href="{:U('forget?url='.base64_encode($url))}">忘记密码</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="__JS__/jquery.js"></script>
+
+<script src="__JS__/logintips.js"></script>
+<script type="text/javascript">
+function ispone(tel){
+	 var reg = /^0?1[3|4|5|8][0-9]\d{8}$/;
+	 if (reg.test(tel)) {
+		 return true;
+	 }else{
+		 return false;
+	 };
+}
+
+function __changeUserName(of){
+	var username=$('#'+of).val();
+	if(of=='email') {
+		if (username.search(/^[w.+-]+@[w.+-]+$/) == -1) {
+			showTooltips('email_input','请输入正确的Email地址');
+			return;
+		}					
+	} else {
+		if(username=='' || !isMobilePhone(username)) {
+			showTooltips('mobile_input','请输入正确的手机号码',2000);			
+			return;
+		}
+	}
+}
+
+$("#phone").focus(function(){
+    $(this).val("","")  
+});
+
+$("#sentYzm").focus(function(){
+	$(this).val("","")
+});
+
+function checkMobilePhone(telphone) {
+	if(telphone=='' || !isMobilePhone(telphone)) {
+		showTooltips('mobile_input','请输入正确的手机号码');
+	}else{
+		hideTooltips('mobile_input');
+	}
+}
+function userlogin(){
+    if ($('#account').val() == '') {showTooltips('mobile_input','请输账号',2000);return false ;}
+    if ($('#pwd').val() == '') {showTooltips('pwd_input','请输入密码',2000);return false ;}
+	$.post("{:U('login')}",$('#login_form').serialize(),function(data){
+		if(data.status==1){
+            showTooltips('login_form',data.msg,2000);
+            setTimeout(function() {
+                var url = $.trim($('#login_form').data('url')); 
+                if (url) {window.location.href=url;}
+                else {
+                    window.location.href = "{:U('Index')}";
+                }
+            },2000); 
+		}else{
+			showTooltips('login_form',data.msg,2000);			 
+		} 
+	},'json');
+}
+
+</script>
+</block>

@@ -1,0 +1,208 @@
+<extend name="Public/loginreg" />
+<block name="body" >
+<div class="s-main" >
+    <div class="loginalert zcbox">
+        <div class="safecodebox" id="div_geetest_lib">
+            <div id="div_id_embed">
+                <div class="scb">
+                <input type="text" name="verify" id="verify" placeholder="验证码"  />
+                <img src="" />
+                </div>
+            </div>
+            <em class="closebtn">
+                <a href="javascript:;" style="color:#f60">×</a>
+            </em>
+            <a href="javascript:;" class="surebtn">确定</a>                              
+        </div>
+        
+        <div class="pd20 loginpd">
+            <div class="loginwrap">
+                <div class="loginh">
+                    <div class="fl">会员注册</div>
+                </div>
+                <div class="tabbox">
+                    <div class="loginbox">
+                        <form method="post" id="login_form" data-url="{:base64_encode($url)}">
+                            <div class="logininput">
+                                <span class="control-group" id="mobile_input">
+                                    <div class="input_add_long_background">
+                                        <input type="text" name="account" id="phone" class="loginusername phonenum" value="" placeholder="手机号" maxlength="11" onblur="__changeUserName(&#39;phone&#39;);">
+                                    </div>
+                                </span>
+                                <input id="btnSendCode" onclick="sendMessage()" class=" phoneyzm" type="button" value="获取验证码"><br>
+                                <input type="text" name="safecode" id="safecode" class="loginusername" value="短信验证码" placeholder="短信验证码">
+                                <span class="passwordbox" id="pwd" style=" position:relative;">
+                                    <input type="password" name="password" id="password" class="loginuserpasswordt" value="" placeholder="密码">
+                                </span>
+                            </div>
+                            <div class="loginbtn">
+                                <div class="loginsubmit fl">
+                                    <input type="button" value="注册" onclick="userreg()" class="btn">
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </form>
+                    </div>
+                   
+                    <div class="b1">已有账号
+                        <a class="zcbtn" href="{:U('login?url='.base64_encode($url))}">立即登录</a>
+                    </div>
+                  
+                </div>	
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    document.getElementById("login_form").submit=false;
+</script>
+
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+
+<script src="__JS__/logintips.js"></script>
+
+<script type="text/javascript"> 
+
+var InterValObj; //timer变量，控制时间  
+var count = 60; //间隔函数，1秒执行  
+var curCount;//当前剩余秒数   
+
+function Message(){
+    curCount = count;  
+    var phone=$.trim($('#phone').val()),verify = $.trim($('#verify').val());
+
+    if(phone != ''){  
+	    if (phone.length<11) {showTooltips('mobile_input','手机号码不能少于11位数',1000);return false;}		
+        if (verify == '' || verify.length != 4) {showTooltips('div_id_embed','验证码输入错误',1000);return false;}
+        //向后台发送处理数据  
+        $.ajax({  
+            type: "POST", 
+            dataType: "json",  
+            url: '{:U("sendsafecode")}', 
+			data:{phone:phone,verify:verify,vid:1},  
+            error: function (XMLHttpRequest, textStatus, errorThrown) { },  
+            success: function (data){
+                if (parseInt(data.status) == 1) {
+                    $(".safecodebox").hide();
+                    //设置button效果，开始计时  
+                    $("#btnSendCode").attr("disabled", "true");  
+                    $("#btnSendCode").val("" + curCount + "秒后重发");  
+                    InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次                 
+                } else {
+                    showTooltips('mobile_input',data.msg,2000);
+                }
+            }  
+        });  
+    }else{  
+        showTooltips('mobile_input','手机号码不能为空！',1000); 
+    }  
+
+}
+$(".surebtn").click(function(){
+	Message();
+});
+
+$(".closebtn").click(function(){
+	$(".safecodebox").hide();
+});
+
+function sendMessage() {
+    var phone = $.trim(document.getElementById('phone').value);
+    if (phone == '' || !(/^1[3458][0-9]{9}$/.test(phone))) {
+        showTooltips('mobile_input','请输入正确的手机号码',1000);return false;
+    }
+    
+	$.ajax({
+		type:'POST',
+		url:'{:U("checkPhone")}',
+		data:{'username':phone},
+		dataType:"Json",
+		success:function(data){
+		 	if(parseInt(data.status) == 1){
+		 	    var url = "{:U('verify')}";
+                $('.safecodebox').show().find('img').attr('src',url).on('click',function() {
+                    $(this).attr('src',url +'&random='+Math.random());
+                });
+			}else{
+				showTooltips('mobile_input',data.msg,1000);
+				return false;
+			}
+		}
+	});
+}  
+//timer处理函数  
+function SetRemainTime() {  
+    if (curCount == 0) {                  
+        window.clearInterval(InterValObj);//停止计时器  
+        $("#btnSendCode").removeAttr("disabled");//启用按钮  
+        $("#btnSendCode").val("重新发送验证码");  
+        
+    } else {  
+        curCount--;  
+        $("#btnSendCode").val("" + curCount + "秒后重发");  
+    }  
+}  
+</script>
+<script type="text/javascript">
+function ispone(tel){
+	 var reg = /^0?1[3|4|5|8][0-9]\d{8}$/;
+	 if (reg.test(tel)) {
+		 return true;
+	 }else{
+		 return false;
+	 };
+}
+function __changeUserName(of){
+	var username=$('#'+of).val();
+	if(of=='email'){
+		if (username.search(/^[w.+-]+@[w.+-]+$/) == -1) {
+			showTooltips('email_input','请输入正确的Email地址',1000);
+			return;
+		}					
+	}else{
+		if(username=='' || !isMobilePhone(username)) {
+			showTooltips('mobile_input','请输入正确的手机号码',1000);
+			return;
+		}
+	}
+}
+
+$("#phone").focus(function(){
+    $(this).val("","")  
+});
+
+$("#safecode").focus(function(){
+  $(this).val("","")
+});
+
+$("#verify").focus(function(){
+  $(this).val("","")
+});
+
+function checkMobilePhone(telphone) {
+	if(telphone=='' || !isMobilePhone(telphone)) {
+		showTooltips('mobile_input','请输入正确的手机号码',1000);
+	}else{
+		hideTooltips('mobile_input');
+	}
+}
+function userreg(){
+    var safecode = $.trim($('#safecode').val()),password=$.trim($('#password').val());
+    if (safecode == '' || safecode.length != 6) {showTooltips('safecode','短信验证码输入错误',1000);return false;}
+    if (password == '') {showTooltips('safecode','密码输入错误',1000);return false;}
+    $.post("{:U('register')}",$('#login_form').serialize(),function(data){
+		if (parseInt(data.status) == 1) {
+            var url=$.trim($('#login_form').data('url'));
+            if (url) {
+                window.location.href = '__CONTROLLER__/login/url/'+url;
+            } else {
+                window.location.href = '{:U("login")}';
+            }
+        } else {
+            showTooltips('login_form',data.msg,2000);
+        }        
+	},'json'); 
+}
+
+</script>
+</block>

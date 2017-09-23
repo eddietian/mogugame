@@ -1,0 +1,66 @@
+<extend name="Public/subbases" />
+<block name="body" >
+<style>.ms-none{display:none;}</style>
+<div class="my-gift mt20">
+    <div class="lb-comtit">
+        <h2><span class="bor-icon"></span>玩过游戏</h2>
+    </div>
+    <notempty name="lists">
+    <div class="alllb" id="ajaxContainer" currentpage="{$page}" title="play" maxpage="{$total}">
+        <volist name="lists" id="vo">
+        <div class="mygiftbox clear">
+            <dl>
+                <dt><a href="{:U('Game/detail?id='.$vo['game_id'])}"><img src="{$vo.picurl}"></a></dt>
+                <dd>
+                    <h3><a href="{:U('Game/detail?id='.$vo['game_id'])}"><?php echo preg_replace('/(\(.+)/i','',$vo['game_name']);?>-{$vo.server_name}</a></h3>
+                    <p>角色：{$vo.role_name}&nbsp;等级：{$vo.role_level}</p>
+                </dd>
+            </dl>
+        </div>
+        </volist>    
+    </div>
+    <else />
+    <ul class="jqrdhg clear" style="display:block;">    
+        <li>暂无内容</li>
+    </ul>
+    </notempty>
+</div>
+<notempty name="lists">
+<section class="ztmorebox">
+    <div class="loading ztmore" id="loadingTip"><i class="loading-child"></i><span class="loading-text">正在加载，请等待……</span></div>
+    <div class="loading ms-none ztmore" id="errorTip">对不起，加载失败请<a href="{:U('rank?name='.I('name'))}" class="error">重 试</a>!</div>
+    <div class="loading ms-none ztmore" id="moreBtn"><a href="javascript:" class="link">点此查看更多</a></div>
+</section>
+<script src="__JS__/ajaxload.js"></script>
+<script>
+var ac = $('#ajaxContainer'),title=ac.attr('title');
+ajaxload('{:U("ajaxlists")}',{name:title},function(data) {
+    if (data.status == 1) {
+        ac.attr('currentpage',data.page);
+        var html = '';
+        for (var i in data.lists) {
+            var item = data.lists[i];
+            
+        html += '<div class="mygiftbox clear">';
+        html += '    <dl>';
+        html += '        <dt><a href="__MODULE__/Game/detail/id/'+item['game_id']+'"><img src="'+item['picurl']+'"></a></dt>';
+        html += '        <dd>';
+        html += '            <h3><a href="__MODULE__/Game/detail/id/'+item['game_id']+'">'+item['game_name']+'-'+item['server_name']+'</a></h3>';
+        html += '            <p>角色：'+item['role_name']+'&nbsp;等级：'+item['role_level']+'</p>';
+        html += '        </dd>';
+        html += '    </dl>';
+        html += '</div>';
+        }
+        ac.append(html);
+        $('.loading').addClass('ms-none');
+        $('#moreBtn').removeClass('ms-none');loads=false;
+    } else {
+        $('.loading').addClass('ms-none');
+        $('#moreBtn').removeClass('ms-none').html('对不起，数据已经加载完');
+    }
+});
+
+
+</script>
+</notempty>
+</block>

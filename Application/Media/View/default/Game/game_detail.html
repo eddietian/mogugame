@@ -1,0 +1,200 @@
+<extend name="Public/base" />
+<block name="body" >
+<title>{$data.relation_game_name}-{:C('PC_SET_TITLE')}</title>
+<link rel="stylesheet" href="__CSS__/game.css">
+<link href="__CSS__/viewer.min.css" rel="stylesheet" />
+<script type="text/javascript" src="__JS__/viewer.min.js"></script>
+<script type="text/javascript" src="__JS__/game.js"></script>
+  <div class="">
+    <img src="__IMG__/inner_banner1.jpg">
+  </div>
+  <div class="official">
+  <div class="inner clearfix">
+            <div class="fl">
+                <div class="hd_title">
+                    <span class="title">
+                        <span class="line"></span>
+                        游戏简介
+                    </span>
+                </div>
+                <div class="game_wrap clearfix">
+											                    <div class="game_pic">
+	                        <div class="pic">
+								<img src="{:get_cover($data['icon'],'path')}" >
+							</div>
+	                        <div class="grade">
+	                            评分：<span class="icon_stars">
+	                                <i style="width:{$data['game_score']*10}%;"></i>
+	                            </span>
+	                        </div>
+	                    </div>
+	                    <div class="game_text">
+	                        <div class="txt_box">
+	                            <div><span class="name" style="margin-right:10px;">{$data.relation_game_name}</span></div>
+	                            <dl class="test clearfix">
+	                                <div>版本：<span class="blue"><notempty name="gamesou['and_id']">Android</notempty>
+              <if condition="$gamesou.and_id neq '' and $gamesou.ios_id neq ''">
+              /
+              </if>
+              <notempty name="gamesou['ios_id']">IOS</notempty></span>
+	                                </div>
+	                                <div>类型：<span class="blue">{$data.game_type_name}</span>
+	                                </div>
+	                                <div>状态：<span class="blue">{:get_one_opentype_name($data['category'])}</span>
+	                                </div>
+	                                <div>更新时间：<span class="blue">{$data.create_time|date='Y-m-d',###}</span>
+	                                </div>
+	                                <div class="intro">简介：{$data.features}</div>
+	                            </dl>
+	                        </div>
+	                    </div>
+	                    <div class="btn_box">
+                          <if condition="$data['add_game_address'] neq ''">
+                            <a href="{$data['add_game_address']}" target="_blank"><i class="pq_icon icon1"></i>安卓下载<div class="sweep_code">
+	                                <div class="code_arrow"></div>
+	                                <div class="code">
+	                                    <img src="{:U('dow_url',array('url'=>base64_encode($data['add_game_address'])))}">
+	                                    <p>手机扫描下载</p>
+	                                </div>
+	                            </div></a>
+                          <elseif condition="$gamesou['and_id'] neq ''"/>
+                            <a href="{:U('Down/down_file',array('game_id'=>$data['relation_game_id'],'type'=>1))}" target="_blank"><i class="pq_icon icon1"></i>安卓下载<div class="sweep_code">
+	                                <div class="code_arrow"></div>
+	                                <div class="code">
+	                                    <img src="{:U('dow_url_generate',array('game_id'=>$data['relation_game_id']))}">
+	                                    <p>手机扫描下载</p>
+	                                </div>
+	                            </div></a>
+                          <else />
+                          <a class="off" onclick="alert('敬请期待');"><i class="pq_icon icon1"></i>安卓下载</a>
+                          </if>
+                          <if condition="$data['ios_game_address'] neq ''">
+                            <a href="{$data['ios_game_address']}" target="_blank"><i class="pq_icon icon2"></i>IOS下载</a>
+                          <elseif condition="$gamesou['ios_id'] neq ''"/>
+                            <a href="{:U('Down/down_file',array('game_id'=>$data['relation_game_id'],'type'=>2))}" target="_blank"><i class="pq_icon icon2"></i>IOS下载</a>
+                          <else />
+                          <a class="off" onclick="alert('敬请期待');"><i class="pq_icon icon2"></i>IOS下载</a>
+                          </if>
+                      
+                      </div>
+					                </div>
+
+                <div class="hd_title mt35">
+                    <span class="title">
+                        <span class="line"></span>
+                        游戏截图
+                    </span>
+                </div>
+                <div class="game_wrap clearfix" >
+                    <div class="m-screenshot-box">
+                        <div class="m-button m-button-left"><div class="u-bg"></div><i class="sprite sprite-ic-arrow-1"></i></div>
+                        <ul class="m-screenshot-list">
+                            <volist name=":explode(',',$data['screenshot'])" id='pid'>
+                            <li class="m-screenshot-item">
+                                <img src="{:get_cover($pid,'path')}" alt="{$data.relation_game_name}" data-original-src="{:get_cover($pid,'path')}" data-404-src="{$data.relation_game_name}" onerror="loadIconError(this)" onload="resizeImage(this)" >
+                            </li>
+                            </volist> 
+                        </ul>
+                        <div class="m-button m-button-right"><div class="u-bg"></div><i class="sprite sprite-ic-arrow-2"></i></div>
+                    </div>
+                </div>
+
+                <div class="hd_title mt35">
+                    <span class="title">
+                        <span class="line"></span>
+                        详细介绍
+                    </span>
+                </div>
+                <div class="game_wrap clearfix">
+                    <div class="m-detail-text-box">
+                      <div class="m-detail-text-wrapper" >{$data.introduction}</div>
+                      <div class="m-expand-wrapper">
+                        <a href="javascript:;" class="u-btn-expand" data-opend="0"><span>展开</span><i class="sprite sprite-ic-arrow-3"></i></a>
+                      </div>
+                    </div>
+                </div>
+                <div class="hd_title mt35">
+                    <span class="title">
+                        <span class="line"></span>
+                        发表评论
+                    </span>
+                </div>
+                <div class="game_wrap clearfix">
+                  <div id="SOHUCS" sid="{$data['relation_game_name']}" ></div> 
+                  <script type="text/javascript"> 
+                  (function(){ 
+                  var appid = "{:C('changyan.partner')}"; 
+                  var conf = "{:C('changyan.key')}"; 
+                  var width = window.innerWidth || document.documentElement.clientWidth;
+                  if (width < 960) { 
+                  window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+                </div>
+            </div>
+            <div class="fr hotgame">
+                <div class="hot_title">
+                    <i class="pq_icon"></i>
+                    热门游戏
+                </div>
+                <div class="hot_list">
+                    <ul>
+                        <volist name="hotgame" id="vo">
+                        <li>
+                    <div class="change_one rank_text" style="<eq name='i' value='1'>display:none</eq>">
+                        <div class="ranking ranking_{$i}">
+                            <span>{$i}</span>
+                        </div>
+                        <div class="text">
+                            <div class="name name_title">{$vo.game_name}</div>
+                        </div>
+                        <a class="down_load" href="{:U('Game/game_detail',array('id'=>$vo['id']))}">下载游戏</a>
+                    </div>
+                    <div class="change_two rank_pic" style="<eq name='i' value='1'>display:block</eq>">
+                        <div class="ranking ranking_{$i}">
+                            <span>{$i}</span>
+                        </div>
+                        <div class="pic">
+                            <img src="{:get_cover($vo['icon'],'path')}">
+                        </div>
+                        <div class="text pt5 al_t">
+                            <div class="name">{$vo.game_name}</div>
+                            <p>
+                                <span class="type pr5">{$vo.game_type_name}</span>
+                                <span class="size pl5">{$vo.game_size}</span>
+                            </p>
+                        </div>
+                        <a class="down_load down_load_on down_load_position" href="{:U('Game/game_detail',array('id'=>$vo['id']))}">下载游戏</a>
+                    </div>
+                        </li>
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+
+
+      </div>
+  </div>
+<script> var navactive = '99'; //通用游戏navid = 99</script> 
+<script type="text/javascript" src="__JS__/jquery.slideBox.js"></script> 
+<script type="text/javascript" src="__JS__/main_2016.js"></script>
+<script type="text/javascript" src="__JS__/game2.js"></script>
+<script>
+    $(function() {
+        $(".hot_list ul li").mouseover(function() {
+            $(this).siblings().find(".change_one").show();
+            $(this).siblings().find(".change_two").hide();
+            $(this).find(".change_two").show();
+            $(this).find(".change_one").hide();
+        });
+        var e = $('.hotgame'),o = e.offset();
+        $(window).scroll(function() {
+            var c = $(this).scrollTop();
+            if (c>=o.top) {
+                e.css({'position':'fixed','top':0,'background':'#FFFFFF','z-index':1000});
+            } else {
+                e.removeAttr('style');
+            }
+        });
+        
+    });
+</script>
+</block>
