@@ -118,7 +118,7 @@ class IndexController extends BaseController {
     /***
 	*热门游戏
     */
-    public function hot($limit){
+    public function hot($limit = 9){
     	$model = array(
     		'm_name'=>'Game',
     		'prefix'=>'tab_',

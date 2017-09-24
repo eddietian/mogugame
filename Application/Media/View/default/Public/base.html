@@ -66,7 +66,7 @@
    .footer_info .f_p i:last-child{ display:none;}
 #quitlogin {color:#03b4f5;}
   </style>
-<div class="wrapper"> 
+<div class="wrapper">
   <!--[if lt IE 8]>
 <div class="killie">
     <div class="main">
@@ -84,7 +84,7 @@
       <div class="g-top-right fr"> <span id="relogin fr"><if condition="session('member_auth') eq ''">
         <a href="{:U('Member/plogin')}"><i class="icon i-user"></i> 登录</a>/<a href="{:U('Member/register')}">注册</a><else/>
         <a href="{:U('Member/users_index')}"><i class="icon i-user"></i>欢迎您：{:session('member_auth.account')}</a>&nbsp;<a href="javascript:;" id="quitlogin">[退出]</a> </if></span> <span>&nbsp;</span>
-<!--       
+<!--
         <a href="javascript:;"  class="g-allgame-trigger">全部游戏 <i class="icon i-list"></i></a> --> </div>
       <div class="g-allgame-list"> <i class="icon i-garr"></i>
         <div class="col-bd fix">
@@ -119,11 +119,11 @@
     <img src="{:get_cover(C('PC_SET_LOGO'),'path')}" alt="">
       <!-- <h1>溪谷手游</h1> -->
       </a>
-      <div class="g-menu fr"> 
+      <div class="g-menu fr">
         <a class="<if condition='$Think.const.CONTROLLER_NAME eq Index'>active</if>" href="{:U('Index/index')}"><span>平台首页</span><i></i></a>
         <a class="<if condition='$Think.const.CONTROLLER_NAME eq Game'>active</if>"" href="{:U('Game/game_center')}"><span>游戏中心</span><i></i></a>
-        <a class="<if condition='$Think.const.CONTROLLER_NAME eq Gift'>active</if>" href="{:U('Gift/gift')}" ><span>礼包中心</span><i></i></a> 
-        <a class="<if condition='$Think.const.CONTROLLER_NAME eq Recharge'>active</if>" href="{:U('Recharge/pay')}" ><span>充值中心</span><i></i></a>
+        <a class="<if condition='$Think.const.CONTROLLER_NAME eq Gift'>active</if>" href="{:U('Gift/gift')}" ><span>礼包中心</span><i></i></a>
+          <!--<a class="<if condition='$Think.const.CONTROLLER_NAME eq Recharge'>active</if>" href="{:U('Recharge/pay')}" ><span>充值中心</span><i></i></a>-->
         <a class="<if condition='$Think.const.CONTROLLER_NAME eq Member'>active</if>" href="{:U('Member/users_index')}"><span>用户中心</span><i></i></a>
         <a class="<if condition='$Think.const.CONTROLLER_NAME eq Article'>active</if>" href="{:U('Article/index',array('category'=>'media_gg'))}"><span>游戏资讯</span><i></i></a>
         <a class="<if condition='$Think.const.CONTROLLER_NAME eq Service'>active</if>" href="{:U('Service/index')}"><span>客服中心</span><i></i></a>
@@ -153,7 +153,7 @@
 				<a rel="nofollow" title="合作伙伴" href="{:U('Article/news1/type/partner')}" target="_blank">合作伙伴</a>|
 				<a rel="nofollow" title="家长监督" href="{:U('Article/news1/type/supervise')}" target="_blank">家长监督</a>|
 				<a rel="nofollow" title="客服帮助" href="{:U('Service/index')}" target="_blank">客服帮助</a>
-     
+
       </p>
 		<!-- 	<p class="ft_recommend"><span class="utjzi">推荐游戏：</span>
           <a title="少年三国志" target="_blank" href="http://sg.youzu.com/">少年三国志</a>
@@ -173,16 +173,16 @@
 </div>
 </div>
 
-  <!--底部结束--> 
-  
+  <!--底部结束-->
+
   <!--悬浮-->
   <div class="g-sidefun"> <a href="javascript:;" class="qrcode"> <i class="icon i-qr"></i>
     <div class="wechat-content"> <img src="{:get_cover(C('PC_SET_QRCODE'),'path')}" alt="微信" width="168" height="168">
       <p>关注官方微信</p>
       <i class="arrow"></i> </div>
     </a> <a href="http://wpa.qq.com/msgrd?v=3&amp;uin={:C('PC_SET_SERVER_QQ')}&amp;site=qq&amp;menu=yes" target="_blank" title="客服" class="olkf"><i class="icon i-olkf"></i></a> <a href="javascript:scroll(0,0)" title="顶部" class="totop" id="totop"><i class="icon i-totop"></i></a> </div>
-  <!--悬浮结束--> 
-  
+  <!--悬浮结束-->
+
 </div>
 </div>
 <block name="giftextend"></block>
@@ -202,7 +202,7 @@ $(function() {
               type: 'get',
               url: changyanurl,
               cache: false,
-              dataType: "jsonp",  //跨域采用jsonp方式  
+              dataType: "jsonp",  //跨域采用jsonp方式
               processData: false,
             complete:function (data) {
             }
