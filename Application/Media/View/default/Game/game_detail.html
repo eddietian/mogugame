@@ -5,8 +5,8 @@
 <link href="__CSS__/viewer.min.css" rel="stylesheet" />
 <script type="text/javascript" src="__JS__/viewer.min.js"></script>
 <script type="text/javascript" src="__JS__/game.js"></script>
-  <div class="">
-    <img src="__IMG__/inner_banner1.jpg">
+  <div class="" style="text-align: center">
+    <img src="{:get_cover($data['game_detail_cover'],'path')}">
   </div>
   <div class="official">
   <div class="inner clearfix">
@@ -111,6 +111,34 @@
                       <div class="m-expand-wrapper">
                         <a href="javascript:;" class="u-btn-expand" data-opend="0"><span>展开</span><i class="sprite sprite-ic-arrow-3"></i></a>
                       </div>
+                    </div>
+                </div>
+                <div class="hd_title mt35">
+                    <span class="title">
+                        <span class="line"></span>
+                        福利介绍
+                    </span>
+                </div>
+                <div class="game_wrap clearfix">
+                    <div class="m-detail-text-box">
+                        <div class="m-detail-text-wrapper" >{$data.welfare}</div>
+                        <div class="m-expand-wrapper">
+                            <a href="javascript:;" class="u-btn-expand" data-opend="0"><span>展开</span><i class="sprite sprite-ic-arrow-3"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hd_title mt35">
+                    <span class="title">
+                        <span class="line"></span>
+                        VIP价目表
+                    </span>
+                </div>
+                <div class="game_wrap clearfix">
+                    <div class="m-detail-text-box">
+                        <div class="m-detail-text-wrapper" >{$data.vipinfo}</div>
+                        <div class="m-expand-wrapper">
+                            <a href="javascript:;" class="u-btn-expand" data-opend="0"><span>展开</span><i class="sprite sprite-ic-arrow-3"></i></a>
+                        </div>
                     </div>
                 </div>
                 <div class="hd_title mt35">

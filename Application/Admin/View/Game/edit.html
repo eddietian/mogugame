@@ -301,6 +301,18 @@
                         <textarea name="introduction" class="txt_area">{:str_replace("~","\\r\\n",$data['introduction'])}</textarea>
                     </td>
                   </tr>
+                  <tr>
+                      <td class="l">福利介绍：</td>
+                      <td class="r" colspan='3'>
+                          <textarea name="welfare" class="txt_area">{:str_replace("~","\\r\\n",$data['welfare'])}</textarea>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="l">VIP表：</td>
+                      <td class="r" colspan='3'>
+                          <textarea name="vipinfo" class="txt_area">{:str_replace("~","\\r\\n",$data['vipinfo'])}</textarea>
+                      </td>
+                  </tr>
                 </tbody>
             </table>
         </div>
@@ -623,6 +635,75 @@
 
 <block name="script">
 <script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+    <link rel="stylesheet" href="/Public/static/kindeditor/default/default.css" />
+    <script charset="utf-8" src="/Public/static/kindeditor/kindeditor-min.js"></script>
+    <script charset="utf-8" src="/Public/static/kindeditor/zh_CN.js"></script>
+    <script type="text/javascript">
+
+        var editor_content;
+        KindEditor.ready(function(K) {
+            editor_content = K.create('textarea[name="welfare"]', {
+                allowFileManager : false,
+                themesPath: K.basePath,
+                width: '100%',
+                height: '500px',
+                resizeType: 1,
+                pasteType : 2,
+                urlType : 'absolute',
+                fileManagerJson : '/admin.php?s=/Article/fileManagerJson.html',
+                //uploadJson : '/admin.php?s=/Article/uploadJson.html' }
+                uploadJson : '/admin.php?s=/Addons/execute/_addons/EditorForAdmin/_controller/Upload/_action/ke_upimg.html',
+                extraFileUploadParams: {
+                    session_id : 'vst6r1tbp3h6l606nd89cqvc33'
+                }
+            });
+        });
+
+        $(function(){
+            //传统表单提交同步
+            $('textarea[name="welfare"]').closest('form').submit(function(){
+                editor_content.sync();
+            });
+            //ajax提交之前同步
+            $('button[type="submit"],#submit,.ajax-post,#autoSave').click(function(){
+                editor_content.sync();
+            });
+        })
+
+        var editor_content1;
+        KindEditor.ready(function(K) {
+            editor_content1 = K.create('textarea[name="vipinfo"]', {
+                allowFileManager : false,
+                themesPath: K.basePath,
+                width: '100%',
+                height: '500px',
+                resizeType: 1,
+                pasteType : 2,
+                urlType : 'absolute',
+                fileManagerJson : '/admin.php?s=/Article/fileManagerJson.html',
+                //uploadJson : '/admin.php?s=/Article/uploadJson.html' }
+                uploadJson : '/admin.php?s=/Addons/execute/_addons/EditorForAdmin/_controller/Upload/_action/ke_upimg.html',
+                extraFileUploadParams: {
+                    session_id : 'vst6r1tbp3h6l606nd89cqvc33'
+                }
+            });
+        });
+
+        $(function(){
+            //传统表单提交同步
+            $('textarea[name="vipinfo"]').closest('form').submit(function(){
+                editor_content1.sync();
+            });
+            //ajax提交之前同步
+            $('button[type="submit"],#submit,.ajax-post,#autoSave').click(function(){
+                editor_content1.sync();
+            });
+        })
+
+
+    </script>
+
 <script type="text/javascript">
 //导航高亮
 highlight_subnav('{:U('Game/lists')}');
