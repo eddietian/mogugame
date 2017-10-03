@@ -61,7 +61,7 @@ class ServerController extends ThinkController {
     }
 
     //批量新增
-    public function batch(){
+    public function batch1(){
         if(IS_POST){
             $server_str = str_replace(array("\r\n", "\r", "\n"), "", I('server'));
             $server_ar1 = explode(';',$server_str);
@@ -106,6 +106,67 @@ class ServerController extends ThinkController {
                 $version = get_sdk_version($server[$key]['game_id']);
                 $server[$key]['server_version'] = empty($version) ? 0 : $version;
             }
+            $res = M('server','tab_')->addAll($server);
+            if($res !== false){
+                $this->success('添加成功！',U('Server/lists'));
+            }else{
+                $this->error('添加失败！'.M()->getError());
+            }
+        }else{
+            $this->meta_title = '新增区服管理';
+            $this->display();
+        }
+    }
+
+    //批量新增
+    public function batch(){
+        if(IS_POST){
+            $server_str = str_replace(array("\r\n", "\r", "\n"), ";", I('server'));
+            $server_str = str_replace(array(";;"), ";", $server_str);
+            $server_ar1 = explode(';',$server_str);
+            array_pop($server_ar1);
+            $num = count($server_ar1);
+            if($num > 100 ){
+                $this->error('区服数量过多，最多只允许添加100个！');
+            }
+
+            $server = array();
+            //小精灵物语	2017-10-02    11:00:00	15	打猎区
+            foreach($server_ar1 as $key => $value) {
+                $value = str_replace("    ", "	", $value);
+                $arr = explode("	", $value);
+
+                $gameinfo = M('Game','tab_')->where(array('game_name'=> $arr[0]."(安卓版)"))->find();
+
+                if (empty($gameinfo)) {
+                    continue;
+                }
+                $gameid = $gameinfo['id'];
+                $game_name = $gameinfo['game_name'];
+                $start_time = trim($arr[1])." ".trim($arr[2]);
+                $desride = trim($arr[3]);
+                $server_name = trim($arr[4]);
+
+                $server[$key]['game_id'] = $gameid;
+                $server[$key]['start_time'] = strtotime($start_time);
+                $server[$key]['desride'] = $desride;
+
+                $server[$key]['game_name'] = $game_name;
+                $server[$key]['server_name'] = $server_name;
+                $server[$key]['server_num'] = 0;
+                $server[$key]['recommend_status'] = 1;
+                $server[$key]['show_status'] = 1;
+                $server[$key]['stop_status'] = 0;
+                $server[$key]['server_status'] = 0;
+                $server[$key]['parent_id'] = 0;
+                $server[$key]['create_time'] = time();
+                $version = get_sdk_version($server[$key]['game_id']);
+                $server[$key]['server_version'] = empty($version) ? 0 : $version;
+
+
+            }
+            $server = array_values($server);
+
             $res = M('server','tab_')->addAll($server);
             if($res !== false){
                 $this->success('添加成功！',U('Server/lists'));
