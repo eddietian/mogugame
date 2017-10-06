@@ -29,5 +29,5 @@ class BaseWidget extends Controller{
 		$this->assign("list_rank",$data);
 		$this->display('Base/ranking');
 	}
-	
+
 }

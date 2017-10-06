@@ -1230,3 +1230,21 @@ margin: 15px 0 2px 0;
 .chpanwrap {overflow:hidden;position:relative;}
 .chpan {float:left;display:none;}
 .chpan.active {display:block;}
+
+
+/*游戏导航*/
+.nav-left{width:130px;float: left; text-align: center;}
+.nav-left li{height: 60px; color:#ff6100; font-size:20px; line-height: 60px;}
+.nav-left li:hover{background: #BE1A00; color: #fff;}
+.nav-right{width: 1050px; margin-left:20px;float: left;}
+.nav-right .game_com_list {}
+.nav-right .game_com_list li {width: 83px; float: left; padding-right: 19px; overflow: hidden; border-bottom: 1px solid #e7e7e7;}
+.nav-right .game_com_list li span{height: 35px; display: block; overflow: hidden;}
+.nav-right .game_com_list li img{width: 82px;}
+.nav-right .game_com_list li .gname {text-align: center; line-height: 35px; overflow: hidden;display: block;width: 90%; font-size: 14px; color: #666;}
+.nav-right .game_com_list li .gname:hover {color: #3385ff;}
+.nav-right .game_nav {}
+.nav-right .game_nav li {width: 76px; line-height: 30px;height:30px; margin-right: 26px; overflow: hidden; text-align: center; font-size: 14px; color: #666; float: left;}
+.nav-right .game_nav li:hover {color: #3385ff;}
+
+.nav-right ul li b{ display:block; position:initial; width:0px; height:2px; background:#1FAEFF; top:58px; left:50%;}

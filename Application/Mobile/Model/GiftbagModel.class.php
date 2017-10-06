@@ -74,6 +74,26 @@ class GiftbagModel extends Model{
         return $data;
     }
 
+    public function detail1($id) {
+
+        $time = time();
+        $data = $this->table("__GIFTBAG__ as gb")
+            ->field("gb.*,g.icon,g.game_name,g.icon,g.screenshot,g.introduction")
+            ->join("__GAME__ as g on(g.id=gb.game_id )","left")
+            ->where("gb.id = $id and gb.status=1")
+            ->find();
+
+        if (empty($data) || !is_array($data)) {
+            return "";
+        }
+
+        $count = D("GiftRecord")->where("gift_id=$id")->count();
+        $number = $data['number'] = count(explode(',',$data['novice']));
+        $data['novicepercent'] = round($number/($count+$number)*100,1);
+
+        return $data;
+    }
+
     
     public function index($giftbag_type="",$page=1,$sort="tab_giftbag.id desc",$limit=10,$field=true,$isrecord=false) {
         $map = array();

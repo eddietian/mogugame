@@ -1379,6 +1379,7 @@ class MemberController extends BaseController {
           echo  json_encode(array('status'=>'0','msg'=>'Uc用户暂不支持'));
           exit();
         }
+        $giftid = $_POST['giftid'];
         $list=M('record','tab_gift_');
         $is=$list->where(array('user_id'=>$mid,'gift_id'=>$giftid));
         if($is) {   

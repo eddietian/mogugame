@@ -43,7 +43,7 @@ height: 22px;}
 .bag_ul .lqlb{width:76px;display:block;float:right;border:1px solid #03B4F5;color:#03B4F5;border-radius:10px;text-align:center;margin-top:4px}
 .bag_ul .lqlb:hover{background:#03B4F5;color:#fff;}
 
-.sideMenu{height: 440px;border: 1px solid #E6E7E6;margin-top:13px;}
+.sideMenu{border: 1px solid #E6E7E6;margin-top:13px;}
 .sideMenu .pmtit{margin-bottom:10px;}
 .sideMenu .pmtit,.sideMenu h3{color:#6a6f74;font-size:16px;width:310px;margin:0 auto;margin-top:1px;overflow: hidden;
 height: 25px;}

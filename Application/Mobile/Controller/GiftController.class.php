@@ -119,7 +119,7 @@ class GiftController extends BaseController {
             
 		}
         
-        $data = D('Giftbag')->detail($id);
+        $data = D('Giftbag')->detail1($id);
         
         if (empty($data)) {
             

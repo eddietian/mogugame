@@ -23,7 +23,7 @@
                 <div id="getgiftnotice"></div>
             </div>
         </article>
-        <p class="take-time">有效期间：<span class="c-orange">{$data.start_time|date='Y-m-d H:i',###} 至 {$data.end_time|date='Y-m-d H:i',###}</span></p>
+        <p class="take-time">有效期间：<span class="c-orange">{$data.start_time|date='Y-m-d H:i',###} 至 <?php if ($data['end_time'] == "0") { echo "永久";}else {echo date("Y-m-d H:i:s", $data['end_time']);}?></span></p>
         <p class="take-time">领取资格：<span class="c-orange">注册会员均可参与</span></p>
         <p></p>
     </div>        

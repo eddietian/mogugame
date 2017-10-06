@@ -13,6 +13,14 @@ namespace Media\Controller;
  * 文档模型列表和详情
  */
 class GiftController extends BaseController {
+
+	public function __construct() {
+		parent::__construct();
+		$nav = array("navname" => "礼包中心", "navlink" => "/media.php?s=/Game/game_center.html");
+		array_push($this->_NAV_PARAMS, $nav);
+		$this->assign('navparams', $this->_NAV_PARAMS);
+	}
+
 	public function gift($game_id=0,$p=0){
 		$map['status'] = 1; 
 		$map['end_time']=array(array('gt',time()),array('eq',0),'or');

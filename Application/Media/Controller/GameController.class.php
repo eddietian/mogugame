@@ -16,6 +16,13 @@ use Admin\Model\GameModel;
  */
 class GameController extends BaseController {
 
+	public function __construct() {
+		parent::__construct();
+		$nav = array("navname" => "游戏中心", "navlink" => "/media.php?s=/Game/game_center.html");
+		array_push($this->_NAV_PARAMS, $nav);
+		$this->assign('navparams', $this->_NAV_PARAMS);
+	}
+
 	public function game_center($game_type=0,$p=0){
 		$this->assign('sys',$_REQUEST['sdk_version']);
 		$this->assign('gt',$_REQUEST['game_type']);

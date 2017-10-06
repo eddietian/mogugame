@@ -12,6 +12,7 @@ class IndexController extends BaseController {
 
 	//系统首页
     public function index(){
+        $this->nav();
         $this->slide();//轮播图
         $this->recommend();
         $this->hot();
@@ -46,6 +47,43 @@ class IndexController extends BaseController {
         $this->assign('user_play',$user_play);
         $this->assign('user',$user);
         $this->display();
+    }
+
+    public function nav() {
+        $navinfo = $this->getHtmlContent(array("HOME_NAV_NEWGAME", "HOME_NAV_ANDROIDGAME", "HOME_NAV_IOSGAME"));
+
+        if (empty($navinfo)) {
+            return false;
+        }
+
+        $gameinfoids = array();
+        //拿到gameid
+        foreach ($navinfo as $key => $v) {
+            $ids = explode(",", $v['content']);
+            $navinfo[$key]['ids'] = $ids;
+            $gameinfoids = array_merge($gameinfoids,$ids);
+        }
+
+        //拿到游戏信息
+        $gameinfo = $this->getGameByGameids($gameinfoids);
+
+        foreach ($navinfo as $key => $v) {
+            foreach ($v['ids'] as $kk => $gameid) {
+                $navinfo[$key]['ids'][$kk] = $gameinfo[$gameid];
+            }
+        }
+
+        $this->assign("nav_newgame", array_slice($navinfo['HOME_NAV_NEWGAME']['ids'], 0, 10));
+        $this->assign("nav_newgame_other", array_slice($navinfo['HOME_NAV_NEWGAME']['ids'], 10, 20));
+
+
+        $this->assign("nav_androidgame", array_slice($navinfo['HOME_NAV_ANDROIDGAME']['ids'], 0, 10));
+        $this->assign("nav_androidgame_other", array_slice($navinfo['HOME_NAV_ANDROIDGAME']['ids'], 10, 20));
+
+
+        $this->assign("nav_iosgame", array_slice($navinfo['HOME_NAV_IOSGAME']['ids'], 0, 10));
+        $this->assign("nav_iosgame_other", array_slice($navinfo['HOME_NAV_IOSGAME']['ids'], 10, 20));
+
     }
 
 

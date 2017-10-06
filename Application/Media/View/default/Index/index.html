@@ -15,8 +15,111 @@
     </volist>
     </ul>
   </div>
-  <div class="g-container">
-    <div class="g-main">·
+  <div class="g-container" style="margin-top: 15px;">
+    <div class="g-main">
+        <div class="main wrap_w">
+            <div class="nav-left">
+                <ul class="homeNavTitle">
+                    <li class="title line_bottom" showid="1"><span>上架新游</span></li>
+                    <li class="title line_bottom" showid="2"><span>安卓游戏</span></li>
+
+                </ul>
+            </div>
+            <div class="nav-right">
+
+                <div id="nav_box_1">
+                    <div class="game_com_list">
+                        <ul>
+
+                            <volist name="nav_newgame" id="vo" >
+                                <li>
+                                    <a href="{:U('Game/game_detail?id='.$vo['id'].'')}" target="_blank">
+                                        <img src="{$vo.icon|get_cover='path'}" alt="{$vo.gamename}"/>
+                                        <span class="gname">{$vo.gamename}</span>
+                                        <b></b>
+                                    </a>
+                                </li>
+                            </volist>
+
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="game_nav">
+                        <ul>
+                            <volist name="nav_newgame_other" id="vo" >
+                                <li>
+                                    <a href="{:U('Game/game_detail?id='.$vo['id'].'')}" target="_blank">{$vo.gamename}</a>
+                                </li>
+                            </volist>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+
+                </div>
+
+                <div id="nav_box_2" style="display: none;">
+                    <div class="game_com_list">
+                        <ul>
+
+                            <volist name="nav_androidgame" id="vo" >
+                                <li>
+                                    <a href="{:U('Game/game_detail?id='.$vo['id'].'')}" target="_blank">
+                                        <img src="{$vo.icon|get_cover='path'}" alt="{$vo.gamename}"/>
+                                        <span class="gname">{$vo.gamename}</span>
+                                        <b></b>
+                                    </a>
+                                </li>
+                            </volist>
+
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="game_nav">
+                        <ul>
+                            <volist name="nav_androidgame_other" id="vo" >
+                                <li>
+                                    <a href="{:U('Game/game_detail?id='.$vo['id'].'')}" target="_blank">{$vo.gamename}</a>
+                                </li>
+                            </volist>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+
+                </div>
+
+                <div id="nav_box_3"  style="display: none;">
+                    <div class="game_com_list">
+                        <ul>
+
+                            <volist name="nav_iosgame" id="vo" >
+                                <li>
+                                    <a href="{:U('Game/game_detail?id='.$vo['id'].'')}" target="_blank">
+                                        <img src="{$vo.icon|get_cover='path'}" alt="{$vo.gamename}"/>
+                                        <span class="gname">{$vo.gamename}</span>
+                                        <b></b>
+                                    </a>
+                                </li>
+                            </volist>
+
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="game_nav">
+                        <ul>
+                            <volist name="nav_iosgame_other" id="vo" >
+                                <li>
+                                    <a href="{:U('Game/game_detail?id='.$vo['id'].'')}" target="_blank">{$vo.gamename}</a>
+                                </li>
+                            </volist>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="clear"></div>
+        </div>
       <div class="mod-game-rem fix jschangbox">
         <div class="g-tit"> <i class="icon i-crown"></i> <span>游戏推荐</span> 
           <a href="javascript:;" class="btn-refresh changebtn jschange">换一组<i class="icon-change"></i></a>  
@@ -207,7 +310,7 @@
           <div class="channel-list laybox">
             <div class="hd fix"> <a href="{:U('Member/register')}" target="_blank" class="item item-5"> <s class="s"><s class="s2"></s></s> <i></i>
               <p>免费注册</p>
-              </a> <a href="{:U('Recharge/pay')}" target="_blank" class="item item-6"> <s class="s"><s class="s2"></s></s> <i></i>
+              </a> <a href="javascript:void(0);" onclick="alert('暂未开放');" target="_blank" class="item item-6"> <s class="s"><s class="s2"></s></s> <i></i>
               <p>账号充值</p>
               </a> <a href="{:U('Member/resetpwd')}" target="_blank" class="item item-1"> <s class="s"><s class="s2"></s></s> <i></i>
               <p>修改密码</p>
@@ -295,6 +398,41 @@ $(function() {
           sib.animate({'height':"25"+'px'},'slow');
         }
         
+    });
+});
+
+$(function(){
+    $('.game_com_list li').hover(function(){
+        $('b',this).stop().css('height','2px');
+        $('b',this).animate({
+            left:'0',
+            width:'100%',
+            right:'0'
+        },200);
+    },function(){
+        $('b',this).stop().animate({
+            left:'50%',
+            width:'0'
+        },200);
+    });
+
+    $(".homeNavTitle li").mouseover(function(){
+        var navid = $(this).attr("showid");
+        $("#nav_box_1").hide();
+        $("#nav_box_2").hide();
+        $("#nav_box_3").hide();
+        switch(navid) {
+            case "1":
+                $("#nav_box_1").show();
+                break;
+            case "2":
+                $("#nav_box_2").show();
+                break;
+            case "3":
+                $("#nav_box_3").show();
+                break;
+        }
+
     });
 });
 (function(){

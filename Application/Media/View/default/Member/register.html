@@ -19,10 +19,10 @@
       </li>
     	</ul>
         <div class="reg_other">
-            <p>已有溪谷游戏账号？</p>
+            <p>已有蘑菇账号？</p>
             <a class="link_login" href="{:U('Member/plogin')}" title="立即登录">立即登录</a>
-            <img src="__IMG__/wx.jpg" alt="溪谷微信">
-            <p>关注微信公众号有惊喜</p>
+            <!--img src="__IMG__/wx.jpg" alt="蘑菇游戏微信"-->
+            <!--p>关注微信公众号有惊喜</p-->
         </div>
        </div> 
        <div id="content" class="clearfix"> 
@@ -34,7 +34,7 @@
                     <div class="hz_tr">
                         <div class="hz_td1"><i class="reg_red">*</i> 用户账号：</div>
                         <div class="hz_td2">
-                          <input type="text" id="userNameByNamePop" datatype="h6-15" ajaxurl="{:U('checkUser')}" ajaxdata="username" nullmsg="*用户名不能为空" errormsg="*由6~15个数字、字母、下划线字符组成" placeholder="由6~15个数字、字母、下划线字符组成" class="hz_reg_txt formcontroller" name="uname">
+                          <input type="text" id="userNameByNamePop" datatype="h6-15" ajaxurl="{:U('checkUser')}" ajaxdata="username" nullmsg="*用户名不能为空" errormsg="*首字符必须为字母，由6~15个数字、字母、下划线字符组成" placeholder="首字符必须为字母，由6~15个数字、字母、下划线字符组成" class="hz_reg_txt formcontroller" name="uname">
                         </div>
                         <div class="hz_prompt error-msg o_check_tip" style="color: red;"></div>
                     </div>
@@ -57,17 +57,7 @@
                     <div class="hz-fcmzr-wrap clearfix">
                         <p class="hz-fcmzr2">根据2010年8月1日实施的《网络游戏管理暂行办法》，网络游戏用户需使用有效身份证件进行实名注册。为保证流畅游戏体验，享受健康游戏生活，请广大溪谷手游的玩家尽快实名注册。</p>
                     </div>
-                    
-                    <div class="hz_tr">
-                        <div class="hz_td1"><if condition="C('PC_REAL_NAME_REGISTER') == 1"><i class="reg_red">*</i></if> 真实姓名：</div>
-                        <div class="hz_td2"><input type="text" class="hz_reg_txt <if condition="C('PC_REAL_NAME_REGISTER') == 1">formcontroller</if>"  id="rrealname" datatype="z" ajaxurl="{:U('isCnameajax')}" ajaxdata="name" nullmsg="*姓名不能为空" errormsg="*姓名输入不正确" placeholder="请输入真实姓名" name="rname"></div>
-                        	<div class="hz_prompt error-msg o_check_tip" style="color: red;"></div>
-                    </div>
-                    <div class="hz_tr">
-                        <div class="hz_td1"><if condition="C('PC_REAL_NAME_REGISTER') == 1"><i class="reg_red">*</i></if> 身份证号：</div>
-                        <div class="hz_td2"><input type="text" class="hz_reg_txt <if condition="C('PC_REAL_NAME_REGISTER') == 1">formcontroller</if>" id="r_icard" datatype="ic" ajaxurl="{:U('isIdcardajax')}" ajaxdata="idcard" nullmsg="*身份证号码不能为空" errormsg="*身份证号码填写不正确,如果有字母请小写" placeholder="请输入身份证号码,如果有字母请小写" name="icard"></div>
-                        	<div class="hz_prompt error-msg o_check_tip" style="color: red;"></div>
-                    </div>
+
                     <div class="clearfix"></div>
                     <div class="hz_regist_p1 clearfix rel">
                     <p class="abs an2 lg-slides sureagreement on"><span class="abs an2 lg-on">ON</span><a id="lg-slides1" class="abs an2 lg-slides-btn" status="right"></a><span class="abs an2 lg-off">OFF</span></p>
@@ -76,7 +66,7 @@
                   $(this).toggleClass('on');
                 });
                 </script>
-                    <p class="abs agreed">我已看过并同意《<a href="{:U('Article/agreement')}" target="_blank">溪谷游戏通行证协议</a>》</p>
+                    <p class="abs agreed">我已看过并同意《<a href="{:U('Article/agreement')}" target="_blank">蘑菇游戏通行证协议</a>》</p>
                     <div class="hz_prompt2"></div>
                     </div>
                     <div class="hz-registbtn-wrap"><input type="submit"  value="完成注册" id="registerByNameSubmitPop" class="hz_regist_btn" >
@@ -138,7 +128,7 @@
                           $(this).toggleClass('on');
                         });
                       </script>
-                      <p class="abs agreed">我已看过并同意《<a href="{:U('Article/agreement')}" target="_blank">溪谷游戏通行证协议</a>》</p>
+                      <p class="abs agreed">我已看过并同意《<a href="{:U('Article/agreement')}" target="_blank">蘑菇游戏通行证协议</a>》</p>
                       <div class="hz_prompt2"></div>
                       </div>
                       <div class="hz-registbtn-wrap"><input type="submit" id="pregisterByNameSubmitPop" value="完成注册" class="hz_regist_btn"></div>   

@@ -763,6 +763,7 @@ color: green;
 .ft_zhengshuhao{margin-top:5px;}
 .ft_zhengshuhao a{display:inline-block;height:40px;padding-right:8px;float:left;vertical-align:middle;}
 .ft_zhengshuhao a:hover{text-decoration:none;}
-
+.ngGprs{color:#555;line-height:25px;height:25px;font-size:12px;width:100%;text-align:left;margin-top:10px;margin-bottom:10px;}
+.gprs{height:16px;width:16px;display:inline-block;float:left;}
 
 
