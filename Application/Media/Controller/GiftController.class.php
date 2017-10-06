@@ -16,7 +16,7 @@ class GiftController extends BaseController {
 
 	public function __construct() {
 		parent::__construct();
-		$nav = array("navname" => "礼包中心", "navlink" => "/media.php?s=/Game/game_center.html");
+		$nav = array("navname" => "礼包中心", "navlink" => "/media.php?s=/Gift/gift.html");
 		array_push($this->_NAV_PARAMS, $nav);
 		$this->assign('navparams', $this->_NAV_PARAMS);
 	}

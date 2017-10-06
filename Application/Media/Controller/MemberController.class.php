@@ -72,6 +72,10 @@ class MemberController extends BaseController {
         $user=get_user_entity($user_id);
         $this->assign('user',$user);
 
+        $nav = array("navname" => "用户中心", "navlink" => "/media.php?s=/Member/users_index.html");
+        array_push($this->_NAV_PARAMS, $nav);
+        $this->assign('navparams', $this->_NAV_PARAMS);
+
     }
 
     public function users_index($value=''){

@@ -14,6 +14,13 @@ namespace Media\Controller;
  * 文档模型列表和详情
  */
 class ArticleController extends HomeController {
+	public function __construct() {
+		parent::__construct();
+		$nav = array("navname" => "游戏资讯", "navlink" => "/media.php?s=/Article/index/category/media_gg.html");
+		array_push($this->_NAV_PARAMS, $nav);
+		$this->assign('navparams', $this->_NAV_PARAMS);
+	}
+
 	protected function _initialize(){
         /* 读取站点配置 */
         $config = api('Config/lists');

@@ -25,6 +25,7 @@ class RechargeController extends BaseController
 
     public function pay($value = '')
     {
+        $this->error("暂未开放", "/");
         //var_dump($_SERVER['DOCUMENT_ROOT']);
         $this->display();
     }

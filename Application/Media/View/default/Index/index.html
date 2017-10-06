@@ -596,7 +596,7 @@ $(function(){
 //    }
     function tabewm(token) {
         $.get('{:U("QrLogin/inQrCode")}',{token:token},function(data) {
-            $('#QrCode').html(data+'溪谷令牌扫码登录');
+            $('#QrCode').html(data+'蘑菇令牌扫码登录');
         });
         setTimeout(function(){
             QrLogin();
