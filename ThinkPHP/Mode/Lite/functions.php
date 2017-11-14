@@ -35,6 +35,7 @@ function C($name=null, $value=null,$default=null) {
             $_config[$name] = $value;
             return null;
         }
+
         // 二维数组设置和获取支持
         $name = explode('.', $name);
         $name[0]   =  strtoupper($name[0]);

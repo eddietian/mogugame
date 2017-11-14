@@ -65,8 +65,8 @@ class UserModel extends Model{
                         return -10041;
                     }
                 }
-                $this->updateLogin($user['id']); //更新用户登录信息
-                $this->autoLogin($user);
+                //$this->updateLogin($user['id']); //更新用户登录信息
+                //$this->autoLogin($user);
 
                 return $user['id']; //登录成功，返回用户ID
             } else {

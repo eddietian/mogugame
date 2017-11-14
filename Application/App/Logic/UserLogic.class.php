@@ -139,6 +139,7 @@ class UserLogic extends BaseLogic{
 	    }
 	    $code = rand(100000,999999);
 	    $xigu = new Xigu(C('sms_set.smtp'));
+
 	    if(get_tool_status("sms_set")) {
 	        appchecksendcode($phone,C('sms_set.limit'));
 		    $param = $code . "," . $time;

@@ -254,16 +254,21 @@ class MemberController extends BaseController {
     // 我的资料  lwx 2015-05-19
 
     public function profile(){
+
         $res = session("member_auth");
         $res = isset($res['mid']) ? $res['mid'] : 0;
+
         if (IS_POST) {
+
         if(session('member_auth.nickname')=="Uc用户"){
              $this->ajaxReturn(array('status'=>-1,'msg'=>'Uc用户暂不支持'));
           exit();
         }
+
             if($_POST['nickname']==''){
                     $this->ajaxReturn(array('status'=>-1,'msg'=>'昵称不能为空'));
             }
+
             // if(isset($_POST['real_name'])){
             //     if(!$this->isChineseName($_POST['real_name'])){
             //         $this->ajaxReturn(array('status'=>0,'msg'=>'姓名输入不正确'));
@@ -317,7 +322,8 @@ class MemberController extends BaseController {
                 $data['status']=-3;
             }
             $this->ajaxReturn($data);           
-        } else {    
+        } else {
+
             if(session('member_auth.nickname')=="Uc用户"){
                 $sqltype = 2;
                 $ucuser = M('User','tab_',C('DB_CONFIG2'))->where(array('account'=>session('member_auth.account')))->find();
@@ -666,9 +672,14 @@ class MemberController extends BaseController {
         }
         
         if (C('UC_SET') == 1) {
+
+            $this->uc_login($_POST['account'],$_POST['password']);
+
+            /*
             $data = array();
             $member = new MemberApi();
             $res = $member->otpLogin($_POST['account'], $_POST['password']);
+
             if ($res > 0) {
                 if($_POST['remuser']==1){
                     setcookie('media_account',$_POST['account'],time()+3600*10000,$_SERVER["HTTP_HOST"]);
@@ -700,6 +711,7 @@ class MemberController extends BaseController {
                 }
                 $this->ajaxReturn($data);
             }
+            */
 
 
         } else {
@@ -765,6 +777,26 @@ class MemberController extends BaseController {
                 );
                 session('member_auth', $auth);
                 session('member_auth_sign', data_auth_sign($auth));
+
+                $member = new MemberApi();
+                $res = $member->otpLogin($_POST['account'], $_POST['password']);
+                //用户不存在，创建用户
+                if ( $res == -1000) {
+                    $resdata=array();
+                    $resdata['account']=trim($account);
+                    $resdata['nickname']=trim($account);
+                    $resdata['password']=$password;
+                    $resdata['register_way']=3;
+                    $resdata['register_type']=1;
+                    $resdata['promote_id']=0;
+                    $resdata['promote_account']="官方渠道auto";
+                    $resdata['parent_id']="";
+                    $resdata['parent_name']="";
+                    $resdata['phone']='';
+                    $resdata['real_name']="";
+                    $resdata['idcard']="";
+                    $member->register($resdata);
+                }
 
                 $this->ajaxReturn(array('status' => 1000, 'msg' => '登录成功'));
             }else{
